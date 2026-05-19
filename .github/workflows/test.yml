@@ -1,0 +1,45 @@
+name: Tests
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: "Ref (branch or tag) to test"
+        required: false
+        type: string
+        default: ""
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Ref (branch or tag) to run on"
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      # Uncomment when Vitest is installed (J2)
+      # - name: 🧪 Run tests
+      #   run: npm run test:run
+
+      - name: ✅ Tests complete
+        run: echo "✅ Tests complete."

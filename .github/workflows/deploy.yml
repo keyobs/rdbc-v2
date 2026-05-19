@@ -1,0 +1,50 @@
+name: Deploy — main → OVH
+
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [sanity-update]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-ovh
+  cancel-in-progress: false
+
+jobs:
+  tests:
+    name: ✅ Tests
+    uses: ./.github/workflows/test.yml
+    with:
+      ref: ${{ github.ref }}
+
+  build:
+    name: 🏗️ Build
+    needs: tests
+    uses: ./.github/workflows/build.yml
+    with:
+      ref: ${{ github.ref }}
+
+  deploy-ovh:
+    name: 🚀 Deploy to OVH
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact-name }}
+          path: dist/
+
+      # Requires: add to GitHub → Settings → Secrets → Actions:
+      #   FTP_SERVER / FTP_USERNAME / FTP_PASSWORD
+      - name: 📡 Deploy to OVH via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: /www/
