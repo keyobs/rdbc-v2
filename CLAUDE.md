@@ -85,14 +85,16 @@
 ## Style de dev
 
 ### Git workflow
-- Branches : `feature/nom` depuis `dev` → merge dans `dev` → release vers `main`
-- `main` déclenche le déploiement (GitHub Actions)
-- Ne jamais committer directement sur `main`
+- Branches : `feature/nom` depuis `develop` → merge dans `develop` → release vers `main`
+- `develop` → GitHub Pages recette (`.github/workflows/preview.yml`)
+- `main` → OVH prod (`.github/workflows/deploy.yml`) + webhook Sanity (`sanity-update`)
+- Ne jamais committer directement sur `main` ni `develop`
 
 ### Profil
 - Senior React — clean architecture, code simple et direct
 - Toujours demander avant de coder, même pour les petits détails
 - En cas d'ambiguïté dans les specs : poser la question, pas d'hypothèse implicite
+- **Commentaires dans le code : toujours en anglais**
 
 ### Références & versions
 - Toujours vérifier `package.json` avant de répondre à une question sur une dépendance
@@ -161,13 +163,13 @@ rdbc-v2/
 ## Commandes
 ```bash
 # Développement
-npm run dev                        # Astro → localhost:4321
-cd sanity && npm run dev           # Studio → localhost:3333
+pnpm dev                           # Astro → localhost:4321
+cd sanity && pnpm dev              # Studio → localhost:3333
 
 # Build & déploiement
-npm run build                      # génère /dist
-npx sanity typegen generate        # régénérer types après modif schémas
-cd sanity && npm run deploy        # déployer le Studio
+pnpm build                         # génère /dist
+pnpm exec sanity typegen generate  # régénérer types après modif schémas
+cd sanity && pnpm deploy           # déployer le Studio
 
 # Git — pousse et déclenche le deploy
 git push origin main
