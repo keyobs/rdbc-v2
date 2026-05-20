@@ -12,6 +12,7 @@ html {
 }
 
 body {
+	margin: 0;
 	background-color: var(--color-bitume);
 	color: var(--color-text-main);
 	font-family: var(--font-body);
