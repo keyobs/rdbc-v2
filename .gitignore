@@ -7,6 +7,7 @@ dist/
 
 # Sanity
 sanity/.sanity/
+sanity/schema.json
 
 # Environment variables
 .env
