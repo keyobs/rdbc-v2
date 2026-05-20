@@ -11,13 +11,13 @@
 | `@sanity/astro` | `^3.4.0` | Client GROQ au build (pas de Studio embarqué) |
 | `sanity` | `^5.24.0` | Studio standalone dans `./sanity/` |
 | TypeScript | strict via `astro/tsconfigs/strict` | |
-| Radix UI | ⚠️ non installé | À ajouter — interactions (Drawer, Modal…) |
-| Framer Motion | ⚠️ non installé | À ajouter — animations spring |
-| Phosphor Icons | ⚠️ non installé | À ajouter — icônes Bold |
+| `@radix-ui/react-dialog` | `^1.1.15` | Interactions (Drawer, Modal…) |
+| `framer-motion` | `^12.39.0` | Animations spring |
+| `@phosphor-icons/react` | `^2.1.10` | Icônes Bold |
 | `@astrojs/sitemap` | ⚠️ non installé | À ajouter — J11 |
 | Vitest + Testing Library | ⚠️ non installé | À ajouter — J2 |
 
-- **Styling :** Vanilla CSS uniquement — pas de Tailwind, pas de CSS-in-JS
+- **Styling :** Vanilla CSS uniquement — pas de Tailwinds
 - **Deploy :** GitHub Actions → GitHub Pages (recette) + OVH mutualisé FTP (prod)
 - **Node :** ≥ 22.12
 
@@ -25,18 +25,18 @@
 
 | Fichier | Contenu |
 |---|---|
-| [docs/SPECS.md](bim/SPECS.md) | Cahier des charges complet — pages, fonctionnalités, contraintes |
+| [bim/SPECS.md](bim/SPECS.md) | Cahier des charges complet — pages, fonctionnalités, contraintes |
 | [docs/STACK.md](docs/STACK.md) | Choix techniques détaillés, config Astro, schémas Sanity, déploiement |
-| [docs/GUIDELINES-UI.md](bim/GUIDELINES-UI.md) | Design system — palette, typographie, composants, animations |
-| [docs/ROADMAP.md](bim/ROADMAP.md) | Planning J1→J15, critères de succès par journée |
-| [docs/INSTRUCTIONS.md](bim/INSTRUCTIONS.md) | Guide pas à pas — commandes, code de référence, webhook Sanity |
+| [bim/GUIDELINES-UI.md](bim/GUIDELINES-UI.md) | Design system — palette, typographie, composants, animations |
+| [bim/ROADMAP.md](bim/ROADMAP.md) | Planning J1→J15, critères de succès par journée |
+| [bim/INSTRUCTIONS.md](bim/INSTRUCTIONS.md) | Guide pas à pas — commandes, code de référence, webhook Sanity |
 
 ## Règles non-négociables
 
 **Style**
 - Vanilla CSS uniquement — pas de Tailwind, pas de Styled-Components, pas de CSS Modules
 - Background : `--color-bitume` (`rgb(15, 20, 39)`)
-- Palette source unique : [docs/GUIDELINES-UI.md](docs/GUIDELINES-UI.md) section 2
+- Palette source unique : [bim/GUIDELINES-UI.md](docs/GUIDELINES-UI.md) section 2
 - Conteneurs primaires : `border: 2px solid` neon
 - Tous les 3e/4e éléments : `transform: rotate(-1.5deg)` (destructured grid)
 - Badges/tags : `outline: 2px solid white` (sticker-look)
@@ -98,7 +98,7 @@
 
 ### Références & versions
 - Toujours vérifier `package.json` avant de répondre à une question sur une dépendance
-- Docs en priorité : [docs/](docs/) du projet, puis **Context7** pour la doc officielle des libs
+- Docs en priorité : [docs/](docs/), [bim/](bim/) du projet, puis **Context7** pour la doc officielle des libs
 - Toujours cibler la **dernière version** des dépendances (Context7 + GitHub releases)
 - Pour les APIs Sanity, Astro, Radix, Framer : se référer à la doc officielle, pas à la mémoire d'entraînement
 
