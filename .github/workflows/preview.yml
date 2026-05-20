@@ -20,6 +20,7 @@ jobs:
     uses: ./.github/workflows/test.yml
     with:
       ref: ${{ github.ref }}
+    secrets: inherit
 
   build:
     name: 🏗️ Build
@@ -27,6 +28,7 @@ jobs:
     uses: ./.github/workflows/build.yml
     with:
       ref: ${{ github.ref }}
+    secrets: inherit
 
   deploy:
     name: 🚀 Deploy to GitHub Pages
