@@ -40,6 +40,7 @@ export default {
 				"doc",
 				"feat",
 				"fix",
+				"migration",
 				"merge",
 				"perf",
 				"refacto",
@@ -63,6 +64,7 @@ export default {
 - feat — New feature
 - fix — Bug fix
 - merge — merge jobs
+- migration - version or lib migrations
 - perf — Performance improvements
 - refactor / refacto — Code restructure, same behavior
 - revert — Revert previous commit
