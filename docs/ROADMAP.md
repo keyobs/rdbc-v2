@@ -22,14 +22,14 @@
 
 ## Semaine 1 — Fondations
 
-### J1 — Setup & Infrastructure
+### ✅ J1 — Setup & Infrastructure
 
-- `[INFRA]` Initialisation repo GitHub, branches `main` / `dev`
-- `[INFRA]` Projet Astro opérationnel (`npm run dev` → localhost:4321)
-- `[INFRA]` TypeScript strict configuré (`astro/tsconfigs/strict`)
-- `[INFRA]` GitHub Actions — workflow build + deploy GitHub Pages
-- `[CMS]` Sanity Studio opérationnel (`cd sanity && npm run dev` → localhost:3333)
-- `[CMS]` Premier deploy Studio (`npm run deploy` → `rdbc-v2.sanity.studio`)
+- ✅ `[INFRA]` Initialisation repo GitHub, branches `main` / `dev`
+- ✅ `[INFRA]` Projet Astro opérationnel (`npm run dev` → localhost:4321)
+- ✅ `[INFRA]` TypeScript strict configuré (`astro/tsconfigs/strict`)
+- ✅ `[INFRA]` GitHub Actions — workflow build + deploy GitHub Pages
+- ✅ `[CMS]` Sanity Studio opérationnel (`cd sanity && yarn dev` → localhost:3333)
+- ✅ `[CMS]` Premier deploy Studio (`yarn deploy` → `rdbc-v2.sanity.studio`)
 
 **Critère de succès J1 :** pipeline CI/CD fonctionnel, push sur `main` → site visible sur GitHub Pages
 
