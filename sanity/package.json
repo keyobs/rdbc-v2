@@ -1,7 +1,8 @@
 {
-	"name": "rdbc-v2",
+	"name": "rdbc-v2-studio",
 	"private": true,
 	"version": "1.0.0",
+	"packageManager": "yarn@1.22.22",
 	"main": "package.json",
 	"license": "UNLICENSED",
 	"scripts": {
