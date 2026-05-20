@@ -51,6 +51,15 @@ jobs:
       - name: 📦 Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: 🔍 Lint (Biome)
+        run: yarn lint
+
+      - name: 🔄 Generate Astro types
+        run: yarn astro sync
+
+      - name: 🔎 Typecheck
+        run: yarn run check
+
       # Uncomment when Vitest is installed (J2)
       # - name: 🧪 Run tests
       #   run: yarn test:run
