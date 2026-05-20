@@ -1,3 +1,22 @@
+## [0.2.0] - 2026-05-20
+
+### Added
+Design System
+- `src/styles/tokens.css` — CSS variables (palette, typography, button tokens)
+- `src/styles/global.css` — reset + base styles
+- `src/styles/animations.css` — flicker keyframes
+- Self-hosted fonts via `@fontsource`: Archivo Black + Inter
+
+Sanity Schemas
+- `player` — derby_name, photo, role(s), season, first_season, misc
+- `club` — reusable opponent reference
+- `game` — date, location, team, opponent, scores, tournament (optional)
+- `event` — title, date, location, description, link (optional)
+- `article` — title, slug, date, author, image, excerpt, body (Portable Text)
+- TypeScript types generated via `sanity typegen`
+
+---
+
 ## [0.1.0] - 2026-05-20
 
 ### Added
