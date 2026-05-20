@@ -1,46 +1,79 @@
-# Astro Starter Kit: Basics
+# RDBC v2 — Roller Derby Bordeaux Club
 
-```sh
-npm create astro@latest -- --template basics
+Site web du Roller Derby Bordeaux Club. Stack : Astro 6 + React 19 + Sanity 5.
+
+## Prérequis
+
+- Node.js >= 22.12
+- pnpm >= 11 (`corepack enable`)
+
+## Installation
+
+```bash
+pnpm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Développement
 
-## 🚀 Project Structure
+```bash
+# Site Astro → localhost:4321
+pnpm dev
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+# Sanity Studio → localhost:3333
+cd sanity && pnpm dev
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Build
 
-## 🧞 Commands
+```bash
+pnpm build
+```
 
-All commands are run from the root of the project, from a terminal:
+## Sanity
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```bash
+# Régénérer les types après modification des schémas
+pnpm exec sanity typegen generate
 
-## 👀 Want to learn more?
+# Déployer le Studio
+cd sanity && pnpm deploy
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Structure
+
+```
+rdbc-v2/
+├── src/
+│   ├── pages/        # Routes Astro
+│   ├── components/   # Composants React + Astro
+│   ├── layouts/      # Layout principal
+│   ├── styles/       # tokens.css, global.css, animations.css
+│   ├── blog/         # Module blog autonome
+│   └── i18n/         # Traductions fr/en
+├── sanity/           # Studio standalone
+├── docs/             # Specs, guidelines, roadmap
+└── .github/workflows/
+    ├── preview.yml   # develop → GitHub Pages
+    └── deploy.yml    # main → OVH
+```
+
+## Git workflow
+
+```bash
+# Créer une feature branch
+git checkout -b feature/nom-feature
+
+# Pousser → déclenche le preview sur GitHub Pages
+git push origin develop
+
+# Release → déploiement OVH
+git push origin main
+```
+
+## Docs
+
+- [Specs](docs/SPECS.md)
+- [Stack technique](docs/STACK.md)
+- [Design system](docs/GUIDELINES-UI.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Guide pas à pas](docs/INSTRUCTIONS.md)
