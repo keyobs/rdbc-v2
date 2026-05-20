@@ -18,6 +18,7 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 jobs:
   test:
@@ -39,9 +40,13 @@ jobs:
         with:
           node-version: 22
           cache: "pnpm"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@keyobs"
 
       - name: 📦 Install dependencies
         run: pnpm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Uncomment when Vitest is installed (J2)
       # - name: 🧪 Run tests
