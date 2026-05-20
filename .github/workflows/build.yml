@@ -44,6 +44,14 @@ jobs:
       - name: 🔑 Authenticate GitHub Packages
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.KEYOBS_PACKAGES_TOKEN }}" >> .npmrc
 
+      - name: 🔍 Debug auth
+        run: |
+          echo "=== .npmrc content ==="
+          cat .npmrc
+          echo "=== Token length: ${#TOKEN} ==="
+        env:
+          TOKEN: ${{ secrets.KEYOBS_PACKAGES_TOKEN }}
+
       - name: 📦 Install dependencies
         run: yarn install --frozen-lockfile
 
