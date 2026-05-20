@@ -163,13 +163,13 @@ rdbc-v2/
 ## Commandes
 ```bash
 # Développement
-pnpm dev                           # Astro → localhost:4321
-cd sanity && pnpm dev              # Studio → localhost:3333
+yarn dev                           # Astro → localhost:4321
+cd sanity && yarn dev              # Studio → localhost:3333
 
 # Build & déploiement
-pnpm build                         # génère /dist
-pnpm exec sanity typegen generate  # régénérer types après modif schémas
-cd sanity && pnpm deploy           # déployer le Studio
+yarn build                         # génère /dist
+yarn sanity typegen generate       # régénérer types après modif schémas
+cd sanity && yarn deploy           # déployer le Studio
 
 # Git — pousse et déclenche le deploy
 git push origin main
