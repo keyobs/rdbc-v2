@@ -25,11 +25,11 @@
 
 | Fichier | Contenu |
 |---|---|
-| [docs/SPECS.md](docs/SPECS.md) | Cahier des charges complet — pages, fonctionnalités, contraintes |
+| [docs/SPECS.md](bim/SPECS.md) | Cahier des charges complet — pages, fonctionnalités, contraintes |
 | [docs/STACK.md](docs/STACK.md) | Choix techniques détaillés, config Astro, schémas Sanity, déploiement |
-| [docs/GUIDELINES-UI.md](docs/GUIDELINES-UI.md) | Design system — palette, typographie, composants, animations |
-| [docs/ROADMAP.md](docs/ROADMAP.md) | Planning J1→J15, critères de succès par journée |
-| [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md) | Guide pas à pas — commandes, code de référence, webhook Sanity |
+| [docs/GUIDELINES-UI.md](bim/GUIDELINES-UI.md) | Design system — palette, typographie, composants, animations |
+| [docs/ROADMAP.md](bim/ROADMAP.md) | Planning J1→J15, critères de succès par journée |
+| [docs/INSTRUCTIONS.md](bim/INSTRUCTIONS.md) | Guide pas à pas — commandes, code de référence, webhook Sanity |
 
 ## Règles non-négociables
 
