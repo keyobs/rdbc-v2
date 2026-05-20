@@ -29,28 +29,21 @@ jobs:
         with:
           ref: ${{ inputs.ref || github.ref }}
 
-      - name: ⚙️ Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 11.0.9
-          run_install: false
-
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "pnpm"
-          registry-url: "https://npm.pkg.github.com"
-          scope: "@keyobs"
+          cache: "yarn"
+
+      - name: 🔑 Authenticate GitHub Packages
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.KEYOBS_PACKAGES_TOKEN }}" >> .npmrc
 
       - name: 📦 Install dependencies
-        run: pnpm install
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.KEYOBS_PACKAGES_TOKEN }}
+        run: yarn install --frozen-lockfile
 
       # Uncomment when Vitest is installed (J2)
       # - name: 🧪 Run tests
-      #   run: npm run test:run
+      #   run: yarn test:run
 
       - name: ✅ Tests complete
         run: echo "✅ Tests complete."
