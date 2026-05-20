@@ -39,7 +39,8 @@
 		"@commitlint/config-conventional": "^21.0.1",
 		"@keyobs/dx-flow": "^3.0.0",
 		"husky": "^9.1.7",
-		"lint-staged": "^17.0.5"
+		"lint-staged": "^17.0.5",
+		"typescript": "^6.0.3"
 	},
 	"lint-staged": {
 		"*.{js,jsx,ts,tsx,json}": [

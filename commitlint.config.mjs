@@ -13,7 +13,9 @@ export default {
 			rules: {
 				"type-enum-insensitive": ({ type }, when, value) => {
 					if (!type) return [true];
-					const isFound = value.some((val) => val.toLowerCase() === type.toLowerCase());
+					const isFound = value.some(
+						(val) => val.toLowerCase() === type.toLowerCase(),
+					);
 					return [
 						when === "never" ? !isFound : isFound,
 						`type must be one of [${value.join(", ")}]`,
