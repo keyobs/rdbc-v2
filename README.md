@@ -5,38 +5,38 @@ Site web du Roller Derby Bordeaux Club. Stack : Astro 6 + React 19 + Sanity 5.
 ## Prérequis
 
 - Node.js >= 22.12
-- pnpm >= 11 (`corepack enable`)
+- yarn classic (`npm install -g yarn`)
 
 ## Installation
 
 ```bash
-pnpm install
+yarn install
 ```
 
 ## Développement
 
 ```bash
 # Site Astro → localhost:4321
-pnpm dev
+yarn dev
 
 # Sanity Studio → localhost:3333
-cd sanity && pnpm dev
+cd sanity && yarn dev
 ```
 
 ## Build
 
 ```bash
-pnpm build
+yarn build
 ```
 
 ## Sanity
 
 ```bash
 # Régénérer les types après modification des schémas
-pnpm exec sanity typegen generate
+yarn sanity typegen generate
 
 # Déployer le Studio
-cd sanity && pnpm deploy
+cd sanity && yarn deploy
 ```
 
 ## Structure
