@@ -168,7 +168,7 @@ cd sanity && yarn dev              # Studio → localhost:3333
 
 # Build & déploiement
 yarn build                         # génère /dist
-yarn sanity typegen generate       # régénérer types après modif schémas
+yarn sanity schema extract && yarn sanity typegen generate  # régénérer types après modif schémas
 cd sanity && yarn deploy           # déployer le Studio
 
 # Git — pousse et déclenche le deploy
