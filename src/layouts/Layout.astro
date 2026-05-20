@@ -1,11 +1,18 @@
 ---
+import "@fontsource/archivo-black";
+import "@fontsource/inter";
+import "../styles/tokens.css";
+import "../styles/global.css";
+import "../styles/animations.css";
+
 interface Props {
-	title: string;
-	description?: string;
+  title: string;
+  description?: string;
 }
 
 const { title, description = "Roller Derby Bordeaux Club" } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="fr">
   <head>

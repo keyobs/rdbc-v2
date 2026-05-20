@@ -1,0 +1,26 @@
+:root {
+  /* Surfaces */
+  --color-bitume: rgb(15, 20, 39);
+  --color-surface: rgb(43, 67, 154);
+  --color-border: rgb(84, 124, 147);
+
+  /* Accents */
+  --color-neon-primary: rgb(110, 201, 142);
+  --color-neon-secondary: rgb(184, 228, 180);
+  --color-action: rgb(235, 28, 36);
+
+  /* Typography & Utility */
+  --color-text-main: rgb(244, 244, 244);
+  --color-white: rgb(255, 255, 255);
+
+  /* Typography */
+  --font-display: "Archivo Black", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-size-base: 1rem;
+  --line-height-base: 1.6;
+
+  /* Buttons */
+  --btn-border: 2px solid;
+  --btn-radius: 0;
+  --btn-shadow: 4px 4px 0px var(--color-neon-primary);
+}

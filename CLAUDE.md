@@ -35,7 +35,7 @@
 
 **Style**
 - Vanilla CSS uniquement — pas de Tailwind, pas de Styled-Components, pas de CSS Modules
-- Background : `--color-bitume` (`#141618`)
+- Background : `--color-bitume` (`rgb(15, 20, 39)`)
 - Palette source unique : [docs/GUIDELINES-UI.md](docs/GUIDELINES-UI.md) section 2
 - Conteneurs primaires : `border: 2px solid` neon
 - Tous les 3e/4e éléments : `transform: rotate(-1.5deg)` (destructured grid)
@@ -43,14 +43,14 @@
 
 **Composants**
 - Radix UI pour toute interaction complexe (Drawer, Modal, Accordion, Dialog)
-- Phosphor Icons, weight **Bold**, couleur `--color-neon-pink`
+- Phosphor Icons, weight **Bold**, couleur `--color-neon-primary`
 - Framer Motion pour toutes les transitions (spring physics, jamais `linear`)
 
 **Boutons — "The 80s Switch"**
 - `border-radius: 0` (coins droits)
 - `border: 2px solid`
-- `box-shadow: 4px 4px 0px var(--color-neon-cyan)`
-- CTA critiques (Rejoindre…) : `--color-neon-pink`
+- `box-shadow: 4px 4px 0px var(--color-neon-primary)`
+- CTA critiques (Rejoindre…) : `--color-action`
 - Effet flicker au clic (opacity jitter keyframes)
 
 **UX / Mobile-First — règle hover**
