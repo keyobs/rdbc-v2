@@ -35,15 +35,16 @@
 
 ---
 
-### J2 — Schémas Sanity & Design System
+### ✅ J2 — Schémas Sanity & Design System
 
-- `[CMS]` Schéma `joueuse` (nomDerby, photo, âge, saisons, poste, misc)
-- `[CMS]` Schéma `match` (date, adversaire, lieu, scoreRdbc, scoreAdversaire, domicile)
-- `[CMS]` Schéma `evenement` (titre, date, lieu, description, lien)
-- `[CMS]` Schéma `article` (titre, slug, date, image, extrait, corps Portable Text)
-- `[INFRA]` `sanity typegen generate` → `sanity.types.ts`
-- `[FRONT]` Design system : `tokens.css`, `global.css`, `animations.css`
-- `[FRONT]` Variables CSS palette complète (bitume, neon-primary, action, etc.)
+- ✅ `[CMS]` Schéma `player` (derby_name, photo, role, season, first_season, misc)
+- ✅ `[CMS]` Schéma `club` (réutilisable — opponent dans game)
+- ✅ `[CMS]` Schéma `game` (date, location, team, opponent, scores, tournament)
+- ✅ `[CMS]` Schéma `event` (title, date, location, description, link)
+- ✅ `[CMS]` Schéma `article` (title, slug, date, author, image, excerpt, body)
+- ✅ `[INFRA]` `sanity typegen generate` → `sanity.types.ts`
+- ✅ `[FRONT]` Design system : `tokens.css`, `global.css`, `animations.css`
+- ✅ `[FRONT]` Variables CSS palette complète (bitume, neon-primary, action, etc.)
 
 **Critère de succès J2 :** 4 schémas validés dans Studio, design tokens disponibles
 
