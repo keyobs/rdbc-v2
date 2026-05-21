@@ -4,6 +4,13 @@
 	"exclude": ["dist", "sanity"],
 	"compilerOptions": {
 		"jsx": "react-jsx",
-		"jsxImportSource": "react"
+		"jsxImportSource": "react",
+		"paths": {
+			"@components/*": ["./src/components/*"],
+			"@features/*": ["./src/features/*"],
+			"@i18n/*": ["./src/i18n/*"],
+			"@styles/*": ["./src/styles/*"],
+			"@layouts/*": ["./src/layouts/*"]
+		}
 	}
 }
