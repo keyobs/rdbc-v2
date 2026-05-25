@@ -47,6 +47,9 @@
 			"includes": ["**/*.astro"],
 			"linter": {
 				"enabled": false
+			},
+			"formatter": {
+				"enabled": true
 			}
 		}
 	],
