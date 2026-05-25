@@ -1,14 +1,14 @@
 const fr = {
 	nav: {
 		home: "Accueil",
-		club: "Le club",
-		team: "L'équipe",
-		rules: "Les règles",
-		competitions: "Compétitions",
-		events: "Événements",
+		club: "club",
+		team: "équipes",
+		rules: "le jeu",
+		competitions: "matchs",
+		events: "events",
 		blog: "Blog",
-		contact: "Contact",
-		join: "Rejoindre",
+		contact: "contact",
+		join: "rejoindre",
 	},
 	home: {
 		hero: "Roller Derby Bordeaux Club",
