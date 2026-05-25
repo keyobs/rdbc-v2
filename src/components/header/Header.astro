@@ -1,0 +1,18 @@
+---
+import { useTranslations } from "@i18n/index";
+import Navbar from "@features/navigation/Navbar";
+import MobileNavDrawer from "@features/navigation/mobile/MobileNavDrawer";
+import "./header.css";
+
+const t = useTranslations("fr");
+---
+
+<header class="header">
+  <a href="/" class="header__logo">RDBC</a>
+
+  <Navbar t={t.nav} />
+
+  <div class="header__mobile-trigger">
+    <MobileNavDrawer t={t.nav} client:load />
+  </div>
+</header>
