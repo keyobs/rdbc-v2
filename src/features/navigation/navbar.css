@@ -14,6 +14,7 @@
 	text-decoration: none;
 	letter-spacing: 0.02em;
 	color: var(--color-text-main);
+	font-weight: 800;
 }
 
 .navbar__links a:focus-visible {

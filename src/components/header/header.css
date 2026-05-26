@@ -21,26 +21,17 @@
 }
 
 .header__logo {
-	font-family: var(--font-display);
-	font-size: 1.5rem;
+	display: flex;
+	align-items: center;
 	text-decoration: none;
-	color: var(--color-text-main);
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
-	text-shadow: 0 0 8px var(--color-neon-primary);
+}
+
+.header__logo-img {
+	height: 80px;
+	width: auto;
 }
 
 .header__logo:focus-visible {
 	outline: 2px solid var(--color-neon-primary);
 	outline-offset: 4px;
-}
-
-.header__mobile-trigger {
-	display: flex;
-}
-
-@media (min-width: 768px) {
-	.header__mobile-trigger {
-		display: none;
-	}
 }

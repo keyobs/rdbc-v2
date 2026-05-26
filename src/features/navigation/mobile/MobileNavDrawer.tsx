@@ -23,7 +23,7 @@ const MobileNavDrawer = ({ t }: MobileNavDrawerProps) => {
 					aria-expanded={open}
 					aria-controls="mobile-nav-content"
 				>
-					<ListIcon size={28} weight="bold" color="var(--color-neon-primary)" />
+					<ListIcon size={28} weight="bold" color="blue" />
 				</button>
 			</Dialog.Trigger>
 
