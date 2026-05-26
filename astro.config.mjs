@@ -13,6 +13,8 @@ export default defineConfig({
 				"@i18n": fileURLToPath(new URL("./src/i18n", import.meta.url)),
 				"@styles": fileURLToPath(new URL("./src/styles", import.meta.url)),
 				"@layouts": fileURLToPath(new URL("./src/layouts", import.meta.url)),
+				"@constants": fileURLToPath(new URL("./src/constants", import.meta.url)),
+				"@hooks": fileURLToPath(new URL("./src/hooks", import.meta.url)),
 			},
 		},
 	},

@@ -10,7 +10,9 @@
 			"@features/*": ["./src/features/*"],
 			"@i18n/*": ["./src/i18n/*"],
 			"@styles/*": ["./src/styles/*"],
-			"@layouts/*": ["./src/layouts/*"]
+			"@layouts/*": ["./src/layouts/*"],
+			"@constants/*": ["./src/constants/*"],
+			"@hooks/*": ["./src/hooks/*"]
 		}
 	}
 }
