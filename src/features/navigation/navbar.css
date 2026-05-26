@@ -1,5 +1,5 @@
 .navbar {
-	display: none;
+	display: block;
 }
 
 .navbar__links {
@@ -10,9 +10,8 @@
 }
 
 .navbar__links a {
-	font-size: 1.1rem;
+	font-size: 1.3rem;
 	text-decoration: none;
-	text-transform: uppercase;
 	letter-spacing: 0.02em;
 	color: var(--color-text-main);
 }
@@ -46,8 +45,3 @@
 	}
 }
 
-@media (min-width: 768px) {
-	.navbar {
-		display: block;
-	}
-}

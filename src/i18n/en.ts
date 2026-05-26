@@ -1,13 +1,13 @@
 const en = {
 	nav: {
-		home: "Home",
+		home: "home",
 		club: "club",
 		team: "teams",
-		rules: "The game",
+		rules: "the game",
 		competitions: "games",
-		events: "Events",
-		blog: "Blog",
-		contact: "Contact",
+		events: "events",
+		blog: "blog",
+		contact: "contact",
 		join: "Join us",
 	},
 	home: {
