@@ -10,7 +10,7 @@ interface MobileNavDrawerProps {
 	t: Translations["nav"];
 }
 
-export default function MobileNavDrawer({ t }: MobileNavDrawerProps) {
+const MobileNavDrawer = ({ t }: MobileNavDrawerProps) => {
 	const [open, setOpen] = useState(false);
 
 	return (
@@ -94,4 +94,6 @@ export default function MobileNavDrawer({ t }: MobileNavDrawerProps) {
 			</AnimatePresence>
 		</Dialog.Root>
 	);
-}
+};
+
+export default MobileNavDrawer;

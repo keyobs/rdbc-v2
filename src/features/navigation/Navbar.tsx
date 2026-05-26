@@ -6,7 +6,7 @@ interface NavbarProps {
 	t: Translations["nav"];
 }
 
-export default function Navbar({ t }: NavbarProps) {
+const Navbar = ({ t }: NavbarProps) => {
 	return (
 		<nav className="navbar" aria-label="Main navigation">
 			<ul className="navbar__links">
@@ -23,4 +23,6 @@ export default function Navbar({ t }: NavbarProps) {
 			</ul>
 		</nav>
 	);
-}
+};
+
+export default Navbar;
