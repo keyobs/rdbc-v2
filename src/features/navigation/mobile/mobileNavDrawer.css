@@ -114,3 +114,10 @@
 	outline: 2px solid var(--color-white);
 	outline-offset: 3px;
 }
+
+.mobile-nav-drawer__social {
+	display: flex;
+	gap: 24px;
+	justify-content: center;
+	margin-top: 32px;
+}

@@ -1,9 +1,12 @@
 ---
 import { useTranslations } from "@i18n/index";
 import Navigation from "@features/navigation/Navigation";
+import getSectionTitle from "@features/navigation/getSectionTitle";
 import "./header.css";
 
 const t = useTranslations("fr");
+const pathname = Astro.url.pathname;
+const sectionTitle = getSectionTitle(pathname, t.nav);
 ---
 
 <header class="header">
@@ -11,5 +14,7 @@ const t = useTranslations("fr");
     <img src="/assets/mummy.png" alt="Roller Derby Bordeaux Club" class="header__logo-img" width="80" height="80" />
   </a>
 
-  <Navigation t={t.nav} client:load />
+  <span class="header__section-title">{sectionTitle}</span>
+
+  <Navigation t={t.nav} pathname={pathname} client:load />
 </header>

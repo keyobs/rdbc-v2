@@ -35,3 +35,27 @@
 	outline: 2px solid var(--color-neon-primary);
 	outline-offset: 4px;
 }
+
+.header__section-title {
+	display: none;
+	font-family: var(--font-display);
+	font-size: 1.25rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--color-text-main);
+	text-shadow: 0 0 8px var(--color-neon-primary);
+}
+
+@media (max-width: 1023px) {
+	.header {
+		height: 60px;
+	}
+
+	.header__logo {
+		display: none;
+	}
+
+	.header__section-title {
+		display: block;
+	}
+}
