@@ -1,18 +1,15 @@
 ---
 import { useTranslations } from "@i18n/index";
-import Navbar from "@features/navigation/Navbar";
-import MobileNavDrawer from "@features/navigation/mobile/MobileNavDrawer";
+import Navigation from "@features/navigation/Navigation";
 import "./header.css";
 
 const t = useTranslations("fr");
 ---
 
 <header class="header">
-  <a href="/" class="header__logo">RDBC</a>
+  <a href="/" class="header__logo">
+    <img src="/assets/mummy.png" alt="Roller Derby Bordeaux Club" class="header__logo-img" width="80" height="80" />
+  </a>
 
-  <Navbar t={t.nav} />
-
-  <div class="header__mobile-trigger">
-    <MobileNavDrawer t={t.nav} client:load />
-  </div>
+  <Navigation t={t.nav} client:load />
 </header>
