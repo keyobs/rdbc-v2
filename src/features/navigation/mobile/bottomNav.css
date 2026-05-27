@@ -1,3 +1,9 @@
+@media (max-width: 1023px) {
+	main {
+		padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+	}
+}
+
 .bottom-nav {
 	position: fixed;
 	bottom: 0;
