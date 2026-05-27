@@ -1,0 +1,111 @@
+.btn-shiny {
+	position: relative;
+	display: inline-block;
+	padding: 8px 20px;
+	text-decoration: none;
+	font-family: var(--font-display);
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	background: #0b0635;
+	border: var(--btn-border) var(--color-neon-blue);
+	border-radius: var(--btn-radius);
+	box-shadow: var(--btn-shadow);
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.btn-shiny::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.05);
+	pointer-events: none;
+}
+
+.btn-shiny::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+	pointer-events: none;
+	/* transition on default state = animates both hover-in AND hover-out */
+	transition: left 0.5s ease;
+}
+
+.btn-shiny__border {
+	position: absolute;
+	display: block;
+	background: white;
+	/* transitions on default state = animate both enter and exit */
+	transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease;
+}
+
+.btn-shiny__border:nth-child(1) { top: 0; left: 0; width: 0; height: 2px; }
+.btn-shiny__border:nth-child(2) { top: 0; left: 0; width: 2px; height: 0; }
+.btn-shiny__border:nth-child(3) { bottom: 0; right: 0; width: 0; height: 2px; }
+.btn-shiny__border:nth-child(4) { bottom: 0; right: 0; width: 2px; height: 0; }
+
+/*
+ * One-shot sweep on mount.
+ * Keyframe returns to -100% at the end so left stays at its default value —
+ * no forwards fill needed, hover transitions work normally after.
+ */
+@keyframes btn-shiny-sweep {
+	0%   { left: -100%; }
+	75%  { left: 100%; }
+	76%  { left: -100%; } /* instant off-screen reset, invisible under overflow:hidden */
+	100% { left: -100%; }
+}
+
+.btn-shiny--animate::after {
+	animation: btn-shiny-sweep 0.8s ease 0.4s;
+}
+
+/* Active state */
+.btn-shiny:active {
+	animation: flicker-click 0.3s ease;
+}
+
+.btn-shiny:focus-visible {
+	outline: 2px solid var(--color-white);
+	outline-offset: 3px;
+}
+
+/* Desktop hover */
+@media (hover: hover) {
+	.btn-shiny:hover::after {
+		left: 100%;
+		/* transition inherited from default — left animates left→right on enter */
+	}
+
+	.btn-shiny:hover .btn-shiny__border:nth-child(1) {
+		width: 100%;
+		transform: translateX(100%);
+		transition-delay: 0s;
+	}
+
+	.btn-shiny:hover .btn-shiny__border:nth-child(2) {
+		height: 100%;
+		transform: translateY(100%);
+		transition-delay: 0.1s;
+	}
+
+	.btn-shiny:hover .btn-shiny__border:nth-child(3) {
+		width: 100%;
+		transform: translateX(-100%);
+		transition-delay: 0.2s;
+	}
+
+	.btn-shiny:hover .btn-shiny__border:nth-child(4) {
+		height: 100%;
+		transform: translateY(-100%);
+		transition-delay: 0.3s;
+	}
+}
