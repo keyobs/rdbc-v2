@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
+import mummyImg from "../../assets/mummy.png";
 import { useTranslations } from "@i18n/index";
-import Navigation from "@features/navigation/Navigation";
+import Navbar from "@features/navigation/Navbar.astro";
 import getSectionTitle from "@features/navigation/getSectionTitle";
 import "./header.css";
 
@@ -10,11 +12,19 @@ const sectionTitle = getSectionTitle(pathname, t.nav);
 ---
 
 <header class="header">
-  <a href="/" class="header__logo">
-    <img src="/assets/mummy.png" alt="Roller Derby Bordeaux Club" class="header__logo-img" width="80" height="80" />
-  </a>
-
-  <span class="header__section-title">{sectionTitle}</span>
-
-  <Navigation t={t.nav} pathname={pathname} client:load />
+  <div class="header__content">
+    <a href="/" class="header__logo">
+      <Image
+        src={mummyImg}
+        alt="Roller Derby Bordeaux Club"
+        class="header__logo-img"
+        width={160}
+        height={160}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </a>
+    <span class="header__section-title">{sectionTitle}</span>
+    <Navbar t={t.nav} />
+  </div>
 </header>

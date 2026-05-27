@@ -13,7 +13,13 @@
 		rgb(110, 201, 142)
 	);
 	border-bottom: 2px solid var(--color-neon-primary);
-	padding: 0 24px;
+}
+
+.header__content {
+	max-width: 1536px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 1.5rem;
 	height: 106px;
 	display: flex;
 	align-items: center;
@@ -47,7 +53,7 @@
 }
 
 @media (max-width: 1023px) {
-	.header {
+	.header__content {
 		height: 60px;
 	}
 
@@ -57,5 +63,15 @@
 
 	.header__section-title {
 		display: block;
+	}
+
+	.navbar {
+		display: none;
+	}
+}
+
+@media (min-width: 1024px) {
+	.bottom-nav {
+		display: none;
 	}
 }
