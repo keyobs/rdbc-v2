@@ -3,6 +3,7 @@ import "@fontsource/inter";
 import "../styles/tokens.css";
 import "../styles/global.css";
 import "../styles/animations.css";
+import "../styles/background.css";
 import { getImage } from "astro:assets";
 import mummyRaw from "../assets/mummy.png";
 import { useTranslations } from "@i18n/index";
@@ -37,6 +38,11 @@ const logoImg = await getImage({
     <title>{title} — RDBC</title>
   </head>
   <body>
+    <div class="halo" aria-hidden="true">
+      <div class="halo-blob"></div>
+      <div class="halo-blob"></div>
+      <div class="halo-blob"></div>
+    </div>
     <Header />
     <main>
       <slot />

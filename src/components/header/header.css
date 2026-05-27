@@ -4,13 +4,13 @@
 	z-index: 50;
 	background: linear-gradient(
 		344deg,
-		rgb(15, 20, 39),
-		rgb(12, 40, 65),
-		rgb(20, 80, 110),
-		rgb(12 99 118),
-		rgb(41 150 158),
-		rgb(75, 190, 160),
-		var(--color-neon-green)
+		rgba(15, 20, 39, 0.3),
+		rgba(12, 40, 65, 0.2),
+		rgba(20, 80, 110, 0.4),
+		rgba(12, 99, 118, 0.6),
+		rgba(41, 150, 158, 0.6),
+		rgba(75, 190, 160, 0.8),
+		rgba(0, 255, 150, 1)
 	);
 	border-bottom: 3px solid var(--color-neon-primary);
 	box-shadow: 5px 0px 10px 0px #aaa;
