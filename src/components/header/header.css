@@ -7,19 +7,14 @@
 		rgb(15, 20, 39),
 		rgb(12, 40, 65),
 		rgb(20, 80, 110),
-		rgb(35, 130, 150),
-		rgb(45, 170, 179),
+		rgb(12 99 118),
+		rgb(41 150 158),
 		rgb(75, 190, 160),
 		var(--color-neon-green)
 	);
-	border-bottom: 2px solid var(--color-neon-primary);
+	border-bottom: 3px solid var(--color-neon-primary);
+	box-shadow: 5px 0px 10px 0px #aaa;
 }
-
-/*
-linear-gradient(344deg, rgb(15, 20, 39),
-rgb(12, 40, 65),
-rgb(20, 80, 110), rgb(35, 130, 150), rgb(45, 170, 179), rgb(15 20 39), #158d3f)
-*/
 
 .header__content {
 	max-width: 1536px;
