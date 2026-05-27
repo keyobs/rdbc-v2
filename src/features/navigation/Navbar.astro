@@ -1,6 +1,7 @@
 ---
 import type { Translations } from "@i18n/index";
 import { NAV_ITEMS } from "./navLinks";
+import ShinyButton from "@components/buttons/ShinyButton";
 import "./navbar.css";
 
 interface Props {
@@ -16,6 +17,6 @@ const { t } = Astro.props;
 			? <li aria-hidden="true"><span class="navbar__separator">|</span></li>
 			: <li><a href={item.href}>{t[item.key]}</a></li>
 		)}
-		<li><a href="/rejoindre" class="navbar__cta">{t.join}</a></li>
+		<li><ShinyButton href="/rejoindre">{t.join}</ShinyButton></li>
 	</ul>
 </nav>

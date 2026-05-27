@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import type { Translations } from "@i18n/index";
 import FacebookLink from "@components/social/FacebookLink";
 import InstagramLink from "@components/social/InstagramLink";
+import ShinyButton from "@components/buttons/ShinyButton";
 import { NAV_LINKS } from "../navLinks";
 import "./mobileNavDrawer.css";
 
@@ -68,13 +69,12 @@ const MobileNavDrawer = ({ t, open, onOpenChange }: MobileNavDrawerProps) => {
 								</ul>
 							</nav>
 
-							<a
+							<ShinyButton
 								href="/rejoindre"
-								className="mobile-nav-drawer__cta"
 								onClick={() => onOpenChange(false)}
 							>
 								{t.join}
-							</a>
+							</ShinyButton>
 
 							<div className="mobile-nav-drawer__social">
 								<InstagramLink size={28} />

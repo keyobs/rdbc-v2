@@ -9,7 +9,7 @@
 	gap: 24px;
 }
 
-.navbar__links a {
+.navbar__links a:not(.btn-shiny) {
 	position: relative;
 	display: inline-flex;
 	align-items: center;
@@ -22,7 +22,7 @@
 	transition: color 260ms ease 80ms;
 }
 
-.navbar__links a:not(.navbar__cta)::before {
+.navbar__links a:not(.btn-shiny)::before {
 	position: absolute;
 	top: 50%;
 	left: -0.42em;
@@ -47,35 +47,17 @@
 		transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.navbar__links a:focus-visible {
+.navbar__links a:not(.btn-shiny):focus-visible {
 	outline: 2px solid var(--color-neon-primary);
 	outline-offset: 4px;
 }
 
-.navbar__cta {
-	padding: 8px 16px;
-	background: transparent;
-	color: var(--color-action);
-	border: var(--btn-border) var(--color-action);
-	border-radius: var(--btn-radius);
-	box-shadow: 3px 3px 0px var(--color-neon-primary);
-	font-family: var(--font-display);
-	font-size: 0.8rem;
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
-}
-
-.navbar__cta:focus-visible {
-	outline: 2px solid var(--color-white);
-	outline-offset: 3px;
-}
-
 @media (hover: hover) {
-	.navbar__links a:not(.navbar__cta):hover {
+	.navbar__links a:not(.btn-shiny):hover {
 		color: var(--color-bitume);
 	}
 
-	.navbar__links a:not(.navbar__cta):hover::before {
+	.navbar__links a:not(.btn-shiny):hover::before {
 		opacity: 1;
 		transform: translate(0, -42%) scaleX(1) skewX(-18deg);
 	}
