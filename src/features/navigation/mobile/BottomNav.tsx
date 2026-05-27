@@ -7,6 +7,7 @@ import "./bottomNav.css";
 interface BottomNavProps {
 	t: Translations["nav"];
 	pathname: string;
+	logoSrc: string;
 }
 
 const BOTTOM_NAV_ITEMS = [
@@ -16,7 +17,7 @@ const BOTTOM_NAV_ITEMS = [
 	{ key: "contact" as const, href: "/contact" },
 ] as const;
 
-const BottomNav = ({ t, pathname }: BottomNavProps) => {
+const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 	const [open, setOpen] = useState(false);
 
 	return (
@@ -44,7 +45,7 @@ const BottomNav = ({ t, pathname }: BottomNavProps) => {
 								aria-label="Open full navigation menu"
 								aria-expanded={open}
 							>
-								<img src="/assets/mummy.png" alt="" width="52" height="52" />
+								<img src={logoSrc} alt="" width="52" height="52" />
 							</button>
 						</Dialog.Trigger>
 					</li>
