@@ -54,33 +54,6 @@ h6 {
 	line-height: 1.2;
 }
 
-@media (max-width: 1023px) {
-	main {
-		padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-	}
-}
-
-.social-link {
-	color: var(--color-neon-primary);
-	display: flex;
-	align-items: center;
-	transition: none;
-}
-
-.social-link:active {
-	opacity: 0.6;
-}
-
-.social-link:focus-visible {
-	outline: 2px solid var(--color-neon-primary);
-	outline-offset: 4px;
-}
-
-@media (hover: hover) {
-	.social-link:hover {
-		color: var(--color-neon-secondary);
-	}
-}
 
 .sr-only {
 	/* accessibility - screen reader only */

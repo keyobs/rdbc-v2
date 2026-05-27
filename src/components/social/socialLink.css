@@ -1,0 +1,21 @@
+.social-link {
+	color: var(--color-neon-primary);
+	display: flex;
+	align-items: center;
+	transition: none;
+}
+
+.social-link:active {
+	opacity: 0.6;
+}
+
+.social-link:focus-visible {
+	outline: 2px solid var(--color-neon-primary);
+	outline-offset: 4px;
+}
+
+@media (hover: hover) {
+	.social-link:hover {
+		color: var(--color-neon-secondary);
+	}
+}

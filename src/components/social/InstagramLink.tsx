@@ -1,4 +1,5 @@
 import { InstagramLogoIcon } from "@phosphor-icons/react";
+import "./socialLink.css";
 
 interface InstagramLinkProps {
 	size?: number;

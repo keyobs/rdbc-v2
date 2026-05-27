@@ -1,4 +1,5 @@
 import { FacebookLogoIcon } from "@phosphor-icons/react";
+import "./socialLink.css";
 
 interface FacebookLinkProps {
 	size?: number;
