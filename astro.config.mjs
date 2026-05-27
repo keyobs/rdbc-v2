@@ -8,12 +8,16 @@ export default defineConfig({
 	vite: {
 		resolve: {
 			alias: {
-				"@components": fileURLToPath(new URL("./src/components", import.meta.url)),
+				"@components": fileURLToPath(
+					new URL("./src/components", import.meta.url),
+				),
 				"@features": fileURLToPath(new URL("./src/features", import.meta.url)),
 				"@i18n": fileURLToPath(new URL("./src/i18n", import.meta.url)),
 				"@styles": fileURLToPath(new URL("./src/styles", import.meta.url)),
 				"@layouts": fileURLToPath(new URL("./src/layouts", import.meta.url)),
-				"@constants": fileURLToPath(new URL("./src/constants", import.meta.url)),
+				"@constants": fileURLToPath(
+					new URL("./src/constants", import.meta.url),
+				),
 				"@hooks": fileURLToPath(new URL("./src/hooks", import.meta.url)),
 			},
 		},

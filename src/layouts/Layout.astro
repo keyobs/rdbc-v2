@@ -18,7 +18,12 @@ interface Props {
 const { title, description = "Roller Derby Bordeaux Club" } = Astro.props;
 const t = useTranslations("fr");
 const pathname = Astro.url.pathname;
-const logoImg = await getImage({ src: mummyRaw, width: 104, height: 104, format: "webp" });
+const logoImg = await getImage({
+	src: mummyRaw,
+	width: 104,
+	height: 104,
+	format: "webp",
+});
 ---
 
 <!doctype html>

@@ -33,7 +33,12 @@
 	left: -100%;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.4),
+		transparent
+	);
 	pointer-events: none;
 	/* transition on default state = animates both hover-in AND hover-out */
 	transition: left 0.5s ease;
@@ -44,13 +49,36 @@
 	display: block;
 	background: white;
 	/* transitions on default state = animate both enter and exit */
-	transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease;
+	transition:
+		width 0.3s ease,
+		height 0.3s ease,
+		transform 0.3s ease;
 }
 
-.btn-shiny__border:nth-child(1) { top: 0; left: 0; width: 0; height: 2px; }
-.btn-shiny__border:nth-child(2) { top: 0; left: 0; width: 2px; height: 0; }
-.btn-shiny__border:nth-child(3) { bottom: 0; right: 0; width: 0; height: 2px; }
-.btn-shiny__border:nth-child(4) { bottom: 0; right: 0; width: 2px; height: 0; }
+.btn-shiny__border:nth-child(1) {
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 2px;
+}
+.btn-shiny__border:nth-child(2) {
+	top: 0;
+	left: 0;
+	width: 2px;
+	height: 0;
+}
+.btn-shiny__border:nth-child(3) {
+	bottom: 0;
+	right: 0;
+	width: 0;
+	height: 2px;
+}
+.btn-shiny__border:nth-child(4) {
+	bottom: 0;
+	right: 0;
+	width: 2px;
+	height: 0;
+}
 
 /*
  * One-shot sweep on mount.
@@ -58,10 +86,18 @@
  * no forwards fill needed, hover transitions work normally after.
  */
 @keyframes btn-shiny-sweep {
-	0%   { left: -100%; }
-	75%  { left: 100%; }
-	76%  { left: -100%; } /* instant off-screen reset, invisible under overflow:hidden */
-	100% { left: -100%; }
+	0% {
+		left: -100%;
+	}
+	75% {
+		left: 100%;
+	}
+	76% {
+		left: -100%;
+	} /* instant off-screen reset, invisible under overflow:hidden */
+	100% {
+		left: -100%;
+	}
 }
 
 .btn-shiny--animate::after {
