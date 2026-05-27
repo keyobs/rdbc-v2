@@ -8,6 +8,11 @@ on:
         required: false
         type: string
         default: ""
+      base_path:
+        description: "Astro base path (e.g. /rdbc-v2 for GitHub Pages, / for OVH)"
+        required: false
+        type: string
+        default: "/"
     outputs:
       artifact-name:
         description: "Name of the uploaded build artifact"
@@ -29,6 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      ASTRO_BASE_PATH: ${{ inputs.base_path }}
     outputs:
       artifact-name: ${{ steps.set-name.outputs.name }}
     steps:

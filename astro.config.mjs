@@ -3,7 +3,11 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import { fileURLToPath } from "node:url";
 
+const base = process.env.ASTRO_BASE_PATH ?? "/";
+
 export default defineConfig({
+	site: "https://keyobs.github.io",
+	base,
 	integrations: [react()],
 	vite: {
 		resolve: {
