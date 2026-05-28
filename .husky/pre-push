@@ -1,2 +1,3 @@
 #!/bin/sh
 npx --no dx-flow hook:pre-push
+yarn lint

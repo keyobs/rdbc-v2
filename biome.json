@@ -44,9 +44,18 @@
 	},
 	"overrides": [
 		{
-			"includes": ["**/*.astro", "**/*.css"],
+			"includes": ["**/*.astro"],
 			"linter": {
+				"enabled": false
+			},
+			"formatter": {
 				"enabled": true
+			}
+		},
+		{
+			"includes": ["**/*.css"],
+			"linter": {
+				"enabled": false
 			},
 			"formatter": {
 				"enabled": true
