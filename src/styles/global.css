@@ -54,7 +54,6 @@ h6 {
 	line-height: 1.2;
 }
 
-
 .sr-only {
 	/* accessibility - screen reader only */
 	position: absolute;
@@ -67,4 +66,3 @@ h6 {
 	white-space: nowrap;
 	border: 0;
 }
-
