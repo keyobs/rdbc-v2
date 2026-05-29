@@ -1,0 +1,63 @@
+/* ── HERO STRIP MOBILE ─────────────────────────────────── */
+/*
+ * 2 rows × 270px.
+ * Row 1: 2 panels with 16° diagonal separator (offset = 77px).
+ * Row 2: 1 full-width panel.
+ * White border = container padding (8px) + clip-path gap (8px each side).
+ */
+
+.hero-strip-mobile {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	background: white;
+	padding: 8px;
+	margin: 8px;
+}
+
+
+/* ── rows ─── */
+.hero-strip-mobile__row {
+	position: relative;
+	height: 270px;
+	overflow: hidden;
+}
+
+/* ── panels ─── */
+.hero-strip-mobile__panel {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow: hidden;
+}
+
+/* row 1 — left: left edge straight, right edge at 16° */
+.hero-strip-mobile__panel--top-left {
+	left: 0;
+	width: calc(50% + 38px);
+	clip-path: polygon(0 0, calc(100% - 4px) 0, calc(100% - 81px) 100%, 0 100%);
+}
+
+/* row 1 — right: left edge at 16°, right edge straight */
+.hero-strip-mobile__panel--top-right {
+	left: calc(50% - 38px);
+	right: 0;
+	clip-path: polygon(81px 0, 100% 0, 100% 100%, 4px 100%);
+}
+
+/* row 2 — full width, no diagonal */
+.hero-strip-mobile__panel--bottom {
+	inset: 0;
+}
+
+/* ── images ─── */
+.hero-strip-mobile__img {
+	position: absolute;
+	top: 0;
+	left: -15%;
+	width: 130%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	will-change: transform;
+}

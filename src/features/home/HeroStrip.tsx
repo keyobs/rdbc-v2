@@ -2,9 +2,11 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import photo1 from "../../assets/hero/match_misty_1-3.jpg";
 import photo2 from "../../assets/hero/match_peak_1-1.jpg";
 import photo3 from "../../assets/hero/train_kiwi_block.jpeg";
+import useIsMobile from "@hooks/useIsMobile";
+import HeroStripMobile from "./HeroStripMobile";
 import "./heroStrip.css";
 
-const HeroStrip = () => {
+const DesktopStrip = () => {
 	const { scrollY } = useScroll();
 	const x0 = useTransform(scrollY, [0, 400], [0, 30]);
 	const x1 = useTransform(scrollY, [0, 400], [0, 50]);
@@ -38,6 +40,12 @@ const HeroStrip = () => {
 			</div>
 		</div>
 	);
+};
+
+const HeroStrip = () => {
+	const isMobile = useIsMobile();
+	if (isMobile === undefined) return null;
+	return isMobile ? <HeroStripMobile /> : <DesktopStrip />;
 };
 
 export default HeroStrip;

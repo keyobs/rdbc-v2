@@ -62,31 +62,3 @@
 	will-change: transform;
 }
 
-/* ── responsive: reduce angle on small screens ─────────── */
-@media (max-width: 767px) {
-	.hero-strip {
-		height: 200px;
-	}
-
-	/* offset = 50px (≈14°) | border = 4px (2px each side) */
-	.hero-strip__panel--left {
-		width: calc(30% + 15px);
-		clip-path: polygon(0 0, calc(100% - 2px) 0, calc(100% - 52px) 100%, 0 100%);
-	}
-
-	.hero-strip__panel--mid {
-		left: calc(33.333% - 15px);
-		width: calc(33.333% + 50px);
-		clip-path: polygon(
-			52px 0,
-			calc(100% - 2px) 0,
-			calc(100% - 52px) 100%,
-			2px 100%
-		);
-	}
-
-	.hero-strip__panel--right {
-		left: calc(66.666% - 25px);
-		clip-path: polygon(52px 0, 100% 0, 100% 100%, 2px 100%);
-	}
-}
