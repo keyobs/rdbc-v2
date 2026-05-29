@@ -1,9 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import HeroStrip from "@features/home/HeroStrip";
 ---
-<Layout title="Coming Soon">
-  <div style="display:flex;align-items:center;justify-content:center;height:80vh;color:#fff;font-family:sans-serif;font-size:2rem;text-align:center;">
-    RDBC — 3.0 <br>
-    Coming little by little
-  </div>
+<Layout title="Accueil">
+  <HeroStrip client:load />
 </Layout>

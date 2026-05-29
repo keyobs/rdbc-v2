@@ -1,0 +1,92 @@
+/* ── HERO STRIP ────────────────────────────────────────── */
+/*
+ * 3 BD-style overlapping panels with diagonal white borders.
+ * offset = 100px (≈21° from vertical) | border gap = 6px (3px each side)
+ *
+ * Geometry: panels are absolutely positioned and wider than 1/3 so their
+ * clip-path edges overlap. The container's white background shows through
+ * the 6px gap between clip boundaries → the diagonal "border" effect.
+ */
+
+.hero-strip {
+	position: relative;
+	width: 100%;
+	max-width: 1900px;
+	height: 666px;
+	background: white;
+	overflow: hidden;
+}
+
+.hero-strip__panel {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow: hidden;
+}
+
+.hero-strip__panel--left {
+	left: 0;
+	width: calc(30% + 50px);
+	border: 16px solid white;
+	clip-path: polygon(0 0, calc(100% - 8px) 0, calc(100% - 108px) 100%, 0 100%);
+}
+
+.hero-strip__panel--mid {
+	left: calc(30% - 50px);
+	width: calc(40% + 100px);
+	border: 16px solid white;
+	clip-path: polygon(
+		108px 0,
+		calc(100% - 8px) 0,
+		calc(100% - 108px) 100%,
+		8px 100%
+	);
+}
+
+.hero-strip__panel--right {
+	left: calc(70% - 50px);
+	right: 0;
+	border: 16px solid white;
+	clip-path: polygon(108px 0, 100% 0, 100% 100%, 8px 100%);
+}
+
+/* image wider than panel for parallax headroom (130% = ±15% shift room) */
+.hero-strip__img {
+	position: absolute;
+	top: 0;
+	left: -15%;
+	width: 130%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	will-change: transform;
+}
+
+/* ── responsive: reduce angle on small screens ─────────── */
+@media (max-width: 767px) {
+	.hero-strip {
+		height: 200px;
+	}
+
+	/* offset = 50px (≈14°) | border = 4px (2px each side) */
+	.hero-strip__panel--left {
+		width: calc(30% + 15px);
+		clip-path: polygon(0 0, calc(100% - 2px) 0, calc(100% - 52px) 100%, 0 100%);
+	}
+
+	.hero-strip__panel--mid {
+		left: calc(33.333% - 15px);
+		width: calc(33.333% + 50px);
+		clip-path: polygon(
+			52px 0,
+			calc(100% - 2px) 0,
+			calc(100% - 52px) 100%,
+			2px 100%
+		);
+	}
+
+	.hero-strip__panel--right {
+		left: calc(66.666% - 25px);
+		clip-path: polygon(52px 0, 100% 0, 100% 100%, 2px 100%);
+	}
+}
