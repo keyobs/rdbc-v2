@@ -1,0 +1,28 @@
+---
+import { isEnglish, getAlternateHref } from "@i18n/routes";
+import "./languageSwitch.css";
+
+interface Props {
+	pathname: string;
+}
+
+const { pathname } = Astro.props;
+const isEN = isEnglish(pathname);
+const altHref = getAlternateHref(pathname);
+const frHref = isEN ? altHref : pathname;
+const enHref = isEN ? pathname : altHref;
+---
+
+<div class="lang-switch" role="navigation" aria-label="Langue / Language">
+	{isEN ? (
+		<a href={frHref} class="lang-switch__btn" hreflang="fr">FR</a>
+	) : (
+		<span class="lang-switch__btn lang-switch__btn--active" aria-current="true">FR</span>
+	)}
+	<span class="lang-switch__sep" aria-hidden="true">/</span>
+	{isEN ? (
+		<span class="lang-switch__btn lang-switch__btn--active" aria-current="true">EN</span>
+	) : (
+		<a href={enHref} class="lang-switch__btn" hreflang="en">EN</a>
+	)}
+</div>

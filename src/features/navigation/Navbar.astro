@@ -2,13 +2,15 @@
 import type { Translations } from "@i18n/index";
 import { NAV_ITEMS } from "./navLinks";
 import ShinyButton from "@components/buttons/ShinyButton";
+import LanguageSwitch from "@components/languageSwitch/LanguageSwitch.astro";
 import "./navbar.css";
 
 interface Props {
 	t: Translations["nav"];
+	pathname: string;
 }
 
-const { t } = Astro.props;
+const { t, pathname } = Astro.props;
 ---
 
 <nav class="navbar" aria-label="Main navigation">
@@ -18,5 +20,6 @@ const { t } = Astro.props;
 			: <li><a href={item.href}>{t[item.key]}</a></li>
 		)}
 		<li><ShinyButton href="/rejoindre">{t.join}</ShinyButton></li>
+		<li><LanguageSwitch pathname={pathname} /></li>
 	</ul>
 </nav>

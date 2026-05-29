@@ -65,7 +65,12 @@ const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 				</ul>
 			</nav>
 
-			<MobileNavDrawer t={t} open={open} onOpenChange={setOpen} />
+			<MobileNavDrawer
+				t={t}
+				pathname={pathname}
+				open={open}
+				onOpenChange={setOpen}
+			/>
 		</Dialog.Root>
 	);
 };

@@ -6,8 +6,9 @@ import Navbar from "@features/navigation/Navbar.astro";
 import getSectionTitle from "@features/navigation/getSectionTitle";
 import "./header.css";
 
-const t = useTranslations("fr");
 const pathname = Astro.url.pathname;
+const locale = pathname.startsWith("/en") ? "en" : "fr";
+const t = useTranslations(locale);
 const sectionTitle = getSectionTitle(pathname, t.nav);
 ---
 
@@ -24,6 +25,6 @@ const sectionTitle = getSectionTitle(pathname, t.nav);
       />
     </a>
     <span class="header__section-title">{sectionTitle}</span>
-    <Navbar t={t.nav} />
+    <Navbar t={t.nav} pathname={pathname} />
   </div>
 </header>

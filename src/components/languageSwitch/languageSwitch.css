@@ -1,0 +1,31 @@
+.lang-switch {
+	display: flex;
+	align-items: center;
+	gap: 0.2rem;
+	font-family: var(--font-body);
+	font-size: 10px;
+	letter-spacing: 0.06em;
+}
+
+.lang-switch__btn {
+	text-decoration: none;
+	color: var(--color-text-main);
+	opacity: 0.5;
+	padding: 2px 3px;
+}
+
+.lang-switch__btn--active {
+	opacity: 1;
+}
+
+.lang-switch__sep {
+	color: var(--color-border);
+	opacity: 0.4;
+	user-select: none;
+}
+
+@media (hover: hover) {
+	.lang-switch__btn:hover {
+		text-decoration: underline;
+	}
+}

@@ -2,6 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { XIcon } from "@phosphor-icons/react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Translations } from "@i18n/index";
+import { isEnglish, getAlternateHref } from "@i18n/routes";
 import FacebookLink from "@components/social/FacebookLink";
 import InstagramLink from "@components/social/InstagramLink";
 import ShinyButton from "@components/buttons/ShinyButton";
@@ -10,11 +11,22 @@ import "./mobileNavDrawer.css";
 
 interface MobileNavDrawerProps {
 	t: Translations["nav"];
+	pathname: string;
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
 }
 
-const MobileNavDrawer = ({ t, open, onOpenChange }: MobileNavDrawerProps) => {
+const MobileNavDrawer = ({
+	t,
+	pathname,
+	open,
+	onOpenChange,
+}: MobileNavDrawerProps) => {
+	const isEN = isEnglish(pathname);
+	const altHref = getAlternateHref(pathname);
+	const frHref = isEN ? altHref : pathname;
+	const enHref = isEN ? pathname : altHref;
+
 	return (
 		<AnimatePresence>
 			{open && (
@@ -79,6 +91,42 @@ const MobileNavDrawer = ({ t, open, onOpenChange }: MobileNavDrawerProps) => {
 							<div className="mobile-nav-drawer__social">
 								<InstagramLink size={28} />
 								<FacebookLink size={28} />
+							</div>
+
+							<div className="mobile-nav-drawer__lang">
+								{isEN ? (
+									<a
+										href={frHref}
+										className="mobile-nav-drawer__lang-btn"
+										hrefLang="fr"
+									>
+										FR
+									</a>
+								) : (
+									<span
+										className="mobile-nav-drawer__lang-btn mobile-nav-drawer__lang-btn--active"
+										aria-current="true"
+									>
+										FR
+									</span>
+								)}
+								<span aria-hidden="true">/</span>
+								{isEN ? (
+									<span
+										className="mobile-nav-drawer__lang-btn mobile-nav-drawer__lang-btn--active"
+										aria-current="true"
+									>
+										EN
+									</span>
+								) : (
+									<a
+										href={enHref}
+										className="mobile-nav-drawer__lang-btn"
+										hrefLang="en"
+									>
+										EN
+									</a>
+								)}
 							</div>
 						</motion.div>
 					</Dialog.Content>
