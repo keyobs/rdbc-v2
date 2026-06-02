@@ -51,6 +51,7 @@ h5,
 h6 {
 	font-family: var(--font-display);
 	line-height: 1.2;
+	font-weight: 700;
 }
 
 .sr-only {
