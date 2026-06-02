@@ -1,11 +1,11 @@
 import useIsMobile from "@hooks/useIsMobile";
-import GameStrip from "./GamesStrip";
+import LastResults from "./score/LastResults";
 import LastResultsMobile from "./LastResultsMobile";
 
-const LastResults = () => {
+const LastResultsByTeams = () => {
 	const isMobile = useIsMobile();
 	if (isMobile === undefined) return null;
-	return isMobile ? <LastResultsMobile /> : <GameStrip />;
+	return isMobile ? <LastResultsMobile /> : <LastResults />;
 };
 
-export default LastResults;
+export default LastResultsByTeams;

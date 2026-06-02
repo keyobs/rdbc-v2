@@ -1,5 +1,5 @@
 import "./gameRecord.css";
-import type { TeamInfo } from "../GamesStrip";
+import type { TeamInfo } from "./LastResults";
 
 interface GameRecordProps {
 	date: string;

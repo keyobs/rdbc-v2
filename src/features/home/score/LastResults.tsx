@@ -1,7 +1,7 @@
 import { RESULTS } from "@mockup/games";
-import { GameRecord } from "./score/GameRecord";
-import PhotoStrip from "./score/PhotoStrip";
-import "./gamesStrip.css";
+import { GameRecord } from "./GameRecord";
+import PhotoStrip from "./PhotoStrip";
+import "./lastResults.css";
 
 export interface TeamInfo {
 	name: string;
@@ -22,6 +22,16 @@ export interface GameResult {
 	photos: string[];
 }
 
+const LastResults = () => (
+	<div className="last-results">
+		{RESULTS.map((game) => (
+			<OneGame key={game.id} game={game} />
+		))}
+	</div>
+);
+
+export default LastResults;
+
 const OneGame = ({ game }: { game: GameResult }) => (
 	<div className="game-line">
 		<div className="game-poster">
@@ -41,13 +51,3 @@ const OneGame = ({ game }: { game: GameResult }) => (
 		<PhotoStrip photos={game.photos} />
 	</div>
 );
-
-const GamesStrip = () => (
-	<div className="game-strip">
-		{RESULTS.map((game) => (
-			<OneGame key={game.id} game={game} />
-		))}
-	</div>
-);
-
-export default GamesStrip;

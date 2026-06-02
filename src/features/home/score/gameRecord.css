@@ -105,9 +105,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 2px;
-	width: 120px;précisé la forme des composants React colposants fonctionnels et imports individuels
-
-Exemple =
+	width: 120px;
 }
 
 .game-record__team--hainemy .game-record__info {

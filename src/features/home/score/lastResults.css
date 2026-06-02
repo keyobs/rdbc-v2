@@ -1,6 +1,6 @@
 /* ── GAME STRIP ─────────────────────────────────────────── */
 
-.game-strip {
+.last-results {
 	width: 100%;
 	max-width: 1900px;
 	display: flex;
@@ -32,7 +32,7 @@
 	flex-shrink: 0;
 	overflow: hidden;
 	border-radius: 4px;
-	border: 1px solid #8484dfab
+	border: 1px solid #8484dfab;
 }
 
 .game-poster__img {
