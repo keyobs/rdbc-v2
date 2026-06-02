@@ -23,6 +23,7 @@ export default defineConfig({
 					new URL("./src/constants", import.meta.url),
 				),
 				"@hooks": fileURLToPath(new URL("./src/hooks", import.meta.url)),
+				"@mockup": fileURLToPath(new URL("./src/mockup", import.meta.url)),
 			},
 		},
 	},
