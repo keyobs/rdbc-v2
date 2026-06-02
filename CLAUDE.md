@@ -95,6 +95,7 @@
 - Toujours demander avant de coder, même pour les petits détails
 - En cas d'ambiguïté dans les specs : poser la question, pas d'hypothèse implicite
 - **Commentaires dans le code : toujours en anglais**
+- **Fichiers : toujours lire (`Read`) l'état courant avant toute modification** — ne jamais supposer que la mémoire de session est à jour. Utiliser `Edit` ciblé, jamais `Write` sur un fichier existant. Respecter les modifications du développeur.
 
 ### Références & versions
 - Toujours vérifier `package.json` avant de répondre à une question sur une dépendance
@@ -112,6 +113,11 @@
 - Types et interfaces explicites sur tout — pas de `any`, pas de `unknown` sans narrowing immédiat
 - Props des composants React : interface nommée (ex: `interface PlayerCardProps`)
 - Types Sanity : générés via `sanity typegen generate`, jamais écrits à la main
+
+### Composants
+Composants fonctionnels uniquement — pas de class components
+Imports React : hooks nommés individuellement — import { useState, useEffect } from 'react'
+Imports : chemin direct par composant pour toutes les libs tant que possible — import Drawer from '@mui/material/Drawer' plutôt que import { Drawer } from '@mui/material'
 
 ### State management
 - `useState` / `useReducer` pour l'état local au composant
