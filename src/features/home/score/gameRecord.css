@@ -21,13 +21,36 @@
 	text-transform: uppercase;
 }
 
-/* ── teams row ─── */
+/* ── teams : outer column ─── */
 .game-record__teams {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+/* ── row 1 : stable — logo + score + name ─── */
+.game-record__main-row {
 	position: relative;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: 16px;
+}
+
+/* ── row 2 : variable — league / travelTeam ─── */
+.game-record__secondary-row {
+	display: flex;
+	flex-direction: row;
+}
+
+/* align each span under its respective team column */
+.game-record__secondary-row .game-record__team-level {
+	flex: 1;
+	padding-inline: 0 30px;
+}
+
+.game-record__secondary-row .game-record__team-league {
+	flex: 1;
+	padding-inline: 30px 0;
 }
 
 /* ── vs badge centered ─── */
@@ -82,7 +105,9 @@
 	display: flex;
 	flex-direction: column;
 	gap: 2px;
-	width: 150px;
+	width: 120px;précisé la forme des composants React colposants fonctionnels et imports individuels
+
+Exemple =
 }
 
 .game-record__team--hainemy .game-record__info {
@@ -102,7 +127,7 @@
 }
 
 .game-record__score--win span {
-	color: var(--color-neon-blue);
+	color: var(--color-neon-green);
 	text-shadow: 0 0 2px var(--color-neon-blue);
 }
 
@@ -116,7 +141,7 @@
 	margin: 0;
 	font-family: var(--font-body);
 	font-size: 0.85rem;
-	font-weight: 400;
+	font-weight: 700;
 	color: var(--color-text-main);
 	opacity: 0.8;
 	text-align: right;
