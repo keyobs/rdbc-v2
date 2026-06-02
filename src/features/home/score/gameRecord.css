@@ -1,0 +1,151 @@
+/* ── GAME RECORD ─────────────────────────────────────────── */
+
+.game-record {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 6px;
+	padding: 8px 16px;
+	min-width: 0;
+}
+
+/* ── divider : date — event ─── */
+.game-record__divider {
+	text-align: center;
+	font-family: var(--font-body);
+	font-size: 0.55rem;
+	letter-spacing: 0.05em;
+	color: var(--color-text-main);
+	opacity: 0.6;
+	text-transform: uppercase;
+}
+
+/* ── teams row ─── */
+.game-record__teams {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 16px;
+}
+
+/* ── vs badge centered ─── */
+.game-record__vs {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: var(--font-display);
+	font-size: 0.65rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--color-border);
+	z-index: 1;
+}
+
+/* ── single team : logo + info ─── */
+.game-record__team {
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 20px;
+	justify-content: flex-end;
+	padding-inline: 0 30px;
+}
+
+/* hainemy (right) : logo on the right, text on the left */
+.game-record__team--hainemy {
+	flex-direction: row-reverse;
+	padding-inline: 30px 0;
+}
+
+/* ── logo placeholder ─── */
+.game-record__logo {
+	flex-shrink: 0;
+	width: 54px;
+	height: 54px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-display);
+	font-size: 0.55rem;
+	letter-spacing: 0.05em;
+	color: var(--color-neon-primary);
+}
+
+/* ── info : score + team name ─── */
+.game-record__info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	width: 150px;
+}
+
+.game-record__team--hainemy .game-record__info {
+	align-items: flex-start;
+}
+
+/* ── score ─── */
+.game-record__score {
+	margin: 0;
+	line-height: 1.5;
+	text-align: end;
+}
+
+.game-record__score span {
+	font-family: var(--font-display);
+	font-size: 1.8rem;
+}
+
+.game-record__score--win span {
+	color: var(--color-neon-blue);
+	text-shadow: 0 0 2px var(--color-neon-blue);
+}
+
+.game-record__score--lost span {
+	color: var(--color-text-main);
+	opacity: 0.85;
+}
+
+/* ── team name ─── */
+.game-record__team-name {
+	margin: 0;
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	font-weight: 400;
+	color: var(--color-text-main);
+	opacity: 0.8;
+	text-align: right;
+	white-space: normal;
+	word-break: normal;
+	overflow-wrap: normal;
+}
+
+.game-record__team-league,
+.game-record__team-level {
+	margin: 0;
+	font-family: var(--font-body);
+	font-size: 0.65rem;
+	font-weight: 400;
+	color: var(--color-text-main);
+	opacity: 0.8;
+	white-space: normal;
+	word-break: normal;
+	overflow-wrap: normal;
+}
+
+.game-record__team-league {
+	text-align: left;
+}
+
+.game-record__team-level {
+	text-align: right;
+}
+
+.game-record__team--hainemy .game-record__team-name {
+	text-align: left;
+}

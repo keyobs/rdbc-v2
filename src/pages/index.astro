@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import HeroStrip from "@features/home/HeroStrip";
+import LastResults from "@features/home/LastResults";
 ---
 <Layout title="Accueil">
   <HeroStrip client:load />
+  <LastResults client:load />
 </Layout>
