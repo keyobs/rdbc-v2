@@ -6,14 +6,14 @@ import "./lastResults.css";
 export interface TeamInfo {
 	name: string;
 	league?: string;
-	travelTeam?: "A" | "B";
+	travelTeam?: "A" | "B" | "home";
 	logo: string | null;
 	score: number;
 }
 
 export interface GameResult {
 	id: string;
-	date: string;
+	date: string; //TODO - timestamp
 	poster: string;
 	tournament: string;
 	event: string;
@@ -22,13 +22,39 @@ export interface GameResult {
 	photos: string[];
 }
 
-const LastResults = () => (
-	<div className="last-results">
-		{RESULTS.map((game) => (
-			<OneGame key={game.id} game={game} />
-		))}
-	</div>
-);
+const ORDER: ("A" | "B" | "home")[] = ["A", "B", "home"];
+
+const TEAM_HEADERS: Record<"A" | "B" | "home", string> = {
+	A: "TTA — Les Petites Morts",
+	B: "TTB — La Compagnie Cruelle",
+	home: "Home Teams",
+};
+
+const LastResults = () => {
+	const grouped = Object.fromEntries(
+		ORDER.map((team) => [
+			team,
+			RESULTS.filter((g) => (g.rdbc.travelTeam ?? "home") === team),
+		]),
+	) as Record<"A" | "B" | "home", GameResult[]>;
+
+	return (
+		<div className="last-results">
+			{ORDER.map((team) => {
+				const games = grouped[team];
+				if (!games.length) return null;
+				return (
+					<div key={team} className="last-results__group">
+						<TeamHeader title={TEAM_HEADERS[team]} team={team} />
+						{games.map((game) => (
+							<OneGame key={game.id} game={game} />
+						))}
+					</div>
+				);
+			})}
+		</div>
+	);
+};
 
 export default LastResults;
 
@@ -37,7 +63,6 @@ const OneGame = ({ game }: { game: GameResult }) => (
 		<div className="game-poster">
 			<img src={game.poster} alt={game.event} className="game-poster__img" />
 		</div>
-
 		<div className="game-date">{game.date}</div>
 
 		<GameRecord
@@ -49,5 +74,16 @@ const OneGame = ({ game }: { game: GameResult }) => (
 		/>
 
 		<PhotoStrip photos={game.photos} />
+	</div>
+);
+
+type TTeamHeader = {
+	title: string;
+	team: "A" | "B" | "home";
+};
+
+const TeamHeader = ({ title, team }: TTeamHeader) => (
+	<div className={`last-results__team-header team_${team.toLowerCase()}`}>
+		<span>{title}</span>
 	</div>
 );
