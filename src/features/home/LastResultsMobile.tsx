@@ -101,7 +101,7 @@ const GameCardMobile = ({ game }: { game: GameResult }) => {
 
 					<TeamScore
 						name={hainemy.name}
-						logo={rdbc.logo ?? undefined}
+						logo={hainemy.logo ?? undefined}
 						score={hainemy.score}
 						isWin={!rdbcWins}
 						teamType="hainemy"
