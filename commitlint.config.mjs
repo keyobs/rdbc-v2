@@ -33,23 +33,21 @@ export default {
 			2,
 			"always",
 			[
-				"build",
-				"chore",
-				"ci",
-				"clean",
-				"config",
-				"core",
-				"doc",
 				"feat",
 				"fix",
-				"migration",
-				"merge",
-				"perf",
-				"refacto",
-				"refactor",
-				"revert",
+				"doc",
 				"style",
+				"refacto",
+				"perf",
 				"test",
+				"build",
+				"ci",
+				"chore",
+				"core",
+				"revert",
+				"merge",
+				"config",
+				"clean",
 			],
 		],
 	},
@@ -59,17 +57,16 @@ export default {
 - build — Build system or dependencies
 - chore — Maintenance or tooling tasks
 - ci — Continuous integration changes
-- clean — Code cleanup, no logic change
 - config — Configuration changes
 - core — Application logic or behavior
 - doc — Documentation changes
 - feat — New feature
 - fix — Bug fix
-- merge — merge jobs
-- migration - version or lib migrations
+- merge — Merge branches
 - perf — Performance improvements
-- refactor / refacto — Code restructure, same behavior
+- refactor — Code restructure, same behavior
 - revert — Revert previous commit
 - style — Formatting, no logic change
 - test — Add or update tests
+- clean — Code cleanup, no logic change
 */
