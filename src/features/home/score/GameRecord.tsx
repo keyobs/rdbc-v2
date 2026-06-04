@@ -15,72 +15,77 @@ export const GameRecord = ({
 	rdbc,
 	hainemy,
 	rdbcWins,
-}: GameRecordProps) => (
-	<div className="game-record">
-		<div className="game-record__divider">
-			<span>
-				{date} &mdash; {event}
-			</span>
-		</div>
+}: GameRecordProps) => {
+	const hasSecondaryInfo = rdbc.travelTeam || hainemy.league;
 
-		<div className="game-record__teams">
-			{/* Row 1 — stable: logo + score + name */}
-			<div className="game-record__main-row">
-				<span className="game-record__vs">vs</span>
-				<TeamDisplay team={rdbc} isWin={rdbcWins} fallbackText="RDBC" />
-				<TeamDisplay
-					team={hainemy}
-					isWin={!rdbcWins}
-					fallbackText={hainemy.name.slice(0, 3).toUpperCase()}
-					isHainemy
-				/>
+	return (
+		<article className="game-record">
+			{/* Date et Événement sémantiques */}
+			<div className="game-record__divider">
+				<time>{date}</time> &mdash; <span>{event}</span>
 			</div>
 
-			{/* Row 2 — variable: travelTeam / league */}
-			{(rdbc.travelTeam || hainemy.league) && (
-				<div className="game-record__secondary-row">
-					<span className="game-record__team-level">
-						{rdbc.travelTeam ?? ""}
+			<div className="game-record__teams">
+				{/* Ligne principale : vs + Équipes */}
+				<div className="game-record__main-row">
+					<span className="game-record__vs" aria-hidden="true">
+						vs
 					</span>
-					<span className="game-record__team-league">
-						{hainemy.league ?? ""}
-					</span>
+
+					<TeamDisplay team={rdbc} isWin={rdbcWins} />
+
+					<TeamDisplay team={hainemy} isWin={!rdbcWins} isHainemy />
 				</div>
-			)}
-		</div>
-	</div>
-);
+
+				{/* Ligne secondaire : travelTeam / league */}
+				{hasSecondaryInfo && (
+					<div className="game-record__secondary-row">
+						<span className="game-record__team-level">
+							{rdbc.travelTeam ?? ""}
+						</span>
+						<span className="game-record__team-league">
+							{hainemy.league ?? ""}
+						</span>
+					</div>
+				)}
+			</div>
+		</article>
+	);
+};
 
 interface TeamDisplayProps {
 	team: TeamInfo;
 	isWin: boolean;
-	fallbackText: string;
 	isHainemy?: boolean;
 }
 
-const TeamDisplay = ({
-	team,
-	isWin,
-	fallbackText,
-	isHainemy = false,
-}: TeamDisplayProps) => (
-	<div
-		className={`game-record__team ${isHainemy ? "game-record__team--hainemy" : ""}`}
-	>
-		<div
-			className="game-record__logo"
-			style={team.logo ? { backgroundImage: `url(${team.logo})` } : undefined}
-		>
-			{!team.logo && fallbackText}
-		</div>
+const TeamDisplay = ({ team, isWin, isHainemy = false }: TeamDisplayProps) => {
+	const fallback = isHainemy ? team.name.slice(0, 3).toUpperCase() : "RDBC";
 
-		<div className="game-record__info">
-			<h3
-				className={`game-record__score game-record__score--${isWin ? "win" : "lost"}`}
-			>
-				<span>{team.score}</span>
-			</h3>
-			<h4 className="game-record__team-name">{team.name}</h4>
+	return (
+		<div
+			className={`game-record__team ${isHainemy ? "game-record__team--hainemy" : ""}`}
+		>
+			<div className="game-record__logo-container">
+				{team.logo ? (
+					<img
+						src={team.logo}
+						alt={`Logo ${team.name}`}
+						className="game-record__logo-img"
+					/>
+				) : (
+					<span className="game-record__logo-fallback">{fallback}</span>
+				)}
+			</div>
+
+			<div className="game-record__info">
+				<span
+					className={`game-record__score game-record__score--${isWin ? "win" : "lost"}`}
+				>
+					<span>{team.score}</span>
+				</span>
+				<span className="game-record__team-name">{team.name}</span>
+			</div>
 		</div>
-	</div>
-);
+	);
+};
