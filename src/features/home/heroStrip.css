@@ -9,12 +9,13 @@
  */
 
 .hero-strip {
-	position: relative;
 	width: 100%;
-	max-width: 1900px;
-	height: 666px;
+	max-width: 1500px;
+	height: 466px;
+	margin: 0 auto; /* centering */
 	background: white;
 	overflow: hidden;
+	position: relative;
 }
 
 .hero-strip__panel {
@@ -27,27 +28,27 @@
 .hero-strip__panel--left {
 	left: 0;
 	width: calc(30% + 50px);
-	border: 16px solid white;
-	clip-path: polygon(0 0, calc(100% - 8px) 0, calc(100% - 108px) 100%, 0 100%);
+	border: 8px solid white;
+	clip-path: polygon(0 0, calc(100% - 4px) 0, calc(100% - 108px) 100%, 0 100%);
 }
 
 .hero-strip__panel--mid {
 	left: calc(30% - 50px);
 	width: calc(40% + 100px);
-	border: 16px solid white;
+	border: 8px solid white;
 	clip-path: polygon(
 		108px 0,
 		calc(100% - 8px) 0,
 		calc(100% - 108px) 100%,
-		8px 100%
+		4px 100%
 	);
 }
 
 .hero-strip__panel--right {
 	left: calc(70% - 50px);
 	right: 0;
-	border: 16px solid white;
-	clip-path: polygon(108px 0, 100% 0, 100% 100%, 8px 100%);
+	border: 8px solid white;
+	clip-path: polygon(108px 0, 100% 0, 100% 100%, 4px 100%);
 }
 
 /* image wider than panel for parallax headroom (130% = ±15% shift room) */
