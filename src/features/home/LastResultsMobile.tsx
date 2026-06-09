@@ -1,5 +1,6 @@
 import { RESULTS } from "@mockup/games";
 import type { GameResult } from "./score/LastResults";
+import TeamHeader, { ORDER, TEAM_HEADERS } from "./score/TeamHeader";
 import "./lastResultsMobile.css";
 
 interface TeamScoreProps {
@@ -113,12 +114,30 @@ const GameCardMobile = ({ game }: { game: GameResult }) => {
 	);
 };
 
-const LastResultsMobile = () => (
-	<section className="last-results-mobile">
-		{RESULTS.map((game) => (
-			<GameCardMobile key={game.id} game={game} />
-		))}
-	</section>
-);
+const LastResultsMobile = () => {
+	const grouped = Object.fromEntries(
+		ORDER.map((team) => [
+			team,
+			RESULTS.filter((g) => (g.rdbc.travelTeam ?? "home") === team),
+		]),
+	) as Record<"A" | "B" | "home", GameResult[]>;
+
+	return (
+		<section className="last-results-mobile">
+			{ORDER.map((team) => {
+				const games = grouped[team];
+				if (!games.length) return null;
+				return (
+					<div key={team} className="last-results-mobile__group">
+						<TeamHeader title={TEAM_HEADERS[team]} team={team} />
+						{games.map((game) => (
+							<GameCardMobile key={game.id} game={game} />
+						))}
+					</div>
+				);
+			})}
+		</section>
+	);
+};
 
 export default LastResultsMobile;

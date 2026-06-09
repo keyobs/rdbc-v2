@@ -1,0 +1,36 @@
+/* ── TEAM HEADER separator ──────────────────────────────── */
+
+.last-results__team-header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 8px;
+
+	&::before {
+		content: "";
+		width: 24px;
+		height: 2px;
+		flex-shrink: 0;
+		background-color: var(--team-color);
+	}
+
+	&::after {
+		content: "";
+		flex: 1;
+		height: 2px;
+		background-color: var(--team-color);
+	}
+
+	span {
+		color: var(--team-color);
+		font-family: var(--font-display);
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		white-space: nowrap;
+	}
+
+	&.team_a { --team-color: var(--color-neon-blue); }
+	&.team_b { --team-color: var(--color-neon-green); }
+	&.team_home { --team-color: rgb(245, 68, 98); }
+}

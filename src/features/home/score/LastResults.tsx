@@ -1,6 +1,7 @@
 import { RESULTS } from "@mockup/games";
 import { GameRecord } from "./GameRecord";
 import PhotoStrip from "./PhotoStrip";
+import TeamHeader, { ORDER, TEAM_HEADERS } from "./TeamHeader";
 import "./lastResults.css";
 
 export interface TeamInfo {
@@ -21,14 +22,6 @@ export interface GameResult {
 	hainemy: TeamInfo;
 	photos: string[];
 }
-
-const ORDER: ("A" | "B" | "home")[] = ["A", "B", "home"];
-
-const TEAM_HEADERS: Record<"A" | "B" | "home", string> = {
-	A: "TTA — Les Petites Morts",
-	B: "TTB — La Compagnie Cruelle",
-	home: "Home Teams",
-};
 
 const LastResults = () => {
 	const grouped = Object.fromEntries(
@@ -74,16 +67,5 @@ const OneGame = ({ game }: { game: GameResult }) => (
 		/>
 
 		<PhotoStrip photos={game.photos} />
-	</div>
-);
-
-type TTeamHeader = {
-	title: string;
-	team: "A" | "B" | "home";
-};
-
-const TeamHeader = ({ title, team }: TTeamHeader) => (
-	<div className={`last-results__team-header team_${team.toLowerCase()}`}>
-		<span>{title}</span>
 	</div>
 );
