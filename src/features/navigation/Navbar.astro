@@ -11,15 +11,48 @@ interface Props {
 }
 
 const { t, pathname } = Astro.props;
+
+function isActive(href: string): boolean {
+	if (href === "/") return pathname === "/";
+	return pathname === href || pathname.startsWith(href + "/");
+}
 ---
 
 <nav class="navbar" aria-label="Main navigation">
-	<ul class="navbar__links">
+	<ul class="navbar__links" id="navbar-links">
 		{NAV_ITEMS.map((item) => item.type === "separator"
 			? <li aria-hidden="true"><span class="navbar__separator">|</span></li>
-			: <li><a href={item.href}>{t[item.key]}</a></li>
+			: <li><a href={item.href} class:list={[{ "is-active": isActive(item.href) }]}>{t[item.key]}</a></li>
 		)}
 		<li><ShinyButton href="/rejoindre">{t.join}</ShinyButton></li>
 		<li><LanguageSwitch pathname={pathname} /></li>
 	</ul>
 </nav>
+
+<script>
+	const list = document.getElementById("navbar-links");
+	if (list) {
+		const spotlight = document.createElement("div");
+		spotlight.className = "navbar__spotlight";
+		list.prepend(spotlight);
+
+		const links = list.querySelectorAll<HTMLAnchorElement>(
+			"a:not(.btn-shiny):not(.lang-switch__btn)",
+		);
+		const listRect = () => list.getBoundingClientRect();
+
+		links.forEach((link) => {
+			link.addEventListener("mouseenter", () => {
+				const lr = listRect();
+				const r = link.getBoundingClientRect();
+				spotlight.style.setProperty("--sp-left", `${r.left - lr.left}px`);
+				spotlight.style.setProperty("--sp-width", `${r.width}px`);
+				spotlight.style.opacity = "1";
+			});
+		});
+
+		list.addEventListener("mouseleave", () => {
+			spotlight.style.opacity = "0";
+		});
+	}
+</script>

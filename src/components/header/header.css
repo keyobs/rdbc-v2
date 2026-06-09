@@ -4,14 +4,34 @@
 	z-index: 50;
 	background: linear-gradient(
 		344deg,
-		rgb(15, 20, 39),
-		rgba(12, 40, 65, 0.2),
-		rgba(20, 80, 110, 0.4),
-		rgba(12, 99, 118, 0.6),
-		rgba(41, 150, 158, 0.6),
-		rgba(75, 190, 160, 0.8),
-		rgba(0, 255, 150, 1)
+		rgb(15, 20, 39) 0%,
+		rgb(12, 40, 65) 29%,
+		rgb(20, 80, 110) 58%,
+		rgb(12, 99, 118) 88%,
+		rgb(41, 150, 158) 92%,
+		rgb(75, 190, 160) 96%,
+		rgb(0, 255, 150) 100%
 	);
+	border-bottom: 1px solid var(--color-neon-primary);
+	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+.header::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: linear-gradient(
+		240deg,
+		transparent 0%,
+		rgba(255, 255, 255, 0.12) 15%,
+		rgba(255, 255, 255, 0.35) 50%,
+		rgba(255, 255, 255, 0.12) 85%,
+		transparent 100%
+	);
+	pointer-events: none;
 }
 
 .header__content {
