@@ -24,7 +24,8 @@
 	transform: translateY(-50%);
 	border-radius: 999px;
 	background: color-mix(in srgb, var(--color-bitume) 82%, transparent);
-	box-shadow: 0 0 14px color-mix(in srgb, var(--color-neon-green) 25%, transparent);
+	box-shadow: 0 0 14px
+		color-mix(in srgb, var(--color-neon-green) 25%, transparent);
 	opacity: 0;
 	pointer-events: none;
 	transition:
@@ -45,7 +46,9 @@
 	letter-spacing: 0.06em;
 	color: var(--color-text-main);
 	font-weight: 800;
-	transition: color 220ms ease, transform 180ms ease;
+	transition:
+		color 220ms ease,
+		transform 180ms ease;
 }
 
 /* active page */
@@ -59,7 +62,8 @@
 }
 
 @media (hover: hover) {
-	.navbar__links a:not(.btn-shiny):not(.lang-switch__btn):not(.is-active):hover {
+	.navbar__links
+		a:not(.btn-shiny):not(.lang-switch__btn):not(.is-active):hover {
 		color: var(--color-neon-green);
 		transform: scale(1.15);
 	}

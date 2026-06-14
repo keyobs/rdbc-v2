@@ -7,7 +7,7 @@ import mummy from "../assets/mummy.png";
 export const RESULTS: GameResult[] = [
 	{
 		id: "1",
-		date: "10 Mai 2026",
+		date: "2026-05-10",
 		poster: photo1.src,
 		tournament: "Championnat de France 2026",
 		event: "Nationale 2 — Plateau 2",
@@ -27,7 +27,7 @@ export const RESULTS: GameResult[] = [
 	},
 	{
 		id: "2",
-		date: "9 mai 2026",
+		date: "2026-05-09",
 		poster: photo2.src,
 		tournament: "Championnat de France 2026",
 		event: "Nationale 2 — Plateau 2",
@@ -47,7 +47,7 @@ export const RESULTS: GameResult[] = [
 	},
 	{
 		id: "3",
-		date: "9 mai 2026",
+		date: "2026-05-09",
 		poster: photo3.src,
 		tournament: "Championnat de France 2026",
 		event: "Nationale 2 — Plateau 2",
@@ -64,5 +64,65 @@ export const RESULTS: GameResult[] = [
 			score: 182,
 		},
 		photos: [photo1.src, photo2.src],
+	},
+	{
+		id: "4",
+		date: "2026-06-13",
+		poster: photo1.src,
+		tournament: "Championnat de France 2026",
+		event: "National 2 - Playoffs",
+		rdbc: {
+			name: "Petites Morts",
+			travelTeam: "A",
+			logo: mummy.src,
+			score: 111,
+		},
+		hainemy: {
+			name: "Silly Geez B",
+			league: "Nordiks de Touraine (Tours)",
+			logo: null,
+			score: 41,
+		},
+		photos: [photo2.src, photo3.src],
+	},
+	{
+		id: "5",
+		date: "2026-06-13",
+		poster: photo1.src,
+		tournament: "Championnat de France 2026",
+		event: "National 2 - Playoffs",
+		rdbc: {
+			name: "Petites Morts",
+			travelTeam: "A",
+			logo: mummy.src,
+			score: 45,
+		},
+		hainemy: {
+			name: "Les Encastreuses",
+			league: "Lutece Destroyeuses (Paris)",
+			logo: null,
+			score: 58,
+		},
+		photos: [photo2.src, photo3.src],
+	},
+	{
+		id: "1",
+		date: "2026-06-13",
+		poster: photo1.src,
+		tournament: "Championnat de France 2026",
+		event: "National 2 - Playoffs",
+		rdbc: {
+			name: "Petites Morts",
+			travelTeam: "A",
+			logo: mummy.src,
+			score: 189,
+		},
+		hainemy: {
+			name: "Les Titanesques",
+			league: "RDNA Roller Derby (Nantes)",
+			logo: null,
+			score: 57,
+		},
+		photos: [photo2.src, photo3.src],
 	},
 ];

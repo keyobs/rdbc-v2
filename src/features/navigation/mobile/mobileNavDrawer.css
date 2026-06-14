@@ -18,7 +18,7 @@
 	position: fixed;
 	inset: 0;
 	background: rgba(15, 20, 39, 0.7);
-	z-index: 100;
+	z-index: 200;
 }
 
 .mobile-nav-drawer {
@@ -26,7 +26,9 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	z-index: 101;
+	z-index: 201;
+	max-height: calc(100dvh - env(safe-area-inset-top) - 16px);
+	overflow-y: auto;
 	background: var(--color-bitume);
 	border-top: 2px solid var(--color-neon-primary);
 	padding: 24px 24px 40px;

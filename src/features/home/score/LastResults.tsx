@@ -2,6 +2,7 @@ import { RESULTS } from "@mockup/games";
 import { GameRecord } from "./GameRecord";
 import PhotoStrip from "./PhotoStrip";
 import TeamHeader, { ORDER, TEAM_HEADERS } from "./TeamHeader";
+import { formatGameDate } from "./utils";
 import "./lastResults.css";
 
 export interface TeamInfo {
@@ -14,7 +15,7 @@ export interface TeamInfo {
 
 export interface GameResult {
 	id: string;
-	date: string; //TODO - timestamp
+	date: string;
 	poster: string;
 	tournament: string;
 	event: string;
@@ -27,7 +28,9 @@ const LastResults = () => {
 	const grouped = Object.fromEntries(
 		ORDER.map((team) => [
 			team,
-			RESULTS.filter((g) => (g.rdbc.travelTeam ?? "home") === team),
+			RESULTS.filter((g) => (g.rdbc.travelTeam ?? "home") === team).sort(
+				(a, b) => b.date.localeCompare(a.date),
+			),
 		]),
 	) as Record<"A" | "B" | "home", GameResult[]>;
 
@@ -56,13 +59,13 @@ const OneGame = ({ game }: { game: GameResult }) => (
 		<div className="game-poster">
 			<img src={game.poster} alt={game.event} className="game-poster__img" />
 		</div>
-		<div className="game-date">{game.date}</div>
+		<div className="game-date">{formatGameDate(game.date)}</div>
 
 		<GameRecord
 			rdbc={game.rdbc}
 			hainemy={game.hainemy}
 			rdbcWins={game.rdbc.score > game.hainemy.score}
-			date={game.date}
+			date={formatGameDate(game.date)}
 			event={game.event}
 		/>
 

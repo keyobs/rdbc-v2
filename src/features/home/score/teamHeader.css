@@ -30,7 +30,13 @@
 		white-space: nowrap;
 	}
 
-	&.team_a { --team-color: var(--color-neon-blue); }
-	&.team_b { --team-color: var(--color-neon-green); }
-	&.team_home { --team-color: rgb(245, 68, 98); }
+	&.team_a {
+		--team-color: var(--color-neon-blue);
+	}
+	&.team_b {
+		--team-color: var(--color-neon-green);
+	}
+	&.team_home {
+		--team-color: rgb(245, 68, 98);
+	}
 }

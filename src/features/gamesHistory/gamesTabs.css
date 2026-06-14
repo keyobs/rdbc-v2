@@ -1,0 +1,47 @@
+/* ── GAMES TABS ──────────────────────────────────────────── */
+
+.games-tabs {
+	width: 100%;
+}
+
+.games-tabs__list {
+	display: flex;
+	flex-direction: row;
+	gap: 4px;
+	margin-bottom: 24px;
+	border-bottom: 2px solid var(--color-border);
+	padding-bottom: 0;
+}
+
+.games-tabs__trigger {
+	background: none;
+	border: none;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -2px;
+	padding: 8px 20px;
+	font-family: var(--font-display);
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--color-text-main);
+	cursor: pointer;
+	transition:
+		color 180ms ease,
+		border-color 180ms ease;
+}
+
+.games-tabs__trigger[data-state="active"] {
+	color: var(--color-neon-primary);
+	border-bottom-color: var(--color-neon-primary);
+}
+
+@media (hover: hover) {
+	.games-tabs__trigger:not([data-state="active"]):hover {
+		color: var(--color-neon-primary);
+	}
+}
+
+.games-tabs__content {
+	display: flex;
+	flex-direction: column;
+}

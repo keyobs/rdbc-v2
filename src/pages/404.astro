@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getLocale } from "@i18n/routes";
+import ShinyButton from "@components/buttons/ShinyButton";
+import "./404.css";
+
+const locale = getLocale(Astro.url.pathname);
+const isFr = locale === "fr";
+---
+
+<Layout title="404">
+  <main class="not-found">
+    <p class="not-found__code">404</p>
+    <h1 class="not-found__title">
+      {isFr ? "Page introuvable" : "Page not found"}
+    </h1>
+    <p class="not-found__message">
+      {isFr
+        ? "Cette page n'existe pas (encore)."
+        : "This page doesn't exist (yet)."}
+    </p>
+    <ShinyButton href={isFr ? "/" : "/en/"}>
+      {isFr ? "Retour à l'accueil" : "Back to home"}
+    </ShinyButton>
+  </main>
+</Layout>
