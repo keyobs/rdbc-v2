@@ -187,3 +187,13 @@
 	text-transform: uppercase;
 	flex-shrink: 0;
 }
+
+@media (max-width: 1023px) {
+	.match-card__team {
+		display: none;
+	}
+
+	.match-card__center {
+		width: 100%;
+	}
+}
