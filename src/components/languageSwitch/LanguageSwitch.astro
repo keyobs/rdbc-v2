@@ -1,5 +1,6 @@
 ---
 import { isEnglish, getAlternateHref } from "@i18n/routes";
+import { withBase } from "@utils/urlHandler";
 import "./languageSwitch.css";
 
 interface Props {
@@ -15,7 +16,7 @@ const enHref = isEN ? pathname : altHref;
 
 <div class="lang-switch" role="navigation" aria-label="Langue / Language">
 	{isEN ? (
-		<a href={frHref} class="lang-switch__btn" hreflang="fr">FR</a>
+		<a href={withBase(frHref)} class="lang-switch__btn" hreflang="fr">FR</a>
 	) : (
 		<span class="lang-switch__btn lang-switch__btn--active" aria-current="true">FR</span>
 	)}
@@ -23,6 +24,6 @@ const enHref = isEN ? pathname : altHref;
 	{isEN ? (
 		<span class="lang-switch__btn lang-switch__btn--active" aria-current="true">EN</span>
 	) : (
-		<a href={enHref} class="lang-switch__btn" hreflang="en">EN</a>
+		<a href={withBase(enHref)} class="lang-switch__btn" hreflang="en">EN</a>
 	)}
 </div>

@@ -24,6 +24,7 @@ export default defineConfig({
 				),
 				"@hooks": fileURLToPath(new URL("./src/hooks", import.meta.url)),
 				"@mockup": fileURLToPath(new URL("./src/mockup", import.meta.url)),
+				"@utils": fileURLToPath(new URL("./src/utils", import.meta.url)),
 			},
 		},
 	},

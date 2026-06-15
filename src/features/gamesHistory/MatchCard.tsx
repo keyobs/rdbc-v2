@@ -1,5 +1,6 @@
 import type { GameResult } from "@features/home/score/LastResults";
 import { formatGameDate } from "@features/home/score/utils";
+import { withBase } from "@utils/urlHandler";
 import "./matchCard.css";
 
 interface MatchCardProps {
@@ -17,7 +18,7 @@ const MatchCard = ({ game }: MatchCardProps) => {
 				<span className="match-card__meta">
 					{tournament} — {event}
 				</span>
-				<a href={`/competitions/${id}`} className="match-card__link">
+				<a href={withBase(`/competitions/${id}`)} className="match-card__link">
 					Détails
 				</a>
 			</div>

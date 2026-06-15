@@ -4,9 +4,10 @@ import mummyImg from "../../assets/mummy.png";
 import { useTranslations } from "@i18n/index";
 import Navbar from "@features/navigation/Navbar.astro";
 import getSectionTitle from "@features/navigation/getSectionTitle";
+import { stripBase, withBase } from "@utils/urlHandler";
 import "./header.css";
 
-const pathname = Astro.url.pathname;
+const pathname = stripBase(Astro.url.pathname);
 const locale = pathname.startsWith("/en") ? "en" : "fr";
 const t = useTranslations(locale);
 const sectionTitle = getSectionTitle(pathname, t.nav);
@@ -14,7 +15,7 @@ const sectionTitle = getSectionTitle(pathname, t.nav);
 
 <header class="header" id="site-header">
   <div class="header__content">
-    <a href="/" class="header__logo">
+    <a href={withBase("/")} class="header__logo">
       <Image
         src={mummyImg}
         alt="Roller Derby Bordeaux Club"

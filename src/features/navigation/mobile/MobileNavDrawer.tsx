@@ -7,6 +7,7 @@ import FacebookLink from "@components/social/FacebookLink";
 import InstagramLink from "@components/social/InstagramLink";
 import ShinyButton from "@components/buttons/ShinyButton";
 import { NAV_LINKS } from "../navLinks";
+import { withBase } from "@utils/urlHandler";
 import "./mobileNavDrawer.css";
 
 interface MobileNavDrawerProps {
@@ -73,7 +74,10 @@ const MobileNavDrawer = ({
 								<ul className="mobile-nav-drawer__links">
 									{NAV_LINKS.map((link) => (
 										<li key={link.href}>
-											<a href={link.href} onClick={() => onOpenChange(false)}>
+											<a
+												href={withBase(link.href)}
+												onClick={() => onOpenChange(false)}
+											>
 												{t[link.key]}
 											</a>
 										</li>
@@ -82,7 +86,7 @@ const MobileNavDrawer = ({
 							</nav>
 
 							<ShinyButton
-								href="/rejoindre"
+								href={withBase("/rejoindre")}
 								onClick={() => onOpenChange(false)}
 							>
 								{t.join}
@@ -96,7 +100,7 @@ const MobileNavDrawer = ({
 							<div className="mobile-nav-drawer__lang">
 								{isEN ? (
 									<a
-										href={frHref}
+										href={withBase(frHref)}
 										className="mobile-nav-drawer__lang-btn"
 										hrefLang="fr"
 									>
@@ -120,7 +124,7 @@ const MobileNavDrawer = ({
 									</span>
 								) : (
 									<a
-										href={enHref}
+										href={withBase(enHref)}
 										className="mobile-nav-drawer__lang-btn"
 										hrefLang="en"
 									>

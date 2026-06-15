@@ -2,6 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import type { Translations } from "@i18n/index";
 import MobileNavDrawer from "./MobileNavDrawer";
+import { withBase } from "@utils/urlHandler";
 import "./bottomNav.css";
 
 interface BottomNavProps {
@@ -27,7 +28,7 @@ const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 					{BOTTOM_NAV_ITEMS.slice(0, 2).map((item) => (
 						<li key={item.href} className="bottom-nav__item">
 							<a
-								href={item.href}
+								href={withBase(item.href)}
 								aria-current={
 									pathname.startsWith(item.href) ? "page" : undefined
 								}
@@ -53,7 +54,7 @@ const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 					{BOTTOM_NAV_ITEMS.slice(2).map((item) => (
 						<li key={item.href} className="bottom-nav__item">
 							<a
-								href={item.href}
+								href={withBase(item.href)}
 								aria-current={
 									pathname.startsWith(item.href) ? "page" : undefined
 								}

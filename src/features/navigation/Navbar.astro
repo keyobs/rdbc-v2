@@ -3,6 +3,7 @@ import type { Translations } from "@i18n/index";
 import { NAV_ITEMS } from "./navLinks";
 import ShinyButton from "@components/buttons/ShinyButton";
 import LanguageSwitch from "@components/languageSwitch/LanguageSwitch.astro";
+import { withBase } from "@utils/urlHandler";
 import "./navbar.css";
 
 interface Props {
@@ -22,9 +23,9 @@ function isActive(href: string): boolean {
 	<ul class="navbar__links" id="navbar-links">
 		{NAV_ITEMS.map((item) => item.type === "separator"
 			? <li aria-hidden="true"><span class="navbar__separator">|</span></li>
-			: <li><a href={item.href} class:list={[{ "is-active": isActive(item.href) }]}>{t[item.key]}</a></li>
+			: <li><a href={withBase(item.href)} class:list={[{ "is-active": isActive(item.href) }]}>{t[item.key]}</a></li>
 		)}
-		<li><ShinyButton href="/rejoindre">{t.join}</ShinyButton></li>
+		<li><ShinyButton href={withBase("/rejoindre")}>{t.join}</ShinyButton></li>
 		<li><LanguageSwitch pathname={pathname} /></li>
 	</ul>
 </nav>

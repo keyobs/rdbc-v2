@@ -13,7 +13,8 @@
 			"@layouts/*": ["./src/layouts/*"],
 			"@constants/*": ["./src/constants/*"],
 			"@hooks/*": ["./src/hooks/*"],
-			"@mockup/*": ["./src/mockup/*"]
+			"@mockup/*": ["./src/mockup/*"],
+			"@utils/*": ["./src/utils/*"]
 		}
 	}
 }

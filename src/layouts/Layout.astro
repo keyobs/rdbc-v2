@@ -11,6 +11,7 @@ import { getLocale } from "@i18n/routes";
 import Header from "../components/header/Header.astro";
 import Footer from "../components/footer/Footer.astro";
 import BottomNav from "@features/navigation/mobile/BottomNav";
+import { stripBase, withBase } from "@utils/urlHandler";
 
 interface Props {
 	title: string;
@@ -18,7 +19,7 @@ interface Props {
 }
 
 const { title, description = "Roller Derby Bordeaux Club" } = Astro.props;
-const pathname = Astro.url.pathname;
+const pathname = stripBase(Astro.url.pathname);
 const locale = getLocale(pathname);
 const t = useTranslations(locale);
 const logoImg = await getImage({
@@ -36,7 +37,7 @@ const logoImg = await getImage({
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href={withBase("/favicon.ico")} />
     <title>{title} — RDBC</title>
   </head>
   <body>
