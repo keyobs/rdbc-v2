@@ -1,5 +1,5 @@
 import type { GameResult } from "@features/home/score/LastResults";
-import { formatGameDate } from "@features/home/score/utils";
+import { formatGameDate, formatGameTime } from "@features/home/score/utils";
 import { withBase } from "@utils/urlHandler";
 import "./matchCard.css";
 
@@ -14,7 +14,10 @@ const MatchCard = ({ game }: MatchCardProps) => {
 	return (
 		<article className="match-card">
 			<div className="match-card__header">
-				<time className="match-card__date">{formatGameDate(date)}</time>
+				<div className="match-card__datetime">
+					<time className="match-card__date">{formatGameDate(date)}</time>
+					<span className="match-card__time">{formatGameTime(date)}</span>
+				</div>
 				<span className="match-card__meta">
 					{tournament} — {event}
 				</span>

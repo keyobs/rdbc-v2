@@ -1,0 +1,16 @@
+.rdbc-book {
+	background: var(--color-bitume);
+	min-height: 100vh;
+	padding: 3rem 1rem 5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 4rem;
+	overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+	.rdbc-book {
+		padding: 4rem 2rem 6rem;
+		gap: 6rem;
+	}
+}

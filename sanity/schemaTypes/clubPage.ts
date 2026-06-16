@@ -38,10 +38,10 @@ export const clubPage = defineType({
 	title: "Page Club",
 	type: "document",
 	fields: [
-		// HistoryBlock
+		// --- Double-page 1 : Le Club ---
 		localizedBlocks("history", "Historique du club"),
+		localizedBlocks("philosophy", "Philosophie du club"),
 
-		// ValuesBlock
 		defineField({
 			name: "values",
 			title: "Valeurs du club",
@@ -54,14 +54,63 @@ export const clubPage = defineType({
 						localizedText("description", "Description"),
 						defineField({ name: "emoji", title: "Emoji", type: "string" }),
 					],
+					preview: { select: { title: "title.fr" } },
+				},
+			],
+		}),
+
+		localizedBlocks("sport", "Le Sport (WFTDA / FFRS)"),
+
+		// --- Double-page 2 : La Vie du Club ---
+		defineField({
+			name: "roles",
+			title: "Rôles dans le club",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					fields: [
+						localizedString("title", "Titre du rôle"),
+						localizedText("description", "Description"),
+						defineField({
+							name: "photo",
+							title: "Photo",
+							type: "image",
+							options: { hotspot: true },
+						}),
+					],
 					preview: {
-						select: { title: "title.fr" },
+						select: { title: "title.fr", media: "photo" },
 					},
 				},
 			],
 		}),
 
-		// TrainingBlock
+		defineField({
+			name: "activities",
+			title: "Activités du club",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					fields: [
+						localizedString("title", "Titre"),
+						localizedText("text", "Texte"),
+						defineField({
+							name: "photo",
+							title: "Photo",
+							type: "image",
+							options: { hotspot: true },
+						}),
+					],
+					preview: {
+						select: { title: "title.fr", media: "photo" },
+					},
+				},
+			],
+		}),
+
+		// --- Double-page 3 : Faire du roller derby ---
 		defineField({
 			name: "training_sessions",
 			title: "Séances d'entraînement",
@@ -94,9 +143,9 @@ export const clubPage = defineType({
 						defineField({ name: "location_address", title: "Adresse", type: "string" }),
 						defineField({
 							name: "maps_query",
-							title: "Requête Maps (nom + adresse pour l'URL)",
+							title: "Requête Maps",
 							type: "string",
-							description: "Utilisé pour le lien 'Ouvrir dans Maps'. Ex: Gymnase Mouneyra, Bordeaux",
+							description: "Ex: Gymnase Mouneyra, Bordeaux",
 						}),
 					],
 					preview: {
@@ -106,27 +155,22 @@ export const clubPage = defineType({
 			],
 		}),
 
-		// RolesPile
 		defineField({
-			name: "roles",
-			title: "Rôles dans le club",
-			type: "array",
-			of: [
-				{
-					type: "object",
-					fields: [
-						localizedString("title", "Titre du rôle"),
-						localizedText("description", "Description"),
-						defineField({ name: "emoji", title: "Emoji", type: "string" }),
-					],
-					preview: {
-						select: { title: "title.fr" },
-					},
-				},
-			],
+			name: "inscription_url",
+			title: "Lien HelloAsso (inscription)",
+			type: "url",
 		}),
 
-		// PolaroidGallery
+		localizedText("join_info", "Texte d'invitation (Rejoindre le club)"),
+
+		defineField({
+			name: "join_email",
+			title: "Email de contact",
+			type: "string",
+			validation: (Rule) => Rule.email(),
+		}),
+
+		// --- Galerie Polaroid ---
 		defineField({
 			name: "gallery",
 			title: "Galerie Polaroid",
@@ -150,15 +194,6 @@ export const clubPage = defineType({
 				},
 			],
 		}),
-
-		// JoinUsForm
-		defineField({
-			name: "join_email",
-			title: "Email de contact pour rejoindre le club",
-			type: "string",
-			validation: (Rule) => Rule.email(),
-		}),
-		localizedText("join_info", "Texte d'invitation (Rejoindre le club)"),
 	],
 	preview: {
 		prepare: () => ({ title: "Page Club RDBC" }),

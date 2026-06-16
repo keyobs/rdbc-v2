@@ -1,0 +1,13 @@
+---
+import { sanityClient } from "sanity:client";
+import type { ClubPage } from "../../sanity/sanity.types";
+import Layout from "../layouts/Layout.astro";
+import RDBC from "@features/club/RDBC";
+
+const data: ClubPage =
+	(await sanityClient.fetch(`*[_type == "clubPage"][0]`)) ?? ({} as ClubPage);
+---
+
+<Layout title="Le club">
+  <RDBC data={data} locale="fr" client:load />
+</Layout>

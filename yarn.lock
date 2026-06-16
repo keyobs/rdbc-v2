@@ -2719,7 +2719,7 @@
   dependencies:
     "@portabletext/plugin-input-rule" "^4.0.27"
 
-"@portabletext/react@^6.1.0":
+"@portabletext/react@^6.1.0", "@portabletext/react@^6.2.0":
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/@portabletext/react/-/react-6.2.0.tgz#8e90d54fef244efcf41af5c64fe9eedccec7b40d"
   integrity sha512-Z0J/AWrvg7GyDfEBQRRhi6ZpxLOsN4/QbU8KhTwfa6r2ELiRaMa4gkHE9wfs3V1ozNDrTG4IRr+8yBnHNDnAqA==
@@ -3415,7 +3415,7 @@
     lodash "^4.17.21"
     ts-brand "^0.2.0"
 
-"@sanity/image-url@^2.0.3", "@sanity/image-url@^2.1.1":
+"@sanity/image-url@2.1.1", "@sanity/image-url@^2.0.3", "@sanity/image-url@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@sanity/image-url/-/image-url-2.1.1.tgz#58fc012e297e997792d94dc5f081424967c18aa7"
   integrity sha512-qVXsF1teWR6FO3ZFAz46HDcRU+E6EQkpyncPnkGOzeJ1PgnaOiWMVbiSrZtX10s3txzzu/tAjKwbxbGHfDWgGw==

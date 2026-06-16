@@ -1,0 +1,278 @@
+/* ── Outer page shell ─────────────────────────────── */
+.page-club {
+	position: relative;
+	background: #f5f0e8;
+	max-width: 1100px;
+	margin: 0 auto;
+	box-shadow: 6px 6px 32px rgba(0, 0, 0, 0.6);
+	overflow: hidden;
+}
+
+/* ── Patchwork background ────────────────────────── */
+.page-club__bg {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+}
+
+/* CSS placeholders — replaced by <img> once assets arrive */
+.page-club__bg-patch {
+	position: absolute;
+	background: #d4cfc5;
+}
+
+.page-club__bg-patch--1 {
+	width: 260px;
+	height: 200px;
+	top: 80px;
+	left: -20px;
+	transform: rotate(-3deg);
+	opacity: 0.5;
+}
+
+.page-club__bg-patch--2 {
+	width: 200px;
+	height: 240px;
+	top: 30%;
+	right: 0;
+	transform: rotate(2deg);
+	opacity: 0.4;
+}
+
+.page-club__bg-patch--3 {
+	width: 300px;
+	height: 180px;
+	bottom: 60px;
+	left: 30%;
+	transform: rotate(-1.5deg);
+	opacity: 0.35;
+}
+
+/* ── Content ─────────────────────────────────────── */
+.page-club__inner {
+	position: relative;
+	z-index: 1;
+	padding: 2rem 1.5rem 3rem;
+}
+
+/* ── Title banner ────────────────────────────────── */
+.page-club__title {
+	font-family: var(--font-display);
+	font-size: clamp(2.5rem, 8vw, 5rem);
+	line-height: 0.95;
+	text-transform: uppercase;
+	color: #0f1427;
+	letter-spacing: -0.02em;
+	margin: 0 0 2.5rem;
+	/* Ink bleed effect */
+	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+/* ── Two-column grid ─────────────────────────────── */
+.page-club__grid {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.page-club__col {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+/* ── Content blocks ──────────────────────────────── */
+.page-club__block {
+	position: relative;
+	background: #f5f0e8;
+	padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.page-club__block--history {
+	border-left: 4px solid #0f1427;
+	transform: rotate(-0.5deg);
+}
+
+.page-club__block--philosophy {
+	border: 2px solid #0f1427;
+	transform: rotate(0.8deg);
+}
+
+.page-club__block--values {
+	transform: rotate(-1deg);
+	border-bottom: 3px solid var(--color-neon-primary);
+}
+
+.page-club__block--sport {
+	transform: rotate(0.5deg);
+	/* Torn top edge */
+	clip-path: polygon(
+		0% 4%,
+		3% 0%,
+		6% 3%,
+		10% 0%,
+		14% 4%,
+		18% 1%,
+		22% 3%,
+		27% 0%,
+		32% 4%,
+		37% 1%,
+		42% 3%,
+		47% 0%,
+		52% 4%,
+		57% 1%,
+		62% 3%,
+		67% 0%,
+		72% 4%,
+		77% 1%,
+		82% 3%,
+		87% 0%,
+		92% 4%,
+		97% 1%,
+		100% 3%,
+		100% 100%,
+		0% 100%
+	);
+	padding-top: 1.75rem;
+}
+
+/* ── Tape strips ─────────────────────────────────── */
+.page-club__tape {
+	position: absolute;
+	width: 56px;
+	height: 18px;
+	background: rgba(255, 240, 180, 0.6);
+	backdrop-filter: blur(1px);
+}
+
+.page-club__tape--tl {
+	top: -9px;
+	left: 16px;
+	transform: rotate(-3deg);
+}
+.page-club__tape--tr {
+	top: -9px;
+	right: 24px;
+	transform: rotate(4deg);
+}
+.page-club__tape--bl {
+	bottom: -9px;
+	left: 32px;
+	transform: rotate(-2deg);
+}
+
+/* ── Block title ─────────────────────────────────── */
+.page-club__block-title {
+	font-family: var(--font-display);
+	font-size: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: #0f1427;
+	margin: 0 0 0.75rem;
+	border-bottom: 1px solid #0f1427;
+	padding-bottom: 0.25rem;
+}
+
+/* ── Prose text ──────────────────────────────────── */
+.page-club__prose {
+	font-family: var(--font-body);
+	font-size: 0.95rem;
+	line-height: 1.65;
+	color: #1a1a2e;
+}
+
+.page-club__prose p {
+	margin: 0 0 0.6rem;
+}
+.page-club__prose p:last-child {
+	margin-bottom: 0;
+}
+
+/* ── Values list ─────────────────────────────────── */
+.page-club__values-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.page-club__value-item {
+	display: grid;
+	grid-template-columns: 1.5rem 1fr;
+	grid-template-rows: auto auto;
+	column-gap: 0.5rem;
+	align-items: start;
+}
+
+.page-club__value-item span:first-child {
+	grid-row: 1 / 3;
+	font-size: 1.25rem;
+	line-height: 1.4;
+}
+
+.page-club__value-item strong {
+	font-family: var(--font-display);
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	color: #0f1427;
+}
+
+.page-club__value-item span:last-child {
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	color: #333;
+	line-height: 1.4;
+}
+
+/* ── Badges WFTDA / FFRS ─────────────────────────── */
+.page-club__badges {
+	display: flex;
+	gap: 0.5rem;
+	margin-bottom: 0.75rem;
+	flex-wrap: wrap;
+}
+
+.page-club__badge {
+	font-family: var(--font-display);
+	font-size: 0.7rem;
+	letter-spacing: 0.12em;
+	color: #f5f0e8;
+	background: #0f1427;
+	padding: 0.15rem 0.5rem;
+	text-transform: uppercase;
+}
+
+/* ── Desktop: true double-page ───────────────────── */
+@media (min-width: 768px) {
+	.page-club__inner {
+		padding: 3rem 2.5rem 4rem;
+	}
+
+	.page-club__grid {
+		flex-direction: row;
+		gap: 2rem;
+	}
+
+	.page-club__col {
+		flex: 1;
+	}
+
+	/* Vertical separator between the two pages */
+	.page-club__col:first-child {
+		border-right: 1px solid rgba(0, 0, 0, 0.15);
+		padding-right: 2rem;
+	}
+
+	.page-club__col:last-child {
+		padding-left: 2rem;
+	}
+}
+
+@media (min-width: 768px) {
+	.page-club__prose {
+		font-size: 1rem;
+	}
+}

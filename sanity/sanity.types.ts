@@ -166,6 +166,44 @@ export type ClubPage = {
       _key: string
     }>
   }
+  philosophy?: {
+    fr?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+    en?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+  }
   values?: Array<{
     title?: {
       fr?: string
@@ -176,6 +214,80 @@ export type ClubPage = {
       en?: string
     }
     emoji?: string
+    _key: string
+  }>
+  sport?: {
+    fr?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+    en?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+  }
+  roles?: Array<{
+    title?: {
+      fr?: string
+      en?: string
+    }
+    description?: {
+      fr?: string
+      en?: string
+    }
+    photo?: {
+      asset?: SanityImageAssetReference
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    _key: string
+  }>
+  activities?: Array<{
+    title?: {
+      fr?: string
+      en?: string
+    }
+    text?: {
+      fr?: string
+      en?: string
+    }
+    photo?: {
+      asset?: SanityImageAssetReference
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
     _key: string
   }>
   training_sessions?: Array<{
@@ -191,18 +303,12 @@ export type ClubPage = {
     maps_query?: string
     _key: string
   }>
-  roles?: Array<{
-    title?: {
-      fr?: string
-      en?: string
-    }
-    description?: {
-      fr?: string
-      en?: string
-    }
-    emoji?: string
-    _key: string
-  }>
+  inscription_url?: string
+  join_info?: {
+    fr?: string
+    en?: string
+  }
+  join_email?: string
   gallery?: Array<{
     photo?: {
       asset?: SanityImageAssetReference
@@ -217,11 +323,6 @@ export type ClubPage = {
     }
     _key: string
   }>
-  join_email?: string
-  join_info?: {
-    fr?: string
-    en?: string
-  }
 }
 
 export type Club = {
