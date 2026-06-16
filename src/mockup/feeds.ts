@@ -12,6 +12,10 @@ export const FEEDS: FeedItem[] = [
 			fr: "Playoffs Nationale 2",
 			en: "Nationale 2 Playoffs",
 		},
+		mobileTitle: {
+			fr: "Playoffs N2",
+			en: "N2 Playoffs",
+		},
 		description: {
 			fr: "Les Petites Morts jouent les playoffs de Nationale 2 ce week-end à Bordeaux. Venez nous soutenir !",
 			en: "Les Petites Morts play in the Nationale 2 playoffs this weekend in Bordeaux. Come support us!",
@@ -72,6 +76,10 @@ export const FEEDS: FeedItem[] = [
 			fr: "Tournoi amical inter-ligues",
 			en: "Friendly inter-league tournament",
 		},
+		mobileTitle: {
+			fr: "Tournoi amical",
+			en: "Friendly tournament",
+		},
 		description: {
 			fr: "4 équipes de la région se retrouvent pour un tournoi amical. Entrée libre, buvette sur place.",
 			en: "4 regional teams compete in a friendly tournament. Free entry, refreshments available.",
@@ -91,6 +99,10 @@ export const FEEDS: FeedItem[] = [
 		title: {
 			fr: "Reprise de saison — automne 2026",
 			en: "Season kickoff — autumn 2026",
+		},
+		mobileTitle: {
+			fr: "Reprise automne 2026",
+			en: "Autumn 2026 kickoff",
 		},
 		description: {
 			fr: "La nouvelle saison démarre fin août. Inscriptions ouvertes pour les membres existants et les nouvelles recrues.",
@@ -134,6 +146,10 @@ export const FEEDS: FeedItem[] = [
 		title: {
 			fr: "Rejoins les Petites Morts",
 			en: "Join Les Petites Morts",
+		},
+		mobileTitle: {
+			fr: "Rejoins le club",
+			en: "Join the club",
 		},
 		description: {
 			fr: "Débutante ou expérimentée, le RDBC accueille toutes les joueuses. Prochaine practice d'initiation : demande-nous !",

@@ -2,6 +2,7 @@ import useIsMobile from "@hooks/useIsMobile";
 import { FEEDS, FEED_SETTINGS } from "@mockup/feeds";
 import { getDisplayFeeds } from "./feedUtils";
 import FeedDesktop from "./FeedDesktop";
+import FeedMobile from "./FeedMobile";
 import type { Locale } from "./types";
 
 interface FeedProps {
@@ -14,8 +15,7 @@ const Feed = ({ locale }: FeedProps) => {
 
 	const feeds = getDisplayFeeds(FEEDS, FEED_SETTINGS.spots);
 
-	if (isMobile) return null; // TODO: FeedMobile carousel
-
+	if (isMobile) return <FeedMobile feeds={feeds} locale={locale} />;
 	return <FeedDesktop feeds={feeds} locale={locale} />;
 };
 

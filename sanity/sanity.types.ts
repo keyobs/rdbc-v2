@@ -12,258 +12,361 @@
  * ---------------------------------------------------------------------------------
  */
 
-export declare const internalGroqTypeReferenceTo: unique symbol;
+export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
 export type SanityImageAssetReference = {
-	_ref: string;
-	_type: "reference";
-	_weak?: boolean;
-	[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-};
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+}
 
 export type Article = {
-	_id: string;
-	_type: "article";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	title?: string;
-	slug?: Slug;
-	date?: string;
-	author?: string;
-	image?: {
-		asset?: SanityImageAssetReference;
-		media?: unknown;
-		hotspot?: SanityImageHotspot;
-		crop?: SanityImageCrop;
-		_type: "image";
-	};
-	excerpt?: string;
-	body?: Array<{
-		children?: Array<{
-			marks?: Array<string>;
-			text?: string;
-			_type: "span";
-			_key: string;
-		}>;
-		style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-		listItem?: "bullet" | "number";
-		markDefs?: Array<{
-			href?: string;
-			_type: "link";
-			_key: string;
-		}>;
-		level?: number;
-		_type: "block";
-		_key: string;
-	}>;
-};
+  _id: string
+  _type: 'article'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  slug?: Slug
+  date?: string
+  author?: string
+  image?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  excerpt?: string
+  body?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+}
 
 export type SanityImageCrop = {
-	_type: "sanity.imageCrop";
-	top?: number;
-	bottom?: number;
-	left?: number;
-	right?: number;
-};
+  _type: 'sanity.imageCrop'
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
 
 export type SanityImageHotspot = {
-	_type: "sanity.imageHotspot";
-	x?: number;
-	y?: number;
-	height?: number;
-	width?: number;
-};
+  _type: 'sanity.imageHotspot'
+  x?: number
+  y?: number
+  height?: number
+  width?: number
+}
 
 export type Slug = {
-	_type: "slug";
-	current?: string;
-	source?: string;
-};
+  _type: 'slug'
+  current?: string
+  source?: string
+}
 
 export type Event = {
-	_id: string;
-	_type: "event";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	title?: string;
-	date?: string;
-	location?: string;
-	description?: string;
-	link?: string;
-};
+  _id: string
+  _type: 'event'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  date?: string
+  location?: string
+  description?: string
+  link?: string
+}
 
 export type ClubReference = {
-	_ref: string;
-	_type: "reference";
-	_weak?: boolean;
-	[internalGroqTypeReferenceTo]?: "club";
-};
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'club'
+}
 
 export type Game = {
-	_id: string;
-	_type: "game";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	date?: string;
-	location?: string;
-	team?:
-		| "petites-morts"
-		| "compagnie-cruelle"
-		| "pink-cheek-peaches"
-		| "rotten-black-grapes"
-		| "boom-bright-gold";
-	opponent?: ClubReference;
-	team_score?: number;
-	opponent_score?: number;
-	tournament_name?: string;
-};
+  _id: string
+  _type: 'game'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  date?: string
+  location?: string
+  team?:
+    | 'petites-morts'
+    | 'compagnie-cruelle'
+    | 'pink-cheek-peaches'
+    | 'rotten-black-grapes'
+    | 'boom-bright-gold'
+  opponent?: ClubReference
+  team_score?: number
+  opponent_score?: number
+  tournament_name?: string
+}
+
+export type ClubPage = {
+  _id: string
+  _type: 'clubPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  history?: {
+    fr?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+    en?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+  }
+  values?: Array<{
+    title?: {
+      fr?: string
+      en?: string
+    }
+    description?: {
+      fr?: string
+      en?: string
+    }
+    emoji?: string
+    _key: string
+  }>
+  training_sessions?: Array<{
+    label?: {
+      fr?: string
+      en?: string
+    }
+    days?: Array<string>
+    time_start?: string
+    time_end?: string
+    location_name?: string
+    location_address?: string
+    maps_query?: string
+    _key: string
+  }>
+  roles?: Array<{
+    title?: {
+      fr?: string
+      en?: string
+    }
+    description?: {
+      fr?: string
+      en?: string
+    }
+    emoji?: string
+    _key: string
+  }>
+  gallery?: Array<{
+    photo?: {
+      asset?: SanityImageAssetReference
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+    caption?: {
+      fr?: string
+      en?: string
+    }
+    _key: string
+  }>
+  join_email?: string
+  join_info?: {
+    fr?: string
+    en?: string
+  }
+}
 
 export type Club = {
-	_id: string;
-	_type: "club";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	name?: string;
-};
+  _id: string
+  _type: 'club'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+}
 
 export type Player = {
-	_id: string;
-	_type: "player";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	derby_name?: string;
-	photo?: {
-		asset?: SanityImageAssetReference;
-		media?: unknown;
-		hotspot?: SanityImageHotspot;
-		crop?: SanityImageCrop;
-		_type: "image";
-	};
-	role?: Array<string>;
-	season?: number;
-	first_season?: number;
-	misc?: string;
-};
+  _id: string
+  _type: 'player'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  derby_name?: string
+  photo?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  role?: Array<string>
+  season?: number
+  first_season?: number
+  misc?: string
+}
 
 export type SanityImagePaletteSwatch = {
-	_type: "sanity.imagePaletteSwatch";
-	background?: string;
-	foreground?: string;
-	population?: number;
-	title?: string;
-};
+  _type: 'sanity.imagePaletteSwatch'
+  background?: string
+  foreground?: string
+  population?: number
+  title?: string
+}
 
 export type SanityImagePalette = {
-	_type: "sanity.imagePalette";
-	darkMuted?: SanityImagePaletteSwatch;
-	lightVibrant?: SanityImagePaletteSwatch;
-	darkVibrant?: SanityImagePaletteSwatch;
-	vibrant?: SanityImagePaletteSwatch;
-	dominant?: SanityImagePaletteSwatch;
-	lightMuted?: SanityImagePaletteSwatch;
-	muted?: SanityImagePaletteSwatch;
-};
+  _type: 'sanity.imagePalette'
+  darkMuted?: SanityImagePaletteSwatch
+  lightVibrant?: SanityImagePaletteSwatch
+  darkVibrant?: SanityImagePaletteSwatch
+  vibrant?: SanityImagePaletteSwatch
+  dominant?: SanityImagePaletteSwatch
+  lightMuted?: SanityImagePaletteSwatch
+  muted?: SanityImagePaletteSwatch
+}
 
 export type SanityImageDimensions = {
-	_type: "sanity.imageDimensions";
-	height?: number;
-	width?: number;
-	aspectRatio?: number;
-};
+  _type: 'sanity.imageDimensions'
+  height?: number
+  width?: number
+  aspectRatio?: number
+}
 
 export type SanityImageMetadata = {
-	_type: "sanity.imageMetadata";
-	location?: Geopoint;
-	dimensions?: SanityImageDimensions;
-	palette?: SanityImagePalette;
-	lqip?: string;
-	blurHash?: string;
-	thumbHash?: string;
-	hasAlpha?: boolean;
-	isOpaque?: boolean;
-};
+  _type: 'sanity.imageMetadata'
+  location?: Geopoint
+  dimensions?: SanityImageDimensions
+  palette?: SanityImagePalette
+  lqip?: string
+  blurHash?: string
+  thumbHash?: string
+  hasAlpha?: boolean
+  isOpaque?: boolean
+}
 
 export type SanityFileAsset = {
-	_id: string;
-	_type: "sanity.fileAsset";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	originalFilename?: string;
-	label?: string;
-	title?: string;
-	description?: string;
-	altText?: string;
-	sha1hash?: string;
-	extension?: string;
-	mimeType?: string;
-	size?: number;
-	assetId?: string;
-	uploadId?: string;
-	path?: string;
-	url?: string;
-	source?: SanityAssetSourceData;
-};
+  _id: string
+  _type: 'sanity.fileAsset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  source?: SanityAssetSourceData
+}
 
 export type SanityAssetSourceData = {
-	_type: "sanity.assetSourceData";
-	name?: string;
-	id?: string;
-	url?: string;
-};
+  _type: 'sanity.assetSourceData'
+  name?: string
+  id?: string
+  url?: string
+}
 
 export type SanityImageAsset = {
-	_id: string;
-	_type: "sanity.imageAsset";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	originalFilename?: string;
-	label?: string;
-	title?: string;
-	description?: string;
-	altText?: string;
-	sha1hash?: string;
-	extension?: string;
-	mimeType?: string;
-	size?: number;
-	assetId?: string;
-	uploadId?: string;
-	path?: string;
-	url?: string;
-	metadata?: SanityImageMetadata;
-	source?: SanityAssetSourceData;
-};
+  _id: string
+  _type: 'sanity.imageAsset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  metadata?: SanityImageMetadata
+  source?: SanityAssetSourceData
+}
 
 export type Geopoint = {
-	_type: "geopoint";
-	lat?: number;
-	lng?: number;
-	alt?: number;
-};
+  _type: 'geopoint'
+  lat?: number
+  lng?: number
+  alt?: number
+}
 
 export type AllSanitySchemaTypes =
-	| SanityImageAssetReference
-	| Article
-	| SanityImageCrop
-	| SanityImageHotspot
-	| Slug
-	| Event
-	| ClubReference
-	| Game
-	| Club
-	| Player
-	| SanityImagePaletteSwatch
-	| SanityImagePalette
-	| SanityImageDimensions
-	| SanityImageMetadata
-	| SanityFileAsset
-	| SanityAssetSourceData
-	| SanityImageAsset
-	| Geopoint;
+  | SanityImageAssetReference
+  | Article
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Slug
+  | Event
+  | ClubReference
+  | Game
+  | ClubPage
+  | Club
+  | Player
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint

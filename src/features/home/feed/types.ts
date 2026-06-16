@@ -20,6 +20,7 @@ export interface FeedItem {
 	expiryDate: string | null;
 	isPermanent?: boolean;
 	title: LocalizedString;
+	mobileTitle?: LocalizedString;
 	description: LocalizedString;
 	theme: string;
 	backgroundImage?: string | null;

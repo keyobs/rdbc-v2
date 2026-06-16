@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
+import sanity from "@sanity/astro";
 import { fileURLToPath } from "node:url";
 
 const base = process.env.ASTRO_BASE_PATH ?? "/";
@@ -8,7 +9,15 @@ const base = process.env.ASTRO_BASE_PATH ?? "/";
 export default defineConfig({
 	site: "https://keyobs.github.io",
 	base,
-	integrations: [react()],
+	integrations: [
+		react(),
+		sanity({
+			projectId: "y8v3re1a",
+			dataset: "production",
+			useCdn: false,
+			apiVersion: "2024-01-01",
+		}),
+	],
 	vite: {
 		resolve: {
 			alias: {
