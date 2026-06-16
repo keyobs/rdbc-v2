@@ -123,33 +123,15 @@
 	color: var(--feed-muted);
 }
 
-/* ── CTA button ─────────────────────────────────────────── */
+/* ── CTA (BloomButton) ──────────────────────────────────── */
 
-.feed-item__cta {
-	display: inline-block;
+.feed-item__content--expanded .bloom-btn-wrap {
 	align-self: flex-start;
-	font-family: var(--font-display);
-	font-size: 0.65rem;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	text-decoration: none;
-	color: var(--feed-accent);
-	border: 2px solid var(--feed-accent);
-	padding: 5px 14px;
-	box-shadow: 3px 3px 0 var(--feed-accent);
-	transition:
-		background 160ms ease,
-		color 160ms ease;
 	margin-top: 4px;
 }
 
 @media (hover: hover) {
 	.feed-item:not(.feed-item--expanded):hover .feed-item__title-vertical {
 		color: var(--feed-accent);
-	}
-
-	.feed-item__cta:hover {
-		background: var(--feed-accent);
-		color: var(--color-bitume);
 	}
 }

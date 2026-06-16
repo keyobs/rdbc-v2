@@ -4,6 +4,7 @@ import type { FeedItem, Locale } from "./types";
 import { getTheme } from "./themes";
 import { formatFeedDate } from "./feedUtils";
 import { withBase } from "@utils/urlHandler";
+import BloomButton from "@components/buttons/BloomButton";
 import "./feedDesktop.css";
 
 interface FeedDesktopProps {
@@ -134,13 +135,15 @@ const FeedDesktop = ({
 											{feed.description[locale]}
 										</p>
 										{feed.link && (
-											<a
+											<BloomButton
 												href={
 													feed.link.href.startsWith("http")
 														? feed.link.href
 														: withBase(feed.link.href)
 												}
-												className="feed-item__cta"
+												borderGradientColor={theme.accent}
+												background="transparent"
+												fontColor={theme.accent}
 												target={
 													feed.link.href.startsWith("http")
 														? "_blank"
@@ -153,7 +156,7 @@ const FeedDesktop = ({
 												}
 											>
 												{feed.link.label[locale]}
-											</a>
+											</BloomButton>
 										)}
 									</motion.div>
 								) : (

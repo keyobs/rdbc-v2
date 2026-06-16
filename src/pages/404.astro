@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getLocale } from "@i18n/routes";
-import ShinyButton from "@components/buttons/ShinyButton";
+import GhostButton from "@components/buttons/GhostButton";
 import { stripBase, withBase } from "@utils/urlHandler";
 import "./404.css";
 
@@ -20,8 +20,8 @@ const isFr = locale === "fr";
         ? "Cette page n'existe pas (encore)."
         : "This page doesn't exist (yet)."}
     </p>
-    <ShinyButton href={withBase(isFr ? "/" : "/en/")}>
+    <GhostButton href={withBase(isFr ? "/" : "/en/")}>
       {isFr ? "Retour à l'accueil" : "Back to home"}
-    </ShinyButton>
+    </GhostButton>
   </main>
 </Layout>

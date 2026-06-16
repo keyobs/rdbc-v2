@@ -67,18 +67,10 @@
 	overflow: hidden;
 }
 
-/* ── CTA ────────────────────────────────────────────────── */
+/* ── CTA (BloomButton) ──────────────────────────────────── */
 
-.feed-mobile__cta {
-	display: inline-block;
+.feed-mobile__content .bloom-btn-wrap {
 	align-self: flex-start;
-	font-family: var(--font-display);
-	font-size: 0.6rem;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	text-decoration: none;
-	border: 2px solid;
-	padding: 4px 12px;
 	margin-top: 4px;
 }
 

@@ -4,6 +4,7 @@ import type { FeedItem, Locale } from "./types";
 import { getTheme } from "./themes";
 import { formatFeedDate } from "./feedUtils";
 import { withBase } from "@utils/urlHandler";
+import BloomButton from "@components/buttons/BloomButton";
 import "./feedMobile.css";
 
 interface FeedMobileProps {
@@ -114,18 +115,15 @@ const FeedMobile = ({
 							{activeFeed.description[locale]}
 						</p>
 						{activeFeed.link && (
-							<a
+							<BloomButton
 								href={
 									activeFeed.link.href.startsWith("http")
 										? activeFeed.link.href
 										: withBase(activeFeed.link.href)
 								}
-								className="feed-mobile__cta"
-								style={{
-									color: activeTheme.accent,
-									borderColor: activeTheme.accent,
-									boxShadow: `2px 2px 0 ${activeTheme.accent}`,
-								}}
+								borderGradientColor={activeTheme.accent}
+								background="transparent"
+								fontColor={activeTheme.accent}
 								target={
 									activeFeed.link.href.startsWith("http") ? "_blank" : undefined
 								}
@@ -136,7 +134,7 @@ const FeedMobile = ({
 								}
 							>
 								{activeFeed.link.label[locale]}
-							</a>
+							</BloomButton>
 						)}
 					</motion.div>
 				</AnimatePresence>
