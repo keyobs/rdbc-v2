@@ -1,0 +1,155 @@
+/* ── FEED DESKTOP — horizontal accordion ─────────────────── */
+
+.feed-desktop {
+	display: flex;
+	width: 100%;
+	max-width: 1500px;
+	height: 285px;
+	margin: 0 auto;
+	overflow: hidden;
+	margin: 30px auto;
+}
+
+/* ── Item shell ─────────────────────────────────────────── */
+
+.feed-item {
+	position: relative;
+	overflow: hidden;
+	flex: 0 0 72px;
+	cursor: pointer;
+	border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.feed-item:last-child {
+	border-right: none;
+}
+
+.feed-item--expanded {
+	flex: 1;
+	cursor: default;
+}
+
+/* image overlay for readability */
+.feed-item__overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		to top,
+		rgba(0, 0, 0, 0.82) 0%,
+		rgba(0, 0, 0, 0.28) 55%,
+		rgba(0, 0, 0, 0.08) 100%
+	);
+	z-index: 0;
+}
+
+/* ── Content layers ─────────────────────────────────────── */
+
+.feed-item__content {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+}
+
+/* expanded */
+.feed-item__content--expanded {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: 24px 32px;
+	gap: 6px;
+}
+
+/* collapsed */
+.feed-item__content--collapsed {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 16px 0;
+}
+
+/* ── Typography ─────────────────────────────────────────── */
+
+.feed-item__date {
+	font-family: var(--font-display);
+	font-size: 0.6rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--feed-muted);
+}
+
+.feed-item__title {
+	font-family: var(--font-display);
+	font-size: clamp(1rem, 2vw, 1.5rem);
+	line-height: 1.15;
+	color: var(--feed-text);
+	margin: 0;
+}
+
+.feed-item__description {
+	font-size: 0.875rem;
+	line-height: 1.5;
+	color: var(--feed-text);
+	opacity: 0.8;
+	margin: 0;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* collapsed vertical title */
+.feed-item__title-vertical {
+	font-family: var(--font-display);
+	font-size: 0.72rem;
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+	transform: rotate(180deg);
+	color: var(--feed-text);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-height: 75%;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.feed-item__date-small {
+	font-family: var(--font-display);
+	font-size: 0.5rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--feed-muted);
+}
+
+/* ── CTA button ─────────────────────────────────────────── */
+
+.feed-item__cta {
+	display: inline-block;
+	align-self: flex-start;
+	font-family: var(--font-display);
+	font-size: 0.65rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	text-decoration: none;
+	color: var(--feed-accent);
+	border: 2px solid var(--feed-accent);
+	padding: 5px 14px;
+	box-shadow: 3px 3px 0 var(--feed-accent);
+	transition:
+		background 160ms ease,
+		color 160ms ease;
+	margin-top: 4px;
+}
+
+@media (hover: hover) {
+	.feed-item:not(.feed-item--expanded):hover .feed-item__title-vertical {
+		color: var(--feed-accent);
+	}
+
+	.feed-item__cta:hover {
+		background: var(--feed-accent);
+		color: var(--color-bitume);
+	}
+}
