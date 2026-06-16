@@ -2,7 +2,7 @@ import { RESULTS } from "@mockup/games";
 import { GameRecord } from "./GameRecord";
 import PhotoStrip from "./PhotoStrip";
 import TeamHeader, { ORDER, TEAM_HEADERS } from "./TeamHeader";
-import { formatGameDate } from "./utils";
+import { formatGameDate, getRecentGames } from "./utils";
 import "./lastResults.css";
 
 export interface TeamInfo {
@@ -28,8 +28,10 @@ const LastResults = () => {
 	const grouped = Object.fromEntries(
 		ORDER.map((team) => [
 			team,
-			RESULTS.filter((g) => (g.rdbc.travelTeam ?? "home") === team).sort(
-				(a, b) => b.date.localeCompare(a.date),
+			getRecentGames(
+				RESULTS.filter((g) => (g.rdbc.travelTeam ?? "home") === team).sort(
+					(a, b) => b.date.localeCompare(a.date),
+				),
 			),
 		]),
 	) as Record<"A" | "B" | "home", GameResult[]>;

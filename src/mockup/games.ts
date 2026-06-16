@@ -7,7 +7,7 @@ import mummy from "../assets/mummy.png";
 export const RESULTS: GameResult[] = [
 	{
 		id: "1",
-		date: "2026-05-10",
+		date: "2026-05-10T10:00:00",
 		poster: photo1.src,
 		tournament: "Championnat de France 2026",
 		event: "Nationale 2 — Plateau 2",
@@ -27,7 +27,7 @@ export const RESULTS: GameResult[] = [
 	},
 	{
 		id: "2",
-		date: "2026-05-09",
+		date: "2026-05-09T14:30:00",
 		poster: photo2.src,
 		tournament: "Championnat de France 2026",
 		event: "Nationale 2 — Plateau 2",
@@ -47,7 +47,7 @@ export const RESULTS: GameResult[] = [
 	},
 	{
 		id: "3",
-		date: "2026-05-09",
+		date: "2026-05-09T10:00:00",
 		poster: photo3.src,
 		tournament: "Championnat de France 2026",
 		event: "Nationale 2 — Plateau 2",
@@ -67,7 +67,7 @@ export const RESULTS: GameResult[] = [
 	},
 	{
 		id: "4",
-		date: "2026-06-13",
+		date: "2026-06-13T12:30:00",
 		poster: photo1.src,
 		tournament: "Championnat de France 2026",
 		event: "National 2 - Playoffs",
@@ -87,7 +87,7 @@ export const RESULTS: GameResult[] = [
 	},
 	{
 		id: "5",
-		date: "2026-06-13",
+		date: "2026-06-13T15:30:00",
 		poster: photo1.src,
 		tournament: "Championnat de France 2026",
 		event: "National 2 - Playoffs",
@@ -106,8 +106,8 @@ export const RESULTS: GameResult[] = [
 		photos: [photo2.src, photo3.src],
 	},
 	{
-		id: "1",
-		date: "2026-06-13",
+		id: "6",
+		date: "2026-06-13T20:00:00",
 		poster: photo1.src,
 		tournament: "Championnat de France 2026",
 		event: "National 2 - Playoffs",
@@ -122,6 +122,26 @@ export const RESULTS: GameResult[] = [
 			league: "RDNA Roller Derby (Nantes)",
 			logo: null,
 			score: 57,
+		},
+		photos: [photo2.src, photo3.src],
+	},
+	{
+		id: "7",
+		date: "2026-06-14T14:30:00",
+		poster: photo1.src,
+		tournament: "Championnat de France 2026",
+		event: "National 2 - Playoffs",
+		rdbc: {
+			name: "Petites Morts",
+			travelTeam: "A",
+			logo: mummy.src,
+			score: 123,
+		},
+		hainemy: {
+			name: "Les Flêches Revêches",
+			league: "Roller Derby Dijon",
+			logo: null,
+			score: 133,
 		},
 		photos: [photo2.src, photo3.src],
 	},
