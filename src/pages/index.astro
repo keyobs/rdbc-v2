@@ -1,9 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Feed from "@features/home/feed/Feed";
 import HeroStrip from "@features/home/HeroStrip";
 import LastResultsByTeams from "@features/home/LastResultsByTeams";
 ---
 <Layout title="Accueil">
+  <Feed locale="fr" client:load />
   <HeroStrip client:load />
   <LastResultsByTeams client:load />
 </Layout>

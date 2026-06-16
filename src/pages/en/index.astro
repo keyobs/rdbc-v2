@@ -1,7 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Feed from "@features/home/feed/Feed";
 import HeroStrip from "@features/home/HeroStrip";
 ---
 <Layout title="Home">
+  <Feed locale="en" client:load />
   <HeroStrip client:load />
 </Layout>
