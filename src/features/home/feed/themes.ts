@@ -7,6 +7,14 @@ export interface FeedTheme {
 }
 
 export const THEMES: Record<string, FeedTheme> = {
+	gotham: {
+		background: "#231785",
+		//backgroundAlt: "#857DC8",
+		backgroundAlt: "#231785",
+		text: "#f4f4f4",
+		accent: "#135C9C",
+		muted: "#119179",
+	},
 	midnight: {
 		background: "#0f1427",
 		backgroundAlt: "#141c3c",
@@ -76,6 +84,27 @@ export const THEMES: Record<string, FeedTheme> = {
 		text: "#f4f4f4",
 		accent: "#ff5a14",
 		muted: "#c86432",
+	},
+	synthwave: {
+		background: "#1e0550",
+		backgroundAlt: "#2a0a6e",
+		text: "#f4f4f4",
+		accent: "#ff2d87",
+		muted: "#c060ff",
+	},
+	outrun: {
+		background: "#230032",
+		backgroundAlt: "#300046",
+		text: "#f4f4f4",
+		accent: "#ff6200",
+		muted: "#d400c0",
+	},
+	gta: {
+		background: "#00243c",
+		backgroundAlt: "#003050",
+		text: "#f4f4f4",
+		accent: "#ff1a78",
+		muted: "#00c8c0",
 	},
 };
 

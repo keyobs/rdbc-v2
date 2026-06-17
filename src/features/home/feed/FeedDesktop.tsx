@@ -1,3 +1,5 @@
+import "./feedDesktop.css";
+
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import type { FeedItem, Locale } from "./types";
@@ -5,7 +7,6 @@ import { getTheme } from "./themes";
 import { formatFeedDate } from "./feedUtils";
 import { withBase } from "@utils/urlHandler";
 import BloomButton from "@components/buttons/BloomButton";
-import "./feedDesktop.css";
 
 interface FeedDesktopProps {
 	feeds: FeedItem[];

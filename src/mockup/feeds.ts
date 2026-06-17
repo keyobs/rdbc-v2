@@ -6,7 +6,7 @@ export const FEEDS: FeedItem[] = [
 		id: "f1",
 		name: "Playoffs N2 juin 2026",
 		creationDate: "2026-06-10T00:00:00",
-		date: "2026-06-12",
+		date: "2026-06-13",
 		expiryDate: "2026-06-13T00:00:00",
 		title: {
 			fr: "Playoffs Nationale 2",
@@ -60,7 +60,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Tu veux essayer le roller derby ? Rejoins-nous pour une practice d'initiation ouverte à tous, patins fournis.",
 			en: "Want to try roller derby? Join us for an open introductory practice, skates provided.",
 		},
-		theme: "ocean",
+		theme: "outrun",
 		link: {
 			href: "/rejoindre",
 			label: { fr: "En savoir plus", en: "Learn more" },
@@ -84,7 +84,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "4 équipes de la région se retrouvent pour un tournoi amical. Entrée libre, buvette sur place.",
 			en: "4 regional teams compete in a friendly tournament. Free entry, refreshments available.",
 		},
-		theme: "violet",
+		theme: "fire",
 		link: {
 			href: "/evenements",
 			label: { fr: "Voir l'événement", en: "See the event" },
@@ -134,6 +134,26 @@ export const FEEDS: FeedItem[] = [
 			label: { fr: "Voir les matchs", en: "See the games" },
 		},
 	},
+	{
+		id: "f7",
+		name: "Championnat N2 - Résultat",
+		creationDate: "2026-06-14T00:00:00",
+		date: "2026-06-14",
+		expiryDate: "2026-09-01T00:00:00",
+		title: {
+			fr: "Nationale 2 - Résultats",
+			en: "Nationale 2 — Results",
+		},
+		description: {
+			fr: "A l'issue des Playoffs, les Petites Morts montent en Nationale 1 la saison prochaine. Une nouvelle aventure commence !",
+			en: "National 1 next season for Les Petites Morts. A new adventure begins!",
+		},
+		theme: "gold",
+		link: {
+			href: "/competitions",
+			label: { fr: "Voir les matchs", en: "See the games" },
+		},
+	},
 
 	// ── Permanent feeds ───────────────────────────────────────
 	{
@@ -176,7 +196,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Entraînement hebdomadaire ouvert à toutes les membres. Gymnase Camille Claudel, 20h–22h.",
 			en: "Weekly training open to all members. Gymnase Camille Claudel, 8–10 PM.",
 		},
-		theme: "storm",
+		theme: "gotham",
 		link: {
 			href: "/club",
 			label: { fr: "Découvrir le club", en: "Discover the club" },
@@ -208,5 +228,5 @@ export const FEEDS: FeedItem[] = [
 // spots: f1 (expired → fallback p2), f3, f4, p1
 export const FEED_SETTINGS: FeedSettings = {
 	numberOfSpots: 4,
-	spots: ["f1", "f3", "f4", "p1"],
+	spots: ["f7", "f3", "f4", "p1"],
 };
