@@ -111,7 +111,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 2px;
-	width: 120px;
+	width: 160px;
 }
 
 .game-record__team--hainemy .game-record__info {
