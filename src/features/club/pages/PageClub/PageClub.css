@@ -4,8 +4,24 @@
 	background: #f5f0e8;
 	max-width: 1100px;
 	margin: 0 auto;
-	box-shadow: 6px 6px 32px rgba(0, 0, 0, 0.6);
+	/* E — Hard shadow, no blur: brutal fanzine feel */
+	box-shadow:
+		8px 8px 0 #0f1427,
+		14px 14px 0 rgba(15, 20, 39, 0.18);
 	overflow: hidden;
+}
+
+/* A — Photocopied grain overlay */
+.page-club::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+	background-size: 200px 200px;
+	opacity: 0.5;
+	mix-blend-mode: multiply;
 }
 
 /* ── Patchwork background ────────────────────────── */
@@ -16,7 +32,6 @@
 	pointer-events: none;
 }
 
-/* CSS placeholders — replaced by <img> once assets arrive */
 .page-club__bg-patch {
 	position: absolute;
 	background: #d4cfc5;
@@ -56,30 +71,74 @@
 	padding: 2rem 1.5rem 3rem;
 }
 
-/* ── Title banner ────────────────────────────────── */
+/* ── B — Ransom note title ────────────────────────── */
 .page-club__title {
-	font-family: var(--font-display);
-	font-size: clamp(2.5rem, 8vw, 5rem);
-	line-height: 0.95;
-	text-transform: uppercase;
-	color: #0f1427;
-	letter-spacing: -0.02em;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 0.25em;
 	margin: 0 0 2.5rem;
-	/* Ink bleed effect */
-	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.12);
+	line-height: 1;
+}
+
+.page-club__title-word {
+	display: inline-block;
+	font-family: var(--font-display);
+	text-transform: uppercase;
+	line-height: 0.92;
+	padding: 0.05em 0.12em;
+}
+
+/* "Roller" — small, dark block, clipped angle */
+.page-club__title-word--1 {
+	font-size: clamp(1.8rem, 5vw, 3.2rem);
+	background: #0f1427;
+	color: #f5f0e8;
+	transform: rotate(-3deg);
+	text-shadow: none;
+}
+
+/* "Derby" — oversized, neon block: the LOUD word */
+.page-club__title-word--2 {
+	font-size: clamp(3rem, 9vw, 5.5rem);
+	background: var(--color-neon-primary);
+	color: #0f1427;
+	transform: rotate(1.5deg);
+	text-shadow: none;
+}
+
+/* "Bordeaux" — typewriter font, action red, slightly smaller */
+.page-club__title-word--3 {
+	font-size: clamp(1.4rem, 4.2vw, 2.8rem);
+	font-family: "Courier New", Courier, monospace;
+	background: var(--color-action, #c0392b);
+	color: #f5f0e8;
+	transform: rotate(-1.5deg);
+	letter-spacing: -0.02em;
+	text-shadow: none;
+}
+
+/* "Club" — outline only, no fill */
+.page-club__title-word--4 {
+	font-size: clamp(2rem, 6vw, 4rem);
+	background: transparent;
+	color: #0f1427;
+	border: 3px solid #0f1427;
+	transform: rotate(2.5deg);
+	text-shadow: none;
 }
 
 /* ── Two-column grid ─────────────────────────────── */
 .page-club__grid {
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
+	gap: 2rem;
 }
 
 .page-club__col {
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
+	gap: 2rem;
 }
 
 /* ── Content blocks ──────────────────────────────── */
@@ -89,52 +148,138 @@
 	padding: 1.25rem 1.25rem 1.5rem;
 }
 
+/* E — Torn left edge (book page ripped out) + hard drop-shadow */
 .page-club__block--history {
-	border-left: 4px solid #0f1427;
+	clip-path: polygon(
+		4% 0%,
+		100% 0%,
+		100% 100%,
+		0% 100%,
+		2% 90%,
+		5% 82%,
+		1% 73%,
+		4% 65%,
+		0% 56%,
+		3% 48%,
+		1% 38%,
+		5% 29%,
+		0% 20%,
+		3% 12%,
+		1% 4%
+	);
+	padding-left: 1.75rem;
+	filter: drop-shadow(5px 5px 0 #0f1427);
 	transform: rotate(-0.5deg);
 }
 
+/* E — Hard shadow (no blur) */
 .page-club__block--philosophy {
 	border: 2px solid #0f1427;
+	box-shadow: 5px 5px 0 #0f1427;
 	transform: rotate(0.8deg);
 }
 
+/* E — Offset neon hard shadow */
 .page-club__block--values {
 	transform: rotate(-1deg);
-	border-bottom: 3px solid var(--color-neon-primary);
+	border: 2px solid #0f1427;
+	box-shadow: -4px 4px 0 var(--color-neon-primary);
 }
 
+/* E — Brutal jagged top edge */
 .page-club__block--sport {
 	transform: rotate(0.5deg);
-	/* Torn top edge */
 	clip-path: polygon(
-		0% 4%,
-		3% 0%,
-		6% 3%,
-		10% 0%,
-		14% 4%,
-		18% 1%,
-		22% 3%,
-		27% 0%,
-		32% 4%,
-		37% 1%,
-		42% 3%,
-		47% 0%,
-		52% 4%,
-		57% 1%,
-		62% 3%,
-		67% 0%,
-		72% 4%,
-		77% 1%,
-		82% 3%,
-		87% 0%,
-		92% 4%,
-		97% 1%,
-		100% 3%,
+		0% 12%,
+		2% 6%,
+		5% 13%,
+		8% 4%,
+		12% 11%,
+		16% 2%,
+		19% 12%,
+		23% 5%,
+		27% 13%,
+		31% 2%,
+		35% 10%,
+		39% 1%,
+		43% 11%,
+		47% 4%,
+		51% 13%,
+		55% 3%,
+		59% 11%,
+		63% 0%,
+		67% 12%,
+		71% 4%,
+		75% 11%,
+		79% 1%,
+		83% 10%,
+		87% 2%,
+		91% 12%,
+		95% 4%,
+		99% 10%,
+		100% 7%,
 		100% 100%,
 		0% 100%
 	);
-	padding-top: 1.75rem;
+	padding-top: 2.25rem;
+	filter: drop-shadow(5px 5px 0 #0f1427);
+}
+
+/* D — Handwritten margin annotations */
+.page-club__block--history::after {
+	content: "→ est. 2010 !!";
+	position: absolute;
+	bottom: -1.5rem;
+	right: 0.75rem;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 0.62rem;
+	color: rgba(15, 20, 39, 0.52);
+	transform: rotate(3.5deg);
+	white-space: nowrap;
+	pointer-events: none;
+	z-index: 10;
+}
+
+.page-club__block--philosophy::after {
+	content: "open to ALL ♥";
+	position: absolute;
+	top: -1.25rem;
+	left: 0.5rem;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 0.62rem;
+	color: rgba(15, 20, 39, 0.52);
+	transform: rotate(-4deg);
+	white-space: nowrap;
+	pointer-events: none;
+	z-index: 10;
+}
+
+.page-club__block--values::after {
+	content: "★ our DNA";
+	position: absolute;
+	top: -1.25rem;
+	right: 1.25rem;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 0.62rem;
+	color: rgba(15, 20, 39, 0.52);
+	transform: rotate(2.5deg);
+	white-space: nowrap;
+	pointer-events: none;
+	z-index: 10;
+}
+
+.page-club__block--sport::after {
+	content: "flat track only ✓";
+	position: absolute;
+	bottom: 0.75rem;
+	right: 0rem;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 0.62rem;
+	color: rgba(15, 20, 39, 0.52);
+	transform: rotate(3deg);
+	white-space: nowrap;
+	pointer-events: none;
+	z-index: 10;
 }
 
 /* ── Tape strips ─────────────────────────────────── */
@@ -142,8 +287,8 @@
 	position: absolute;
 	width: 56px;
 	height: 18px;
-	background: rgba(255, 240, 180, 0.6);
-	backdrop-filter: blur(1px);
+	background: rgba(255, 240, 180, 0.65);
+	box-shadow: 0 0 0 1px rgba(180, 160, 80, 0.3);
 }
 
 .page-club__tape--tl {
@@ -170,8 +315,8 @@
 	letter-spacing: 0.1em;
 	color: #0f1427;
 	margin: 0 0 0.75rem;
-	border-bottom: 1px solid #0f1427;
-	padding-bottom: 0.25rem;
+	border-bottom: 2px solid #0f1427;
+	padding-bottom: 0.3rem;
 }
 
 /* ── Prose text ──────────────────────────────────── */
@@ -196,15 +341,33 @@
 	padding: 0;
 	display: flex;
 	flex-direction: column;
-	gap: 0.75rem;
+	gap: 1rem;
 }
 
+/* C — Rubber stamp on each value item */
 .page-club__value-item {
 	display: grid;
 	grid-template-columns: 1.5rem 1fr;
 	grid-template-rows: auto auto;
 	column-gap: 0.5rem;
 	align-items: start;
+	border: 2px solid #0f1427;
+	outline: 1.5px solid rgba(15, 20, 39, 0.28);
+	outline-offset: 3px;
+	padding: 0.55rem 0.75rem;
+	opacity: 0.88;
+}
+
+.page-club__value-item:nth-child(1) {
+	transform: rotate(-1.8deg);
+}
+.page-club__value-item:nth-child(2) {
+	transform: rotate(1.2deg);
+	margin-left: 0.75rem;
+}
+.page-club__value-item:nth-child(3) {
+	transform: rotate(-0.8deg);
+	margin-right: 0.5rem;
 }
 
 .page-club__value-item span:first-child {
@@ -218,6 +381,10 @@
 	font-size: 0.85rem;
 	text-transform: uppercase;
 	color: #0f1427;
+	/* C — ink bleed */
+	text-shadow:
+		0.5px 0 0 rgba(0, 0, 0, 0.2),
+		-0.5px 0 0 rgba(0, 0, 0, 0.1);
 }
 
 .page-club__value-item span:last-child {
@@ -227,22 +394,40 @@
 	line-height: 1.4;
 }
 
-/* ── Badges WFTDA / FFRS ─────────────────────────── */
+/* ── C — Rubber stamp badges WFTDA / FFRS ────────── */
 .page-club__badges {
 	display: flex;
-	gap: 0.5rem;
-	margin-bottom: 0.75rem;
+	gap: 0.875rem;
+	margin-bottom: 0.875rem;
 	flex-wrap: wrap;
+	align-items: center;
 }
 
 .page-club__badge {
-	font-family: var(--font-display);
-	font-size: 0.7rem;
-	letter-spacing: 0.12em;
-	color: #f5f0e8;
-	background: #0f1427;
-	padding: 0.15rem 0.5rem;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 0.68rem;
+	font-weight: bold;
+	letter-spacing: 0.22em;
+	color: #0f1427;
+	background: transparent;
+	padding: 0.2rem 0.55rem;
 	text-transform: uppercase;
+	/* C — Stamp double border + faded ink */
+	border: 2.5px solid #0f1427;
+	outline: 1.5px solid rgba(15, 20, 39, 0.3);
+	outline-offset: 3px;
+	opacity: 0.8;
+	text-shadow:
+		0.5px 0 0 rgba(0, 0, 0, 0.25),
+		0 0.5px 0 rgba(0, 0, 0, 0.15);
+	display: inline-block;
+}
+
+.page-club__badge:first-child {
+	transform: rotate(-3deg);
+}
+.page-club__badge:last-child {
+	transform: rotate(2.5deg);
 }
 
 /* ── Desktop: true double-page ───────────────────── */
@@ -260,18 +445,15 @@
 		flex: 1;
 	}
 
-	/* Vertical separator between the two pages */
 	.page-club__col:first-child {
-		border-right: 1px solid rgba(0, 0, 0, 0.15);
+		border-right: 1px solid rgba(0, 0, 0, 0.12);
 		padding-right: 2rem;
 	}
 
 	.page-club__col:last-child {
 		padding-left: 2rem;
 	}
-}
 
-@media (min-width: 768px) {
 	.page-club__prose {
 		font-size: 1rem;
 	}

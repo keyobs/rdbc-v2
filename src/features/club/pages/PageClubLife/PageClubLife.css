@@ -1,12 +1,32 @@
 /* ── Outer page shell ─────────────────────────────── */
 .page-vie {
+	position: relative;
 	background: #f5f0e8;
 	max-width: 1100px;
 	margin: 0 auto;
-	box-shadow: 6px 6px 32px rgba(0, 0, 0, 0.6);
+	/* E — Hard shadow */
+	box-shadow:
+		8px 8px 0 #0f1427,
+		14px 14px 0 rgba(15, 20, 39, 0.18);
+	overflow: hidden;
+}
+
+/* A — Photocopied grain overlay */
+.page-vie::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+	background-size: 200px 200px;
+	opacity: 0.5;
+	mix-blend-mode: multiply;
 }
 
 .page-vie__inner {
+	position: relative;
+	z-index: 1;
 	padding: 2rem 1.5rem 3rem;
 }
 
@@ -18,7 +38,25 @@
 	color: #0f1427;
 	margin: 0 0 2rem;
 	line-height: 1;
-	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+	/* E — Hard shadow on title, slight rotation */
+	text-shadow: 4px 4px 0 rgba(15, 20, 39, 0.15);
+	display: inline-block;
+	transform: rotate(-1deg);
+	transform-origin: left center;
+}
+
+/* D — Annotation under page title */
+.page-vie__page-title::after {
+	content: "→ toustes bienvenus !!";
+	display: block;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 0.6rem;
+	font-weight: normal;
+	color: rgba(15, 20, 39, 0.48);
+	text-shadow: none;
+	transform: rotate(2deg);
+	margin-top: 0.25rem;
+	letter-spacing: 0.04em;
 }
 
 /* ── Two-column grid ─────────────────────────────── */
@@ -34,7 +72,9 @@
 	text-transform: uppercase;
 	letter-spacing: 0.15em;
 	color: #0f1427;
+	/* E — Hard underline */
 	border-bottom: 2px solid #0f1427;
+	box-shadow: 0 2px 0 rgba(15, 20, 39, 0.2);
 	padding-bottom: 0.4rem;
 	margin: 0 0 1.25rem;
 }
@@ -53,7 +93,8 @@
 	display: flex;
 	gap: 1rem;
 	align-items: flex-start;
-	border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+	/* E — Dashed separator */
+	border-bottom: 1.5px dashed rgba(0, 0, 0, 0.3);
 	padding-bottom: 1.5rem;
 }
 
@@ -66,14 +107,15 @@
 	flex-shrink: 0;
 }
 
+/* E — Rough cut border on role images */
 .page-vie__role-img {
 	width: 80px;
 	height: 80px;
 	object-fit: cover;
 	display: block;
-	/* Rough cut border */
 	outline: 3px solid #0f1427;
 	outline-offset: 2px;
+	filter: drop-shadow(3px 3px 0 #0f1427);
 }
 
 .page-vie__role-img-placeholder {
@@ -88,6 +130,7 @@
 	);
 	outline: 3px solid #0f1427;
 	outline-offset: 2px;
+	filter: drop-shadow(3px 3px 0 #0f1427);
 }
 
 .page-vie__role-review {
@@ -129,17 +172,19 @@
 	align-items: flex-start;
 }
 
-/* Photo always on the left on mobile */
 .page-vie__activity-photo {
 	flex-shrink: 0;
 }
 
+/* E — Activity photos: hard shadow + slight rotation */
 .page-vie__activity-img {
 	width: 90px;
 	height: 70px;
 	object-fit: cover;
 	display: block;
 	transform: rotate(-1.5deg);
+	outline: 2.5px solid #0f1427;
+	filter: drop-shadow(2px 2px 0 rgba(15, 20, 39, 0.5));
 }
 
 .page-vie__activity-img-placeholder {
@@ -153,6 +198,8 @@
 		#ddd8ce 10px
 	);
 	transform: rotate(-1.5deg);
+	outline: 2.5px solid #0f1427;
+	filter: drop-shadow(2px 2px 0 rgba(15, 20, 39, 0.5));
 }
 
 .page-vie__activity--photo-right .page-vie__activity-img,
@@ -206,7 +253,6 @@
 		padding-left: 2rem;
 	}
 
-	/* Alternating layout on desktop — photo switches sides */
 	.page-vie__activity--photo-right {
 		flex-direction: row-reverse;
 	}

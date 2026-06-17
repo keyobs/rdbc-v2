@@ -96,9 +96,18 @@ export default function PageClub({ data, locale }: PageClubProps) {
 					whileInView="visible"
 					viewport={{ once: true, margin: "-40px" }}
 				>
-					Roller Derby
-					<br />
-					Bordeaux Club
+					<span className="page-club__title-word page-club__title-word--1">
+						Roller
+					</span>
+					<span className="page-club__title-word page-club__title-word--2">
+						Derby
+					</span>
+					<span className="page-club__title-word page-club__title-word--3">
+						Bordeaux
+					</span>
+					<span className="page-club__title-word page-club__title-word--4">
+						Club
+					</span>
 				</motion.h1>
 
 				{/* Desktop: 2 columns — Mobile: stacked */}

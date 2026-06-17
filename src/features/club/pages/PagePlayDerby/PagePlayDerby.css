@@ -1,12 +1,32 @@
 /* ── Outer page shell ─────────────────────────────── */
 .page-derby {
+	position: relative;
 	background: #f5f0e8;
 	max-width: 1100px;
 	margin: 0 auto;
-	box-shadow: 6px 6px 32px rgba(0, 0, 0, 0.6);
+	/* E — Hard shadow */
+	box-shadow:
+		8px 8px 0 #0f1427,
+		14px 14px 0 rgba(15, 20, 39, 0.18);
+	overflow: hidden;
+}
+
+/* A — Photocopied grain overlay */
+.page-derby::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+	background-size: 200px 200px;
+	opacity: 0.5;
+	mix-blend-mode: multiply;
 }
 
 .page-derby__inner {
+	position: relative;
+	z-index: 1;
 	padding: 2rem 1.5rem 3rem;
 }
 
@@ -17,7 +37,24 @@
 	color: #0f1427;
 	margin: 0 0 2rem;
 	line-height: 1;
-	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+	text-shadow: 4px 4px 0 rgba(15, 20, 39, 0.15);
+	display: inline-block;
+	transform: rotate(-0.8deg);
+	transform-origin: left center;
+}
+
+/* D — Annotation under page title */
+.page-derby__page-title::after {
+	content: "patins fournis pour les 1ères séances";
+	display: block;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 0.58rem;
+	font-weight: normal;
+	color: rgba(15, 20, 39, 0.48);
+	text-shadow: none;
+	transform: rotate(1.5deg);
+	margin-top: 0.25rem;
+	letter-spacing: 0.03em;
 }
 
 /* ── Two-column grid ─────────────────────────────── */
@@ -33,16 +70,18 @@
 	gap: 2rem;
 }
 
-/* ── Section titles ──────────────────────────────── */
+/* ── C — Rubber stamp section titles ─────────────── */
 .page-derby__section-title {
-	font-family: var(--font-display);
-	font-size: 0.85rem;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 0.82rem;
 	text-transform: uppercase;
-	letter-spacing: 0.15em;
+	letter-spacing: 0.18em;
 	color: #0f1427;
 	border-bottom: 2px solid #0f1427;
 	padding-bottom: 0.4rem;
 	margin: 0 0 1rem;
+	opacity: 0.85;
+	text-shadow: 0.5px 0 0 rgba(0, 0, 0, 0.2);
 }
 
 /* ── Training agenda ─────────────────────────────── */
@@ -50,13 +89,14 @@
 	transform: rotate(-0.5deg);
 }
 
+/* E — Hard border on agenda */
 .page-derby__agenda {
-	border: 1px solid #0f1427;
+	border: 2px solid #0f1427;
+	box-shadow: 4px 4px 0 #0f1427;
 	font-family: "Courier New", Courier, monospace;
 	font-size: 0.7rem;
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
-	/* Photocopied look */
 	filter: contrast(1.05);
 }
 
@@ -90,7 +130,7 @@
 }
 
 .page-derby__agenda-cell {
-	border-right: 1px dashed rgba(0, 0, 0, 0.2);
+	border-right: 1px dashed rgba(0, 0, 0, 0.25);
 	padding: 0.25rem 0.2rem;
 	min-height: 52px;
 }
@@ -100,7 +140,7 @@
 }
 
 .page-derby__agenda-cell--active {
-	background: rgba(110, 201, 142, 0.15);
+	background: rgba(110, 201, 142, 0.2);
 	display: flex;
 	flex-direction: column;
 	gap: 0.1rem;
@@ -135,9 +175,26 @@
 
 /* ── Inscription ─────────────────────────────────── */
 .page-derby__inscription {
+	position: relative;
 	transform: rotate(0.8deg);
 	border: 2px solid #0f1427;
+	/* E — Hard shadow */
+	box-shadow: 5px 5px 0 #0f1427;
 	padding: 1rem 1.25rem 1.25rem;
+}
+
+/* D — Annotation on inscription block */
+.page-derby__inscription::after {
+	content: "↑ rejoins-nous !";
+	position: absolute;
+	top: -1.2rem;
+	right: 1rem;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 0.6rem;
+	color: rgba(15, 20, 39, 0.48);
+	transform: rotate(-3deg);
+	white-space: nowrap;
+	pointer-events: none;
 }
 
 .page-derby__inscription-text {
@@ -157,9 +214,10 @@
 	color: #f5f0e8;
 	background: #0f1427;
 	border: 2px solid #0f1427;
-	box-shadow: 4px 4px 0px var(--color-neon-primary);
+	box-shadow: 4px 4px 0 var(--color-neon-primary);
 	padding: 0.5rem 1.25rem;
 	text-decoration: none;
+	border-radius: 0;
 }
 
 .page-derby__inscription-btn:active {
@@ -194,6 +252,9 @@
 	align-items: center;
 	justify-content: center;
 	transform: rotate(-1deg);
+	/* E — Hard border */
+	outline: 2.5px solid #0f1427;
+	filter: drop-shadow(4px 4px 0 rgba(15, 20, 39, 0.4));
 }
 
 .page-derby__illustration-placeholder span {
@@ -208,9 +269,11 @@
 	transform: rotate(0.5deg);
 }
 
+/* E — Dashed coupon with hard shadow */
 .page-derby__coupon {
 	border: 2px dashed #0f1427;
 	padding: 0.5rem 1rem 1rem;
+	box-shadow: 3px 3px 0 rgba(15, 20, 39, 0.2);
 }
 
 .page-derby__scissors {
@@ -296,16 +359,20 @@
 	gap: 0.4rem;
 }
 
+/* C — Checkbox labels as typewriter stamps */
 .page-derby__checkbox-label {
 	display: flex;
 	align-items: center;
 	gap: 0.3rem;
-	font-family: var(--font-body);
-	font-size: 0.8rem;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 0.75rem;
 	color: #0f1427;
 	cursor: pointer;
-	border: 1px solid #0f1427;
+	border: 1.5px solid #0f1427;
 	padding: 0.2rem 0.5rem;
+	outline: 1px solid rgba(15, 20, 39, 0.25);
+	outline-offset: 2px;
+	letter-spacing: 0.06em;
 }
 
 .page-derby__checkbox {
@@ -323,7 +390,8 @@
 	color: #f5f0e8;
 	background: #0f1427;
 	border: 2px solid #0f1427;
-	box-shadow: 3px 3px 0px var(--color-neon-primary);
+	/* E — Hard shadow */
+	box-shadow: 3px 3px 0 var(--color-neon-primary);
 	padding: 0.4rem 1rem;
 	cursor: pointer;
 	border-radius: 0;
