@@ -6,7 +6,7 @@ import { isEnglish, getAlternateHref } from "@i18n/routes";
 import FacebookLink from "@components/social/FacebookLink";
 import InstagramLink from "@components/social/InstagramLink";
 import ShinyButton from "@components/buttons/ShinyButton";
-import { NAV_LINKS } from "../navLinks";
+import { DISPLAYED_NAV_LINKS } from "../navLinks";
 import { withBase } from "@utils/urlHandler";
 import "./mobileNavDrawer.css";
 
@@ -72,7 +72,7 @@ const MobileNavDrawer = ({
 
 							<nav aria-label="Mobile navigation">
 								<ul className="mobile-nav-drawer__links">
-									{NAV_LINKS.map((link) => (
+									{DISPLAYED_NAV_LINKS.map((link) => (
 										<li key={link.href}>
 											<a
 												href={withBase(link.href)}
