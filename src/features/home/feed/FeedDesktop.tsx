@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import type { FeedItem, Locale } from "./types";
 import { getTheme } from "./themes";
-import { formatFeedDate } from "./feedUtils";
+import { formatFeedDate, getFeedDateParts } from "./feedUtils";
 import { withBase } from "@utils/urlHandler";
 import BloomButton from "@components/buttons/BloomButton";
 
@@ -26,7 +26,7 @@ const SPRING = { type: "spring", stiffness: 260, damping: 28 } as const;
 const FeedDesktop = ({
 	feeds,
 	locale,
-	autoPlay = true,
+	autoPlay = false,
 	interval = 5000,
 }: FeedDesktopProps) => {
 	const [activeIndex, setActiveIndex] = useState(0);
@@ -78,6 +78,10 @@ const FeedDesktop = ({
 						: i < activeIndex
 							? "collapsed-left"
 							: "collapsed-right";
+
+					const dateParts = feed.isPermanent
+						? null
+						: getFeedDateParts(feed.date, locale);
 
 					const bgStyle = feed.backgroundImage
 						? {
@@ -169,12 +173,19 @@ const FeedDesktop = ({
 										exit={{ opacity: 0 }}
 										transition={{ duration: 0.15 }}
 									>
+										{dateParts && (
+											<time
+												className="feed-item__date-small"
+												dateTime={feed.date}
+											>
+												<span>
+													{dateParts.day} {dateParts.month}
+												</span>
+											</time>
+										)}
 										<span className="feed-item__title-vertical">
 											{feed.title[locale]}
 										</span>
-										<time className="feed-item__date-small">
-											{formatFeedDate(feed.date, locale)}
-										</time>
 									</motion.div>
 								)}
 							</AnimatePresence>

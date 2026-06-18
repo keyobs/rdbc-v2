@@ -7,7 +7,7 @@ export const FEEDS: FeedItem[] = [
 		name: "Playoffs N2 juin 2026",
 		creationDate: "2026-06-10T00:00:00",
 		date: "2026-06-13",
-		expiryDate: "2026-06-13T00:00:00",
+		expiryDate: "2026-06-20T00:00:00",
 		title: {
 			fr: "Playoffs Nationale 2",
 			en: "Nationale 2 Playoffs",
@@ -20,7 +20,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Les Petites Morts jouent les playoffs de Nationale 2 ce week-end à Bordeaux. Venez nous soutenir !",
 			en: "Les Petites Morts play in the Nationale 2 playoffs this weekend in Bordeaux. Come support us!",
 		},
-		theme: "crimson",
+		theme: "deepSpace",
 		link: {
 			href: "/competitions",
 			label: { fr: "Voir les matchs", en: "See the games" },
@@ -30,8 +30,8 @@ export const FEEDS: FeedItem[] = [
 		id: "f2",
 		name: "Montée Nationale 1",
 		creationDate: "2026-06-13T12:00:00",
-		date: "2026-06-13",
-		expiryDate: "2026-06-14T00:00:00",
+		date: "2026-09-13",
+		expiryDate: "2026-06-20T00:00:00",
 		title: {
 			fr: "On monte en Nationale 1 ! 🏆",
 			en: "We're promoted to Nationale 1!",
@@ -40,7 +40,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Suite aux playoffs, les Petites Morts sont promues en Nationale 1 pour la saison 2026-2027.",
 			en: "Following the playoffs, Les Petites Morts are promoted to Nationale 1 for the 2026-2027 season.",
 		},
-		theme: "neon-green",
+		theme: "nightFade",
 		link: {
 			href: "/competitions",
 			label: { fr: "Résultats", en: "Results" },
@@ -48,50 +48,6 @@ export const FEEDS: FeedItem[] = [
 	},
 	{
 		id: "f3",
-		name: "Practice recrutement juin",
-		creationDate: "2026-06-14T00:00:00",
-		date: "2026-06-21",
-		expiryDate: "2026-06-22T00:00:00",
-		title: {
-			fr: "Practice ouverte recrutement",
-			en: "Open recruitment practice",
-		},
-		description: {
-			fr: "Tu veux essayer le roller derby ? Rejoins-nous pour une practice d'initiation ouverte à tous, patins fournis.",
-			en: "Want to try roller derby? Join us for an open introductory practice, skates provided.",
-		},
-		theme: "outrun",
-		link: {
-			href: "/rejoindre",
-			label: { fr: "En savoir plus", en: "Learn more" },
-		},
-	},
-	{
-		id: "f4",
-		name: "Tournoi amical juillet",
-		creationDate: "2026-06-15T00:00:00",
-		date: "2026-07-05",
-		expiryDate: "2026-07-06T00:00:00",
-		title: {
-			fr: "Tournoi amical inter-ligues",
-			en: "Friendly inter-league tournament",
-		},
-		mobileTitle: {
-			fr: "Tournoi amical",
-			en: "Friendly tournament",
-		},
-		description: {
-			fr: "4 équipes de la région se retrouvent pour un tournoi amical. Entrée libre, buvette sur place.",
-			en: "4 regional teams compete in a friendly tournament. Free entry, refreshments available.",
-		},
-		theme: "fire",
-		link: {
-			href: "/evenements",
-			label: { fr: "Voir l'événement", en: "See the event" },
-		},
-	},
-	{
-		id: "f5",
 		name: "Reprise saison automne",
 		creationDate: "2026-06-15T00:00:00",
 		date: "2026-08-30",
@@ -108,50 +64,10 @@ export const FEEDS: FeedItem[] = [
 			fr: "La nouvelle saison démarre fin août. Inscriptions ouvertes pour les membres existants et les nouvelles recrues.",
 			en: "The new season starts at the end of August. Registrations open for existing members and new recruits.",
 		},
-		theme: "rust",
+		theme: "neonSkyline",
 		link: {
 			href: "/rejoindre",
 			label: { fr: "S'inscrire", en: "Register" },
-		},
-	},
-	{
-		id: "f6",
-		name: "Championnat N1 premiere journee",
-		creationDate: "2026-07-01T00:00:00",
-		date: "2026-09-15",
-		expiryDate: "2026-09-16T00:00:00",
-		title: {
-			fr: "1ère journée Nationale 1",
-			en: "Nationale 1 — Round 1",
-		},
-		description: {
-			fr: "Première journée de championnat en Nationale 1 pour les Petites Morts. Une nouvelle aventure commence !",
-			en: "First championship round in Nationale 1 for Les Petites Morts. A new adventure begins!",
-		},
-		theme: "gold",
-		link: {
-			href: "/competitions",
-			label: { fr: "Voir les matchs", en: "See the games" },
-		},
-	},
-	{
-		id: "f7",
-		name: "Championnat N2 - Résultat",
-		creationDate: "2026-06-14T00:00:00",
-		date: "2026-06-14",
-		expiryDate: "2026-09-01T00:00:00",
-		title: {
-			fr: "Nationale 2 - Résultats",
-			en: "Nationale 2 — Results",
-		},
-		description: {
-			fr: "A l'issue des Playoffs, les Petites Morts montent en Nationale 1 la saison prochaine. Une nouvelle aventure commence !",
-			en: "National 1 next season for Les Petites Morts. A new adventure begins!",
-		},
-		theme: "gold",
-		link: {
-			href: "/competitions",
-			label: { fr: "Voir les matchs", en: "See the games" },
 		},
 	},
 
@@ -175,7 +91,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Débutante ou expérimentée, le RDBC accueille toutes les joueuses. Prochaine practice d'initiation : demande-nous !",
 			en: "Beginner or experienced, RDBC welcomes all skaters. Next introductory practice — just ask us!",
 		},
-		theme: "midnight",
+		theme: "solarCore",
 		link: {
 			href: "/rejoindre",
 			label: { fr: "Rejoindre le club", en: "Join the club" },
@@ -196,7 +112,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Entraînement hebdomadaire ouvert à toutes les membres. Gymnase Camille Claudel, 20h–22h.",
 			en: "Weekly training open to all members. Gymnase Camille Claudel, 8–10 PM.",
 		},
-		theme: "gotham",
+		theme: "cyberNeon",
 		link: {
 			href: "/club",
 			label: { fr: "Découvrir le club", en: "Discover the club" },
@@ -217,7 +133,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Photos, vidéos, résultats en direct : retrouvez toute l'actualité du RDBC sur Instagram et Facebook.",
 			en: "Photos, videos, live results: find all RDBC news on Instagram and Facebook.",
 		},
-		theme: "forest",
+		theme: "cyberGrid",
 		link: {
 			href: "https://instagram.com/rdbcbordeaux",
 			label: { fr: "Voir Instagram", en: "See Instagram" },
@@ -228,5 +144,5 @@ export const FEEDS: FeedItem[] = [
 // spots: f1 (expired → fallback p2), f3, f4, p1
 export const FEED_SETTINGS: FeedSettings = {
 	numberOfSpots: 4,
-	spots: ["f7", "f3", "f4", "p1"],
+	spots: ["f1", "f2", "f3", "p1", "p2", "p3"],
 };

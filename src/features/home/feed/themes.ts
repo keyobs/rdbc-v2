@@ -7,6 +7,77 @@ export interface FeedTheme {
 }
 
 export const THEMES: Record<string, FeedTheme> = {
+	deepSpace: {
+		background: "#0c0128", // Début du gradient (Bleu nuit)
+		backgroundAlt: "#1a024a", // Fin du gradient (Violet profond)
+		text: "#f4f4f4",
+		accent: "#ff13f0", // Rose néon (Bords CTA)
+		muted: "#00efff", // Cyan (Titres)
+	},
+
+	// 2. NUANCE DE BLEU FONCÉ (Plus clair/lumineux que deepSpace - Extrait de l'horizon céleste)
+	nightFade: {
+		background: "#1c0654", // Un bleu/violet nocturne plus vibrant
+		backgroundAlt: "#2d0b7a", // Fin du gradient, plus électrique
+		text: "#f4f4f4", // Reste parfaitement blanc et lisible
+		accent: "#00ffea", // Accent cyan de la grille pour trancher
+		muted: "#ff13f0", // Titre rose néon
+	},
+
+	// 3. LE GRADIENT DE LA SKYLINE (Lumière magenta de la ville)
+	neonSkyline: {
+		background: "#e8219b",
+		backgroundAlt: "#910b5c",
+		text: "#f4f4f4",
+		accent: "rgb(156, 176, 255)",
+		muted: "#00ffea",
+	},
+
+	// 3bis. LE GRADIENT DU SOLEIL (Cœur jaune vers orange rétro)
+	solarCore: {
+		background: "#ffd30f", // Début du gradient (Jaune vif)
+		backgroundAlt: "#ff6a00", // Fin du gradient (Orange chaud)
+		text: "#0c0128", // Texte sombre car le gradient est lumineux
+		accent: "#8e00af", // Rose magenta
+		muted: "#3a2a82", // Violet sombre
+	},
+
+	// 4. LE GRADIENT CRÉPUSCULAIRE (Orange couchant vers rouge horizon)
+	sunsetFade: {
+		background: "#ff9c00", // Début du gradient (Orange)
+		backgroundAlt: "#b81440", // Fin du gradient (Rouge/rose brique)
+		text: "#100018", // Texte sombre
+		accent: "#3a2a82", // Violet
+		muted: "#0c0128", // Bleu nuit
+	},
+
+	// 5. LE SKYLINE CYAN
+	cyberNeon: {
+		background: "rgb(0, 255, 150)", // Le bleu-vert clair et électrique de la grille
+		backgroundAlt: "#22a38b", // Cyan plus profond pour stabiliser le dégradé
+		text: "#0c0128", // Texte sombre pour une lisibilité parfaite (WCAG)
+		accent: "#ff13f0", // Border CTA : Rose néon flash pour le contraste
+		muted: "#2d2063", // Titre : Violet/Bleu profond
+	},
+
+	// 6. TA PALETTE RECHERCHÉE : LE GRADIENT DU SOL ET SA GRILLE NÉON
+	// Recrée exactement le fondu du sol noir/bleu avec les lignes bleues électriques
+	cyberGrid: {
+		background: "#100018", // Début du gradient (Le noir/violet du fond du sol)
+		backgroundAlt: "#050244", // Fin du gradient (Le bleu marine profond du premier plan)
+		text: "#f4f4f4", // Texte blanc
+		accent: "#00e0d7", // L'ACCENT : Le cyan/bleu néon vif du quadrillage !
+		muted: "#00b3ff", // Le bleu néon plus saturé pour les titres
+	},
+};
+
+/*
+#050244
+#3FD2FD
+*/
+
+/*
+export const THEMES: Record<string, FeedTheme> = {
 	gotham: {
 		background: "#231785",
 		//backgroundAlt: "#857DC8",
@@ -107,7 +178,8 @@ export const THEMES: Record<string, FeedTheme> = {
 		muted: "#00c8c0",
 	},
 };
+*/
 
 export function getTheme(slug: string): FeedTheme {
-	return THEMES[slug] ?? THEMES.midnight;
+	return THEMES[slug] ?? THEMES.deepSpace;
 }

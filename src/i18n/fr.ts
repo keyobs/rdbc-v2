@@ -1,6 +1,6 @@
 const fr = {
 	nav: {
-		home: "Accueil",
+		home: "(•̪●)",
 		club: "club",
 		team: "équipes",
 		rules: "le jeu",

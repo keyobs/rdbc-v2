@@ -41,3 +41,16 @@ export function formatFeedDate(isoDate: string, locale: "fr" | "en"): string {
 		year: "numeric",
 	}).format(new Date(isoDate));
 }
+
+export function getFeedDateParts(
+	isoDate: string,
+	locale: "fr" | "en",
+): { day: string; month: string } {
+	const [yearStr, monthStr, dayStr] = isoDate.split("-");
+	// Use 15th at noon UTC to safely extract month name regardless of timezone
+	const month = new Intl.DateTimeFormat(locale === "fr" ? "fr-FR" : "en-US", {
+		month: "long",
+		timeZone: "UTC",
+	}).format(new Date(`${yearStr}-${monthStr}-15T12:00:00Z`));
+	return { day: String(parseInt(dayStr, 10)), month };
+}
