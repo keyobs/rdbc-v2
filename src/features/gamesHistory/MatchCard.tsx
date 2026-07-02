@@ -1,4 +1,4 @@
-import type { GameResult } from "@features/home/score/LastResults";
+import type { GameResult } from "@features/home/score/types";
 import { formatGameDate, formatGameTime } from "@features/home/score/utils";
 import { withBase } from "@utils/urlHandler";
 import "./matchCard.css";

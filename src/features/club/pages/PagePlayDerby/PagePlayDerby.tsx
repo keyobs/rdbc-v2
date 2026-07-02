@@ -12,21 +12,47 @@ interface PagePlayDerbyProps {
 const DUMMY_SESSIONS = [
 	{
 		_key: "s1",
-		label: { fr: "Entraînement ouvert", en: "Open training" },
-		days: ["mercredi", "vendredi"],
+		label: { fr: "Session technique", en: "Skating training" },
+		days: ["mercredi"],
 		time_start: "19:30",
 		time_end: "21:30",
-		location_name: "Gymnase Mouneyra",
-		maps_query: "Gymnase Mouneyra Bordeaux",
+		location_name: "Le Dépôt, Darwin",
+		location_adress: "87 Quai des Queyries, Bordeaux",
+		maps_query:
+			"https://www.google.com/maps/place/87+Quai+des+Queyries,+33100+Bordeaux/@44.8481829,-0.5613773,803m/data=!3m1!1e3!4m14!1m7!3m6!1s0xd552881d2a1d2c5:0x2c84ad56e339ad2c!2sDarwin+Eco-syst%C3%A8me!8m2!3d44.8496336!4d-0.5610742!16s%2Fg%2F11h4pl6ch6!3m5!1s0xd55262a12814d05:0xf68acf7db2efe53!8m2!3d44.8485781!4d-0.559929!16s%2Fg%2F11c4v8djpp?entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D",
 	},
 	{
 		_key: "s2",
-		label: { fr: "Derby fraîche (débutant·es)", en: "Fresh meat" },
+		label: { fr: "Scrimmage", en: "Scrimmage" },
+		days: ["vendredi"],
+		time_start: "20:30",
+		time_end: "22:00",
+		location_name: "Antennes 2, Colette Besson, Bordeaux Lac",
+		location_adress: "6 Cours Jules Ladoumegue, 33300 Bordeaux",
+		maps_query:
+			"https://www.google.com/maps/place/Plaine+des+Sports+Colette+Besson/@44.8983916,-0.5698651,954m/data=!3m1!1e3!4m6!3m5!1s0xd5529a69cec9705:0xf5532eeb64735653!8m2!3d44.8988362!4d-0.5674297!16s%2Fg%2F11b6b852rt?entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D",
+	},
+	{
+		_key: "s3",
+		label: { fr: "Minipouces", en: "Starters" },
 		days: ["samedi"],
-		time_start: "10:00",
-		time_end: "12:00",
-		location_name: "Gymnase Mouneyra",
-		maps_query: "Gymnase Mouneyra Bordeaux",
+		time_start: "11:00",
+		time_end: "13:30",
+		location_name: "Le Dépôt, Darwin",
+		location_adress: "87 Quai des Queyries, Bordeaux",
+		maps_query:
+			"https://www.google.com/maps/place/87+Quai+des+Queyries,+33100+Bordeaux/@44.8481829,-0.5613773,803m/data=!3m1!1e3!4m14!1m7!3m6!1s0xd552881d2a1d2c5:0x2c84ad56e339ad2c!2sDarwin+Eco-syst%C3%A8me!8m2!3d44.8496336!4d-0.5610742!16s%2Fg%2F11h4pl6ch6!3m5!1s0xd55262a12814d05:0xf68acf7db2efe53!8m2!3d44.8485781!4d-0.559929!16s%2Fg%2F11c4v8djpp?entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D",
+	},
+	{
+		_key: "s4",
+		label: { fr: "Intermédiaires, Avancés", en: "Advanced skaters" },
+		days: ["samedi"],
+		time_start: "14:00",
+		time_end: "17:00",
+		location_name: "Le Dépôt, Darwin",
+		location_adress: "87 Quai des Queyries, Bordeaux",
+		maps_query:
+			"https://www.google.com/maps/place/87+Quai+des+Queyries,+33100+Bordeaux/@44.8481829,-0.5613773,803m/data=!3m1!1e3!4m14!1m7!3m6!1s0xd552881d2a1d2c5:0x2c84ad56e339ad2c!2sDarwin+Eco-syst%C3%A8me!8m2!3d44.8496336!4d-0.5610742!16s%2Fg%2F11h4pl6ch6!3m5!1s0xd55262a12814d05:0xf68acf7db2efe53!8m2!3d44.8485781!4d-0.559929!16s%2Fg%2F11c4v8djpp?entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D",
 	},
 ];
 

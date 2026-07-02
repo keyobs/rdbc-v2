@@ -1,6 +1,6 @@
 import * as Tabs from "@radix-ui/react-tabs";
-import { RESULTS } from "@mockup/games";
-import type { GameResult } from "@features/home/score/LastResults";
+import { RESULTS } from "@features/home/score/resultsData";
+import { getGroupedResults } from "@features/home/score/utils";
 import MatchCard from "./MatchCard";
 import "./gamesTabs.css";
 
@@ -12,17 +12,7 @@ const TAB_LABELS: Record<"A" | "B" | "home", string> = {
 	home: "Home Teams",
 };
 
-const grouped: Record<"A" | "B" | "home", GameResult[]> = {
-	A: RESULTS.filter((g) => (g.rdbc.travelTeam ?? "home") === "A").sort((a, b) =>
-		b.date.localeCompare(a.date),
-	),
-	B: RESULTS.filter((g) => (g.rdbc.travelTeam ?? "home") === "B").sort((a, b) =>
-		b.date.localeCompare(a.date),
-	),
-	home: RESULTS.filter((g) => (g.rdbc.travelTeam ?? "home") === "home").sort(
-		(a, b) => b.date.localeCompare(a.date),
-	),
-};
+const grouped = getGroupedResults(RESULTS);
 
 const teamsWithGames = TEAM_ORDER.filter((team) => grouped[team].length > 0);
 

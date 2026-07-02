@@ -40,5 +40,5 @@ Thumbs.db
 .idea/
 
 # dev_discretion
-bim/
+devdx/*
 *-specs.md

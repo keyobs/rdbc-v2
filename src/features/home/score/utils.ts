@@ -1,3 +1,20 @@
+import type { GameResult } from "./types";
+
+export function getGroupedResults(
+	results: GameResult[],
+	slice = false,
+): Record<"A" | "B" | "home", GameResult[]> {
+	const teams: ("A" | "B" | "home")[] = ["A", "B", "home"];
+	return Object.fromEntries(
+		teams.map((team) => {
+			const filtered = results
+				.filter((g) => (g.rdbc.travelTeam ?? "home") === team)
+				.sort((a, b) => b.date.localeCompare(a.date));
+			return [team, slice ? getRecentGames(filtered) : filtered];
+		}),
+	) as Record<"A" | "B" | "home", GameResult[]>;
+}
+
 export function formatGameDate(isoDate: string, locale = "fr-FR"): string {
 	return new Intl.DateTimeFormat(locale, {
 		day: "numeric",

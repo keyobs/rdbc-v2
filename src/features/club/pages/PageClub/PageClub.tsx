@@ -10,9 +10,9 @@ interface PageClubProps {
 }
 
 const DUMMY_HISTORY_FR =
-	"Fondé à Bordeaux en 2010, le Roller Derby Bordeaux Club (RDBC) est l'un des clubs pionniers du roller derby en France. Depuis ses débuts sur les parkings du Lac, le club a grandi pour former plusieurs équipes de compétition.";
+	"Fondé à Bordeaux en 2009, le Roller Derby Bordeaux Club (RDBC) est l'un des clubs pionniers du roller derby en France. Depuis ses débuts sur les parkings du Lac, le club a grandi pour former plusieurs équipes de compétition.";
 const DUMMY_HISTORY_EN =
-	"Founded in Bordeaux in 2010, Roller Derby Bordeaux Club (RDBC) is one of France's pioneering roller derby clubs. From its early days on the Lac car parks, the club has grown to field several competitive teams.";
+	"Founded in Bordeaux in 2009, Roller Derby Bordeaux Club (RDBC) is one of France's pioneering roller derby clubs. From its early days on the Lac car parks, the club has grown to field several competitive teams.";
 
 const DUMMY_PHILOSOPHY_FR =
 	"Le RDBC défend un sport inclusif, accessible à tous les genres et tous les niveaux. Pas de pré-requis sportif. Juste l'envie de se retrouver, de transpirer, et de construire quelque chose ensemble.";

@@ -1,40 +1,13 @@
-import { RESULTS } from "@mockup/games";
+import type { GameResult } from "./types";
+import { RESULTS } from "./resultsData";
 import { GameRecord } from "./GameRecord";
 import PhotoStrip from "./PhotoStrip";
 import TeamHeader, { ORDER, TEAM_HEADERS } from "./TeamHeader";
-import { formatGameDate, getRecentGames } from "./utils";
+import { formatGameDate, getGroupedResults } from "./utils";
 import "./lastResults.css";
 
-export interface TeamInfo {
-	name: string;
-	league?: string;
-	travelTeam?: "A" | "B" | "home";
-	logo: string | null;
-	score: number;
-}
-
-export interface GameResult {
-	id: string;
-	date: string;
-	poster: string;
-	tournament: string;
-	event: string;
-	rdbc: TeamInfo;
-	hainemy: TeamInfo;
-	photos: string[];
-}
-
 const LastResults = () => {
-	const grouped = Object.fromEntries(
-		ORDER.map((team) => [
-			team,
-			getRecentGames(
-				RESULTS.filter((g) => (g.rdbc.travelTeam ?? "home") === team).sort(
-					(a, b) => b.date.localeCompare(a.date),
-				),
-			),
-		]),
-	) as Record<"A" | "B" | "home", GameResult[]>;
+	const grouped = getGroupedResults(RESULTS, true);
 
 	return (
 		<div className="last-results">
@@ -58,9 +31,11 @@ export default LastResults;
 
 const OneGame = ({ game }: { game: GameResult }) => (
 	<div className="game-line">
-		<div className="game-poster">
-			<img src={game.poster} alt={game.event} className="game-poster__img" />
-		</div>
+		{game.poster && (
+			<div className="game-poster">
+				<img src={game.poster} alt={game.event} className="game-poster__img" />
+			</div>
+		)}
 		<div className="game-date">{formatGameDate(game.date)}</div>
 
 		<GameRecord
@@ -71,6 +46,8 @@ const OneGame = ({ game }: { game: GameResult }) => (
 			event={game.event}
 		/>
 
-		<PhotoStrip photos={game.photos} />
+		{game.photos && game.photos.length > 0 && (
+			<PhotoStrip photos={game.photos} />
+		)}
 	</div>
 );

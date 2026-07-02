@@ -12,8 +12,8 @@ interface BottomNavProps {
 }
 
 const BOTTOM_NAV_ITEMS = [
+	{ key: "home" as const, href: "/" },
 	{ key: "club" as const, href: "/club" },
-	{ key: "rules" as const, href: "/regles" },
 	{ key: "events" as const, href: "/evenements" },
 	{ key: "contact" as const, href: "/contact" },
 ] as const;

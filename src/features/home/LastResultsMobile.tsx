@@ -1,7 +1,7 @@
-import { RESULTS } from "@mockup/games";
-import type { GameResult } from "./score/LastResults";
+import type { GameResult } from "./score/types";
+import { RESULTS } from "./score/resultsData";
 import TeamHeader, { ORDER, TEAM_HEADERS } from "./score/TeamHeader";
-import { formatGameDate } from "./score/utils";
+import { formatGameDate, getGroupedResults } from "./score/utils";
 import "./lastResultsMobile.css";
 
 interface TeamScoreProps {
@@ -116,14 +116,7 @@ const GameCardMobile = ({ game }: { game: GameResult }) => {
 };
 
 const LastResultsMobile = () => {
-	const grouped = Object.fromEntries(
-		ORDER.map((team) => [
-			team,
-			RESULTS.filter((g) => (g.rdbc.travelTeam ?? "home") === team).sort(
-				(a, b) => b.date.localeCompare(a.date),
-			),
-		]),
-	) as Record<"A" | "B" | "home", GameResult[]>;
+	const grouped = getGroupedResults(RESULTS, true);
 
 	return (
 		<section className="last-results-mobile">

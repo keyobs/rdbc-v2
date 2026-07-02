@@ -1,4 +1,4 @@
-import type { GameResult } from "@features/home/score/LastResults";
+import type { GameResult } from "@features/home/score/types";
 import photo1 from "../assets/hero/match_misty_1-3.jpg";
 import photo2 from "../assets/hero/match_peak_1-1.jpg";
 import photo3 from "../assets/hero/train_kiwi_block.jpeg";
