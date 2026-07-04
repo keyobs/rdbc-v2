@@ -69,6 +69,79 @@ export const THEMES: Record<string, FeedTheme> = {
 		accent: "#00e0d7", // L'ACCENT : Le cyan/bleu néon vif du quadrillage !
 		muted: "#00b3ff", // Le bleu néon plus saturé pour les titres
 	},
+
+	// GRADIENT BLUES — 10 palettes from Royal Violet (#7400b8) to Aquamarine (#80ffdb)
+	// Dark backgrounds (#7400b8 → #4ea8de): light text. Light backgrounds (#48bfe3 → #80ffdb): dark text.
+	royalViolet: {
+		background: "#7400b8",
+		backgroundAlt: "#4828a0",
+		text: "#f4f4f4",
+		accent: "#00ffe0",
+		muted: "#cc80ff",
+	},
+	indigoBloom: {
+		background: "#6930c3",
+		backgroundAlt: "#4520a8",
+		text: "#f4f4f4",
+		accent: "#00f0ff",
+		muted: "#b878ff",
+	},
+	slateIndigo: {
+		background: "#5e60ce",
+		backgroundAlt: "#4048b8",
+		text: "#f4f4f4",
+		accent: "#ff4db8",
+		muted: "#00ccff",
+	},
+	blueEnergy: {
+		background: "#5390d9",
+		backgroundAlt: "#2860b8",
+		text: "#f4f4f4",
+		accent: "#ff8800",
+		muted: "#c060ff",
+	},
+	freshSky: {
+		background: "#4ea8de",
+		backgroundAlt: "#2878c0",
+		text: "#f4f4f4",
+		accent: "#ff4880",
+		muted: "#8040e8",
+	},
+	skySurge: {
+		background: "#48bfe3",
+		backgroundAlt: "#28a0c8",
+		text: "#0c0128",
+		accent: "#cc00ff",
+		muted: "#1a0060",
+	},
+	strongCyan: {
+		background: "#56cfe1",
+		backgroundAlt: "#34b0cc",
+		text: "#0c0128",
+		accent: "#ff1a6e",
+		muted: "#300080",
+	},
+	pearlAqua: {
+		background: "#64dfdf",
+		backgroundAlt: "#40c0c0",
+		text: "#0c0128",
+		accent: "#e000ff",
+		muted: "#2a005e",
+	},
+	turquoise: {
+		background: "#72efdd",
+		backgroundAlt: "#40d4b8",
+		text: "#0c0128",
+		accent: "#8000ff",
+		muted: "#150050",
+	},
+	aquamarine: {
+		background: "#80ffdb",
+		backgroundAlt: "#40e0c0",
+		text: "#0c0128",
+		accent: "#6000e0",
+		muted: "#0a004a",
+	},
 };
 
 /*
