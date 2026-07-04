@@ -20,7 +20,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Les Petites Morts jouent les playoffs de Nationale 2 ce week-end à Bordeaux. Venez nous soutenir !",
 			en: "Les Petites Morts play in the Nationale 2 playoffs this weekend in Bordeaux. Come support us!",
 		},
-		theme: "deepSpace",
+		theme: "royalViolet",
 		link: {
 			href: "/competitions",
 			label: { fr: "Voir les matchs", en: "See the games" },
@@ -40,7 +40,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Suite aux playoffs, les Petites Morts sont promues en Nationale 1 pour la saison 2026-2027.",
 			en: "Following the playoffs, Les Petites Morts are promoted to Nationale 1 for the 2026-2027 season.",
 		},
-		theme: "nightFade",
+		theme: "slateIndigo",
 		link: {
 			href: "/competitions",
 			label: { fr: "Résultats", en: "Results" },
@@ -64,7 +64,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "La nouvelle saison démarre fin août. Inscriptions ouvertes pour les membres existants et les nouvelles recrues.",
 			en: "The new season starts at the end of August. Registrations open for existing members and new recruits.",
 		},
-		theme: "neonSkyline",
+		theme: "blueEnergy",
 		link: {
 			href: "/rejoindre",
 			label: { fr: "S'inscrire", en: "Register" },
@@ -91,7 +91,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Débutante ou expérimentée, le RDBC accueille toutes les joueuses. Prochaine practice d'initiation : demande-nous !",
 			en: "Beginner or experienced, RDBC welcomes all skaters. Next introductory practice — just ask us!",
 		},
-		theme: "solarCore",
+		theme: "skySurge",
 		link: {
 			href: "/rejoindre",
 			label: { fr: "Rejoindre le club", en: "Join the club" },
@@ -112,7 +112,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Entraînement hebdomadaire ouvert à toutes les membres. Gymnase Camille Claudel, 20h–22h.",
 			en: "Weekly training open to all members. Gymnase Camille Claudel, 8–10 PM.",
 		},
-		theme: "cyberNeon",
+		theme: "pearlAqua",
 		link: {
 			href: "/club",
 			label: { fr: "Découvrir le club", en: "Discover the club" },
@@ -133,7 +133,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Photos, vidéos, résultats en direct : retrouvez toute l'actualité du RDBC sur Instagram et Facebook.",
 			en: "Photos, videos, live results: find all RDBC news on Instagram and Facebook.",
 		},
-		theme: "cyberGrid",
+		theme: "aquamarine",
 		link: {
 			href: "https://instagram.com/rdbcbordeaux",
 			label: { fr: "Voir Instagram", en: "See Instagram" },

@@ -6,7 +6,7 @@ export interface FeedTheme {
 	muted: string;
 }
 
-export const THEMES: Record<string, FeedTheme> = {
+export const synthwave: Record<string, FeedTheme> = {
 	deepSpace: {
 		background: "#0c0128", // Début du gradient (Bleu nuit)
 		backgroundAlt: "#1a024a", // Fin du gradient (Violet profond)
@@ -69,9 +69,9 @@ export const THEMES: Record<string, FeedTheme> = {
 		accent: "#00e0d7", // L'ACCENT : Le cyan/bleu néon vif du quadrillage !
 		muted: "#00b3ff", // Le bleu néon plus saturé pour les titres
 	},
+};
 
-	// GRADIENT BLUES — 10 palettes from Royal Violet (#7400b8) to Aquamarine (#80ffdb)
-	// Dark backgrounds (#7400b8 → #4ea8de): light text. Light backgrounds (#48bfe3 → #80ffdb): dark text.
+const gradientBlues: Record<string, FeedTheme> = {
 	royalViolet: {
 		background: "#7400b8",
 		backgroundAlt: "#4828a0",
@@ -143,6 +143,8 @@ export const THEMES: Record<string, FeedTheme> = {
 		muted: "#0a004a",
 	},
 };
+
+export const THEMES = gradientBlues;
 
 /*
 #050244
@@ -254,5 +256,5 @@ export const THEMES: Record<string, FeedTheme> = {
 */
 
 export function getTheme(slug: string): FeedTheme {
-	return THEMES[slug] ?? THEMES.deepSpace;
+	return THEMES[slug] ?? THEMES.royalViolet;
 }
