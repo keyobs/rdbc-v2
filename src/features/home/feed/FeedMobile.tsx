@@ -37,6 +37,8 @@ const FeedMobile = ({
 }: FeedMobileProps) => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+	const touchStartX = useRef(0);
+	const touchStartY = useRef(0);
 
 	const clearTimer = useCallback(() => {
 		if (intervalRef.current !== null) {
@@ -62,6 +64,36 @@ const FeedMobile = ({
 		if (autoPlay) startTimer();
 	};
 
+	const handlePointerDown = useCallback(
+		(e: React.PointerEvent<HTMLDivElement>) => {
+			e.currentTarget.setPointerCapture(e.pointerId);
+			touchStartX.current = e.clientX;
+			touchStartY.current = e.clientY;
+			clearTimer();
+		},
+		[clearTimer],
+	);
+
+	const handlePointerUp = useCallback(
+		(e: React.PointerEvent<HTMLDivElement>) => {
+			const dx = e.clientX - touchStartX.current;
+			const dy = e.clientY - touchStartY.current;
+			if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+				setActiveIndex((i) =>
+					dx < 0
+						? (i + 1) % feeds.length
+						: (i - 1 + feeds.length) % feeds.length,
+				);
+			}
+			if (autoPlay) startTimer();
+		},
+		[autoPlay, feeds.length, startTimer],
+	);
+
+	const handlePointerCancel = useCallback(() => {
+		if (autoPlay) startTimer();
+	}, [autoPlay, startTimer]);
+
 	const activeFeed = feeds[activeIndex];
 	const activeTheme = getTheme(activeFeed.theme);
 
@@ -77,7 +109,13 @@ const FeedMobile = ({
 
 	return (
 		<div className="feed-mobile">
-			<div className="feed-mobile__card" style={bgStyle}>
+			<div
+				className="feed-mobile__card"
+				style={bgStyle}
+				onPointerDown={handlePointerDown}
+				onPointerUp={handlePointerUp}
+				onPointerCancel={handlePointerCancel}
+			>
 				{activeFeed.backgroundImage && (
 					<div className="feed-mobile__overlay" aria-hidden="true" />
 				)}
@@ -161,7 +199,7 @@ const FeedMobile = ({
 						>
 							<motion.span
 								className="feed-mobile__pill-dot"
-								animate={{ backgroundColor: theme.accent }}
+								animate={{ backgroundColor: theme.background }}
 								transition={{ duration: 0.2 }}
 								aria-hidden="true"
 							/>
