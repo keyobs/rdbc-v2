@@ -122,6 +122,26 @@ export type Game = {
   tournament_name?: string
 }
 
+export type HomeJoiningSection = {
+  _id: string
+  _type: 'homeJoiningSection'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  positions?: Array<{
+    title?: {
+      fr?: string
+      en?: string
+    }
+    description?: {
+      fr?: string
+      en?: string
+    }
+    icon?: string
+    _key: string
+  }>
+}
+
 export type ClubPage = {
   _id: string
   _type: 'clubPage'
@@ -460,6 +480,7 @@ export type AllSanitySchemaTypes =
   | Event
   | ClubReference
   | Game
+  | HomeJoiningSection
   | ClubPage
   | Club
   | Player

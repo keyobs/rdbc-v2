@@ -1,11 +1,20 @@
 ---
+import { sanityClient } from "sanity:client";
 import Layout from "../layouts/Layout.astro";
+
 import Feed from "@features/home/feed/Feed";
 import HeroStrip from "@features/home/HeroStrip";
 import LastResultsByTeams from "@features/home/LastResultsByTeams";
+import ClubJoining from "@features/home/joining/ClubJoining";
+import { getJoiningPositions } from "@features/home/joining/joiningPositions";
+import TheSportPage from "@features/sport/TheSport";
+
+const joiningPositions = await getJoiningPositions(sanityClient);
 ---
+
 <Layout title="Accueil">
   <Feed locale="fr" client:load />
   <HeroStrip client:load />
+  <ClubJoining positions={joiningPositions ?? []} />
   <LastResultsByTeams client:load />
 </Layout>

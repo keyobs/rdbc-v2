@@ -3,6 +3,15 @@ import { club } from "./club";
 import { clubPage } from "./clubPage";
 import { event } from "./event";
 import { game } from "./game";
+import { joiningPositions } from "./joiningPositions";
 import { player } from "./player";
 
-export const schemaTypes = [player, club, clubPage, game, event, article];
+export const schemaTypes = [
+	player,
+	club,
+	clubPage,
+	joiningPositions,
+	game,
+	event,
+	article,
+];
