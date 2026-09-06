@@ -1,13 +1,16 @@
+import type { Translations } from "@i18n/index";
+import { isEnglish, getAlternateHref } from "@i18n/routes";
+
 import * as Dialog from "@radix-ui/react-dialog";
 import { XIcon } from "@phosphor-icons/react";
 import { AnimatePresence, motion } from "framer-motion";
-import type { Translations } from "@i18n/index";
-import { isEnglish, getAlternateHref } from "@i18n/routes";
+
+import { withBase } from "@utils/urlHandler";
 import FacebookLink from "@components/social/FacebookLink";
 import InstagramLink from "@components/social/InstagramLink";
 import ShinyButton from "@components/buttons/ShinyButton";
+
 import { DISPLAYED_NAV_LINKS } from "../navLinks";
-import { withBase } from "@utils/urlHandler";
 import "./mobileNavDrawer.css";
 
 interface MobileNavDrawerProps {
