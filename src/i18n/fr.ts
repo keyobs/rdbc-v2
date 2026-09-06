@@ -4,6 +4,7 @@ const fr = {
 		club: "club",
 		team: "équipes",
 		rules: "le jeu",
+		sport: "le sport",
 		competitions: "matchs",
 		events: "events",
 		blog: "blog",

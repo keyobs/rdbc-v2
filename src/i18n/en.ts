@@ -4,6 +4,7 @@ const en = {
 		club: "club",
 		team: "teams",
 		rules: "the game",
+		sport: "the sport",
 		competitions: "games",
 		events: "events",
 		blog: "blog",

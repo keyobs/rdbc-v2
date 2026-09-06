@@ -1,0 +1,300 @@
+.sport-page {
+	--bg-light: var(--color-white);
+	--bg-dark: var(--color-bitume);
+	--text-light: var(--color-text-main);
+	--text-dark: #0c0128;
+	--accent: var(--color-action);
+	--muted: var(--color-border);
+	--border: rgba(255, 255, 255, 0.14);
+
+	background: var(--bg-dark);
+	color: var(--text-light);
+}
+
+.section {
+	padding: clamp(5rem, 9vw, 9rem) 2rem;
+}
+
+.section__inner {
+	width: min(1180px, 100%);
+	margin: 0 auto;
+}
+
+.section__inner--split {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: clamp(3rem, 8vw, 8rem);
+	align-items: center;
+}
+
+.section__header {
+	margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.section__header--narrow {
+	max-width: 760px;
+}
+
+.section__eyebrow {
+	display: block;
+	margin-bottom: 1.2rem;
+
+	color: var(--accent);
+
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+}
+
+.section__title {
+	margin: 0;
+
+	font-size: clamp(3.5rem, 8vw, 7rem);
+	font-weight: 800;
+	line-height: 0.88;
+	letter-spacing: -0.06em;
+}
+
+.section__lead,
+.section__intro {
+	font-size: clamp(1.2rem, 2vw, 1.55rem);
+	line-height: 1.45;
+}
+
+.section__intro {
+	max-width: 680px;
+	margin-top: 2rem;
+}
+
+.sport-intro {
+	background: var(--bg-light);
+	color: var(--text-dark);
+}
+
+.sport-intro__content {
+	max-width: 520px;
+
+	font-size: 1.05rem;
+	line-height: 1.75;
+}
+
+.sport-intro__content p {
+	margin: 0 0 1.5rem;
+}
+
+/* BASICS — dark background */
+
+.basics {
+	background: var(--bg-dark);
+	color: var(--text-light);
+}
+
+.basics__grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	border-top: 1px solid var(--border);
+	border-left: 1px solid var(--border);
+}
+
+.basic-card {
+	min-height: 300px;
+	padding: 2rem;
+
+	border-right: 1px solid var(--border);
+	border-bottom: 1px solid var(--border);
+}
+
+.basic-card__number {
+	display: block;
+	margin-bottom: 5rem;
+
+	color: var(--accent);
+
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+
+.basic-card__title {
+	margin: 0 0 1rem;
+
+	font-size: 1.65rem;
+}
+
+.basic-card__description {
+	margin: 0;
+
+	color: rgba(244, 244, 244, 0.72);
+
+	line-height: 1.65;
+}
+
+/* TRACK — light background */
+
+.track {
+	background: var(--bg-light);
+	color: var(--text-dark);
+}
+
+.track-placeholder {
+	display: grid;
+	place-items: center;
+
+	aspect-ratio: 1 / 1;
+	min-height: 420px;
+
+	background:
+		repeating-linear-gradient(
+			45deg,
+			transparent,
+			transparent 20px,
+			rgba(0, 0, 0, 0.025) 20px,
+			rgba(0, 0, 0, 0.025) 40px
+		),
+		var(--bg-light);
+
+	border-radius: 50% 50% 45% 45%;
+}
+
+.track-placeholder span {
+	color: var(--muted);
+
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+}
+
+.track__content {
+	max-width: 500px;
+}
+
+.track__content p {
+	line-height: 1.7;
+}
+
+.text-link {
+	display: inline-flex;
+	gap: 0.8rem;
+	align-items: center;
+
+	margin-top: 1.5rem;
+	padding-bottom: 0.25rem;
+
+	color: inherit;
+	border-bottom: 1px solid;
+
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.text-link span {
+	transition: transform 150ms ease;
+}
+
+.text-link:hover span {
+	transform: translateX(5px);
+}
+
+/* ADVANCED RULES — dark background */
+
+.advanced-rules {
+	background: var(--bg-dark);
+	color: var(--text-light);
+}
+
+.advanced-rules__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+
+	border-top: 1px solid var(--border);
+}
+
+.rule-card {
+	padding: 3rem 2rem 4rem 0;
+
+	border-bottom: 1px solid var(--border);
+}
+
+.rule-card:nth-child(odd) {
+	padding-right: 4rem;
+
+	border-right: 1px solid var(--border);
+}
+
+.rule-card:nth-child(even) {
+	padding-left: 4rem;
+}
+
+.rule-card > span {
+	color: var(--accent);
+
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+
+.rule-card h3 {
+	margin: 2rem 0 1rem;
+
+	font-size: clamp(1.8rem, 3vw, 2.7rem);
+}
+
+.rule-card p {
+	max-width: 480px;
+	margin: 0;
+
+	color: var(--muted);
+
+	line-height: 1.65;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+	.section {
+		padding-inline: 1.5rem;
+	}
+
+	.section__inner--split {
+		grid-template-columns: 1fr;
+		gap: 4rem;
+	}
+
+	.basics__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.advanced-rules__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.rule-card,
+	.rule-card:nth-child(odd),
+	.rule-card:nth-child(even) {
+		padding: 2.5rem 0;
+
+		border-right: 0;
+	}
+}
+
+@media (max-width: 560px) {
+	.section {
+		padding-inline: 1.25rem;
+	}
+
+	.basics__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.basic-card {
+		min-height: auto;
+	}
+
+	.basic-card__number {
+		margin-bottom: 3.5rem;
+	}
+
+	.track-placeholder {
+		min-height: 300px;
+	}
+}
