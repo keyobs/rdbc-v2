@@ -25,18 +25,20 @@
 
 | Fichier | Contenu |
 |---|---|
-| [bim/SPECS.md](bim/SPECS.md) | Cahier des charges complet — pages, fonctionnalités, contraintes |
+| [devdx/SPECS.md](devdx/SPECS.md) | Cahier des charges complet — pages, fonctionnalités, contraintes |
 | [docs/STACK.md](docs/STACK.md) | Choix techniques détaillés, config Astro, schémas Sanity, déploiement |
-| [bim/GUIDELINES-UI.md](bim/GUIDELINES-UI.md) | Design system — palette, typographie, composants, animations |
-| [bim/ROADMAP.md](bim/ROADMAP.md) | Planning J1→J15, critères de succès par journée |
-| [bim/INSTRUCTIONS.md](bim/INSTRUCTIONS.md) | Guide pas à pas — commandes, code de référence, webhook Sanity |
+| [devdx/GUIDELINES-UI.md](devdx/GUIDELINES-UI.md) | Design system — palette, typographie, composants, animations |
+| [devdx/ROADMAP.md](devdx/ROADMAP.md) | Planning J1→J15, critères de succès par journée |
+| [devdx/INSTRUCTIONS.md](devdx/INSTRUCTIONS.md) | Guide pas à pas — commandes, code de référence, webhook Sanity |
+
+`devdx/` est gitignoré (specs sources en lecture libre pour le contexte, non versionnées).
 
 ## Règles non-négociables
 
 **Style**
 - Vanilla CSS uniquement — pas de Tailwind, pas de Styled-Components, pas de CSS Modules
 - Background : `--color-bitume` (`rgb(15, 20, 39)`)
-- Palette source unique : [bim/GUIDELINES-UI.md](docs/GUIDELINES-UI.md) section 2
+- Palette source unique : [devdx/GUIDELINES-UI.md](devdx/GUIDELINES-UI.md) section 2
 - Conteneurs primaires : `border: 2px solid` neon
 - Tous les 3e/4e éléments : `transform: rotate(-1.5deg)` (destructured grid)
 - Badges/tags : `outline: 2px solid white` (sticker-look)
@@ -99,7 +101,7 @@
 
 ### Références & versions
 - Toujours vérifier `package.json` avant de répondre à une question sur une dépendance
-- Docs en priorité : [docs/](docs/), [bim/](bim/) du projet, puis **Context7** pour la doc officielle des libs
+- Docs en priorité : [docs/](docs/), [devdx/](devdx/) du projet, puis **Context7** pour la doc officielle des libs
 - Toujours cibler la **dernière version** des dépendances (Context7 + GitHub releases)
 - Pour les APIs Sanity, Astro, Radix, Framer : se référer à la doc officielle, pas à la mémoire d'entraînement
 
