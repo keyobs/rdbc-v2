@@ -1,8 +1,21 @@
 ---
+import { sanityClient } from "sanity:client";
+import { getAdvancedRules } from "@features/sport/advancedRulesData";
+import { getSportNotions } from "@features/sport/notionsData";
 import TheSport from "@features/sport/TheSport";
 import Layout from "../layouts/Layout.astro";
+
+const [notions, advancedRules] = await Promise.all([
+	getSportNotions(sanityClient),
+	getAdvancedRules(sanityClient),
+]);
 ---
 
 <Layout title="Le sport">
-  <TheSport />
+  <TheSport
+    notions={notions}
+    advancedRules={advancedRules}
+    locale="fr"
+    client:load
+  />
 </Layout>

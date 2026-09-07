@@ -178,28 +178,31 @@
 
 .advanced-rules__grid {
 	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
 
 	border-top: 1px solid var(--border);
 }
 
 .rule-card {
-	padding: 3rem 2rem 4rem 0;
+	display: flex;
+	align-items: baseline;
+	gap: 2rem;
+	padding: 1.5rem 0;
 
 	border-bottom: 1px solid var(--border);
 }
 
-.rule-card:nth-child(odd) {
-	padding-right: 4rem;
-
-	border-right: 1px solid var(--border);
+.rule-card:nth-child(even) {
+	padding-left: 0;
 }
 
-.rule-card:nth-child(even) {
-	padding-left: 4rem;
+.rule-card:nth-child(odd) {
+	padding-left: 20px;
 }
 
 .rule-card > span {
+	flex-shrink: 0;
+	width: 2.5rem;
+
 	color: var(--accent);
 
 	font-size: 0.75rem;
@@ -207,13 +210,16 @@
 }
 
 .rule-card h3 {
-	margin: 2rem 0 1rem;
+	flex-shrink: 0;
+	width: 220px;
+	margin: 0;
 
-	font-size: clamp(1.8rem, 3vw, 2.7rem);
+	font-family: var(--font-display);
+	font-size: 1.4rem;
 }
 
 .rule-card p {
-	max-width: 480px;
+	flex: 1;
 	margin: 0;
 
 	color: var(--muted);
@@ -238,16 +244,19 @@
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
-	.advanced-rules__grid {
-		grid-template-columns: 1fr;
+	.rule-card {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
 	}
 
-	.rule-card,
 	.rule-card:nth-child(odd),
 	.rule-card:nth-child(even) {
-		padding: 2.5rem 0;
+		padding-left: 0;
+	}
 
-		border-right: 0;
+	.rule-card h3 {
+		width: auto;
 	}
 }
 

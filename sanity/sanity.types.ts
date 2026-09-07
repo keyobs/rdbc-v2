@@ -122,6 +122,54 @@ export type Game = {
   tournament_name?: string
 }
 
+export type AdvancedRulesSection = {
+  _id: string
+  _type: 'advancedRulesSection'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  rules?: Array<{
+    number?: string
+    title?: {
+      fr?: string
+      en?: string
+    }
+    summary?: {
+      fr?: string
+      en?: string
+    }
+    detail?: {
+      fr?: string
+      en?: string
+    }
+    _key: string
+  }>
+}
+
+export type SportNotionsSection = {
+  _id: string
+  _type: 'sportNotionsSection'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  notions?: Array<{
+    number?: string
+    title?: {
+      fr?: string
+      en?: string
+    }
+    summary?: {
+      fr?: string
+      en?: string
+    }
+    detail?: {
+      fr?: string
+      en?: string
+    }
+    _key: string
+  }>
+}
+
 export type HomeJoiningSection = {
   _id: string
   _type: 'homeJoiningSection'
@@ -480,6 +528,8 @@ export type AllSanitySchemaTypes =
   | Event
   | ClubReference
   | Game
+  | AdvancedRulesSection
+  | SportNotionsSection
   | HomeJoiningSection
   | ClubPage
   | Club

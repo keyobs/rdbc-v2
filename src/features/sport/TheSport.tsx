@@ -1,75 +1,20 @@
+import type { Locale } from "@i18n/index";
+import AdvancedRules from "./AdvancedRules";
 import NotionCard from "./NotionCard";
+import type { Notion } from "./types";
 import "./the-sport.css";
 
-const notions = [
-	{
-		id: "teams",
-		number: "01",
-		title: "Deux équipes",
-		summary: "Deux équipes s’affrontent sur le track, cinq joueuses à la fois.",
-		detail:
-			"1 jammer chargée de marquer des points et 4 blockers, qui jouent attaque et défense en même temps, en aidant leur jammer à passer tout en empêchant la progression de l’autre jammer.",
-	},
-	{
-		id: "points",
-		number: "02",
-		title: "Des points",
-		summary:
-			"Le but du jeu est de marquer des points. Seules les jammers peuvent en marquer.",
-		detail:
-			"Après son premier passage à travers le pack, la jammer marque un point pour chaque adversaire dépassée légalement à chaque tour suivant.",
-	},
-	{
-		id: "jams",
-		number: "03",
-		title: "Des jams",
-		summary: "Le jeu est découpé en phases rapides appelées jams.",
-		detail:
-			"Un jam dure au maximum 2 minutes, mais peut être interrompu avant sa fin naturelle si la Lead Jammer décide d’y mettre fin (« call off »).",
-	},
-	{
-		id: "track",
-		number: "04",
-		title: "Un track",
-		summary: "Le track matérialise les limites de l’aire de jeu.",
-		detail:
-			"Les actions doivent avoir lieu à l’intérieur des limites. Il est permis d’en sortir, mais dans ce cas, aucune action ne peut être exécutée ni initiée.",
-	},
-	{
-		id: "pack",
-		number: "05",
-		title: "Un pack",
-		summary: "Le pack matérialise la zone de jeu.",
-		detail:
-			"Si le track délimite l’aire de jeu, le pack — le groupe de blockers le plus proche — délimite la zone où les actions de blocage sont autorisées.",
-	},
-	{
-		id: "direction",
-		number: "06",
-		title: "Un sens",
-		summary: "Toutes les actions ont lieu dans le sens anti-horaire.",
-		detail:
-			"Marquer un point, bloquer une adversaire, aider sa jammer : toutes les actions doivent avoir lieu dans ce sens. Il reste permis de se déplacer dans les deux sens.",
-	},
-	{
-		id: "fouls",
-		number: "07",
-		title: "Des fautes",
-		summary: "Enfreindre les règles expose à une pénalité.",
-		detail:
-			"Lorsqu’une joueuse enfreint les règles, elle commet une faute qui peut se transformer en pénalité : elle doit alors quitter le track pour purger 30 secondes en prison (penalty box).",
-	},
-	{
-		id: "contact",
-		number: "08",
-		title: "Du contact",
-		summary: "La confrontation physique est autorisée et strictement encadrée.",
-		detail:
-			"Les contacts physiques entre les joueureuses est encadrée par les règles du jeu, sur le principe d’assurer la sécurité des joueuses. Il est interdit de heurter la tête et le cou, de faire des croche-pattes ou de pousser dans le dos.",
-	},
-];
+interface TheSportPageProps {
+	notions: Notion[];
+	advancedRules: Notion[];
+	locale: Locale;
+}
 
-const TheSportPage = () => {
+const TheSportPage = ({
+	notions,
+	advancedRules,
+	locale,
+}: TheSportPageProps) => {
 	return (
 		<main className="sport-page">
 			<section className="sport-intro section">
@@ -122,9 +67,9 @@ const TheSportPage = () => {
 							<NotionCard
 								key={notion.id}
 								number={notion.number}
-								title={notion.title}
-								summary={notion.summary}
-								detail={notion.detail}
+								title={notion.title[locale]}
+								summary={notion.summary[locale]}
+								detail={notion.detail[locale]}
 							/>
 						))}
 					</div>
@@ -167,61 +112,7 @@ const TheSportPage = () => {
 				</div>
 			</section>
 
-			<section id="advanced-rules" className="advanced-rules section">
-				<div className="section__inner">
-					<header className="section__header section__header--narrow">
-						<span className="section__eyebrow">Pour aller plus loin</span>
-
-						<h2 className="section__title">
-							Les règles <br /> du jeu
-						</h2>
-
-						<p className="section__intro">
-							Une fois les bases acquises, quelques notions permettent de mieux
-							comprendre les stratégies, les pénalités et les décisions
-							arbitrales.
-						</p>
-					</header>
-
-					<div className="advanced-rules__grid">
-						<article className="rule-card">
-							<span>01</span>
-							<h3>Le pack</h3>
-							<p>
-								Comprendre comment il est défini, quand il existe et pourquoi sa
-								position détermine les zones d’engagement.
-							</p>
-						</article>
-
-						<article className="rule-card">
-							<span>02</span>
-							<h3>Lead jammer</h3>
-							<p>
-								La première jammer éligible peut obtenir le statut de Lead
-								Jammer et décider d’arrêter le jam.
-							</p>
-						</article>
-
-						<article className="rule-card">
-							<span>03</span>
-							<h3>Engagement</h3>
-							<p>
-								Les blockers ne peuvent pas initier un contact n’importe où,
-								n’importe comment ou contre n’importe quelle zone du corps.
-							</p>
-						</article>
-
-						<article className="rule-card">
-							<span>04</span>
-							<h3>Les pénalités</h3>
-							<p>
-								Certaines actions illégales conduisent à une pénalité et à un
-								passage temporaire en penalty box.
-							</p>
-						</article>
-					</div>
-				</div>
-			</section>
+			<AdvancedRules rules={advancedRules} locale={locale} />
 		</main>
 	);
 };
