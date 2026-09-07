@@ -37,14 +37,13 @@ const TheSportPage = ({
 
 						<p>
 							Le but : Deux équipes s’affrontent au cours de séquences de jeu
-							appelées jams. Pendant chacune d’elles, une joueuse de chaque
-							équipe tente de dépasser les joueuses adverses afin de marquer des
-							points.
+							appelées jams. A chaque jam, une jammer de chaque équipe tente de
+							dépasser les blockers adverses afin de marquer des points.
 						</p>
 
 						<p>
 							Derrière ce principe simple se cache un sport rapide, stratégique,
-							réclamant un engagement intense, et très collectif.
+							trés collectif et réclamant un engagement intense.
 						</p>
 					</div>
 				</div>
