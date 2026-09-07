@@ -1,46 +1,71 @@
+import NotionCard from "./NotionCard";
 import "./the-sport.css";
 
-const basics = [
+const notions = [
 	{
 		id: "teams",
 		number: "01",
 		title: "Deux équipes",
-		description:
-			"Deux équipes s’affrontent sur le track. Chacune aligne jusqu’à cinq joueuses à la fois.",
-	},
-	{
-		id: "jammer",
-		number: "02",
-		title: "Jammer",
-		description: "La Jammer marque les points en dépassant les adversaires.",
-	},
-	{
-		id: "blockers",
-		number: "03",
-		title: "Les Blockers",
-		description:
-			"Les blockers forment le pack et cherchent à aider leur jammer tout en ralentissant la jammer de l’équipe adverse.",
-	},
-	{
-		id: "jams",
-		number: "04",
-		title: "Les jams",
-		description:
-			"Un match est découpé en séquences de jeu courtes appelées jams. Chaque jam peut durer jusqu'à 2 minutes. Le Lead Jammer a l'avantage de pouvoir mettre fin à un jam avant sa fin naturelle.",
-	},
-	{
-		id: "contact",
-		number: "05",
-		title: "Le contact",
-		description:
-			"Le contact est autorisé mais strictement encadré : zones de contact, zones cibles et engagements sont réglementés.",
+		summary: "Deux équipes s’affrontent sur le track, cinq joueuses à la fois.",
+		detail:
+			"1 jammer chargée de marquer des points et 4 blockers, qui jouent attaque et défense en même temps, en aidant leur jammer à passer tout en empêchant la progression de l’autre jammer.",
 	},
 	{
 		id: "points",
+		number: "02",
+		title: "Des points",
+		summary:
+			"Le but du jeu est de marquer des points. Seules les jammers peuvent en marquer.",
+		detail:
+			"Après son premier passage à travers le pack, la jammer marque un point pour chaque adversaire dépassée légalement à chaque tour suivant.",
+	},
+	{
+		id: "jams",
+		number: "03",
+		title: "Des jams",
+		summary: "Le jeu est découpé en phases rapides appelées jams.",
+		detail:
+			"Un jam dure au maximum 2 minutes, mais peut être interrompu avant sa fin naturelle si la Lead Jammer décide d’y mettre fin (« call off »).",
+	},
+	{
+		id: "track",
+		number: "04",
+		title: "Un track",
+		summary: "Le track matérialise les limites de l’aire de jeu.",
+		detail:
+			"Les actions doivent avoir lieu à l’intérieur des limites. Il est permis d’en sortir, mais dans ce cas, aucune action ne peut être exécutée ni initiée.",
+	},
+	{
+		id: "pack",
+		number: "05",
+		title: "Un pack",
+		summary: "Le pack matérialise la zone de jeu.",
+		detail:
+			"Si le track délimite l’aire de jeu, le pack — le groupe de blockers le plus proche — délimite la zone où les actions de blocage sont autorisées.",
+	},
+	{
+		id: "direction",
 		number: "06",
-		title: "Les points",
-		description:
-			"Après son passage initial, la jammer marque un point pour chaque adversaire dépassée légalement.",
+		title: "Un sens",
+		summary: "Toutes les actions ont lieu dans le sens anti-horaire.",
+		detail:
+			"Marquer un point, bloquer une adversaire, aider sa jammer : toutes les actions doivent avoir lieu dans ce sens. Il reste permis de se déplacer dans les deux sens.",
+	},
+	{
+		id: "fouls",
+		number: "07",
+		title: "Des fautes",
+		summary: "Enfreindre les règles expose à une pénalité.",
+		detail:
+			"Lorsqu’une joueuse enfreint les règles, elle commet une faute qui peut se transformer en pénalité : elle doit alors quitter le track pour purger 30 secondes en prison (penalty box).",
+	},
+	{
+		id: "contact",
+		number: "08",
+		title: "Du contact",
+		summary: "La confrontation physique est autorisée et strictement encadrée.",
+		detail:
+			"Les contacts physiques entre les joueureuses est encadrée par les règles du jeu, sur le principe d’assurer la sécurité des joueuses. Il est interdit de heurter la tête et le cou, de faire des croche-pattes ou de pousser dans le dos.",
 	},
 ];
 
@@ -66,15 +91,15 @@ const TheSportPage = () => {
 						</p>
 
 						<p>
-							Le but Deux équipes s’affrontent au cours de séquences de jeu
+							Le but : Deux équipes s’affrontent au cours de séquences de jeu
 							appelées jams. Pendant chacune d’elles, une joueuse de chaque
 							équipe tente de dépasser les joueuses adverses afin de marquer des
 							points.
 						</p>
 
 						<p>
-							Derrière ce principe simple se cache un sport rapide, stratégique
-							et très collectif.
+							Derrière ce principe simple se cache un sport rapide, stratégique,
+							réclamant un engagement intense, et très collectif.
 						</p>
 					</div>
 				</div>
@@ -87,20 +112,20 @@ const TheSportPage = () => {
 						<h2 className="section__title">Les bases</h2>
 
 						<p className="section__intro">
-							Six notions suffisent pour comprendre ce qui se passe sur le track
-							pendant un match.
+							Ces 8 notions suffisent pour comprendre ce qui se passe sur le
+							track pendant un match.
 						</p>
 					</header>
 
 					<div className="basics__grid">
-						{basics.map((basic) => (
-							<article key={basic.id} className="basic-card">
-								<span className="basic-card__number">{basic.number}</span>
-
-								<h3 className="basic-card__title">{basic.title}</h3>
-
-								<p className="basic-card__description">{basic.description}</p>
-							</article>
+						{notions.map((notion) => (
+							<NotionCard
+								key={notion.id}
+								number={notion.number}
+								title={notion.title}
+								summary={notion.summary}
+								detail={notion.detail}
+							/>
 						))}
 					</div>
 				</div>
@@ -148,9 +173,7 @@ const TheSportPage = () => {
 						<span className="section__eyebrow">Pour aller plus loin</span>
 
 						<h2 className="section__title">
-							Les règles du jeu
-							<br />
-							avancées
+							Les règles <br /> du jeu
 						</h2>
 
 						<p className="section__intro">
