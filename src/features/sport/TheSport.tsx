@@ -1,5 +1,4 @@
 import type { Locale } from "@i18n/index";
-import AdvancedRules from "./AdvancedRules";
 import NotionCard from "./NotionCard";
 import type { Notion } from "./types";
 import "./the-sport.css";
@@ -10,11 +9,7 @@ interface TheSportPageProps {
 	locale: Locale;
 }
 
-const TheSportPage = ({
-	notions,
-	advancedRules,
-	locale,
-}: TheSportPageProps) => {
+const TheSportPage = ({ notions, locale }: TheSportPageProps) => {
 	return (
 		<main className="sport-page">
 			<section className="sport-intro section">
@@ -110,8 +105,7 @@ const TheSportPage = ({
 					</div>
 				</div>
 			</section>
-
-			<AdvancedRules rules={advancedRules} locale={locale} />
+			{/* <AdvancedRules rules={advancedRules} locale={locale} /> */}
 		</main>
 	);
 };
