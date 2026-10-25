@@ -6,9 +6,9 @@
 	--color-border: rgb(84, 124, 147);
 
 	/* Accents */
-	--color-neon-primary: rgb(110, 201, 142);
+	--color-neon-primary: rgb(0, 255, 150);
 	--color-neon-secondary: rgb(184, 228, 180);
-	--color-neon-green: rgb(0, 255, 150);
+	--color-neon-green: var(--color-neon-primary);
 	--color-neon-green-vibrant: rgb(137, 255, 1);
 	--color-neon-blue: rgb(66 104 249);
 	--color-action: rgb(251, 47, 200);
