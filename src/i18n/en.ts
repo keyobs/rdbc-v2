@@ -1,6 +1,7 @@
 const en = {
 	nav: {
 		home: "(•̪●)",
+		homeLabel: "Home",
 		club: "club",
 		team: "teams",
 		rules: "the game",

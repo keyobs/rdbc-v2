@@ -3,7 +3,8 @@
 	align-items: center;
 	gap: 0.2rem;
 	font-family: var(--font-body);
-	font-size: 10px;
+	font-size: 0.8rem;
+	font-weight: 800;
 	letter-spacing: 0.06em;
 }
 
@@ -16,6 +17,7 @@
 
 .lang-switch__btn--active {
 	opacity: 1;
+	color: var(--color-neon-green);
 }
 
 .lang-switch__sep {

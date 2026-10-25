@@ -22,7 +22,12 @@ function isActive(href: string): boolean {
 <nav class="navbar" aria-label="Main navigation">
 	<ul class="navbar__links" id="navbar-links">
 		{DISPLAYED_NAV_LINKS.map((item) => (
-			<li><a href={withBase(item.href)} class:list={[{ "is-active": isActive(item.href) }]}>{t[item.key]}</a></li>
+			<li><a
+				href={withBase(item.href)}
+				class:list={[{ "is-active": isActive(item.href) }]}
+				aria-label={item.key === "home" ? t.homeLabel : undefined}
+				aria-current={isActive(item.href) ? "page" : undefined}
+			>{t[item.key]}</a></li>
 		))}
 		<li><ShinyButton href={withBase("/rejoindre")}>{t.join}</ShinyButton></li>
 		<li><LanguageSwitch pathname={pathname} /></li>

@@ -18,6 +18,11 @@ const BOTTOM_NAV_ITEMS = [
 	{ key: "contact" as const, href: "/contact" },
 ] as const;
 
+const isActive = (pathname: string, href: string): boolean =>
+	href === "/"
+		? pathname === "/"
+		: pathname === href || pathname.startsWith(`${href}/`);
+
 const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 	const [open, setOpen] = useState(false);
 
@@ -29,8 +34,9 @@ const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 						<li key={item.href} className="bottom-nav__item">
 							<a
 								href={withBase(item.href)}
+								aria-label={item.key === "home" ? t.homeLabel : undefined}
 								aria-current={
-									pathname.startsWith(item.href) ? "page" : undefined
+									isActive(pathname, item.href) ? "page" : undefined
 								}
 							>
 								{t[item.key]}
@@ -55,8 +61,9 @@ const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 						<li key={item.href} className="bottom-nav__item">
 							<a
 								href={withBase(item.href)}
+								aria-label={item.key === "home" ? t.homeLabel : undefined}
 								aria-current={
-									pathname.startsWith(item.href) ? "page" : undefined
+									isActive(pathname, item.href) ? "page" : undefined
 								}
 							>
 								{t[item.key]}
