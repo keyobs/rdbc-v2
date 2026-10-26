@@ -3,11 +3,9 @@
 .feed-desktop {
 	display: flex;
 	width: 100%;
-	max-width: 1500px;
 	height: 285px;
-	margin: 0 auto;
 	overflow: hidden;
-	margin: 30px auto;
+	border: 2px solid var(--color-neon-primary);
 }
 
 /* ── Item shell ─────────────────────────────────────────── */
@@ -15,18 +13,36 @@
 .feed-item {
 	position: relative;
 	overflow: hidden;
-	flex: 0 0 92px;
+	flex: 0 0 76px;
 	cursor: pointer;
-	border-right: 1px solid rgba(255, 255, 255, 0.08);
+	border-right: 2px solid var(--color-neon-primary);
+	color: var(--color-text-main);
 }
 
 .feed-item:last-child {
 	border-right: none;
 }
 
+/* collapsed: soft glow from the top, accent line above */
+.feed-item:not(.feed-item--expanded) {
+	background:
+		radial-gradient(in oklch circle 260px at 50% 0, var(--c2), transparent),
+		var(--base);
+	border-top: 4px solid var(--c0);
+}
+
 .feed-item--expanded {
 	flex: 1;
 	cursor: default;
+	background:
+		radial-gradient(
+			in oklch circle 700px at 95% -10%,
+			var(--c0) 0,
+			var(--c1) 233px,
+			var(--c2) 420px,
+			transparent 700px
+		),
+		var(--base);
 }
 
 /* image overlay for readability */
@@ -50,99 +66,85 @@
 	z-index: 1;
 }
 
-/* expanded */
+/* expanded: date stamp on the left, text on the right */
 .feed-item__content--expanded {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	padding: 24px 32px;
-	gap: 6px;
+	display: grid;
+	grid-template-columns: 150px 1fr;
+	column-gap: 36px;
+	align-items: end;
+	padding: 28px 36px;
 }
 
-/* collapsed */
+/* permanent feeds have no date stamp */
+.feed-item__content--no-stamp {
+	grid-template-columns: 1fr;
+}
+
+.feed-item__body {
+	min-width: 0;
+}
+
+/* collapsed: date on top, vertical title at the bottom */
 .feed-item__content--collapsed {
 	display: flex;
-	flex-direction: row;
-	align-items: flex-end;
-	justify-content: center;
-	gap: 10px;
-	padding: 16px 0;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding: 18px 0;
 }
 
 /* ── Typography ─────────────────────────────────────────── */
 
-.feed-item__date {
-	font-family: var(--font-display);
-	font-size: 1.4rem;
-	text-transform: uppercase;
-	letter-spacing: 0.2em;
-	color: var(--feed-muted);
-	padding: 10px 0;
+.feed-item__content--expanded .feed__stamp {
+	align-self: start;
+	padding: 8px 10px;
+}
+
+.feed-item__content--expanded .feed__stamp-day {
+	font-size: 56px;
+}
+
+.feed-item__content--expanded .feed__stamp-month {
+	font-size: 14px;
+	letter-spacing: 0.12em;
 }
 
 .feed-item__title {
 	font-family: var(--font-display);
-	font-size: clamp(1rem, 2vw, 1.5rem);
-	line-height: 1.15;
-	color: var(--feed-text);
-	margin: 0;
-	letter-spacing: 0.1rem;
+	font-size: clamp(1.75rem, 3vw, 2.375rem);
+	line-height: 1.05;
+	max-width: 740px;
+	margin: 0 0 8px;
 }
 
 .feed-item__description {
-	font-size: 0.875rem;
-	line-height: 1.5;
-	color: var(--feed-text);
-	opacity: 0.8;
-	margin: 0;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	line-clamp: 2;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-	margin-bottom: 16px;
+	max-width: 620px;
+	margin: 0 0 16px;
 }
 
 /* collapsed vertical title */
 .feed-item__title-vertical {
 	font-family: var(--font-display);
-	font-size: 0.75rem;
+	font-size: 17px;
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
 	transform: rotate(180deg);
-	color: var(--feed-text);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	max-height: 90%;
+	max-height: 85%;
 	text-transform: uppercase;
-	letter-spacing: 0.05em;
 }
 
 .feed-item__date-small {
-	writing-mode: vertical-rl;
-	text-orientation: mixed;
-	transform: rotate(180deg);
-	font-family: var(--font-display);
-	font-size: 0.7rem;
-	text-transform: uppercase;
-	letter-spacing: 0.06em;
-	color: var(--feed-muted);
-}
-
-.feed-item__date-small span {
-	display: block;
-}
-
-/* ── CTA (BloomButton) ──────────────────────────────────── */
-
-.feed-item__content--expanded .bloom-btn-wrap {
-	align-self: flex-start;
-	margin-top: 4px;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	color: var(--c0);
 }
 
 @media (hover: hover) {
 	.feed-item:not(.feed-item--expanded):hover .feed-item__title-vertical {
-		color: var(--feed-accent);
+		color: var(--c0);
 	}
 }

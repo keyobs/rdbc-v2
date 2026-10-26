@@ -1,12 +1,15 @@
+import "./feed.css";
 import "./feedDesktop.css";
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import type { FeedItem, Locale } from "./types";
 import { getTheme } from "./themes";
-import { formatFeedDate, getFeedDateParts } from "./feedUtils";
-import { withBase } from "@utils/urlHandler";
-import BloomButton from "@components/buttons/BloomButton";
+import {
+	getFeedDateParts,
+	getFeedLinkProps,
+	getFeedShortDate,
+} from "./feedUtils";
 
 interface FeedDesktopProps {
 	feeds: FeedItem[];
@@ -16,9 +19,10 @@ interface FeedDesktopProps {
 }
 
 interface FeedCSSProperties extends React.CSSProperties {
-	"--feed-text": string;
-	"--feed-accent": string;
-	"--feed-muted": string;
+	"--c0": string;
+	"--c1": string;
+	"--c2": string;
+	"--base": string;
 }
 
 const SPRING = { type: "spring", stiffness: 260, damping: 28 } as const;
@@ -83,15 +87,14 @@ const FeedDesktop = ({
 						? null
 						: getFeedDateParts(feed.date, locale);
 
-					const bgStyle = feed.backgroundImage
+					// A photo replaces the gradient layer, the theme colours stay as fallback
+					const imageStyle = feed.backgroundImage
 						? {
 								backgroundImage: `url(${feed.backgroundImage})`,
 								backgroundSize: "cover",
 								backgroundPosition: "center",
 							}
-						: {
-								background: `linear-gradient(135deg, ${theme.background}, ${theme.backgroundAlt})`,
-							};
+						: undefined;
 
 					return (
 						<motion.div
@@ -101,10 +104,11 @@ const FeedDesktop = ({
 							className={`feed-item feed-item--${state}`}
 							style={
 								{
-									...bgStyle,
-									"--feed-text": theme.text,
-									"--feed-accent": theme.accent,
-									"--feed-muted": theme.muted,
+									...imageStyle,
+									"--c0": theme.c0,
+									"--c1": theme.c1,
+									"--c2": theme.c2,
+									"--base": theme.base,
 								} as FeedCSSProperties
 							}
 							onClick={() => handleClick(i)}
@@ -126,43 +130,35 @@ const FeedDesktop = ({
 								{isActive ? (
 									<motion.div
 										key="expanded"
-										className="feed-item__content feed-item__content--expanded"
+										className={`feed-item__content feed-item__content--expanded${dateParts ? "" : " feed-item__content--no-stamp"}`}
 										initial={{ opacity: 0 }}
 										animate={{ opacity: 1 }}
 										exit={{ opacity: 0 }}
 										transition={{ duration: 0.2, delay: 0.1 }}
 									>
-										<time className="feed-item__date">
-											{formatFeedDate(feed.date, locale)}
-										</time>
-										<h3 className="feed-item__title">{feed.title[locale]}</h3>
-										<p className="feed-item__description">
-											{feed.description[locale]}
-										</p>
-										{feed.link && (
-											<BloomButton
-												href={
-													feed.link.href.startsWith("http")
-														? feed.link.href
-														: withBase(feed.link.href)
-												}
-												borderGradientColor={theme.accent}
-												background="transparent"
-												fontColor={theme.accent}
-												target={
-													feed.link.href.startsWith("http")
-														? "_blank"
-														: undefined
-												}
-												rel={
-													feed.link.href.startsWith("http")
-														? "noopener noreferrer"
-														: undefined
-												}
-											>
-												{feed.link.label[locale]}
-											</BloomButton>
+										{dateParts && (
+											<time className="feed__stamp" dateTime={feed.date}>
+												<span className="feed__stamp-day">{dateParts.day}</span>
+												<span className="feed__stamp-month">
+													{dateParts.month}
+												</span>
+											</time>
 										)}
+										<div className="feed-item__body">
+											<h2 className="feed-item__title">{feed.title[locale]}</h2>
+											<p className="feed-item__description">
+												{feed.description[locale]}
+											</p>
+											{feed.link && (
+												<a
+													className="feed__cta"
+													{...getFeedLinkProps(feed.link.href)}
+												>
+													{feed.link.label[locale]}
+												</a>
+											)}
+										</div>
+										<div className="feed__bar" aria-hidden="true" />
 									</motion.div>
 								) : (
 									<motion.div
@@ -173,18 +169,14 @@ const FeedDesktop = ({
 										exit={{ opacity: 0 }}
 										transition={{ duration: 0.15 }}
 									>
-										{dateParts && (
-											<time
-												className="feed-item__date-small"
-												dateTime={feed.date}
-											>
-												<span>
-													{dateParts.day} {dateParts.month}
-												</span>
-											</time>
-										)}
+										<time
+											className="feed-item__date-small"
+											dateTime={feed.isPermanent ? undefined : feed.date}
+										>
+											{getFeedShortDate(feed, locale)}
+										</time>
 										<span className="feed-item__title-vertical">
-											{feed.title[locale]}
+											{feed.mobileTitle?.[locale] ?? feed.title[locale]}
 										</span>
 									</motion.div>
 								)}

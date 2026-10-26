@@ -7,7 +7,7 @@ export const FEEDS: FeedItem[] = [
 		name: "Playoffs Nationale 2 juin 2026",
 		creationDate: "2026-06-10T00:00:00",
 		date: "2026-06-13",
-		expiryDate: "2026-06-13T00:00:00",
+		expiryDate: "2027-12-31T00:00:00",
 		title: {
 			fr: "Playoffs Nationale 2",
 			en: "Nationale 2 Playoffs",
@@ -20,7 +20,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Les Petites Morts jouent les playoffs de Nationale 2 ce week-end à Bordeaux. Venez nous soutenir !",
 			en: "Les Petites Morts play in the Nationale 2 playoffs this weekend in Bordeaux. Come support us!",
 		},
-		theme: "crimson",
+		theme: "heatwave",
 		link: {
 			href: "/competitions",
 			label: { fr: "Voir les matchs", en: "See the games" },
@@ -31,16 +31,16 @@ export const FEEDS: FeedItem[] = [
 		name: "Montée Nationale 1",
 		creationDate: "2026-06-13T12:00:00",
 		date: "2026-06-13",
-		expiryDate: "2026-08-31T00:00:00",
+		expiryDate: "2027-12-31T00:00:00",
 		title: {
-			fr: "Les Petites Morts montent en Nationale 1 ! 🏆",
+			fr: "Les Petites Morts montent en Nationale 1 !",
 			en: "Petites Morts are promoted to Nationale 1!",
 		},
 		description: {
 			fr: "Après le tournoi des Playoffs N2, les Petites Morts montent en Nationale 1 la saison prochaine 2026-2027.",
 			en: "Following the Playoffs N2, Les Petites Morts are promoted to Nationale 1 for the 2026-2027 season.",
 		},
-		theme: "indigoBloom",
+		theme: "sunset",
 		link: {
 			href: "/competitions",
 			label: { fr: "Résultats", en: "Results" },
@@ -51,7 +51,7 @@ export const FEEDS: FeedItem[] = [
 		name: "Practice recrutement juin",
 		creationDate: "2026-06-14T00:00:00",
 		date: "2026-06-21",
-		expiryDate: "2026-06-22T00:00:00",
+		expiryDate: "2027-12-31T00:00:00",
 		title: {
 			fr: "Les Petites Morts à Barcelone",
 			en: "Petites Morts goes to Barcelona",
@@ -60,7 +60,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Tu veux essayer le roller derby ? Rejoins-nous pour une practice d'initiation ouverte à tous, patins fournis.",
 			en: "Want to try roller derby? Join us for an open introductory practice, skates provided.",
 		},
-		theme: "blueEnergy",
+		theme: "vice-city",
 		link: {
 			href: "/rejoindre",
 			label: { fr: "En savoir plus", en: "Learn more" },
@@ -84,7 +84,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "4 équipes de la région se retrouvent pour un tournoi amical. Entrée libre, buvette sur place.",
 			en: "4 regional teams compete in a friendly tournament. Free entry, refreshments available.",
 		},
-		theme: "freshSky",
+		theme: "sunset",
 		link: {
 			href: "/evenements",
 			label: { fr: "Voir l'événement", en: "See the event" },
@@ -108,7 +108,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "La nouvelle saison démarre fin août. Inscriptions ouvertes pour les membres existants et les nouvelles recrues.",
 			en: "The new season starts at the end of August. Registrations open for existing members and new recruits.",
 		},
-		theme: "skySurge",
+		theme: "vice-city",
 		link: {
 			href: "/rejoindre",
 			label: { fr: "S'inscrire", en: "Register" },
@@ -128,7 +128,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Première journée de championnat en Nationale 1 pour les Petites Morts. Une nouvelle aventure commence !",
 			en: "First championship round in Nationale 1 for Les Petites Morts. A new adventure begins!",
 		},
-		theme: "strongCyan",
+		theme: "heatwave",
 		link: {
 			href: "/competitions",
 			label: { fr: "Voir les matchs", en: "See the games" },
@@ -148,7 +148,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "A l'issue des Playoffs, les Petites Morts montent en Nationale 1 la saison prochaine. Une nouvelle aventure commence !",
 			en: "National 1 next season for Les Petites Morts. A new adventure begins!",
 		},
-		theme: "slateIndigo",
+		theme: "neon-drift",
 		link: {
 			href: "/competitions",
 			label: { fr: "Voir les matchs", en: "See the games" },
@@ -175,7 +175,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Débutante ou expérimentée, le RDBC accueille toutes les joueuses. Prochaine practice d'initiation : demande-nous !",
 			en: "Beginner or experienced, RDBC welcomes all skaters. Next introductory practice — just ask us!",
 		},
-		theme: "pearlAqua",
+		theme: "neon-drift",
 		link: {
 			href: "/rejoindre",
 			label: { fr: "Rejoindre le club", en: "Join the club" },
@@ -196,7 +196,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Sessions d'initiation au roller et au roller derby. Le Dépôt, Darwin, 10:30h–13h00",
 			en: "Introductory Sessions on Inline Skating and Roller Derby. Le Dépôt, Darwin, 10:30AM–1:00PM.",
 		},
-		theme: "turquoise",
+		theme: "sunset",
 		link: {
 			href: "/club",
 			label: { fr: "Summer sessions", en: "Summer sessions" },
@@ -217,7 +217,7 @@ export const FEEDS: FeedItem[] = [
 			fr: "Photos, vidéos, résultats en direct : retrouvez toute l'actualité du RDBC sur Instagram et Facebook.",
 			en: "Photos, videos, live results: find all RDBC news on Instagram and Facebook.",
 		},
-		theme: "forest",
+		theme: "vice-city",
 		link: {
 			href: "https://instagram.com/rdbcbordeaux",
 			label: { fr: "Voir Instagram", en: "See Instagram" },
@@ -225,8 +225,8 @@ export const FEEDS: FeedItem[] = [
 	},
 ];
 
-// spots: f1 (expired → fallback p2), f3, f4, p1
+// spots (theme order): f2 sunset, f3 vice-city, f1 heatwave, p1 neon-drift
 export const FEED_SETTINGS: FeedSettings = {
 	numberOfSpots: 4,
-	spots: ["f7", "f3", "f4", "p1"],
+	spots: ["f2", "f3", "f1", "p1"],
 };

@@ -1,4 +1,5 @@
-import type { FeedItem } from "./types";
+import { withBase } from "@utils/urlHandler";
+import type { FeedItem, Locale } from "./types";
 
 export function isExpired(feed: FeedItem): boolean {
 	if (!feed.expiryDate) return false;
@@ -34,14 +35,6 @@ export function getDisplayFeeds(
 	return results.filter((f): f is FeedItem => f !== null);
 }
 
-export function formatFeedDate(isoDate: string, locale: "fr" | "en"): string {
-	return new Intl.DateTimeFormat(locale === "fr" ? "fr-FR" : "en-US", {
-		day: "numeric",
-		month: "long",
-		year: "numeric",
-	}).format(new Date(isoDate));
-}
-
 export function getFeedDateParts(
 	isoDate: string,
 	locale: "fr" | "en",
@@ -53,4 +46,24 @@ export function getFeedDateParts(
 		timeZone: "UTC",
 	}).format(new Date(`${yearStr}-${monthStr}-15T12:00:00Z`));
 	return { day: String(parseInt(dayStr, 10)), month };
+}
+
+/** "dd.MM" for dated feeds, a short label for permanent ones. */
+export function getFeedShortDate(feed: FeedItem, locale: Locale): string {
+	if (feed.isPermanent) return locale === "fr" ? "Perm." : "Ongoing";
+	const [, monthStr, dayStr] = feed.date.split("-");
+	return `${dayStr.padStart(2, "0")}.${monthStr}`;
+}
+
+interface FeedLinkProps {
+	href: string;
+	target?: string;
+	rel?: string;
+}
+
+export function getFeedLinkProps(href: string): FeedLinkProps {
+	if (href.startsWith("http")) {
+		return { href, target: "_blank", rel: "noopener noreferrer" };
+	}
+	return { href: withBase(href) };
 }

@@ -1,4 +1,5 @@
 import type { Locale } from "@i18n/index";
+import type { FeedThemeSlug } from "./themes";
 
 export type { Locale };
 
@@ -22,12 +23,12 @@ export interface FeedItem {
 	title: LocalizedString;
 	mobileTitle?: LocalizedString;
 	description: LocalizedString;
-	theme: string;
+	theme: FeedThemeSlug;
 	backgroundImage?: string | null;
 	link?: FeedLink;
 }
 
 export interface FeedSettings {
-	numberOfSpots: 3 | 4 | 5;
+	numberOfSpots: 4;
 	spots: string[];
 }

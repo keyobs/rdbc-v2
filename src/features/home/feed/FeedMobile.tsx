@@ -2,9 +2,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { FeedItem, Locale } from "./types";
 import { getTheme } from "./themes";
-import { formatFeedDate } from "./feedUtils";
-import { withBase } from "@utils/urlHandler";
-import BloomButton from "@components/buttons/BloomButton";
+import { getFeedDateParts, getFeedLinkProps } from "./feedUtils";
+import "./feed.css";
 import "./feedMobile.css";
 
 interface FeedMobileProps {
@@ -15,7 +14,10 @@ interface FeedMobileProps {
 }
 
 interface FeedMobileCSSProperties extends React.CSSProperties {
-	"--feed-accent": string;
+	"--c0": string;
+	"--c1": string;
+	"--c2": string;
+	"--base": string;
 }
 
 const FADE = { duration: 0.2 } as const;
@@ -97,21 +99,28 @@ const FeedMobile = ({
 	const activeFeed = feeds[activeIndex];
 	const activeTheme = getTheme(activeFeed.theme);
 
-	const bgStyle = activeFeed.backgroundImage
-		? {
-				backgroundImage: `url(${activeFeed.backgroundImage})`,
-				backgroundSize: "cover",
-				backgroundPosition: "center",
-			}
-		: {
-				background: `linear-gradient(160deg, ${activeTheme.background}, ${activeTheme.backgroundAlt})`,
-			};
+	// A photo replaces the gradient layer, the theme colours stay as fallback
+	const cardStyle = {
+		...(activeFeed.backgroundImage && {
+			backgroundImage: `url(${activeFeed.backgroundImage})`,
+			backgroundSize: "cover",
+			backgroundPosition: "center",
+		}),
+		"--c0": activeTheme.c0,
+		"--c1": activeTheme.c1,
+		"--c2": activeTheme.c2,
+		"--base": activeTheme.base,
+	} as FeedMobileCSSProperties;
+
+	const dateParts = activeFeed.isPermanent
+		? null
+		: getFeedDateParts(activeFeed.date, locale);
 
 	return (
 		<div className="feed-mobile">
 			<div
 				className="feed-mobile__card"
-				style={bgStyle}
+				style={cardStyle}
 				onPointerDown={handlePointerDown}
 				onPointerUp={handlePointerUp}
 				onPointerCancel={handlePointerCancel}
@@ -123,90 +132,65 @@ const FeedMobile = ({
 				<AnimatePresence mode="wait">
 					<motion.div
 						key={activeFeed.id}
-						className="feed-mobile__content"
-						style={
-							{
-								"--feed-accent": activeTheme.accent,
-							} as FeedMobileCSSProperties
-						}
+						className={`feed-mobile__content${dateParts ? "" : " feed-mobile__content--no-stamp"}`}
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={FADE}
 					>
-						<time
-							className="feed-mobile__date"
-							style={{ color: activeTheme.muted }}
-						>
-							{formatFeedDate(activeFeed.date, locale)}
-						</time>
-						<h3
-							className="feed-mobile__title"
-							style={{ color: activeTheme.text }}
-						>
+						{dateParts && (
+							<time className="feed__stamp" dateTime={activeFeed.date}>
+								<span className="feed__stamp-day">{dateParts.day}</span>
+								<span className="feed__stamp-month">{dateParts.month}</span>
+							</time>
+						)}
+						<h2 className="feed-mobile__title">
 							{getMobileTitle(activeFeed, locale)}
-						</h3>
-						<p
-							className="feed-mobile__description"
-							style={{ color: activeTheme.text }}
-						>
+						</h2>
+						<p className="feed-mobile__description">
 							{activeFeed.description[locale]}
 						</p>
 						{activeFeed.link && (
-							<BloomButton
-								href={
-									activeFeed.link.href.startsWith("http")
-										? activeFeed.link.href
-										: withBase(activeFeed.link.href)
-								}
-								borderGradientColor={activeTheme.accent}
-								background="transparent"
-								fontColor={activeTheme.accent}
-								target={
-									activeFeed.link.href.startsWith("http") ? "_blank" : undefined
-								}
-								rel={
-									activeFeed.link.href.startsWith("http")
-										? "noopener noreferrer"
-										: undefined
-								}
+							<a
+								className="feed__cta"
+								{...getFeedLinkProps(activeFeed.link.href)}
 							>
 								{activeFeed.link.label[locale]}
-							</BloomButton>
+							</a>
 						)}
 					</motion.div>
 				</AnimatePresence>
+				<div className="feed__bar" aria-hidden="true" />
 			</div>
 
-			<div
-				className="feed-mobile__pills"
-				role="tablist"
-				aria-label="Actualités"
-			>
+			<ul className="feed-mobile__dots" aria-label="Actualités">
 				{feeds.map((feed, i) => {
 					const theme = getTheme(feed.theme);
 					const isActive = i === activeIndex;
 					return (
-						<motion.button
-							key={feed.id}
-							role="tab"
-							aria-selected={isActive}
-							aria-label={feed.title[locale]}
-							className="feed-mobile__pill"
-							onClick={() => handlePillClick(i)}
-							animate={{ opacity: isActive ? 1 : 0.4 }}
-							transition={{ type: "spring", stiffness: 300, damping: 28 }}
-						>
-							<motion.span
-								className="feed-mobile__pill-dot"
-								animate={{ backgroundColor: theme.background }}
-								transition={{ duration: 0.2 }}
-								aria-hidden="true"
-							/>
-						</motion.button>
+						<li key={feed.id}>
+							<button
+								type="button"
+								aria-label={getMobileTitle(feed, locale)}
+								aria-current={isActive ? "true" : undefined}
+								className="feed-mobile__dot"
+								onClick={() => handlePillClick(i)}
+							>
+								<motion.span
+									className="feed-mobile__dot-mark"
+									animate={{
+										backgroundColor: theme.c0,
+										scale: isActive ? 1.5 : 1,
+										opacity: isActive ? 1 : 0.45,
+									}}
+									transition={{ type: "spring", stiffness: 300, damping: 28 }}
+									aria-hidden="true"
+								/>
+							</button>
+						</li>
 					);
 				})}
-			</div>
+			</ul>
 		</div>
 	);
 };
