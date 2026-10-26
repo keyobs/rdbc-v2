@@ -27,6 +27,10 @@ const en = {
 			plateauCaption: "Game · Stage 2",
 			trainingCaption: "Practice",
 		},
+		alert: {
+			defaultLabel: "ALERT",
+			newTab: "(opens in a new tab)",
+		},
 		join: {
 			title: "Come as you are",
 			subtitle: "Four ways to join the club.",

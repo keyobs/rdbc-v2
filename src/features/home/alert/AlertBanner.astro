@@ -1,0 +1,43 @@
+---
+import { MegaphoneIcon } from "@phosphor-icons/react/dist/csr/Megaphone";
+import { type Locale, useTranslations } from "@i18n/index";
+import { withBase } from "@utils/urlHandler";
+import type { HomeAlertContent } from "./homeAlert";
+import "./alertBanner.css";
+
+interface Props {
+	alert: HomeAlertContent;
+	locale: Locale;
+}
+
+const { alert, locale } = Astro.props;
+const t = useTranslations(locale).home.alert;
+const isExternal = alert.href.startsWith("http");
+---
+
+<section class="home-wrap alert-banner-wrap" aria-labelledby="alert-title">
+	<div class="alert-banner">
+		<div class="alert-banner__icon" aria-hidden="true">
+			<MegaphoneIcon weight="bold" />
+		</div>
+
+		<div class="alert-banner__body">
+			<span class="alert-banner__label">
+				<span class="alert-banner__dot" aria-hidden="true"></span>
+				{alert.label ?? t.defaultLabel}
+			</span>
+			<h2 class="alert-banner__title" id="alert-title">{alert.title}</h2>
+			{alert.meta && <p class="alert-banner__meta">{alert.meta}</p>}
+		</div>
+
+		<a
+			class="alert-banner__cta"
+			href={isExternal ? alert.href : withBase(alert.href)}
+			target={isExternal ? "_blank" : undefined}
+			rel={isExternal ? "noopener noreferrer" : undefined}
+		>
+			{alert.linkLabel}
+			{isExternal && <span class="sr-only">{t.newTab}</span>}
+		</a>
+	</div>
+</section>

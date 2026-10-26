@@ -27,6 +27,10 @@ const fr = {
 			plateauCaption: "Match · Plateau 2",
 			trainingCaption: "Entraînement",
 		},
+		alert: {
+			defaultLabel: "ALERTE",
+			newTab: "(s'ouvre dans un nouvel onglet)",
+		},
 		join: {
 			title: "Viens comme tu es",
 			subtitle: "Quatre façons de rejoindre le club.",

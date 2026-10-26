@@ -1,6 +1,8 @@
 ---
 import { sanityClient } from "sanity:client";
 import Layout from "../../layouts/Layout.astro";
+import AlertBanner from "@features/home/alert/AlertBanner.astro";
+import { getHomeAlert } from "@features/home/alert/homeAlert";
 import Feed from "@features/home/feed/Feed";
 import Hero from "@features/home/Hero.astro";
 import ClubJoining from "@features/home/joining/ClubJoining";
@@ -12,11 +14,13 @@ import "@features/home/home.css";
 const locale = "en";
 const t = useTranslations(locale).home;
 const joiningPositions = await getJoiningPositions(sanityClient, locale);
+const alert = await getHomeAlert(sanityClient, locale);
 ---
 <Layout title="Home">
   <section class="home-wrap home-feed" aria-label="Latest news">
     <Feed locale={locale} client:load />
   </section>
+  {alert && <AlertBanner alert={alert} locale={locale} />}
   <Hero locale={locale} />
   <ClubJoining
     positions={joiningPositions ?? []}

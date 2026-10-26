@@ -1,0 +1,228 @@
+/* ── ALERT BANNER — one ephemeral info between the feed and the hero ── */
+
+/* Sizes are in rem (1rem = 16px). */
+
+.alert-banner {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 1.25rem;
+	margin-top: 1.75rem;
+	padding: 1rem 1.25rem;
+	border: var(--btn-border) var(--color-action);
+	background: rgb(255 0 191 / 32%);
+	box-shadow: 0.25rem 0.25rem 0 var(--color-action);
+}
+
+/* ── Megaphone: shakes and sends two rings, in bursts ───── */
+
+.alert-banner__icon {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border: var(--btn-border) var(--color-action);
+	background: var(--color-bitume);
+	color: var(--color-action);
+}
+
+.alert-banner__icon::before {
+	content: "";
+	position: absolute;
+	inset: -2px;
+	border: var(--btn-border) var(--color-action);
+	opacity: 0;
+	animation: alert-banner-ping 6s ease-out infinite;
+}
+
+.alert-banner__icon svg {
+	width: 1.875rem;
+	height: 1.875rem;
+	transform-origin: 30% 75%;
+	animation: alert-banner-wobble 6s ease-in-out infinite;
+}
+
+/* ── Text ───────────────────────────────────────────────── */
+
+/* sticker-look pill */
+.alert-banner__label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	margin-bottom: 0.375rem;
+	padding: 0.125rem 0.625rem;
+	outline: 2px solid var(--color-white);
+	background: var(--color-bitume);
+	font-size: 0.75rem;
+	font-weight: 600;
+	line-height: 1.5;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.alert-banner__dot {
+	width: 0.5rem;
+	height: 0.5rem;
+	border-radius: 50%;
+	background: var(--color-action);
+	animation: alert-banner-blink 1.2s steps(2, start) infinite;
+}
+
+.alert-banner__title {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: 1.25rem;
+	line-height: 1.1;
+	text-transform: uppercase;
+}
+
+.alert-banner__meta {
+	margin: 0.25rem 0 0;
+	font-size: 0.875rem;
+	color: var(--color-neon-secondary);
+}
+
+/* ── Button: the width follows the text (25 characters at most) ── */
+
+.alert-banner__cta {
+	display: inline-flex;
+	align-items: center;
+	justify-self: end;
+	padding: 0.625rem 1.25rem;
+	border: var(--btn-border) var(--color-white);
+	border-radius: var(--btn-radius);
+	background: var(--color-white);
+	box-shadow: var(--btn-shadow);
+	color: var(--color-bitume);
+	font-weight: 600;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.alert-banner__cta:active {
+	animation: flicker-click 0.3s ease;
+}
+
+.alert-banner__cta:focus-visible {
+	outline: 2px solid var(--color-white);
+	outline-offset: 3px;
+}
+
+/* ── Animations ─────────────────────────────────────────── */
+
+@keyframes alert-banner-wobble {
+	0%,
+	12%,
+	20%,
+	32%,
+	100% {
+		transform: rotate(0);
+	}
+
+	2%,
+	22% {
+		transform: rotate(-16deg);
+	}
+
+	4%,
+	24% {
+		transform: rotate(14deg);
+	}
+
+	6%,
+	26% {
+		transform: rotate(-12deg);
+	}
+
+	8%,
+	28% {
+		transform: rotate(10deg);
+	}
+
+	10%,
+	30% {
+		transform: rotate(-5deg);
+	}
+}
+
+@keyframes alert-banner-ping {
+	0%,
+	20% {
+		transform: scale(1);
+		opacity: 0.9;
+	}
+
+	14%,
+	34% {
+		transform: scale(1.7);
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes alert-banner-blink {
+	to {
+		opacity: 0.25;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.alert-banner__icon::before {
+		display: none;
+	}
+
+	.alert-banner__icon svg,
+	.alert-banner__dot,
+	.alert-banner__cta:active {
+		animation: none;
+	}
+}
+
+/* ── Mobile: icon and text on one line, button below ────── */
+
+@media (max-width: 1023px) {
+	.alert-banner {
+		grid-template-columns: 2.75rem minmax(0, 1fr);
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+		padding: 0.875rem;
+	}
+
+	.alert-banner__icon {
+		width: 2.75rem;
+		height: 2.75rem;
+	}
+
+	.alert-banner__icon svg {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+
+	.alert-banner__label {
+		margin-bottom: 0.25rem;
+		padding: 0.0625rem 0.5rem;
+		font-size: 0.6875rem;
+	}
+
+	.alert-banner__title {
+		font-size: 1rem;
+		line-height: 1.15;
+	}
+
+	.alert-banner__meta {
+		font-size: 0.8125rem;
+	}
+
+	.alert-banner__cta {
+		grid-column: 1 / -1;
+		justify-self: start;
+		justify-content: center;
+		max-width: 100%;
+		min-height: 2.75rem;
+		padding: 0.5rem 1.125rem;
+	}
+}
