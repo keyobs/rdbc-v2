@@ -32,6 +32,8 @@
 /* ── Card ───────────────────────────────────────────────── */
 
 .join-card {
+	position: relative;
+	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	gap: 0.875rem;
@@ -90,6 +92,70 @@ a.join-card:focus-visible {
 	outline-offset: 3px;
 }
 
+a.join-card:active {
+	animation: flicker-click 0.3s ease;
+}
+
+/*
+ * Same hover effect as the JOIN button of the menu (components/buttons/shiny.css):
+ * a light sweep crosses the card and a white line is drawn around its border.
+ */
+a.join-card::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgb(255 255 255 / 40%),
+		transparent
+	);
+	pointer-events: none;
+	transition: left 0.5s ease;
+}
+
+.join-card__edge {
+	position: absolute;
+	display: block;
+	background: var(--color-white);
+	pointer-events: none;
+	transition:
+		width 0.3s ease,
+		height 0.3s ease,
+		transform 0.3s ease;
+}
+
+.join-card__edge--1 {
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 2px;
+}
+
+.join-card__edge--2 {
+	top: 0;
+	left: 0;
+	width: 2px;
+	height: 0;
+}
+
+.join-card__edge--3 {
+	right: 0;
+	bottom: 0;
+	width: 0;
+	height: 2px;
+}
+
+.join-card__edge--4 {
+	right: 0;
+	bottom: 0;
+	width: 2px;
+	height: 0;
+}
+
 @media (hover: hover) {
 	a.join-card:hover {
 		background: var(--color-surface);
@@ -100,6 +166,45 @@ a.join-card:focus-visible {
 	.club-joining__item:nth-child(3) a.join-card:hover,
 	.club-joining__item:nth-child(4) a.join-card:hover {
 		transform: rotate(-1.5deg) translate(-0.125rem, -0.125rem);
+	}
+
+	a.join-card:hover::after {
+		left: 100%;
+	}
+
+	a.join-card:hover .join-card__edge--1 {
+		width: 100%;
+		transform: translateX(100%);
+		transition-delay: 0s;
+	}
+
+	a.join-card:hover .join-card__edge--2 {
+		height: 100%;
+		transform: translateY(100%);
+		transition-delay: 0.1s;
+	}
+
+	a.join-card:hover .join-card__edge--3 {
+		width: 100%;
+		transform: translateX(-100%);
+		transition-delay: 0.2s;
+	}
+
+	a.join-card:hover .join-card__edge--4 {
+		height: 100%;
+		transform: translateY(-100%);
+		transition-delay: 0.3s;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	a.join-card::after,
+	.join-card__edge {
+		transition: none;
+	}
+
+	a.join-card:active {
+		animation: none;
 	}
 }
 

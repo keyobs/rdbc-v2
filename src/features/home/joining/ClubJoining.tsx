@@ -30,6 +30,9 @@ const ICONS: Record<string, Icon> = {
 	fun: HeartIcon,
 };
 
+// The four sides of the hover line (see clubJoining.css)
+const EDGES = [1, 2, 3, 4] as const;
+
 const resolveHref = (href: string): string =>
 	href.startsWith("http") ? href : withBase(href);
 
@@ -72,6 +75,13 @@ const ClubJoining = ({
 						<li key={position.id} className="club-joining__item">
 							{position.href ? (
 								<a className="join-card" href={resolveHref(position.href)}>
+									{EDGES.map((edge) => (
+										<span
+											key={edge}
+											className={`join-card__edge join-card__edge--${edge}`}
+											aria-hidden="true"
+										/>
+									))}
 									{content}
 								</a>
 							) : (
