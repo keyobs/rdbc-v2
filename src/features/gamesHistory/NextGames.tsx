@@ -1,7 +1,7 @@
 import type { Locale, Translations } from "@i18n/index";
 import type { NextGamesGroup } from "@features/games/types";
 import { formatGameDateShort, formatGameTime } from "@features/games/utils";
-import Scoreboard from "./Scoreboard";
+import Scoreboard from "@components/scoreboard/Scoreboard";
 import { TEAM_TITLES } from "./teams";
 import "./nextGames.css";
 

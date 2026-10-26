@@ -6,7 +6,7 @@ import type { Locale, Translations } from "@i18n/index";
 import type { GameResult } from "@features/games/types";
 import { formatGameDate, getGameTeam, getSeason } from "@features/games/utils";
 import { withBase } from "@utils/urlHandler";
-import Scoreboard, { ScoreDigits } from "./Scoreboard";
+import Scoreboard, { ScoreDigits } from "@components/scoreboard/Scoreboard";
 import { getSeasonCaption } from "./seasonCaptions";
 import { TEAM_ORDER, TEAM_TITLES } from "./teams";
 import "./gamesResults.css";
