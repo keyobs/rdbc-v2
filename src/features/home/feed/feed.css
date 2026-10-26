@@ -19,11 +19,11 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 44px;
-	padding: 10px 20px;
+	min-height: 2.75rem;
+	padding: 0.625rem 1.25rem;
 	border: var(--btn-border) var(--c0);
 	border-radius: var(--btn-radius);
-	box-shadow: 4px 4px 0 var(--c0);
+	box-shadow: 0.25rem 0.25rem 0 var(--c0);
 	background: transparent;
 	color: var(--color-text-main);
 	font-weight: 600;
@@ -44,6 +44,6 @@
 	left: 0;
 	bottom: 0;
 	width: 38%;
-	height: 5px;
+	height: 0.3125rem;
 	background: var(--c0);
 }

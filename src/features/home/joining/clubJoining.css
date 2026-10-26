@@ -1,29 +1,29 @@
 /* ── JOIN — "Viens comme tu es" ──────────────────────────── */
 
 .club-joining {
-	padding-top: 96px;
-	padding-bottom: 96px;
+	padding-top: 6rem;
+	padding-bottom: 6rem;
 }
 
 .club-joining__title {
 	margin: 0;
 	font-family: var(--font-display);
-	font-size: 56px;
+	font-size: 3.5rem;
 	line-height: 1.05;
 	text-transform: uppercase;
-	text-shadow: 0 0 8px var(--color-neon-primary);
+	text-shadow: 0 0 0.5rem var(--color-neon-primary);
 }
 
 .club-joining__subtitle {
-	margin: 10px 0 44px;
-	max-width: 520px;
+	margin: 0.625rem 0 2.75rem;
+	max-width: 32.5rem;
 	color: var(--color-neon-secondary);
 }
 
 .club-joining__grid {
 	display: grid;
 	grid-template-columns: repeat(4, minmax(0, 1fr));
-	gap: 28px;
+	gap: 1.75rem;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -34,14 +34,14 @@
 .join-card {
 	display: flex;
 	flex-direction: column;
-	gap: 14px;
+	gap: 0.875rem;
 	height: 100%;
-	min-height: 260px;
-	padding: 24px;
+	min-height: 16.25rem;
+	padding: 1.5rem;
 	border: var(--btn-border) var(--color-neon-primary);
 	border-radius: 0;
 	background: var(--color-bitume);
-	box-shadow: 4px 4px 0 var(--color-neon-primary);
+	box-shadow: 0.25rem 0.25rem 0 var(--color-neon-primary);
 	color: var(--color-text-main);
 	text-decoration: none;
 	transition:
@@ -57,17 +57,17 @@
 }
 
 .join-card__icon {
-	width: 48px;
-	height: 48px;
+	width: 3rem;
+	height: 3rem;
 	color: var(--color-neon-primary);
 }
 
 .join-card__title {
 	margin: 0;
 	font-family: var(--font-display);
-	font-size: 26px;
+	font-size: 1.625rem;
 	text-transform: uppercase;
-	text-shadow: 0 0 8px var(--color-neon-primary);
+	text-shadow: 0 0 0.5rem var(--color-neon-primary);
 }
 
 .join-card__description {
@@ -93,13 +93,13 @@ a.join-card:focus-visible {
 @media (hover: hover) {
 	a.join-card:hover {
 		background: var(--color-surface);
-		box-shadow: 6px 6px 0 var(--color-neon-primary);
-		transform: translate(-2px, -2px);
+		box-shadow: 0.375rem 0.375rem 0 var(--color-neon-primary);
+		transform: translate(-0.125rem, -0.125rem);
 	}
 
 	.club-joining__item:nth-child(3) a.join-card:hover,
 	.club-joining__item:nth-child(4) a.join-card:hover {
-		transform: rotate(-1.5deg) translate(-2px, -2px);
+		transform: rotate(-1.5deg) translate(-0.125rem, -0.125rem);
 	}
 }
 
@@ -115,37 +115,37 @@ a.join-card:focus-visible {
 
 @media (max-width: 1023px) {
 	.club-joining {
-		padding-top: 56px;
-		padding-bottom: 56px;
+		padding-top: 3.5rem;
+		padding-bottom: 3.5rem;
 	}
 
 	.club-joining__title {
-		font-size: 34px;
+		font-size: 2.125rem;
 	}
 
 	.club-joining__subtitle {
-		margin: 8px 0 24px;
+		margin: 0.5rem 0 1.5rem;
 	}
 
 	.club-joining__grid {
 		grid-template-columns: 1fr;
-		gap: 18px;
+		gap: 1.125rem;
 	}
 
 	/* icon on the left, text on the right */
 	.join-card {
 		display: grid;
-		grid-template-columns: 44px 1fr;
-		column-gap: 16px;
-		row-gap: 4px;
+		grid-template-columns: 2.75rem 1fr;
+		column-gap: 1rem;
+		row-gap: 0.25rem;
 		min-height: 0;
-		padding: 18px;
+		padding: 1.125rem;
 	}
 
 	.join-card__icon {
 		grid-row: 1 / span 3;
-		width: 44px;
-		height: 44px;
+		width: 2.75rem;
+		height: 2.75rem;
 	}
 
 	.join-card__title,
@@ -155,10 +155,10 @@ a.join-card:focus-visible {
 	}
 
 	.join-card__title {
-		font-size: 22px;
+		font-size: 1.375rem;
 	}
 
 	.join-card__description {
-		font-size: 15px;
+		font-size: 0.9375rem;
 	}
 }
