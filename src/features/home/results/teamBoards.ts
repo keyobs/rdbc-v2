@@ -27,5 +27,3 @@ export const TEAM_BOARDS: TeamBoard[] = [
 		},
 	},
 ];
-
-export const CLUB_LINE = "Roller Derby Bordeaux";
