@@ -1,0 +1,28 @@
+---
+import { sanityClient } from "sanity:client";
+import Layout from "../../layouts/Layout.astro";
+import Feed from "@features/home/feed/Feed";
+import Hero from "@features/home/Hero.astro";
+import ClubJoining from "@features/home/joining/ClubJoining";
+import { getJoiningPositions } from "@features/home/joining/joiningPositions";
+import LastResults from "@features/home/results/LastResults.astro";
+import { useTranslations } from "@i18n/index";
+import "@features/home/home.css";
+
+const locale = "en";
+const t = useTranslations(locale).home;
+const joiningPositions = await getJoiningPositions(sanityClient, locale);
+---
+<Layout title="Home">
+  <section class="home-wrap home-feed" aria-label="Latest news">
+    <Feed locale={locale} client:load />
+  </section>
+  <Hero locale={locale} />
+  <ClubJoining
+    positions={joiningPositions ?? []}
+    title={t.join.title}
+    subtitle={t.join.subtitle}
+    moreLabel={t.join.more}
+  />
+  <LastResults locale={locale} />
+</Layout>

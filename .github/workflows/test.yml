@@ -1,0 +1,68 @@
+name: Tests
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: "Ref (branch or tag) to test"
+        required: false
+        type: string
+        default: ""
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Ref (branch or tag) to run on"
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: "yarn"
+
+      - name: 🔑 Authenticate GitHub Packages
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.KEYOBS_PACKAGES_TOKEN }}" >> .npmrc
+
+      - name: 🔍 Debug auth
+        run: |
+          echo "=== .npmrc ==="
+          cat .npmrc
+          echo "=== Token length: ${#TOKEN} ==="
+        env:
+          TOKEN: ${{ secrets.KEYOBS_PACKAGES_TOKEN }}
+
+      - name: 📦 Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: 🔍 Lint (Biome)
+        run: yarn lint
+
+      - name: 🔄 Generate Astro types
+        run: yarn astro sync
+
+      - name: 🔎 Typecheck
+        run: yarn run check
+
+      # Uncomment when Vitest is installed (J2)
+      # - name: 🧪 Run tests
+      #   run: yarn test:run
+
+      - name: ✅ Tests complete
+        run: echo "✅ Tests complete."

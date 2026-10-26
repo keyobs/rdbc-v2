@@ -1,0 +1,276 @@
+/* ── Outer page shell ─────────────────────────────── */
+.page-vie {
+	position: relative;
+	background: #f5f0e8;
+	max-width: 1100px;
+	margin: 0 auto;
+	/* E — Hard shadow */
+	box-shadow:
+		8px 8px 0 #0f1427,
+		14px 14px 0 rgba(15, 20, 39, 0.18);
+	overflow: hidden;
+}
+
+/* A — Photocopied grain overlay */
+.page-vie::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+	background-size: 200px 200px;
+	opacity: 0.5;
+	mix-blend-mode: multiply;
+}
+
+.page-vie__inner {
+	position: relative;
+	z-index: 1;
+	padding: 2rem 1.5rem 3rem;
+}
+
+/* ── Page header ─────────────────────────────────── */
+.page-vie__page-title {
+	font-family: var(--font-display);
+	font-size: clamp(2rem, 6vw, 3.5rem);
+	text-transform: uppercase;
+	color: #0f1427;
+	margin: 0 0 2rem;
+	line-height: 1;
+	/* E — Hard shadow on title, slight rotation */
+	text-shadow: 4px 4px 0 rgba(15, 20, 39, 0.15);
+	display: inline-block;
+	transform: rotate(-1deg);
+	transform-origin: left center;
+}
+
+/* D — Annotation under page title */
+.page-vie__page-title::after {
+	content: "→ toustes bienvenus !!";
+	display: block;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 0.6rem;
+	font-weight: normal;
+	color: rgba(15, 20, 39, 0.48);
+	text-shadow: none;
+	transform: rotate(2deg);
+	margin-top: 0.25rem;
+	letter-spacing: 0.04em;
+}
+
+/* ── Two-column grid ─────────────────────────────── */
+.page-vie__grid {
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+}
+
+.page-vie__col-title {
+	font-family: var(--font-display);
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	color: #0f1427;
+	/* E — Hard underline */
+	border-bottom: 2px solid #0f1427;
+	box-shadow: 0 2px 0 rgba(15, 20, 39, 0.2);
+	padding-bottom: 0.4rem;
+	margin: 0 0 1.25rem;
+}
+
+/* ── Roles — disc review style ───────────────────── */
+.page-vie__roles {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.page-vie__role {
+	display: flex;
+	gap: 1rem;
+	align-items: flex-start;
+	/* E — Dashed separator */
+	border-bottom: 1.5px dashed rgba(0, 0, 0, 0.3);
+	padding-bottom: 1.5rem;
+}
+
+.page-vie__role:last-child {
+	border-bottom: none;
+	padding-bottom: 0;
+}
+
+.page-vie__role-cover {
+	flex-shrink: 0;
+}
+
+/* E — Rough cut border on role images */
+.page-vie__role-img {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+	display: block;
+	outline: 3px solid #0f1427;
+	outline-offset: 2px;
+	filter: drop-shadow(3px 3px 0 #0f1427);
+}
+
+.page-vie__role-img-placeholder {
+	width: 80px;
+	height: 80px;
+	background: repeating-linear-gradient(
+		45deg,
+		#c8c3b8,
+		#c8c3b8 3px,
+		#ddd8ce 3px,
+		#ddd8ce 10px
+	);
+	outline: 3px solid #0f1427;
+	outline-offset: 2px;
+	filter: drop-shadow(3px 3px 0 #0f1427);
+}
+
+.page-vie__role-review {
+	flex: 1;
+	min-width: 0;
+}
+
+.page-vie__role-title {
+	font-family: var(--font-display);
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #0f1427;
+	display: block;
+	margin-bottom: 0.4rem;
+}
+
+.page-vie__role-desc {
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	line-height: 1.6;
+	color: #2a2a3a;
+	margin: 0;
+}
+
+/* ── Activities — alternating layout ─────────────── */
+.page-vie__activities {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.page-vie__activity {
+	display: flex;
+	gap: 0.875rem;
+	align-items: flex-start;
+}
+
+.page-vie__activity-photo {
+	flex-shrink: 0;
+}
+
+/* E — Activity photos: hard shadow + slight rotation */
+.page-vie__activity-img {
+	width: 90px;
+	height: 70px;
+	object-fit: cover;
+	display: block;
+	transform: rotate(-1.5deg);
+	outline: 2.5px solid #0f1427;
+	filter: drop-shadow(2px 2px 0 rgba(15, 20, 39, 0.5));
+}
+
+.page-vie__activity-img-placeholder {
+	width: 90px;
+	height: 70px;
+	background: repeating-linear-gradient(
+		-45deg,
+		#c8c3b8,
+		#c8c3b8 3px,
+		#ddd8ce 3px,
+		#ddd8ce 10px
+	);
+	transform: rotate(-1.5deg);
+	outline: 2.5px solid #0f1427;
+	filter: drop-shadow(2px 2px 0 rgba(15, 20, 39, 0.5));
+}
+
+.page-vie__activity--photo-right .page-vie__activity-img,
+.page-vie__activity--photo-right .page-vie__activity-img-placeholder {
+	transform: rotate(1.5deg);
+}
+
+.page-vie__activity-text {
+	flex: 1;
+	min-width: 0;
+}
+
+.page-vie__activity-title {
+	font-family: var(--font-display);
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	color: #0f1427;
+	display: block;
+	margin-bottom: 0.3rem;
+}
+
+.page-vie__activity-text p {
+	font-family: var(--font-body);
+	font-size: 0.82rem;
+	line-height: 1.55;
+	color: #2a2a3a;
+	margin: 0;
+}
+
+/* ── Desktop: true double-page ───────────────────── */
+@media (min-width: 768px) {
+	.page-vie__inner {
+		padding: 3rem 2.5rem 4rem;
+	}
+
+	.page-vie__grid {
+		flex-direction: row;
+		gap: 0;
+	}
+
+	.page-vie__col {
+		flex: 1;
+	}
+
+	.page-vie__col--roles {
+		border-right: 1px solid rgba(0, 0, 0, 0.15);
+		padding-right: 2rem;
+	}
+
+	.page-vie__col--activities {
+		padding-left: 2rem;
+	}
+
+	.page-vie__activity--photo-right {
+		flex-direction: row-reverse;
+	}
+
+	.page-vie__role-img,
+	.page-vie__role-img-placeholder {
+		width: 100px;
+		height: 100px;
+	}
+
+	.page-vie__activity-img,
+	.page-vie__activity-img-placeholder {
+		width: 110px;
+		height: 80px;
+	}
+
+	.page-vie__role-desc,
+	.page-vie__activity-text p {
+		font-size: 0.9rem;
+	}
+}

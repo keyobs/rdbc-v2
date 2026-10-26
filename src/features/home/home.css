@@ -1,0 +1,24 @@
+/* ── HOME — page shell ───────────────────────────────────── */
+
+.home-wrap {
+	max-width: 1536px;
+	margin-inline: auto;
+	padding-inline: 32px;
+}
+
+/* Reserve the Feed height: the island renders nothing until it knows the viewport */
+.home-feed {
+	min-height: 313px;
+	padding-top: 28px;
+}
+
+@media (max-width: 1023px) {
+	.home-wrap {
+		padding-inline: 16px;
+	}
+
+	.home-feed {
+		min-height: 300px;
+		padding-top: 20px;
+	}
+}

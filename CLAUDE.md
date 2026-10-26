@@ -11,13 +11,13 @@
 | `@sanity/astro` | `^3.4.0` | Client GROQ au build (pas de Studio embarqué) |
 | `sanity` | `^5.24.0` | Studio standalone dans `./sanity/` |
 | TypeScript | strict via `astro/tsconfigs/strict` | |
-| Radix UI | ⚠️ non installé | À ajouter — interactions (Drawer, Modal…) |
-| Framer Motion | ⚠️ non installé | À ajouter — animations spring |
-| Phosphor Icons | ⚠️ non installé | À ajouter — icônes Bold |
+| `@radix-ui/react-dialog` | `^1.1.15` | Interactions (Drawer, Modal…) |
+| `framer-motion` | `^12.39.0` | Animations spring |
+| `@phosphor-icons/react` | `^2.1.10` | Icônes Bold |
 | `@astrojs/sitemap` | ⚠️ non installé | À ajouter — J11 |
 | Vitest + Testing Library | ⚠️ non installé | À ajouter — J2 |
 
-- **Styling :** Vanilla CSS uniquement — pas de Tailwind, pas de CSS-in-JS
+- **Styling :** Vanilla CSS uniquement — pas de Tailwinds
 - **Deploy :** GitHub Actions → GitHub Pages (recette) + OVH mutualisé FTP (prod)
 - **Node :** ≥ 22.12
 
@@ -25,32 +25,37 @@
 
 | Fichier | Contenu |
 |---|---|
-| [docs/SPECS.md](docs/SPECS.md) | Cahier des charges complet — pages, fonctionnalités, contraintes |
+| [devdx/SPECS.md](devdx/SPECS.md) | Cahier des charges complet — pages, fonctionnalités, contraintes |
 | [docs/STACK.md](docs/STACK.md) | Choix techniques détaillés, config Astro, schémas Sanity, déploiement |
-| [docs/GUIDELINES-UI.md](docs/GUIDELINES-UI.md) | Design system — palette, typographie, composants, animations |
-| [docs/ROADMAP.md](docs/ROADMAP.md) | Planning J1→J15, critères de succès par journée |
-| [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md) | Guide pas à pas — commandes, code de référence, webhook Sanity |
+| [devdx/GUIDELINES-UI.md](devdx/GUIDELINES-UI.md) | Design system — palette, typographie, composants, animations |
+| [devdx/ROADMAP.md](devdx/ROADMAP.md) | Planning J1→J15, critères de succès par journée |
+| [devdx/INSTRUCTIONS.md](devdx/INSTRUCTIONS.md) | Guide pas à pas — commandes, code de référence, webhook Sanity |
+| [design/DESIGN.md](design/DESIGN.md) | Direction visuelle partagée (personnalité, rythme, géométrie, motion) |
+| `design/<page>.md` | Décisions de design validées par page (`home.md`, `matchs.md`…) |
+
+`devdx/` et `design/` sont gitignorés (specs et décisions de design en lecture libre pour le contexte, non versionnées).
 
 ## Règles non-négociables
 
 **Style**
 - Vanilla CSS uniquement — pas de Tailwind, pas de Styled-Components, pas de CSS Modules
-- Background : `--color-bitume` (`#141618`)
-- Palette source unique : [docs/GUIDELINES-UI.md](docs/GUIDELINES-UI.md) section 2
+- Background : `--color-bitume` (`rgb(8, 20, 75)`)
+- Accent : `--color-neon-primary` = `rgb(0, 255, 150)` (bordures, icônes, ombres de boutons, glows) ; texte secondaire : `--color-neon-secondary` (`rgb(184, 228, 180)`)
+- Palette source unique : les tokens de [src/styles/tokens.css](src/styles/tokens.css) (détails dans [devdx/GUIDELINES-UI.md](devdx/GUIDELINES-UI.md) section 2)
 - Conteneurs primaires : `border: 2px solid` neon
 - Tous les 3e/4e éléments : `transform: rotate(-1.5deg)` (destructured grid)
 - Badges/tags : `outline: 2px solid white` (sticker-look)
 
 **Composants**
 - Radix UI pour toute interaction complexe (Drawer, Modal, Accordion, Dialog)
-- Phosphor Icons, weight **Bold**, couleur `--color-neon-pink`
+- Phosphor Icons, weight **Bold**, couleur `--color-neon-primary`
 - Framer Motion pour toutes les transitions (spring physics, jamais `linear`)
 
 **Boutons — "The 80s Switch"**
 - `border-radius: 0` (coins droits)
 - `border: 2px solid`
-- `box-shadow: 4px 4px 0px var(--color-neon-cyan)`
-- CTA critiques (Rejoindre…) : `--color-neon-pink`
+- `box-shadow: 4px 4px 0px var(--color-neon-primary)`
+- CTA critiques (Rejoindre…) : `--color-action`
 - Effet flicker au clic (opacity jitter keyframes)
 
 **UX / Mobile-First — règle hover**
@@ -85,18 +90,21 @@
 ## Style de dev
 
 ### Git workflow
-- Branches : `feature/nom` depuis `dev` → merge dans `dev` → release vers `main`
-- `main` déclenche le déploiement (GitHub Actions)
-- Ne jamais committer directement sur `main`
+- Branches : `feature/nom` depuis `develop` → merge dans `develop` → release vers `main`
+- `develop` → GitHub Pages recette (`.github/workflows/preview.yml`)
+- `main` → OVH prod (`.github/workflows/deploy.yml`) + webhook Sanity (`sanity-update`)
+- Ne jamais committer directement sur `main` ni `develop`
 
 ### Profil
 - Senior React — clean architecture, code simple et direct
 - Toujours demander avant de coder, même pour les petits détails
 - En cas d'ambiguïté dans les specs : poser la question, pas d'hypothèse implicite
+- **Commentaires dans le code : toujours en anglais**
+- **Fichiers : toujours lire (`Read`) l'état courant avant toute modification** — ne jamais supposer que la mémoire de session est à jour. Utiliser `Edit` ciblé, jamais `Write` sur un fichier existant. Respecter les modifications du développeur.
 
 ### Références & versions
 - Toujours vérifier `package.json` avant de répondre à une question sur une dépendance
-- Docs en priorité : [docs/](docs/) du projet, puis **Context7** pour la doc officielle des libs
+- Docs en priorité : [docs/](docs/), [devdx/](devdx/) du projet, puis **Context7** pour la doc officielle des libs
 - Toujours cibler la **dernière version** des dépendances (Context7 + GitHub releases)
 - Pour les APIs Sanity, Astro, Radix, Framer : se référer à la doc officielle, pas à la mémoire d'entraînement
 
@@ -110,6 +118,11 @@
 - Types et interfaces explicites sur tout — pas de `any`, pas de `unknown` sans narrowing immédiat
 - Props des composants React : interface nommée (ex: `interface PlayerCardProps`)
 - Types Sanity : générés via `sanity typegen generate`, jamais écrits à la main
+
+### Composants
+Composants fonctionnels uniquement — pas de class components
+Imports React : hooks nommés individuellement — import { useState, useEffect } from 'react'
+Imports : chemin direct par composant pour toutes les libs tant que possible — import Drawer from '@mui/material/Drawer' plutôt que import { Drawer } from '@mui/material'
 
 ### State management
 - `useState` / `useReducer` pour l'état local au composant
@@ -161,13 +174,13 @@ rdbc-v2/
 ## Commandes
 ```bash
 # Développement
-npm run dev                        # Astro → localhost:4321
-cd sanity && npm run dev           # Studio → localhost:3333
+yarn dev                           # Astro → localhost:4321
+cd sanity && yarn dev              # Studio → localhost:3333
 
 # Build & déploiement
-npm run build                      # génère /dist
-npx sanity typegen generate        # régénérer types après modif schémas
-cd sanity && npm run deploy        # déployer le Studio
+yarn build                         # génère /dist
+yarn sanity schema extract && yarn sanity typegen generate  # régénérer types après modif schémas
+cd sanity && yarn deploy           # déployer le Studio
 
 # Git — pousse et déclenche le deploy
 git push origin main

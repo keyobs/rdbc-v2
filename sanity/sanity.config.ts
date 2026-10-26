@@ -1,18 +1,18 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
+import { defineConfig } from "sanity";
+import { structureTool } from "sanity/structure";
+import { visionTool } from "@sanity/vision";
+import { schemaTypes } from "./schemaTypes";
 
 export default defineConfig({
-  name: 'default',
-  title: 'rdbc-v2',
+	name: "default",
+	title: "rdbc-v2",
 
-  projectId: 'y8v3re1a',
-  dataset: 'production',
+	projectId: "y8v3re1a",
+	dataset: "production",
 
-  plugins: [structureTool(), visionTool()],
+	plugins: [structureTool(), visionTool()],
 
-  schema: {
-    types: schemaTypes,
-  },
-})
+	schema: {
+		types: schemaTypes,
+	},
+});

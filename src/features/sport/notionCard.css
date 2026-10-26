@@ -1,0 +1,129 @@
+.notion-card {
+	position: relative;
+
+	display: block;
+	width: 100%;
+	min-height: 300px;
+	padding: 0;
+
+	background: #0e163c;
+	border: none;
+	border-right: 1px solid var(--border);
+	border-bottom: 1px solid var(--border);
+
+	color: inherit;
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+
+	perspective: 1200px;
+	transition: background 0.3s ease;
+}
+
+.notion-card:nth-child(even) {
+	background: #1a2868;
+}
+
+.notion-card--flipped {
+	background: var(--color-neon-blue);
+}
+
+.notion-card--flipped .notion-card__number {
+	color: var(--text-light);
+}
+
+@media (hover: hover) {
+	.notion-card:hover,
+	.notion-card:focus-visible {
+		background: var(--color-neon-blue);
+	}
+
+	.notion-card:hover .notion-card__number,
+	.notion-card:focus-visible .notion-card__number {
+		color: var(--text-light);
+	}
+}
+
+.notion-card__inner {
+	position: relative;
+
+	display: block;
+	width: 100%;
+	height: 100%;
+	min-height: 300px;
+
+	transform-style: preserve-3d;
+	transition: transform 0.6s ease;
+}
+
+.notion-card--flipped .notion-card__inner {
+	transform: rotateY(180deg);
+}
+
+@media (hover: hover) {
+	.notion-card:hover .notion-card__inner,
+	.notion-card:focus-visible .notion-card__inner {
+		transform: rotateY(180deg);
+	}
+}
+
+.notion-card__face {
+	position: absolute;
+	inset: 0;
+
+	display: flex;
+	flex-direction: column;
+	padding: 2rem;
+
+	backface-visibility: hidden;
+}
+
+.notion-card__face--front {
+	justify-content: flex-start;
+}
+
+.notion-card__face--back {
+	justify-content: center;
+	transform: rotateY(180deg);
+}
+
+.notion-card__number {
+	display: block;
+	margin-bottom: 5rem;
+
+	color: var(--accent);
+
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+
+.notion-card__title {
+	display: block;
+	margin-bottom: 1rem;
+
+	font-family: var(--font-display);
+	font-size: 1.65rem;
+}
+
+.notion-card__summary,
+.notion-card__detail {
+	display: block;
+
+	color: rgba(244, 244, 244, 0.72);
+	font-family: var(--font-body);
+	line-height: 1.65;
+}
+
+@media (max-width: 560px) {
+	.notion-card {
+		min-height: auto;
+	}
+
+	.notion-card__inner {
+		min-height: auto;
+	}
+
+	.notion-card__number {
+		margin-bottom: 3.5rem;
+	}
+}

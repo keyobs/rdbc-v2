@@ -1,0 +1,57 @@
+name: Preview — develop → GitHub Pages
+
+on:
+  push:
+    branches: [develop]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  packages: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: ✅ Tests
+    uses: ./.github/workflows/test.yml
+    with:
+      ref: ${{ github.ref }}
+    secrets: inherit
+
+  build:
+    name: 🏗️ Build
+    needs: tests
+    uses: ./.github/workflows/build.yml
+    with:
+      ref: ${{ github.ref }}
+      base_path: "/rdbc-v2"
+    secrets: inherit
+
+  deploy:
+    name: 🚀 Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 📥 Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact-name }}
+          path: dist/
+
+      - name: 📤 Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+
+      - name: 🌍 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

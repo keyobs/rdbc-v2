@@ -1,0 +1,63 @@
+---
+import type { Translations } from "@i18n/index";
+import { DISPLAYED_NAV_LINKS } from "./navLinks";
+import ShinyButton from "@components/buttons/ShinyButton";
+import LanguageSwitch from "@components/languageSwitch/LanguageSwitch.astro";
+import { withBase } from "@utils/urlHandler";
+import "./navbar.css";
+
+interface Props {
+	t: Translations["nav"];
+	pathname: string;
+}
+
+const { t, pathname } = Astro.props;
+
+function isActive(href: string): boolean {
+	if (href === "/") return pathname === "/";
+	return pathname === href || pathname.startsWith(href + "/");
+}
+---
+
+<nav class="navbar" aria-label="Main navigation">
+	<ul class="navbar__links" id="navbar-links">
+		{DISPLAYED_NAV_LINKS.map((item) => (
+			<li><a
+				href={withBase(item.href)}
+				class:list={[{ "is-active": isActive(item.href) }]}
+				aria-label={item.key === "home" ? t.homeLabel : undefined}
+				aria-current={isActive(item.href) ? "page" : undefined}
+			>{t[item.key]}</a></li>
+		))}
+		<li><ShinyButton href={withBase("/rejoindre")}>{t.join}</ShinyButton></li>
+		<li><LanguageSwitch pathname={pathname} /></li>
+	</ul>
+</nav>
+
+<script>
+	const list = document.getElementById("navbar-links");
+	if (list) {
+		const spotlight = document.createElement("div");
+		spotlight.className = "navbar__spotlight";
+		list.prepend(spotlight);
+
+		const links = list.querySelectorAll<HTMLAnchorElement>(
+			"a:not(.btn-shiny):not(.lang-switch__btn)",
+		);
+		const listRect = () => list.getBoundingClientRect();
+
+		links.forEach((link) => {
+			link.addEventListener("mouseenter", () => {
+				const lr = listRect();
+				const r = link.getBoundingClientRect();
+				spotlight.style.setProperty("--sp-left", `${r.left - lr.left}px`);
+				spotlight.style.setProperty("--sp-width", `${r.width}px`);
+				spotlight.style.opacity = "1";
+			});
+		});
+
+		list.addEventListener("mouseleave", () => {
+			spotlight.style.opacity = "0";
+		});
+	}
+</script>

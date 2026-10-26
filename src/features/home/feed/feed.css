@@ -1,0 +1,49 @@
+/* ── FEED — pieces shared by the desktop accordion and the mobile card ── */
+
+/* The theme sets --c0 (accent), --c1, --c2 and --base on the feed card. */
+
+.feed__stamp {
+	border: 2px solid var(--color-white);
+	text-align: center;
+	font-family: var(--font-display);
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.feed__stamp-day {
+	display: block;
+}
+
+/* 80s Switch button */
+.feed__cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 44px;
+	padding: 10px 20px;
+	border: var(--btn-border) var(--c0);
+	border-radius: var(--btn-radius);
+	box-shadow: 4px 4px 0 var(--c0);
+	background: transparent;
+	color: var(--color-text-main);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.feed__cta:active {
+	animation: flicker-click 0.3s ease;
+}
+
+.feed__cta:focus-visible {
+	outline: 2px solid var(--color-white);
+	outline-offset: 3px;
+}
+
+.feed__bar {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 38%;
+	height: 5px;
+	background: var(--c0);
+}

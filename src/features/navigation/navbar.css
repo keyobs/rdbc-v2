@@ -1,0 +1,70 @@
+.navbar {
+	display: block;
+}
+
+.navbar__separator {
+	color: var(--color-neon-blue);
+}
+
+.navbar__links {
+	position: relative;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 24px;
+}
+
+/* ── spotlight ───────────────────────────────────────────── */
+.navbar__spotlight {
+	position: absolute;
+	top: 50%;
+	left: calc(var(--sp-left, 0px) - 15px);
+	width: calc(var(--sp-width, 0px) + 30px);
+	height: 2.6em;
+	transform: translateY(-50%);
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--color-bitume) 82%, transparent);
+	box-shadow: 0 0 14px
+		color-mix(in srgb, var(--color-neon-green) 25%, transparent);
+	opacity: 0;
+	pointer-events: none;
+	transition:
+		left 220ms cubic-bezier(0.16, 1, 0.3, 1),
+		width 220ms cubic-bezier(0.16, 1, 0.3, 1),
+		opacity 160ms ease;
+}
+
+/* ── links ────────────────────────────────────────────────── */
+.navbar__links a:not(.btn-shiny):not(.lang-switch__btn) {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	padding: 4px 0;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	text-decoration: none;
+	letter-spacing: 0.06em;
+	color: var(--color-text-main);
+	font-weight: 800;
+	transition:
+		color 220ms ease,
+		transform 180ms ease;
+}
+
+/* active page */
+.navbar__links a.is-active:not(.btn-shiny) {
+	color: var(--color-neon-green);
+}
+
+.navbar__links a:not(.btn-shiny):not(.lang-switch__btn):focus-visible {
+	outline: 2px solid var(--color-neon-green);
+	outline-offset: 4px;
+}
+
+@media (hover: hover) {
+	.navbar__links
+		a:not(.btn-shiny):not(.lang-switch__btn):not(.is-active):hover {
+		color: var(--color-neon-green);
+		transform: scale(1.15);
+	}
+}

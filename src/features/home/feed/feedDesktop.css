@@ -1,0 +1,150 @@
+/* ── FEED DESKTOP — horizontal accordion ─────────────────── */
+
+.feed-desktop {
+	display: flex;
+	width: 100%;
+	height: 285px;
+	overflow: hidden;
+	border: 2px solid var(--color-neon-primary);
+}
+
+/* ── Item shell ─────────────────────────────────────────── */
+
+.feed-item {
+	position: relative;
+	overflow: hidden;
+	flex: 0 0 76px;
+	cursor: pointer;
+	border-right: 2px solid var(--color-neon-primary);
+	color: var(--color-text-main);
+}
+
+.feed-item:last-child {
+	border-right: none;
+}
+
+/* collapsed: soft glow from the top, accent line above */
+.feed-item:not(.feed-item--expanded) {
+	background:
+		radial-gradient(in oklch circle 260px at 50% 0, var(--c2), transparent),
+		var(--base);
+	border-top: 4px solid var(--c0);
+}
+
+.feed-item--expanded {
+	flex: 1;
+	cursor: default;
+	background:
+		radial-gradient(
+			in oklch circle 700px at 95% -10%,
+			var(--c0) 0,
+			var(--c1) 233px,
+			var(--c2) 420px,
+			transparent 700px
+		),
+		var(--base);
+}
+
+/* image overlay for readability */
+.feed-item__overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		to top,
+		rgba(0, 0, 0, 0.82) 0%,
+		rgba(0, 0, 0, 0.28) 55%,
+		rgba(0, 0, 0, 0.08) 100%
+	);
+	z-index: 0;
+}
+
+/* ── Content layers ─────────────────────────────────────── */
+
+.feed-item__content {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+}
+
+/* expanded: date stamp on the left, text on the right */
+.feed-item__content--expanded {
+	display: grid;
+	grid-template-columns: 150px 1fr;
+	column-gap: 36px;
+	align-items: end;
+	padding: 28px 36px;
+}
+
+/* permanent feeds have no date stamp */
+.feed-item__content--no-stamp {
+	grid-template-columns: 1fr;
+}
+
+.feed-item__body {
+	min-width: 0;
+}
+
+/* collapsed: date on top, vertical title at the bottom */
+.feed-item__content--collapsed {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding: 18px 0;
+}
+
+/* ── Typography ─────────────────────────────────────────── */
+
+.feed-item__content--expanded .feed__stamp {
+	align-self: start;
+	padding: 8px 10px;
+}
+
+.feed-item__content--expanded .feed__stamp-day {
+	font-size: 56px;
+}
+
+.feed-item__content--expanded .feed__stamp-month {
+	font-size: 14px;
+	letter-spacing: 0.12em;
+}
+
+.feed-item__title {
+	font-family: var(--font-display);
+	font-size: clamp(1.75rem, 3vw, 2.375rem);
+	line-height: 1.05;
+	max-width: 740px;
+	margin: 0 0 8px;
+}
+
+.feed-item__description {
+	max-width: 620px;
+	margin: 0 0 16px;
+}
+
+/* collapsed vertical title */
+.feed-item__title-vertical {
+	font-family: var(--font-display);
+	font-size: 17px;
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+	transform: rotate(180deg);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-height: 85%;
+	text-transform: uppercase;
+}
+
+.feed-item__date-small {
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	color: var(--c0);
+}
+
+@media (hover: hover) {
+	.feed-item:not(.feed-item--expanded):hover .feed-item__title-vertical {
+		color: var(--c0);
+	}
+}

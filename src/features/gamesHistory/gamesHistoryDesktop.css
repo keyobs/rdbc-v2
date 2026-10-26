@@ -1,0 +1,52 @@
+/* ── GAMES HISTORY — DESKTOP ─────────────────────────────── */
+
+.games-history-desktop {
+	max-width: 1300px;
+	margin: 0 auto;
+	padding: 40px 24px;
+	width: 100%;
+}
+
+.games-history-desktop__row {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: 40px;
+}
+
+.games-history-desktop__left {
+	flex: 1;
+	min-width: 0;
+}
+
+.games-history-desktop__right {
+	width: 340px;
+	flex-shrink: 0;
+	position: sticky;
+	top: 120px;
+	max-height: calc(100vh - 140px);
+	overflow-y: auto;
+	overscroll-behavior-y: contain;
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-border) transparent;
+}
+
+.games-history-desktop__right::-webkit-scrollbar {
+	width: 4px;
+}
+
+.games-history-desktop__right::-webkit-scrollbar-thumb {
+	background-color: var(--color-border);
+}
+
+/* ── placeholder right column ─── */
+.games-history-desktop__placeholder {
+	border: 2px solid var(--color-border);
+	padding: 24px;
+	color: var(--color-border);
+	font-family: var(--font-display);
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	text-align: center;
+}
