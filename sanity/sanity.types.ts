@@ -401,11 +401,15 @@ export type ClubPage = {
     _key: string
   }>
   inscription_url?: string
+  signup_new_url?: string
+  signup_renew_url?: string
   join_info?: {
     fr?: string
     en?: string
   }
-  join_email?: string
+  fee_base?: number
+  fee_competition?: number
+  fee_solidarity?: number
   gallery?: Array<{
     photo?: {
       asset?: SanityImageAssetReference

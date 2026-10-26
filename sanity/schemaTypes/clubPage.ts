@@ -157,17 +157,44 @@ export const clubPage = defineType({
 
 		defineField({
 			name: "inscription_url",
-			title: "Lien HelloAsso (inscription)",
+			title: "Lien HelloAsso (paiement de l'adhésion)",
 			type: "url",
 		}),
 
-		localizedText("join_info", "Texte d'invitation (Rejoindre le club)"),
+		defineField({
+			name: "signup_new_url",
+			title: "Formulaire — nouvelle inscription",
+			type: "url",
+		}),
 
 		defineField({
-			name: "join_email",
-			title: "Email de contact",
-			type: "string",
-			validation: (Rule) => Rule.email(),
+			name: "signup_renew_url",
+			title: "Formulaire — réinscription",
+			type: "url",
+		}),
+
+		localizedText(
+			"join_info",
+			"Texte d'accueil (1re ligne en gras, puis une ligne par paragraphe)",
+		),
+
+		defineField({
+			name: "fee_base",
+			title: "Tarif adhésion socle (€)",
+			type: "number",
+			validation: (Rule) => Rule.positive(),
+		}),
+		defineField({
+			name: "fee_competition",
+			title: "Tarif adhésion compétition (€)",
+			type: "number",
+			validation: (Rule) => Rule.positive(),
+		}),
+		defineField({
+			name: "fee_solidarity",
+			title: "Tarif adhésion solidaire (€)",
+			type: "number",
+			validation: (Rule) => Rule.positive(),
 		}),
 
 		// --- Galerie Polaroid ---
