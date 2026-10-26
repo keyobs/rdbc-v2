@@ -191,6 +191,34 @@ export type HomeJoiningSection = {
   }>
 }
 
+export type HomeAlert = {
+  _id: string
+  _type: 'homeAlert'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  active?: boolean
+  label?: {
+    fr?: string
+    en?: string
+  }
+  message?: {
+    fr?: string
+    en?: string
+  }
+  meta?: {
+    fr?: string
+    en?: string
+  }
+  link?: {
+    href?: string
+    label?: {
+      fr?: string
+      en?: string
+    }
+  }
+}
+
 export type ClubPage = {
   _id: string
   _type: 'clubPage'
@@ -532,6 +560,7 @@ export type AllSanitySchemaTypes =
   | AdvancedRulesSection
   | SportNotionsSection
   | HomeJoiningSection
+  | HomeAlert
   | ClubPage
   | Club
   | Player
