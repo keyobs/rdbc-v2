@@ -6,7 +6,10 @@ const getSectionTitle = (
 	nav: Translations["nav"],
 ): string => {
 	if (pathname === "/" || pathname === "") return "Roller Derby Bordeaux";
-	const match = NAV_LINKS.find((link) => pathname.startsWith(link.href));
+	// "/" is a prefix of every path: only the home page itself matches it
+	const match = NAV_LINKS.find(
+		(link) => link.href !== "/" && pathname.startsWith(link.href),
+	);
 	return match ? nav[match.key] : "Roller Derby Bordeaux";
 };
 
