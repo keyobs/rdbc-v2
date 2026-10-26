@@ -6,6 +6,9 @@ export interface TeamInfo {
 	score: number;
 }
 
+/** "home" groups the intraleague games between the club's home teams. */
+export type TeamKey = "A" | "B" | "home";
+
 export interface GameResult {
 	id: string;
 	date: string;
@@ -15,4 +18,18 @@ export interface GameResult {
 	hainemy: TeamInfo;
 	poster?: string;
 	photos?: string[];
+	/** Link to the game page, once it exists. */
+	detailsHref?: string;
+}
+
+export interface UpcomingGame {
+	id: string;
+	date: string;
+	team: TeamKey;
+	competition: string;
+	venue: string;
+	isHome: boolean;
+	rdbc: Pick<TeamInfo, "name" | "logo">;
+	opponent: Pick<TeamInfo, "name" | "league" | "logo">;
+	detailsHref?: string;
 }

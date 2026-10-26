@@ -1,4 +1,23 @@
-import type { GameResult } from "./types";
+import type { GameResult, TeamKey } from "./types";
+
+export function getGameTeam(game: GameResult): TeamKey {
+	return game.rdbc.travelTeam ?? "home";
+}
+
+/** A season runs from September to August, e.g. "2025-2026". */
+export function getSeason(isoDate: string): string {
+	const date = new Date(isoDate);
+	const startYear =
+		date.getMonth() >= 8 ? date.getFullYear() : date.getFullYear() - 1;
+	return `${startYear}-${startYear + 1}`;
+}
+
+export function formatGameDateShort(isoDate: string, locale = "fr-FR"): string {
+	return new Intl.DateTimeFormat(locale, {
+		day: "numeric",
+		month: "short",
+	}).format(new Date(isoDate));
+}
 
 export function getGroupedResults(
 	results: GameResult[],

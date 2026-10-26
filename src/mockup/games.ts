@@ -1,4 +1,4 @@
-import type { GameResult } from "@features/home/score/types";
+import type { GameResult, UpcomingGame } from "@features/games/types";
 import photo1 from "../assets/hero/match_misty_1-3.jpg";
 import photo2 from "../assets/hero/match_peak_1-1.jpg";
 import photo3 from "../assets/hero/train_kiwi_block.jpeg";
@@ -144,5 +144,29 @@ export const RESULTS: GameResult[] = [
 			score: 133,
 		},
 		photos: [photo2.src, photo3.src],
+	},
+];
+
+// Placeholder fixtures: dates, opponents and venues are still to be provided.
+export const UPCOMING_GAMES: UpcomingGame[] = [
+	{
+		id: "u1",
+		date: "2026-11-14T14:00:00",
+		team: "A",
+		competition: "[Compétition]",
+		venue: "[Lieu]",
+		isHome: true,
+		rdbc: { name: "Petites Morts", logo: mummy.src },
+		opponent: { name: "[Adversaire]", league: "[Ligue]", logo: null },
+	},
+	{
+		id: "u2",
+		date: "2026-11-21T16:00:00",
+		team: "B",
+		competition: "[Compétition]",
+		venue: "[Lieu]",
+		isHome: false,
+		rdbc: { name: "Compagnie Cruelle", logo: mummy.src },
+		opponent: { name: "[Adversaire]", league: "[Ligue]", logo: null },
 	},
 ];

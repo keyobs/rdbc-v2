@@ -1,0 +1,352 @@
+/* ── GAMES RESULTS — team tabs + collapsible seasons ─────── */
+
+/* sticker-look badge, also used by the next match */
+.games-badge {
+	display: inline-block;
+	padding: 2px 10px;
+	outline: 2px solid var(--color-white);
+	background: var(--color-bitume);
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.5;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+/* ── Tabs ───────────────────────────────────────────────── */
+
+.games-results__tabs {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 16px;
+}
+
+.games-tab {
+	min-height: 44px;
+	padding: 8px 22px;
+	border: var(--btn-border) var(--color-neon-primary);
+	border-radius: var(--btn-radius);
+	background: transparent;
+	box-shadow: 3px 3px 0 var(--color-neon-primary);
+	color: var(--color-text-main);
+	font-family: var(--font-display);
+	font-size: 14px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.games-tab[data-state="active"] {
+	background: var(--color-neon-primary);
+	box-shadow: none;
+	color: var(--color-bitume);
+	transform: translate(3px, 3px);
+}
+
+.games-tab:focus-visible {
+	outline: 2px solid var(--color-white);
+	outline-offset: 3px;
+}
+
+@media (hover: hover) {
+	.games-tab[data-state="inactive"]:hover {
+		background: var(--color-surface);
+	}
+}
+
+/* ── Seasons ────────────────────────────────────────────── */
+
+.season {
+	margin-bottom: 16px;
+	border: var(--btn-border) var(--color-neon-primary);
+	background: var(--color-bitume);
+}
+
+.season__header {
+	margin: 0;
+}
+
+.season__trigger {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	width: 100%;
+	min-height: 64px;
+	padding: 16px 20px;
+	border: none;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+
+.season__trigger:focus-visible {
+	outline: 2px solid var(--color-white);
+	outline-offset: -4px;
+}
+
+.season__name {
+	flex: 1 1 auto;
+	font-family: var(--font-display);
+	font-size: 22px;
+	text-transform: uppercase;
+	text-shadow: 0 0 8px var(--color-neon-primary);
+}
+
+.season__meta {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.season__count {
+	font-size: 14px;
+	color: var(--color-neon-secondary);
+}
+
+.season__chevron {
+	flex: 0 0 auto;
+	width: 24px;
+	height: 24px;
+	color: var(--color-neon-primary);
+	transition: transform 0.25s ease;
+}
+
+.season__trigger[data-state="open"] .season__chevron {
+	transform: rotate(180deg);
+}
+
+.season[data-state="open"] > .season__header {
+	border-bottom: var(--btn-border) var(--color-neon-primary);
+}
+
+.season__content {
+	overflow: hidden;
+	padding: 20px;
+}
+
+.season__content[data-state="open"] {
+	animation: season-open 0.25s ease-out;
+}
+
+.season__content[data-state="closed"] {
+	animation: season-close 0.2s ease-in;
+}
+
+@keyframes season-open {
+	from {
+		height: 0;
+	}
+
+	to {
+		height: var(--radix-accordion-content-height);
+	}
+}
+
+@keyframes season-close {
+	from {
+		height: var(--radix-accordion-content-height);
+	}
+
+	to {
+		height: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.season__content[data-state] {
+		animation: none;
+	}
+
+	.season__chevron {
+		transition: none;
+	}
+}
+
+@media (hover: hover) {
+	.season__trigger:hover {
+		background: var(--color-surface);
+	}
+}
+
+/* ── Board: team band, caption, rows ────────────────────── */
+
+.games-board {
+	border: var(--btn-border) var(--color-neon-primary);
+	background: rgb(8 20 75 / 70%);
+}
+
+.games-board__band {
+	padding: 8px 16px;
+	background: var(--color-surface);
+	border-bottom: var(--btn-border) var(--color-neon-primary);
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.games-board__caption {
+	padding: 10px 16px;
+	border-bottom: var(--btn-border) rgb(0 255 150 / 35%);
+	font-size: 14px;
+	color: var(--color-neon-secondary);
+}
+
+.games-board__empty {
+	padding: 20px 16px;
+	color: var(--color-neon-secondary);
+}
+
+/* ── Row ────────────────────────────────────────────────── */
+
+.games-row {
+	position: relative;
+	display: grid;
+	grid-template-columns: 130px minmax(0, 1fr);
+	align-items: center;
+	column-gap: 24px;
+	padding: 14px 16px;
+	border-bottom: var(--btn-border) rgb(0 255 150 / 35%);
+}
+
+.games-row:last-child {
+	border-bottom: none;
+}
+
+.games-row__meta {
+	font-size: 14px;
+	line-height: 1.4;
+	color: var(--color-neon-secondary);
+}
+
+.games-row__date {
+	display: block;
+	font-size: 16px;
+	color: var(--color-text-main);
+}
+
+.games-row__stage {
+	display: block;
+}
+
+.games-row__more {
+	display: inline-block;
+	margin-top: 4px;
+	font-weight: 600;
+	color: var(--color-text-main);
+}
+
+/* the whole row becomes the link */
+.games-row__more::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.games-row__more:focus-visible {
+	outline: none;
+}
+
+.games-row__more:focus-visible::after {
+	outline: 3px solid var(--color-neon-secondary);
+	outline-offset: -3px;
+}
+
+/* ── Mobile ─────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+	.games-results__tabs {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.games-tab {
+		padding: 6px 4px;
+		font-size: 12px;
+		letter-spacing: 0.04em;
+	}
+
+	.season {
+		margin-bottom: 12px;
+	}
+
+	/* name, then badge and count on a second line; chevron on the right */
+	.season__trigger {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		column-gap: 12px;
+		row-gap: 2px;
+		align-items: center;
+		min-height: 60px;
+		padding: 10px 14px;
+	}
+
+	.season__name {
+		font-size: 17px;
+	}
+
+	.season__meta {
+		grid-column: 1;
+		gap: 10px;
+	}
+
+	.season__count {
+		font-size: 13px;
+	}
+
+	.season__chevron {
+		grid-column: 2;
+		grid-row: 1 / span 2;
+	}
+
+	.season__content {
+		padding: 12px;
+	}
+
+	.games-board__band {
+		padding: 6px 12px;
+		font-size: 12px;
+		letter-spacing: 0.05em;
+	}
+
+	.games-board__caption {
+		padding: 8px 12px;
+		font-size: 13px;
+		line-height: 1.45;
+	}
+
+	.games-board__empty {
+		padding: 14px 12px;
+	}
+
+	/* date line on top, scoreboard below */
+	.games-row {
+		grid-template-columns: 1fr;
+		row-gap: 6px;
+		padding: 8px 12px 10px;
+	}
+
+	.games-row__meta {
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
+		font-size: 13px;
+		line-height: 1.35;
+	}
+
+	.games-row__date {
+		display: inline;
+		font-size: 15px;
+	}
+
+	.games-row__stage {
+		display: inline;
+	}
+
+	.games-row__more {
+		margin: 0 0 0 auto;
+		font-size: 13px;
+	}
+}

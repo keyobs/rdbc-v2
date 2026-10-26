@@ -1,1 +1,1 @@
-export { RESULTS } from "@mockup/games";
+export { RESULTS, UPCOMING_GAMES } from "@mockup/games";

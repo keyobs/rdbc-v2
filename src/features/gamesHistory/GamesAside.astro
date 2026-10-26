@@ -1,0 +1,59 @@
+---
+import { type Locale, useTranslations } from "@i18n/index";
+import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/csr/ArrowUpRight";
+import { withBase } from "@utils/urlHandler";
+import {
+	getFlatTrackStatsUrl,
+	MYROLLERDERBY_URL,
+	toIsoDay,
+} from "./externalLinks";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale).games;
+const contactHref = withBase(locale === "fr" ? "/contact" : "/en/contact");
+// Build-time day; the script below replaces it with the visitor's day
+const rankingsUrl = getFlatTrackStatsUrl(toIsoDay(new Date()));
+---
+
+<aside class="games-aside" aria-label={t.asideLabel}>
+	<section class="games-challenge" aria-labelledby="challenge-title">
+		<h2 class="games-challenge__title" id="challenge-title">{t.challengeTitle}</h2>
+		<p>{t.challengeText}</p>
+		<a class="games-cta" href={contactHref}>{t.challengeCta}</a>
+	</section>
+
+	<a
+		class="ext-link"
+		href={rankingsUrl}
+		target="_blank"
+		rel="noopener"
+		data-rankings-link
+	>
+		<span class="ext-link__head">
+			<span class="ext-link__name">FlatTrackStats</span>
+			<ArrowUpRightIcon className="ext-link__icon" weight="bold" aria-hidden="true" />
+		</span>
+		<span class="ext-link__text">{t.ranking}</span>
+		<span class="sr-only">{t.newTab}</span>
+	</a>
+
+	<a class="ext-link" href={MYROLLERDERBY_URL} target="_blank" rel="noopener">
+		<span class="ext-link__head">
+			<span class="ext-link__name">MyRollerDerby</span>
+			<ArrowUpRightIcon className="ext-link__icon" weight="bold" aria-hidden="true" />
+		</span>
+		<span class="ext-link__text">{t.championships}</span>
+		<span class="sr-only">{t.newTab}</span>
+	</a>
+</aside>
+
+<script>
+	import { getFlatTrackStatsUrl, toIsoDay } from "./externalLinks";
+
+	const link = document.querySelector<HTMLAnchorElement>("[data-rankings-link]");
+	if (link) link.href = getFlatTrackStatsUrl(toIsoDay(new Date()));
+</script>
