@@ -41,7 +41,24 @@ export const joiningPositions = defineType({
               name: 'icon',
               title: 'Icône',
               type: 'string',
-              description: 'Emoji ou caractère court affiché sur la carte.',
+              options: {
+                layout: 'radio',
+                list: [
+                  {title: 'Jouer', value: 'play'},
+                  {title: 'Arbitrer', value: 'referee'},
+                  {title: 'Accompagner', value: 'support'},
+                  {title: 'Kiffer', value: 'fun'},
+                ],
+              },
+            }),
+            defineField({
+              name: 'href',
+              title: 'Lien',
+              type: 'string',
+              description:
+                'Chemin interne (ex: /rejoindre#jouer) ou URL. Laisser vide tant que la page de destination n’existe pas.',
+              validation: (Rule) =>
+                Rule.uri({allowRelative: true, scheme: ['http', 'https']}),
             }),
           ],
           preview: {

@@ -185,7 +185,8 @@ export type HomeJoiningSection = {
       fr?: string
       en?: string
     }
-    icon?: string
+    icon?: 'play' | 'referee' | 'support' | 'fun'
+    href?: string
     _key: string
   }>
 }
