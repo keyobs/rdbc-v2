@@ -227,6 +227,31 @@
 	outline-offset: -3px;
 }
 
+/* ── Narrow desktop: the date goes above the scoreboard ──── */
+
+@media (max-width: 1340px) {
+	.games-row {
+		grid-template-columns: 1fr;
+		row-gap: 0.5rem;
+		padding: 0.625rem 1rem 0.75rem;
+	}
+
+	.games-row__meta {
+		display: flex;
+		align-items: baseline;
+		gap: 0.75rem;
+	}
+
+	.games-row__date,
+	.games-row__stage {
+		display: inline;
+	}
+
+	.games-row__more {
+		margin: 0 0 0 auto;
+	}
+}
+
 /* ── Mobile ─────────────────────────────────────────────── */
 
 @media (max-width: 1023px) {

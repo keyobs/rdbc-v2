@@ -176,6 +176,23 @@
 	color: var(--color-white);
 }
 
+/* ── Narrow desktop: tighter panels so the names keep room ── */
+
+@media (max-width: 1340px) {
+	.scoreboard__panel {
+		gap: 0.625rem;
+		padding-inline: 1.75rem;
+	}
+
+	.scoreboard__center {
+		padding-inline: 1rem;
+	}
+
+	.scoreboard__text {
+		min-width: 4rem;
+	}
+}
+
 /* ── Mobile: logo above the name ────────────────────────── */
 
 @media (max-width: 1023px) {

@@ -177,6 +177,28 @@
 	}
 }
 
+/* ── Tablet and small laptops: the right column goes below the content ── */
+
+@media (max-width: 1199px) {
+	.games-page__layout {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+
+	.games-aside {
+		position: static;
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.25rem;
+		align-items: start;
+	}
+
+	.games-challenge,
+	.ext-link {
+		margin-bottom: 0;
+	}
+}
+
 /* ── Mobile ─────────────────────────────────────────────── */
 
 @media (max-width: 1023px) {
@@ -255,6 +277,7 @@
 
 	.ext-link {
 		order: 4;
+		margin-bottom: 1rem;
 	}
 
 	.games-challenge__title {
