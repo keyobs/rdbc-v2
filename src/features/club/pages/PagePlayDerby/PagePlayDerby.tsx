@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import type { ClubPage } from "../../../../../sanity/sanity.types";
 import type { Locale } from "@i18n/index";
+import { withBase } from "@utils/urlHandler";
 import "./PagePlayDerby.css";
 
 interface PagePlayDerbyProps {
@@ -93,36 +94,76 @@ const INTERESTS_EN = [
 	"Say hi",
 ];
 
+const DEFAULT_SIGNUP_NEW_URL =
+	"https://docs.google.com/forms/d/e/1FAIpQLSfnGYZKQUpzsBz1UicyDkR8bcP6E4r0Pr4U7cpWFuuF9Do5NQ/viewform?usp=header";
+const DEFAULT_SIGNUP_RENEW_URL =
+	"https://docs.google.com/forms/d/e/1FAIpQLSf0YopUzxKK9UtBg4msRd3yKTX8wt-ZxdCIRoEqyvjnLhPR0w/viewform?usp=header";
+const DEFAULT_HELLOASSO_URL =
+	"https://www.helloasso.com/associations/roller-derby-bordeaux-club";
+
+const DEFAULT_JOIN_INFO = {
+	fr: "L'arrivée dans le club est possible toute l'année.\nDébutant·e, expérimenté·e, vétéran·e, revenant·e, le club vous est ouvert à toustes.",
+	en: "You can join the club at any time of the year.\nBeginner, experienced, veteran or coming back: the club is open to everyone.",
+};
+
+const DEFAULT_FEES = { base: 150, competition: 180, solidarity: 120 };
+
 const LABELS = {
 	fr: {
 		pageTitle: "Faire du roller derby",
 		trainingTitle: "Planning d'entraînement",
-		inscriptionTitle: "S'inscrire",
-		inscriptionBtn: "S'inscrire sur HelloAsso",
+		signupTitle: "S'inscrire",
+		fillForm: "Remplir le formulaire",
+		newMember: "Nouvelle inscription",
+		renewal: "Réinscription",
+		or: "ou",
+		feesTitle: "Tarifs adhésion",
+		feeBase: "Socle",
+		feeCompetition: "Compétition",
+		feeSolidarity: "Solidaire",
+		payLine1: "Payer sur",
+		payLine2: "HelloAsso",
 		formTitle: "Nous contacter",
 		name: "Prénom",
 		interests: "Je suis intéressé·e par",
 		email: "Email",
 		message: "Message",
-		send: "Envoyer →",
+		send: "Envoyer",
+		sending: "Envoi en cours…",
 		sent: "Message envoyé — à très vite !",
+		error: "L'envoi a échoué. Réessaie ou écris-nous à",
 		openMaps: "Voir sur Maps",
 	},
 	en: {
 		pageTitle: "Play roller derby",
 		trainingTitle: "Training schedule",
-		inscriptionTitle: "Sign up",
-		inscriptionBtn: "Sign up on HelloAsso",
+		signupTitle: "Sign up",
+		fillForm: "Fill in the form",
+		newMember: "New registration",
+		renewal: "Re-registration",
+		or: "or",
+		feesTitle: "Membership fees",
+		feeBase: "Base",
+		feeCompetition: "Competition",
+		feeSolidarity: "Solidarity",
+		payLine1: "Pay on",
+		payLine2: "HelloAsso",
 		formTitle: "Contact us",
 		name: "First name",
 		interests: "I'm interested in",
 		email: "Email",
 		message: "Message",
-		send: "Send →",
+		send: "Send",
+		sending: "Sending…",
 		sent: "Message sent — see you soon!",
+		error: "Sending failed. Try again or write to us at",
 		openMaps: "View on Maps",
 	},
 };
+
+const CONTACT_EMAIL = "intraligue@rollerderbybordeaux.fr";
+
+type SubmitStatus = "idle" | "sending" | "sent" | "error";
 
 function getMapsUrl(query: string) {
 	return `https://maps.google.com/?q=${encodeURIComponent(query)}`;
@@ -146,44 +187,52 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 		data.training_sessions && data.training_sessions.length > 0
 			? data.training_sessions
 			: DUMMY_SESSIONS;
-	const inscriptionUrl = data.inscription_url ?? "https://www.helloasso.com";
-	const joinEmail = data.join_email ?? "contact@rdbcbordeaux.fr";
-	const joinInfo = data.join_info?.[locale] ?? data.join_info?.fr;
+	const signupNewUrl = data.signup_new_url ?? DEFAULT_SIGNUP_NEW_URL;
+	const signupRenewUrl = data.signup_renew_url ?? DEFAULT_SIGNUP_RENEW_URL;
+	const helloAssoUrl = data.inscription_url ?? DEFAULT_HELLOASSO_URL;
+	const joinInfo = data.join_info?.[locale] ?? DEFAULT_JOIN_INFO[locale];
+	const [joinLead, ...joinRest] = joinInfo
+		.split("\n")
+		.filter((line) => line.trim() !== "");
+	const fees = [
+		{ label: t.feeBase, price: data.fee_base ?? DEFAULT_FEES.base },
+		{
+			label: t.feeCompetition,
+			price: data.fee_competition ?? DEFAULT_FEES.competition,
+		},
+		{
+			label: t.feeSolidarity,
+			price: data.fee_solidarity ?? DEFAULT_FEES.solidarity,
+		},
+	];
 	const interests = locale === "fr" ? INTERESTS_FR : INTERESTS_EN;
 
-	const [sent, setSent] = useState(false);
-	const [checked, setChecked] = useState<string[]>([]);
+	const [status, setStatus] = useState<SubmitStatus>("idle");
 
-	function toggleInterest(item: string) {
-		setChecked((prev) =>
-			prev.includes(item) ? prev.filter((x) => x !== item) : [...prev, item],
-		);
-	}
-
-	function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		const form = e.currentTarget;
-		const name = (form.elements.namedItem("name") as HTMLInputElement).value;
-		const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-		const message = (form.elements.namedItem("message") as HTMLTextAreaElement)
-			.value;
-		const interestLine =
-			checked.length > 0 ? `Intérêts : ${checked.join(", ")}\n` : "";
-		const body = encodeURIComponent(
-			`Prénom : ${name}\nEmail : ${email}\n${interestLine}\n${message}`,
-		);
-		const subject = encodeURIComponent(
-			locale === "fr" ? "Contact RDBC" : "RDBC Contact",
-		);
-		window.location.href = `mailto:${joinEmail}?subject=${subject}&body=${body}`;
-		setSent(true);
+		const body = new FormData(form);
+		body.append("locale", locale);
+		setStatus("sending");
+		try {
+			const response = await fetch(withBase("/send.php"), {
+				method: "POST",
+				body,
+			});
+			if (!response.ok) throw new Error(`send.php answered ${response.status}`);
+			setStatus("sent");
+			form.reset();
+		} catch {
+			setStatus("error");
+		}
 	}
 
 	return (
 		<section className="page-derby" aria-label={t.pageTitle}>
-			<div className="page-derby__inner">
+			<div className="inner">
 				<motion.h2
-					className="page-derby__page-title"
+					className="page-title"
 					variants={fadeUp}
 					initial="hidden"
 					whileInView="visible"
@@ -192,43 +241,37 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 					{t.pageTitle}
 				</motion.h2>
 
-				<div className="page-derby__grid">
-					{/* Left column */}
-					<div className="page-derby__col">
-						{/* Top 50% — Training schedule */}
+				<div className="grid">
+					<div className="col">
 						<motion.div
-							className="page-derby__training"
+							className="training"
 							variants={fadeUp}
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true, margin: "-40px" }}
 						>
-							<h3 className="page-derby__section-title">{t.trainingTitle}</h3>
-							<div className="page-derby__agenda">
-								{/* Header row — days */}
-								<div className="page-derby__agenda-head">
+							<h3 className="section-title">{t.trainingTitle}</h3>
+							<div className="agenda">
+								<div className="head">
 									{DAYS_ORDER.map((day) => (
-										<span key={day} className="page-derby__agenda-day">
+										<span key={day} className="day">
 											{DAY_LABEL[day][locale]}
 										</span>
 									))}
 								</div>
-								{/* Session rows */}
 								{sessions.map((session) => (
-									<div key={session._key} className="page-derby__agenda-row">
+									<div key={session._key} className="row">
 										{DAYS_ORDER.map((day) => {
 											const active = session.days?.includes(day);
 											return (
 												<div
 													key={day}
-													className={`page-derby__agenda-cell${active ? " page-derby__agenda-cell--active" : ""}`}
+													className={active ? "cell active" : "cell"}
 												>
 													{active && (
 														<>
-															<span className="page-derby__agenda-time">
-																{session.time_start}
-															</span>
-															<span className="page-derby__agenda-label">
+															<span className="time">{session.time_start}</span>
+															<span className="label">
 																{session.label?.[locale] ?? session.label?.fr}
 															</span>
 														</>
@@ -239,8 +282,7 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 									</div>
 								))}
 							</div>
-							{/* Maps links */}
-							<div className="page-derby__maps-links">
+							<div className="maps-links">
 								{[
 									...new Set(
 										sessions.map((s) => s.maps_query ?? s.location_name ?? ""),
@@ -253,7 +295,6 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 											href={getMapsUrl(query)}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="page-derby__maps-btn"
 										>
 											{t.openMaps} —{" "}
 											{sessions.find(
@@ -264,36 +305,66 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 							</div>
 						</motion.div>
 
-						{/* Bottom 50% — Inscription */}
 						<motion.div
-							className="page-derby__inscription"
+							className="signup"
 							variants={fadeUp}
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true, margin: "-40px" }}
 						>
-							<h3 className="page-derby__section-title">
-								{t.inscriptionTitle}
-							</h3>
-							{joinInfo && (
-								<p className="page-derby__inscription-text">{joinInfo}</p>
-							)}
-							<a
-								href={inscriptionUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="page-derby__inscription-btn"
-							>
-								{t.inscriptionBtn}
-							</a>
+							<h3 className="section-title">{t.signupTitle}</h3>
+							<p className="lead">{joinLead}</p>
+							{joinRest.map((line) => (
+								<p key={line}>{line}</p>
+							))}
+
+							<h4 className="label">{t.fillForm}</h4>
+							<div className="forms">
+								<a
+									className="btn"
+									href={signupNewUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{t.newMember}
+								</a>
+								<span>{t.or}</span>
+								<a
+									className="btn"
+									href={signupRenewUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{t.renewal}
+								</a>
+							</div>
+
+							<h4 className="label">{t.feesTitle}</h4>
+							<div className="fees">
+								<ul>
+									{fees.map((fee) => (
+										<li key={fee.label}>
+											<span>{fee.label}</span>
+											<b>{fee.price} €</b>
+										</li>
+									))}
+								</ul>
+								<a
+									className="btn pay"
+									href={helloAssoUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<span>{t.payLine1}</span>
+									<span>{t.payLine2}</span>
+								</a>
+							</div>
 						</motion.div>
 					</div>
 
-					{/* Right column */}
-					<div className="page-derby__col">
-						{/* Top 50% — Illustration placeholder */}
+					<div className="col">
 						<motion.div
-							className="page-derby__illustration"
+							className="illustration"
 							variants={fadeUp}
 							initial="hidden"
 							whileInView="visible"
@@ -301,60 +372,54 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 							aria-hidden
 						>
 							{/* Static asset injected here once provided */}
-							<div className="page-derby__illustration-placeholder">
+							<div className="placeholder">
 								<span>✦ illustration à venir ✦</span>
 							</div>
 						</motion.div>
 
-						{/* Bottom 50% — Contact form */}
 						<motion.div
-							className="page-derby__form-wrap"
+							className="contact"
 							variants={fadeUp}
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true, margin: "-40px" }}
 						>
-							<h3 className="page-derby__section-title">{t.formTitle}</h3>
-							<div className="page-derby__coupon">
-								<div className="page-derby__scissors" aria-hidden>
+							<h3 className="section-title">{t.formTitle}</h3>
+							<div className="coupon">
+								<div className="scissors" aria-hidden>
 									✂ — — — — — — — — — — — — — — — — — — —
 								</div>
 
-								{sent ? (
-									<p className="page-derby__sent" role="status">
+								{status === "sent" ? (
+									<p className="feedback" role="status">
 										{t.sent}
 									</p>
 								) : (
-									<form
-										className="page-derby__form"
-										onSubmit={handleSubmit}
-										noValidate
-									>
-										<label className="page-derby__field">
+									<form className="form" onSubmit={handleSubmit}>
+										{/* Honeypot: real visitors never see nor fill it */}
+										<input
+											className="honeypot"
+											name="website"
+											type="text"
+											tabIndex={-1}
+											autoComplete="off"
+											aria-hidden
+										/>
+
+										<label className="field">
 											<span>{t.name}</span>
-											<input
-												name="name"
-												type="text"
-												required
-												className="page-derby__input"
-											/>
+											<input name="name" type="text" required maxLength={80} />
 										</label>
 
-										<fieldset className="page-derby__fieldset">
-											<legend className="page-derby__legend">
-												{t.interests}
-											</legend>
-											<div className="page-derby__checkboxes">
+										<fieldset>
+											<legend>{t.interests}</legend>
+											<div className="checkboxes">
 												{interests.map((item) => (
-													<label
-														key={item}
-														className="page-derby__checkbox-label"
-													>
+													<label key={item} className="checkbox">
 														<input
 															type="checkbox"
-															checked={checked.includes(item)}
-															onChange={() => toggleInterest(item)}
-															className="page-derby__checkbox"
+															name="interests[]"
+															value={item}
 														/>
 														<span>{item}</span>
 													</label>
@@ -362,35 +427,43 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 											</div>
 										</fieldset>
 
-										<label className="page-derby__field">
+										<label className="field">
 											<span>{t.email}</span>
 											<input
 												name="email"
 												type="email"
 												required
-												className="page-derby__input"
+												maxLength={120}
 											/>
 										</label>
 
-										<label className="page-derby__field">
+										<label className="field">
 											<span>{t.message}</span>
 											<textarea
 												name="message"
 												rows={3}
-												className="page-derby__input page-derby__input--textarea"
+												required
+												maxLength={2000}
 											/>
 										</label>
 
-										<button type="submit" className="page-derby__submit">
-											{t.send}
-										</button>
+										<div className="actions">
+											<button type="submit" disabled={status === "sending"}>
+												{status === "sending" ? t.sending : t.send}
+											</button>
+											{status === "error" && (
+												<p className="feedback error" role="alert">
+													{t.error}{" "}
+													<a href={`mailto:${CONTACT_EMAIL}`}>
+														{CONTACT_EMAIL}
+													</a>
+												</p>
+											)}
+										</div>
 									</form>
 								)}
 
-								<div
-									className="page-derby__scissors page-derby__scissors--bottom"
-									aria-hidden
-								>
+								<div className="scissors bottom" aria-hidden>
 									— — — — — — — — — — — — — — — — — — — ✂
 								</div>
 							</div>
