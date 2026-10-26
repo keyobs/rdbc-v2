@@ -30,15 +30,18 @@
 | [devdx/GUIDELINES-UI.md](devdx/GUIDELINES-UI.md) | Design system — palette, typographie, composants, animations |
 | [devdx/ROADMAP.md](devdx/ROADMAP.md) | Planning J1→J15, critères de succès par journée |
 | [devdx/INSTRUCTIONS.md](devdx/INSTRUCTIONS.md) | Guide pas à pas — commandes, code de référence, webhook Sanity |
+| [design/DESIGN.md](design/DESIGN.md) | Direction visuelle partagée (personnalité, rythme, géométrie, motion) |
+| `design/<page>.md` | Décisions de design validées par page (`home.md`, `matchs.md`…) |
 
-`devdx/` est gitignoré (specs sources en lecture libre pour le contexte, non versionnées).
+`devdx/` et `design/` sont gitignorés (specs et décisions de design en lecture libre pour le contexte, non versionnées).
 
 ## Règles non-négociables
 
 **Style**
 - Vanilla CSS uniquement — pas de Tailwind, pas de Styled-Components, pas de CSS Modules
-- Background : `--color-bitume` (`rgb(15, 20, 39)`)
-- Palette source unique : [devdx/GUIDELINES-UI.md](devdx/GUIDELINES-UI.md) section 2
+- Background : `--color-bitume` (`rgb(8, 20, 75)`)
+- Accent : `--color-neon-primary` = `rgb(0, 255, 150)` (bordures, icônes, ombres de boutons, glows) ; texte secondaire : `--color-neon-secondary` (`rgb(184, 228, 180)`)
+- Palette source unique : les tokens de [src/styles/tokens.css](src/styles/tokens.css) (détails dans [devdx/GUIDELINES-UI.md](devdx/GUIDELINES-UI.md) section 2)
 - Conteneurs primaires : `border: 2px solid` neon
 - Tous les 3e/4e éléments : `transform: rotate(-1.5deg)` (destructured grid)
 - Badges/tags : `outline: 2px solid white` (sticker-look)
