@@ -1,7 +1,43 @@
-import type { GameResult, TeamKey } from "./types";
+import type {
+	GameResult,
+	NextGamesGroup,
+	TeamKey,
+	UpcomingGame,
+} from "./types";
+
+const TEAMS: TeamKey[] = ["A", "B", "home"];
 
 export function getGameTeam(game: GameResult): TeamKey {
 	return game.rdbc.travelTeam ?? "home";
+}
+
+/** For each team that has an upcoming game: its next event (all the games of the plateau). */
+export function getNextGamesByTeam(
+	games: UpcomingGame[],
+	now: Date,
+): NextGamesGroup[] {
+	const upcoming = games
+		.filter((game) => new Date(game.date) >= now)
+		.sort((a, b) => a.date.localeCompare(b.date));
+
+	return TEAMS.flatMap((team) => {
+		const teamGames = upcoming.filter((game) => game.team === team);
+		const first = teamGames[0];
+		if (!first) return [];
+		return [
+			{
+				team,
+				competition: first.competition,
+				event: first.event,
+				venue: first.venue,
+				games: teamGames.filter(
+					(game) =>
+						game.competition === first.competition &&
+						game.event === first.event,
+				),
+			},
+		];
+	});
 }
 
 /** A season runs from September to August, e.g. "2025-2026". */

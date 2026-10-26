@@ -1,32 +1,41 @@
 /* ── SCOREBOARD — slanted panels around a dark centre bar ── */
 
+/* Sizes are in rem (1rem = 16px). */
+
 .scoreboard {
-	--lean: 22px;
+	--lean: 1.375rem;
+	--panel-max: 18.75rem;
 
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+	grid-template-columns:
+		minmax(0, var(--panel-max)) auto
+		minmax(0, var(--panel-max));
+	justify-content: center;
 	align-items: center;
 }
 
 .scoreboard__side--home {
-	filter: drop-shadow(0 0 12px rgb(0 255 150 / 45%));
+	filter: drop-shadow(0 0 0.75rem rgb(0 255 150 / 45%));
 }
 
 .scoreboard__side--away {
-	filter: drop-shadow(0 0 12px rgb(150 80 255 / 55%));
+	filter: drop-shadow(0 0 0.75rem rgb(150 80 255 / 55%));
 }
 
+/* logo on the outer edge, team name on the side of the score */
 .scoreboard__panel {
 	display: flex;
 	align-items: center;
-	gap: 14px;
+	justify-content: space-between;
+	gap: 0.875rem;
+	height: 4rem;
+	padding-inline: 2.5rem;
 	min-width: 0;
 	color: var(--color-white);
 }
 
 /* RDBC: the jersey teal-to-blue */
 .scoreboard__panel--home {
-	justify-content: flex-start;
 	background: linear-gradient(120deg, rgb(12 99 118), var(--color-neon-blue));
 	clip-path: polygon(
 		0 0,
@@ -37,7 +46,6 @@
 }
 
 .scoreboard__panel--away {
-	justify-content: flex-end;
 	background: linear-gradient(
 		240deg,
 		oklch(0.45 0.22 295),
@@ -51,19 +59,41 @@
 	);
 }
 
-.scoreboard__panel--away .scoreboard__name {
-	text-align: right;
-}
-
 .scoreboard__name {
+	flex: 1 1 auto;
+	min-width: 0;
 	font-family: var(--font-display);
+	font-size: 0.875rem;
 	line-height: 1.1;
 	letter-spacing: 0.02em;
 	text-transform: uppercase;
 }
 
+.scoreboard__panel--home .scoreboard__name {
+	text-align: right;
+}
+
+.scoreboard__panel--away .scoreboard__name {
+	text-align: left;
+}
+
+/* league of the opponent, under its name */
+.scoreboard__subtitle {
+	display: block;
+	margin-top: 0.125rem;
+	font-family: var(--font-body);
+	font-size: 0.6875rem;
+	font-weight: 400;
+	line-height: 1.25;
+	letter-spacing: 0;
+	text-transform: none;
+	opacity: 0.85;
+}
+
 .scoreboard__logo {
 	flex: 0 0 auto;
+	width: 2.375rem;
+	height: 2.375rem;
 	object-fit: contain;
 }
 
@@ -72,8 +102,11 @@
 	display: grid;
 	flex: 0 0 auto;
 	place-items: center;
+	width: 2rem;
+	height: 2.25rem;
 	background: var(--color-white);
 	color: #0b0620;
+	font-size: 0.75rem;
 	font-weight: 800;
 	clip-path: polygon(0 0, 100% 0, 100% 58%, 50% 100%, 0 58%);
 }
@@ -86,17 +119,19 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 16px;
-	margin-inline: -12px;
-	padding-inline: 26px;
+	gap: 0.75rem;
+	height: 3.125rem;
+	margin-inline: -0.75rem;
+	padding-inline: 1.375rem;
 	background: rgb(5 12 50);
 	border-block: var(--btn-border) var(--color-neon-blue);
-	box-shadow: 0 0 16px rgb(66 104 249 / 55%);
+	box-shadow: 0 0 1rem rgb(66 104 249 / 55%);
 }
 
 .scoreboard__score {
 	min-width: 2ch;
 	font-family: var(--font-display);
+	font-size: 2rem;
 	line-height: 1;
 	text-align: center;
 	color: var(--color-white);
@@ -113,201 +148,120 @@
 
 .scoreboard__sep {
 	font-family: var(--font-display);
-	font-size: 28px;
+	font-size: 1.75rem;
 	line-height: 1;
 	color: var(--color-neon-secondary);
 }
 
-/* sticker-look badge */
+/* sticker-look badge: home (DOM) or away (EXT) of this game */
 .scoreboard__chip {
 	display: grid;
 	place-items: center;
-	min-width: 38px;
-	height: 28px;
-	padding-inline: 6px;
+	min-width: 2.375rem;
+	height: 1.75rem;
+	padding-inline: 0.375rem;
 	outline: 2px solid var(--color-white);
 	background: rgb(10 24 80);
-	font-size: 12px;
+	font-size: 0.75rem;
 	font-weight: 600;
 	letter-spacing: 0.06em;
 }
 
 .scoreboard__text {
-	min-width: 84px;
-	font-size: 15px;
+	min-width: 5.25rem;
+	font-size: 0.9375rem;
 	font-weight: 600;
 	line-height: 1.2;
 	text-align: center;
 	color: var(--color-white);
 }
 
-/* ── Size: next match ───────────────────────────────────── */
-
-.scoreboard--next .scoreboard__panel {
-	height: 96px;
-	padding-inline: 44px;
-}
-
-.scoreboard--next .scoreboard__name {
-	font-size: 17px;
-}
-
-.scoreboard--next .scoreboard__logo {
-	width: 52px;
-	height: 52px;
-}
-
-.scoreboard--next .scoreboard__shield {
-	width: 44px;
-	height: 50px;
-	font-size: 17px;
-}
-
-.scoreboard--next .scoreboard__center {
-	height: 64px;
-}
-
-/* ── Size: result row ───────────────────────────────────── */
-
-.scoreboard--row .scoreboard__panel {
-	height: 64px;
-	padding-inline: 40px;
-}
-
-.scoreboard--row .scoreboard__name {
-	font-size: 14px;
-}
-
-.scoreboard--row .scoreboard__logo {
-	width: 38px;
-	height: 38px;
-}
-
-.scoreboard--row .scoreboard__shield {
-	width: 32px;
-	height: 36px;
-	font-size: 12px;
-}
-
-.scoreboard--row .scoreboard__center {
-	height: 50px;
-	gap: 12px;
-	padding-inline: 22px;
-}
-
-.scoreboard--row .scoreboard__score {
-	font-size: 32px;
-}
-
 /* ── Mobile: logo above the name ────────────────────────── */
 
 @media (max-width: 1023px) {
 	.scoreboard {
-		--lean: 12px;
+		--lean: 0.75rem;
+
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
 	}
 
 	.scoreboard__side--home {
-		filter: drop-shadow(0 0 8px rgb(0 255 150 / 45%));
+		filter: drop-shadow(0 0 0.5rem rgb(0 255 150 / 45%));
 	}
 
 	.scoreboard__side--away {
-		filter: drop-shadow(0 0 8px rgb(150 80 255 / 55%));
+		filter: drop-shadow(0 0 0.5rem rgb(150 80 255 / 55%));
 	}
 
 	.scoreboard__panel {
 		flex-direction: column;
 		justify-content: center;
-		gap: 3px;
+		gap: 0.1875rem;
+		height: auto;
+		min-height: 5.25rem;
+		padding: 0.25rem 0.875rem;
 		text-align: center;
 	}
 
 	.scoreboard__panel--away {
 		flex-direction: column-reverse;
-		justify-content: center;
 	}
 
+	.scoreboard__name,
+	.scoreboard__panel--home .scoreboard__name,
 	.scoreboard__panel--away .scoreboard__name {
+		flex: 0 1 auto;
+		font-size: 0.65625rem;
 		text-align: center;
 	}
 
-	.scoreboard__name {
-		font-size: 10.5px;
+	/* two lines at most */
+	.scoreboard__subtitle {
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		font-size: 0.5625rem;
+		line-height: 1.2;
+	}
+
+	.scoreboard__logo {
+		width: 1.875rem;
+		height: 1.875rem;
+	}
+
+	.scoreboard__shield {
+		width: 1.6875rem;
+		height: 1.875rem;
+		font-size: 0.6875rem;
 	}
 
 	.scoreboard__center {
-		gap: 6px;
-		margin-inline: -6px;
-		padding-inline: 12px;
-		box-shadow: 0 0 12px rgb(66 104 249 / 55%);
+		gap: 0.3125rem;
+		height: 2.75rem;
+		margin-inline: -0.375rem;
+		padding-inline: 0.625rem;
+		box-shadow: 0 0 0.75rem rgb(66 104 249 / 55%);
+	}
+
+	.scoreboard__score {
+		font-size: 1.5rem;
 	}
 
 	.scoreboard__sep {
-		font-size: 20px;
+		font-size: 1.25rem;
 	}
 
 	.scoreboard__chip {
-		min-width: 28px;
-		height: 22px;
-		padding-inline: 4px;
-		font-size: 10px;
+		min-width: 1.625rem;
+		height: 1.25rem;
+		padding-inline: 0.25rem;
+		font-size: 0.5625rem;
 	}
 
 	.scoreboard__text {
-		min-width: 38px;
-		font-size: 11px;
-	}
-
-	.scoreboard--next .scoreboard__panel {
-		height: 72px;
-		padding-inline: 14px;
-	}
-
-	.scoreboard--next .scoreboard__name {
-		font-size: 10.5px;
-	}
-
-	.scoreboard--next .scoreboard__logo {
-		width: 34px;
-		height: 34px;
-	}
-
-	.scoreboard--next .scoreboard__shield {
-		width: 30px;
-		height: 34px;
-		font-size: 12px;
-	}
-
-	.scoreboard--next .scoreboard__center {
-		height: 46px;
-	}
-
-	.scoreboard--row .scoreboard__panel {
-		height: 72px;
-		padding-inline: 14px;
-	}
-
-	.scoreboard--row .scoreboard__name {
-		font-size: 10.5px;
-	}
-
-	.scoreboard--row .scoreboard__logo {
-		width: 30px;
-		height: 30px;
-	}
-
-	.scoreboard--row .scoreboard__shield {
-		width: 27px;
-		height: 30px;
-		font-size: 11px;
-	}
-
-	.scoreboard--row .scoreboard__center {
-		height: 44px;
-		gap: 5px;
-		padding-inline: 10px;
-	}
-
-	.scoreboard--row .scoreboard__score {
-		font-size: 24px;
+		min-width: 2.125rem;
+		font-size: 0.6875rem;
 	}
 }

@@ -35,7 +35,7 @@ const en = {
 	},
 	games: {
 		title: "Games",
-		nextMatch: "Next game",
+		nextGames: "Next games",
 		noNextMatch: "No game scheduled for now.",
 		results: "Results",
 		teamsLabel: "Team",
@@ -47,12 +47,9 @@ const en = {
 		noGamesTeam: "No game recorded for this team.",
 		noGamesYet: "No game played yet this season.",
 		nextMatchIs: "Next game:",
-		home: "Home",
-		away: "Away",
 		homeChip: "HOME",
 		awayChip: "AWAY",
 		details: "Details",
-		moreInfo: "Game info",
 		challengeTitle: "Want to play us?",
 		challengeText:
 			"A team, a league, a friendly game: write to us and we will find a date together.",

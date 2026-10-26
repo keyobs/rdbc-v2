@@ -1,10 +1,14 @@
 ---
 import { type Locale, useTranslations } from "@i18n/index";
 import { RESULTS, UPCOMING_GAMES } from "@features/games/resultsData";
-import { formatGameDateShort, getSeason } from "@features/games/utils";
+import {
+	formatGameDateShort,
+	getNextGamesByTeam,
+	getSeason,
+} from "@features/games/utils";
 import GamesAside from "./GamesAside.astro";
 import GamesResults from "./GamesResults";
-import NextMatch from "./NextMatch";
+import NextGames from "./NextGames";
 import "./gamesPage.css";
 
 interface Props {
@@ -15,11 +19,13 @@ const { locale } = Astro.props;
 const t = useTranslations(locale).games;
 
 const now = new Date();
-const nextGame = UPCOMING_GAMES.filter(
-	(game) => new Date(game.date) >= now,
-).sort((a, b) => a.date.localeCompare(b.date))[0];
-const nextGameLabel = nextGame
-	? formatGameDateShort(nextGame.date, locale === "fr" ? "fr-FR" : "en-US")
+const nextGroups = getNextGamesByTeam(UPCOMING_GAMES, now);
+// Earliest upcoming game of any team, shown when the current season is still empty
+const firstGame = nextGroups
+	.flatMap((group) => group.games)
+	.sort((a, b) => a.date.localeCompare(b.date))[0];
+const nextGameLabel = firstGame
+	? formatGameDateShort(firstGame.date, locale === "fr" ? "fr-FR" : "en-US")
 	: undefined;
 
 // Posters and photos are not displayed here: keep them out of the island payload
@@ -31,7 +37,7 @@ const games = RESULTS.map(({ poster, photos, ...game }) => game);
 
 	<div class="games-page__layout">
 		<div class="games-page__main">
-			<NextMatch game={nextGame} locale={locale} labels={t} />
+			<NextGames groups={nextGroups} locale={locale} labels={t} />
 
 			<section class="games-page__results" aria-labelledby="results-title">
 				<h2 class="games-title" id="results-title">{t.results}</h2>

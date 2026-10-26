@@ -1,0 +1,32 @@
+/* ── NEXT GAMES — one board per team ─────────────────────── */
+
+.next-games {
+	background: radial-gradient(
+		ellipse 26.5625rem 10.125rem at 50% 0,
+		rgb(0 255 150 / 18%),
+		transparent 70%
+	);
+}
+
+.next-row {
+	padding: 0.875rem 1rem;
+	border-bottom: var(--btn-border) rgb(0 255 150 / 35%);
+}
+
+.next-row:last-child {
+	border-bottom: none;
+}
+
+.next-games__empty {
+	color: var(--color-neon-secondary);
+}
+
+@media (max-width: 1023px) {
+	.next-games {
+		background: none;
+	}
+
+	.next-row {
+		padding: 0.625rem 0.75rem;
+	}
+}

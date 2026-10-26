@@ -3,20 +3,13 @@ import * as Tabs from "@radix-ui/react-tabs";
 import { useState } from "react";
 import { CaretDownIcon } from "@phosphor-icons/react/dist/csr/CaretDown";
 import type { Locale, Translations } from "@i18n/index";
-import type { GameResult, TeamKey } from "@features/games/types";
+import type { GameResult } from "@features/games/types";
 import { formatGameDate, getGameTeam, getSeason } from "@features/games/utils";
 import { withBase } from "@utils/urlHandler";
 import Scoreboard, { ScoreDigits } from "./Scoreboard";
 import { getSeasonCaption } from "./seasonCaptions";
+import { TEAM_ORDER, TEAM_TITLES } from "./teams";
 import "./gamesResults.css";
-
-const TEAM_ORDER: TeamKey[] = ["A", "B", "home"];
-
-const TEAM_TITLES: Record<TeamKey, string | null> = {
-	A: "TTA — Les Petites Morts",
-	B: "TTB — La Compagnie Cruelle",
-	home: null, // intraleague: the tab label is used
-};
 
 interface GamesResultsProps {
 	games: GameResult[];
@@ -42,9 +35,10 @@ const GamesResults = ({
 	nextGameLabel,
 	labels,
 }: GamesResultsProps) => {
-	// Shared by the three team panels: the open seasons stay open when the team changes
-	const [openSeasons, setOpenSeasons] = useState<string[]>([currentSeason]);
 	const seasons = getSeasons(games, currentSeason);
+	// The three latest seasons start open. Shared by the three team panels:
+	// the open seasons stay open when the team changes.
+	const [openSeasons, setOpenSeasons] = useState<string[]>(seasons.slice(0, 3));
 
 	return (
 		<Tabs.Root className="games-results" defaultValue="A">
@@ -164,9 +158,8 @@ const GameRow = ({ game, locale, detailsLabel }: GameRowProps) => {
 			</div>
 
 			<Scoreboard
-				size="row"
 				home={rdbc}
-				away={hainemy}
+				away={{ ...hainemy, subtitle: hainemy.league }}
 				label={`${rdbc.name} ${rdbc.score}, ${hainemy.name} ${hainemy.score}`}
 			>
 				<ScoreDigits homeScore={rdbc.score} awayScore={hainemy.score} />

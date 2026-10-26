@@ -4,10 +4,11 @@ import "./scoreboard.css";
 export interface ScoreboardTeam {
 	name: string;
 	logo?: string | null;
+	/** Small line under the name, e.g. the league of the opponent. */
+	subtitle?: string;
 }
 
 interface ScoreboardProps {
-	size: "next" | "row";
 	home: ScoreboardTeam;
 	away: ScoreboardTeam;
 	/** Accessible summary of the whole board, e.g. "Petites Morts 215, Valient Biitchiiz 75". */
@@ -37,12 +38,21 @@ const TeamMark = ({ team }: { team: ScoreboardTeam }) =>
 		</span>
 	);
 
-const Scoreboard = ({ size, home, away, label, children }: ScoreboardProps) => (
-	<figure className={`scoreboard scoreboard--${size}`} aria-label={label}>
+const TeamName = ({ team }: { team: ScoreboardTeam }) => (
+	<span className="scoreboard__name">
+		{team.name}
+		{team.subtitle && (
+			<small className="scoreboard__subtitle">{team.subtitle}</small>
+		)}
+	</span>
+);
+
+const Scoreboard = ({ home, away, label, children }: ScoreboardProps) => (
+	<figure className="scoreboard" aria-label={label}>
 		<div className="scoreboard__side scoreboard__side--home">
 			<div className="scoreboard__panel scoreboard__panel--home">
 				<TeamMark team={home} />
-				<span className="scoreboard__name">{home.name}</span>
+				<TeamName team={home} />
 			</div>
 		</div>
 
@@ -50,7 +60,7 @@ const Scoreboard = ({ size, home, away, label, children }: ScoreboardProps) => (
 
 		<div className="scoreboard__side scoreboard__side--away">
 			<div className="scoreboard__panel scoreboard__panel--away">
-				<span className="scoreboard__name">{away.name}</span>
+				<TeamName team={away} />
 				<TeamMark team={away} />
 			</div>
 		</div>

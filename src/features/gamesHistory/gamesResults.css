@@ -1,12 +1,14 @@
 /* ── GAMES RESULTS — team tabs + collapsible seasons ─────── */
 
-/* sticker-look badge, also used by the next match */
+/* Sizes are in rem (1rem = 16px). */
+
+/* sticker-look badge */
 .games-badge {
 	display: inline-block;
-	padding: 2px 10px;
+	padding: 0.125rem 0.625rem;
 	outline: 2px solid var(--color-white);
 	background: var(--color-bitume);
-	font-size: 12px;
+	font-size: 0.75rem;
 	font-weight: 600;
 	line-height: 1.5;
 	letter-spacing: 0.08em;
@@ -17,20 +19,20 @@
 
 .games-results__tabs {
 	display: flex;
-	gap: 8px;
-	margin-bottom: 16px;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
 }
 
 .games-tab {
-	min-height: 44px;
-	padding: 8px 22px;
+	min-height: 2.75rem;
+	padding: 0.5rem 1.375rem;
 	border: var(--btn-border) var(--color-neon-primary);
 	border-radius: var(--btn-radius);
 	background: transparent;
-	box-shadow: 3px 3px 0 var(--color-neon-primary);
+	box-shadow: 0.1875rem 0.1875rem 0 var(--color-neon-primary);
 	color: var(--color-text-main);
 	font-family: var(--font-display);
-	font-size: 14px;
+	font-size: 0.875rem;
 	letter-spacing: 0.06em;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -40,7 +42,7 @@
 	background: var(--color-neon-primary);
 	box-shadow: none;
 	color: var(--color-bitume);
-	transform: translate(3px, 3px);
+	transform: translate(0.1875rem, 0.1875rem);
 }
 
 .games-tab:focus-visible {
@@ -57,7 +59,7 @@
 /* ── Seasons ────────────────────────────────────────────── */
 
 .season {
-	margin-bottom: 16px;
+	margin-bottom: 1rem;
 	border: var(--btn-border) var(--color-neon-primary);
 	background: var(--color-bitume);
 }
@@ -69,10 +71,10 @@
 .season__trigger {
 	display: flex;
 	align-items: center;
-	gap: 16px;
+	gap: 1rem;
 	width: 100%;
-	min-height: 64px;
-	padding: 16px 20px;
+	min-height: 4rem;
+	padding: 1rem 1.25rem;
 	border: none;
 	background: transparent;
 	color: inherit;
@@ -89,26 +91,26 @@
 .season__name {
 	flex: 1 1 auto;
 	font-family: var(--font-display);
-	font-size: 22px;
+	font-size: 1.375rem;
 	text-transform: uppercase;
-	text-shadow: 0 0 8px var(--color-neon-primary);
+	text-shadow: 0 0 0.5rem var(--color-neon-primary);
 }
 
 .season__meta {
 	display: flex;
 	align-items: center;
-	gap: 16px;
+	gap: 1rem;
 }
 
 .season__count {
-	font-size: 14px;
+	font-size: 0.875rem;
 	color: var(--color-neon-secondary);
 }
 
 .season__chevron {
 	flex: 0 0 auto;
-	width: 24px;
-	height: 24px;
+	width: 1.5rem;
+	height: 1.5rem;
 	color: var(--color-neon-primary);
 	transition: transform 0.25s ease;
 }
@@ -123,7 +125,7 @@
 
 .season__content {
 	overflow: hidden;
-	padding: 20px;
+	padding: 1.25rem;
 }
 
 .season__content[data-state="open"] {
@@ -170,44 +172,15 @@
 	}
 }
 
-/* ── Board: team band, caption, rows ────────────────────── */
-
-.games-board {
-	border: var(--btn-border) var(--color-neon-primary);
-	background: rgb(8 20 75 / 70%);
-}
-
-.games-board__band {
-	padding: 8px 16px;
-	background: var(--color-surface);
-	border-bottom: var(--btn-border) var(--color-neon-primary);
-	font-size: 14px;
-	font-weight: 600;
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
-}
-
-.games-board__caption {
-	padding: 10px 16px;
-	border-bottom: var(--btn-border) rgb(0 255 150 / 35%);
-	font-size: 14px;
-	color: var(--color-neon-secondary);
-}
-
-.games-board__empty {
-	padding: 20px 16px;
-	color: var(--color-neon-secondary);
-}
-
 /* ── Row ────────────────────────────────────────────────── */
 
 .games-row {
 	position: relative;
 	display: grid;
-	grid-template-columns: 130px minmax(0, 1fr);
+	grid-template-columns: 8.125rem minmax(0, 1fr);
 	align-items: center;
-	column-gap: 24px;
-	padding: 14px 16px;
+	column-gap: 1.5rem;
+	padding: 0.875rem 1rem;
 	border-bottom: var(--btn-border) rgb(0 255 150 / 35%);
 }
 
@@ -216,14 +189,14 @@
 }
 
 .games-row__meta {
-	font-size: 14px;
+	font-size: 0.875rem;
 	line-height: 1.4;
 	color: var(--color-neon-secondary);
 }
 
 .games-row__date {
 	display: block;
-	font-size: 16px;
+	font-size: 1rem;
 	color: var(--color-text-main);
 }
 
@@ -233,7 +206,7 @@
 
 .games-row__more {
 	display: inline-block;
-	margin-top: 4px;
+	margin-top: 0.25rem;
 	font-weight: 600;
 	color: var(--color-text-main);
 }
@@ -260,40 +233,46 @@
 	.games-results__tabs {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
+		margin-bottom: 0.875rem;
 	}
 
 	.games-tab {
-		padding: 6px 4px;
-		font-size: 12px;
+		padding: 0.375rem 0.25rem;
+		font-size: 0.75rem;
 		letter-spacing: 0.04em;
 	}
 
+	.games-badge {
+		padding: 0.0625rem 0.5rem;
+		font-size: 0.6875rem;
+	}
+
 	.season {
-		margin-bottom: 12px;
+		margin-bottom: 0.75rem;
 	}
 
 	/* name, then badge and count on a second line; chevron on the right */
 	.season__trigger {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) auto;
-		column-gap: 12px;
-		row-gap: 2px;
+		column-gap: 0.75rem;
+		row-gap: 0.125rem;
 		align-items: center;
-		min-height: 60px;
-		padding: 10px 14px;
+		min-height: 3.75rem;
+		padding: 0.625rem 0.875rem;
 	}
 
 	.season__name {
-		font-size: 17px;
+		font-size: 1.0625rem;
 	}
 
 	.season__meta {
 		grid-column: 1;
-		gap: 10px;
+		gap: 0.625rem;
 	}
 
 	.season__count {
-		font-size: 13px;
+		font-size: 0.8125rem;
 	}
 
 	.season__chevron {
@@ -302,43 +281,27 @@
 	}
 
 	.season__content {
-		padding: 12px;
-	}
-
-	.games-board__band {
-		padding: 6px 12px;
-		font-size: 12px;
-		letter-spacing: 0.05em;
-	}
-
-	.games-board__caption {
-		padding: 8px 12px;
-		font-size: 13px;
-		line-height: 1.45;
-	}
-
-	.games-board__empty {
-		padding: 14px 12px;
+		padding: 0.75rem;
 	}
 
 	/* date line on top, scoreboard below */
 	.games-row {
 		grid-template-columns: 1fr;
-		row-gap: 6px;
-		padding: 8px 12px 10px;
+		row-gap: 0.375rem;
+		padding: 0.5rem 0.75rem 0.625rem;
 	}
 
 	.games-row__meta {
 		display: flex;
 		align-items: baseline;
-		gap: 8px;
-		font-size: 13px;
+		gap: 0.5rem;
+		font-size: 0.8125rem;
 		line-height: 1.35;
 	}
 
 	.games-row__date {
 		display: inline;
-		font-size: 15px;
+		font-size: 0.9375rem;
 	}
 
 	.games-row__stage {
@@ -347,6 +310,6 @@
 
 	.games-row__more {
 		margin: 0 0 0 auto;
-		font-size: 13px;
+		font-size: 0.8125rem;
 	}
 }

@@ -149,24 +149,51 @@ export const RESULTS: GameResult[] = [
 
 // Placeholder fixtures: dates, opponents and venues are still to be provided.
 export const UPCOMING_GAMES: UpcomingGame[] = [
+	// TTA: a plateau with two games at home
 	{
 		id: "u1",
 		date: "2026-11-14T14:00:00",
 		team: "A",
 		competition: "[Compétition]",
+		event: "[Plateau]",
 		venue: "[Lieu]",
 		isHome: true,
 		rdbc: { name: "Petites Morts", logo: mummy.src },
-		opponent: { name: "[Adversaire]", league: "[Ligue]", logo: null },
+		opponent: {
+			name: "[Adversaire 1]",
+			league: "[Ligue de l'adversaire]",
+			logo: null,
+		},
 	},
 	{
 		id: "u2",
+		date: "2026-11-15T11:00:00",
+		team: "A",
+		competition: "[Compétition]",
+		event: "[Plateau]",
+		venue: "[Lieu]",
+		isHome: true,
+		rdbc: { name: "Petites Morts", logo: mummy.src },
+		opponent: {
+			name: "[Adversaire 2]",
+			league: "[Ligue de l'adversaire]",
+			logo: null,
+		},
+	},
+	// TTB: a single game away
+	{
+		id: "u3",
 		date: "2026-11-21T16:00:00",
 		team: "B",
 		competition: "[Compétition]",
+		event: "[Événement]",
 		venue: "[Lieu]",
 		isHome: false,
 		rdbc: { name: "Compagnie Cruelle", logo: mummy.src },
-		opponent: { name: "[Adversaire]", league: "[Ligue]", logo: null },
+		opponent: {
+			name: "[Adversaire 3]",
+			league: "[Ligue de l'adversaire]",
+			logo: null,
+		},
 	},
 ];

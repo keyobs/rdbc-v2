@@ -35,7 +35,7 @@ const fr = {
 	},
 	games: {
 		title: "Matchs",
-		nextMatch: "Prochain match",
+		nextGames: "Prochains matchs",
 		noNextMatch: "Aucun match programmé pour le moment.",
 		results: "Résultats",
 		teamsLabel: "Équipe",
@@ -47,12 +47,9 @@ const fr = {
 		noGamesTeam: "Aucun match enregistré pour cette équipe.",
 		noGamesYet: "Pas encore de match joué cette saison.",
 		nextMatchIs: "Prochain match :",
-		home: "Domicile",
-		away: "Extérieur",
 		homeChip: "DOM",
 		awayChip: "EXT",
 		details: "Détails",
-		moreInfo: "Infos du match",
 		challengeTitle: "Vous voulez nous affronter ?",
 		challengeText:
 			"Une équipe, une ligue, un match amical : écrivez-nous et on cherche une date ensemble.",

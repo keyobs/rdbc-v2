@@ -27,9 +27,20 @@ export interface UpcomingGame {
 	date: string;
 	team: TeamKey;
 	competition: string;
+	/** Games of the same plateau share the same competition and event. */
+	event: string;
 	venue: string;
 	isHome: boolean;
 	rdbc: Pick<TeamInfo, "name" | "logo">;
 	opponent: Pick<TeamInfo, "name" | "league" | "logo">;
 	detailsHref?: string;
+}
+
+/** The next event of a team: one game, or several for a plateau. */
+export interface NextGamesGroup {
+	team: TeamKey;
+	competition: string;
+	event: string;
+	venue: string;
+	games: UpcomingGame[];
 }
