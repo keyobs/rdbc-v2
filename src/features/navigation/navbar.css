@@ -12,6 +12,11 @@
 	display: flex;
 	align-items: center;
 	gap: 24px;
+
+	li {
+		min-width: 3.75rem;
+		text-align: center;
+	}
 }
 
 /* ── spotlight ───────────────────────────────────────────── */
@@ -35,10 +40,12 @@
 }
 
 /* ── links ────────────────────────────────────────────────── */
+/* The link fills its item: the click area is at least 3.75rem wide */
 .navbar__links a:not(.btn-shiny):not(.lang-switch__btn) {
 	position: relative;
-	display: inline-flex;
+	display: flex;
 	align-items: center;
+	justify-content: center;
 	padding: 4px 0;
 	font-size: 0.8rem;
 	text-transform: uppercase;

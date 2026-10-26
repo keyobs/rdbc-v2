@@ -9,6 +9,9 @@
 }
 
 .lang-switch__btn {
+	display: inline-block;
+	min-width: 3.75rem;
+	text-align: center;
 	text-decoration: none;
 	color: var(--color-text-main);
 	opacity: 0.5;
