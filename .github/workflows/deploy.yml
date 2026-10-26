@@ -44,7 +44,7 @@ jobs:
       # Requires: add to GitHub → Settings → Secrets → Actions:
       #   FTP_SERVER / FTP_USERNAME / FTP_PASSWORD
       - name: 📡 Deploy to OVH via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
