@@ -14,8 +14,8 @@ export default function RDBC({ data, locale }: RDBCProps) {
 	return (
 		<main className="rdbc-book">
 			<PageClub data={data} locale={locale} />
-			<PageClubLife data={data} locale={locale} />
 			<PagePlayDerby data={data} locale={locale} />
+			<PageClubLife data={data} locale={locale} />
 		</main>
 	);
 }
