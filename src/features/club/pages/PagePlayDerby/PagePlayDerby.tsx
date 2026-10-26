@@ -128,6 +128,7 @@ const LABELS = {
 		interests: "Je suis intéressé·e par",
 		email: "Email",
 		message: "Message",
+		copy: "Recevoir une copie de mon message",
 		send: "Envoyer",
 		sending: "Envoi en cours…",
 		sent: "Message envoyé — à très vite !",
@@ -153,6 +154,7 @@ const LABELS = {
 		interests: "I'm interested in",
 		email: "Email",
 		message: "Message",
+		copy: "Send me a copy of my message",
 		send: "Send",
 		sending: "Sending…",
 		sent: "Message sent — see you soon!",
@@ -445,6 +447,11 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 												required
 												maxLength={2000}
 											/>
+										</label>
+
+										<label className="checkbox copy">
+											<input type="checkbox" name="copy" value="1" />
+											<span>{t.copy}</span>
 										</label>
 
 										<div className="actions">

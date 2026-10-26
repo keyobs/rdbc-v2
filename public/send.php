@@ -78,4 +78,28 @@ if (!mail(RECIPIENT, $subject, $body, implode("\r\n", $headers))) {
 }
 
 touch($stamp);
+
+// Optional copy for the sender, only when they ticked the box.
+// A failure here never fails the request: the club already got the message.
+if (!empty($_POST['copy'])) {
+    $copyIntro = $locale === 'en'
+        ? "Here is a copy of the message you sent to Roller Derby Bordeaux Club.\nWe will get back to you soon."
+        : "Voici une copie du message que vous avez envoyé au Roller Derby Bordeaux Club.\nNous reviendrons vers vous rapidement.";
+    $copySubject = $locale === 'en'
+        ? 'Copy of your message to RDBC'
+        : 'Copie de votre message au RDBC';
+    $copyHeaders = [
+        'From: Roller Derby Bordeaux Club <' . SENDER . '>',
+        'Reply-To: ' . RECIPIENT,
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+    ];
+    mail(
+        $email,
+        '=?UTF-8?B?' . base64_encode($copySubject) . '?=',
+        $copyIntro . "\n\n---\n\n" . $body,
+        implode("\r\n", $copyHeaders)
+    );
+}
+
 respond(200);
