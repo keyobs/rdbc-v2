@@ -1,85 +1,164 @@
+/* ── JOIN — "Viens comme tu es" ──────────────────────────── */
+
 .club-joining {
-	--card-bg: #ffffff;
-	--text-main: #999999;
-	--text-heading: #343a40;
-	--accent-color: #ff0055;
+	padding-top: 96px;
+	padding-bottom: 96px;
+}
 
-	padding: 6em 0;
-	font-family: "Lato", sans-serif;
+.club-joining__title {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: 56px;
+	line-height: 1.05;
+	text-transform: uppercase;
+	text-shadow: 0 0 8px var(--color-neon-primary);
+}
 
-	& .positions-container {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 0 20px;
+.club-joining__subtitle {
+	margin: 10px 0 44px;
+	max-width: 520px;
+	color: var(--color-neon-secondary);
+}
+
+.club-joining__grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 28px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* ── Card ───────────────────────────────────────────────── */
+
+.join-card {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	height: 100%;
+	min-height: 260px;
+	padding: 24px;
+	border: var(--btn-border) var(--color-neon-primary);
+	border-radius: 0;
+	background: var(--color-bitume);
+	box-shadow: 4px 4px 0 var(--color-neon-primary);
+	color: var(--color-text-main);
+	text-decoration: none;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease,
+		background 0.2s ease;
+}
+
+/* destructured grid: 3rd and 4th cards are tilted */
+.club-joining__item:nth-child(3) .join-card,
+.club-joining__item:nth-child(4) .join-card {
+	transform: rotate(-1.5deg);
+}
+
+.join-card__icon {
+	width: 48px;
+	height: 48px;
+	color: var(--color-neon-primary);
+}
+
+.join-card__title {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: 26px;
+	text-transform: uppercase;
+	text-shadow: 0 0 8px var(--color-neon-primary);
+}
+
+.join-card__description {
+	flex: 1 1 auto;
+	margin: 0;
+}
+
+.join-card__more {
+	font-weight: 600;
+	color: var(--color-neon-secondary);
+}
+
+a.join-card:active,
+a.join-card:focus-visible {
+	background: var(--color-surface);
+}
+
+a.join-card:focus-visible {
+	outline: 2px solid var(--color-white);
+	outline-offset: 3px;
+}
+
+@media (hover: hover) {
+	a.join-card:hover {
+		background: var(--color-surface);
+		box-shadow: 6px 6px 0 var(--color-neon-primary);
+		transform: translate(-2px, -2px);
 	}
 
-	& .positions-grid {
-		display: grid;
-		grid-template-columns: repeat(1, 1fr);
-		gap: 30px;
-
-		@media (min-width: 768px) {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		@media (min-width: 1024px) {
-			grid-template-columns: repeat(4, 1fr);
-		}
-	}
-
-	& .position-item {
-		display: flex;
-		align-items: stretch;
-		animation: position-fade-up 600ms ease-out both;
-		animation-delay: var(--position-delay, 0ms);
-	}
-
-	& .position-card {
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-		padding: 25px;
-		background: var(--card-bg);
-		border-radius: 4px;
-		transition: transform 0.3s ease;
-
-		&:hover {
-			transform: translateY(-5px);
-		}
-
-		& .icon-box {
-			flex-shrink: 0;
-			margin-right: 20px;
-			color: var(--accent-color);
-			font-size: 40px;
-		}
-
-		& .content-box {
-			& .heading {
-				margin: 0 0 15px 0;
-				color: var(--text-heading);
-				font-weight: 600;
-				font-size: 18px;
-			}
-
-			& .description {
-				margin: 0;
-				color: var(--text-main);
-				font-size: 15px;
-				line-height: 1.6;
-			}
-		}
+	.club-joining__item:nth-child(3) a.join-card:hover,
+	.club-joining__item:nth-child(4) a.join-card:hover {
+		transform: rotate(-1.5deg) translate(-2px, -2px);
 	}
 }
 
-@keyframes position-fade-up {
-	from {
-		opacity: 0;
-		transform: translateY(30px);
+/* ── Narrow desktop: four cards are too tight for the display titles ── */
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+	.club-joining__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+/* ── Mobile ─────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+	.club-joining {
+		padding-top: 56px;
+		padding-bottom: 56px;
 	}
 
-	to {
-		opacity: 1;
-		transform: translateY(0);
+	.club-joining__title {
+		font-size: 34px;
+	}
+
+	.club-joining__subtitle {
+		margin: 8px 0 24px;
+	}
+
+	.club-joining__grid {
+		grid-template-columns: 1fr;
+		gap: 18px;
+	}
+
+	/* icon on the left, text on the right */
+	.join-card {
+		display: grid;
+		grid-template-columns: 44px 1fr;
+		column-gap: 16px;
+		row-gap: 4px;
+		min-height: 0;
+		padding: 18px;
+	}
+
+	.join-card__icon {
+		grid-row: 1 / span 3;
+		width: 44px;
+		height: 44px;
+	}
+
+	.join-card__title,
+	.join-card__description,
+	.join-card__more {
+		grid-column: 2;
+	}
+
+	.join-card__title {
+		font-size: 22px;
+	}
+
+	.join-card__description {
+		font-size: 15px;
 	}
 }

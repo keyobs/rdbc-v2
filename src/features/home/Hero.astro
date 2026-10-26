@@ -1,0 +1,55 @@
+---
+import { Image } from "astro:assets";
+import { type Locale, useTranslations } from "@i18n/index";
+import matchPeak from "../../assets/hero/match_peak_1-1.jpg";
+import matchMisty from "../../assets/hero/match_misty_1-3.jpg";
+import trainKiwi from "../../assets/hero/train_kiwi_block.jpeg";
+import "./hero.css";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale).home.photos;
+
+const BIG_SIZES = "(max-width: 1023px) 100vw, 66vw";
+const SMALL_SIZES = "(max-width: 1023px) 50vw, 33vw";
+---
+
+<section class="home-wrap hero" aria-label={t.label}>
+	<div class="hero__mosaic">
+		<figure class="hero__figure">
+			<Image
+				class="hero__img"
+				src={matchPeak}
+				alt={t.matchPeakAlt}
+				widths={[640, 960, 1280]}
+				sizes={BIG_SIZES}
+			/>
+			<figcaption class="hero__caption">{t.matchCaption}</figcaption>
+		</figure>
+		<figure class="hero__figure">
+			<Image
+				class="hero__img"
+				src={matchMisty}
+				alt={t.matchMistyAlt}
+				widths={[480, 720, 960]}
+				sizes={SMALL_SIZES}
+			/>
+			<figcaption class="hero__caption hero__caption--desktop-only">
+				{t.plateauCaption}
+			</figcaption>
+		</figure>
+		<figure class="hero__figure">
+			<Image
+				class="hero__img"
+				src={trainKiwi}
+				alt={t.trainKiwiAlt}
+				widths={[480, 720, 960]}
+				sizes={SMALL_SIZES}
+			/>
+			<figcaption class="hero__caption">{t.trainingCaption}</figcaption>
+		</figure>
+	</div>
+</section>

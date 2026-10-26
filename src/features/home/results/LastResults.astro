@@ -1,0 +1,84 @@
+---
+import { type Locale, useTranslations } from "@i18n/index";
+import { RESULTS } from "../score/resultsData";
+import { formatGameDate, getGroupedResults } from "../score/utils";
+import { CLUB_LINE, TEAM_BOARDS } from "./teamBoards";
+import "./lastResults.css";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale).home;
+const dateLocale = locale === "fr" ? "fr-FR" : "en-US";
+
+const grouped = getGroupedResults(RESULTS, true);
+const boards = TEAM_BOARDS.map((board) => ({
+	...board,
+	games: grouped[board.team],
+})).filter((board) => board.games.length > 0);
+---
+
+<section class="home-wrap last-results" aria-labelledby="results-title">
+	<h2 class="last-results__title" id="results-title">{t.latestResults}</h2>
+
+	{boards.map((board) => (
+		<div class="results-board">
+			<div class="results-board__band">{board.title}</div>
+			<p class="results-board__caption">{board.caption[locale]}</p>
+
+			{board.games.map((game) => {
+				const rdbcWins = game.rdbc.score > game.hainemy.score;
+				return (
+					<article class="results-row">
+						<div class="results-row__top">
+							{game.poster && (
+								<img
+									class="results-row__poster"
+									src={game.poster}
+									alt=""
+									loading="lazy"
+								/>
+							)}
+							<div class="results-row__meta">
+								<time class="results-row__date" datetime={game.date}>
+									{formatGameDate(game.date, dateLocale)}
+								</time>
+								{game.event}
+							</div>
+						</div>
+
+						<div class="results-score">
+							<span class="results-score__team results-score__team--home">
+								{game.rdbc.name}
+								<small>{CLUB_LINE}</small>
+							</span>
+							<span
+								class:list={[
+									"results-score__points",
+									rdbcWins ? "is-winner" : "is-loser",
+								]}
+							>
+								{game.rdbc.score}
+							</span>
+							<span class="results-score__sep" aria-hidden="true">–</span>
+							<span
+								class:list={[
+									"results-score__points",
+									rdbcWins ? "is-loser" : "is-winner",
+								]}
+							>
+								{game.hainemy.score}
+							</span>
+							<span class="results-score__team">
+								{game.hainemy.name}
+								{game.hainemy.league && <small>{game.hainemy.league}</small>}
+							</span>
+						</div>
+					</article>
+				);
+			})}
+		</div>
+	))}
+</section>
