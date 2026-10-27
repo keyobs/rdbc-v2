@@ -97,7 +97,7 @@ const NOTIONS_QUERY = `
 		{
 			"_key": "contact",
 			"number": "08",
-			"title": { "fr": "Du contact", "en": "Contact" },
+			"title": { "fr": "Des contacts", "en": "Contact" },
 			"summary": {
 				"fr": "La confrontation physique est autorisée et strictement encadrée.",
 				"en": "Physical confrontation is allowed, and strictly regulated."

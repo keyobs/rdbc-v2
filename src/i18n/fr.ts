@@ -7,7 +7,7 @@ const fr = {
 		rules: "le jeu",
 		sport: "le sport",
 		competitions: "matchs",
-		events: "events",
+		events: "news",
 		blog: "blog",
 		contact: "contact",
 		join: "rejoindre",
@@ -63,6 +63,71 @@ const fr = {
 		championships: "Les champs sur MyRollerDerby",
 		newTab: "(s'ouvre dans un nouvel onglet)",
 		clubLine: "Roller Derby Bordeaux",
+	},
+	sport: {
+		track: {
+			eyebrow: "L’espace de jeu",
+			title: "Le track",
+			directionLabel: "Sens du jeu",
+			upNext: "À suivre",
+			restart: "Recommencer",
+			previous: "Situation précédente",
+			next: "Situation suivante",
+			situationsLabel: "Situations de jeu",
+			keyLabel: "Légende",
+			credit: "© Copyright – inspiré par le",
+			creditLink: "MagneticBoard",
+			creditAuthor: "de Wonder Zebra",
+			situations: {
+				track: {
+					title: "Le track",
+					text: "On joue sur une piste ovale et plate d’environ 27 × 17 m, délimitée par des bordures au sol, souvent doublée d’une corde. Avec la zone de sécurité à l’extérieur et la voie des arbitres, on arrive à une zone de 33 × 23 m. On tourne dans le sens inverse des aiguilles d’une montre.",
+				},
+				inBounds: {
+					title: "Jouer dans les limites",
+					text: "Chaque équipe aligne 4 blockers et 1 jammer. Une joueuse est dans les limites tant que ses patins touchent l’intérieur du track ou ses bordures. Hors des limites du track, elle ne peut plus interagir (bloquer, aider, marquer).",
+				},
+				officials: {
+					title: "Les arbitres à l’extérieur du track",
+					text: "7 arbitres en patins suivent le jeu sans jamais y prendre part : 1 pour chaque jammer, 2 suivent le pack depuis l’intérieur, 3 depuis l’extérieur du track.",
+				},
+				pack: {
+					title: "La définition du pack",
+					text: "Le pack est le plus grand groupe de blockers des deux équipes, à moins de 3 m les unes des autres. Les jammers n’en font jamais partie.",
+				},
+				engagement: {
+					title: "La zone d’engagement",
+					text: "Elle correspond à la zone de jeu autorisée pour les blockers. Elle s’étend jusqu’à 6 m devant et derrière le pack. Elle est donc mobile, car elle se modifie avec les mouvements et les repositionnements des blockers.",
+				},
+				jammers: {
+					title: "Les jammers ne font pas partie du pack",
+					text: "Le pack et la zone d’engagement se calculent uniquement avec les blockers. Une jammer peut être devant, dedans ou derrière : elle ne les déplace jamais.",
+				},
+				inZone: {
+					title: "Quand les jammers sont dans la zone d’engagement",
+					text: "La jammer verte est à l’arrière du pack, dans la zone d’engagement : les blockers bleues peuvent la bloquer. La jammer bleue sort du pack. Tant qu’elle est dans la zone d’engagement, les blockers vertes peuvent la bloquer.",
+				},
+				outOfZone: {
+					title: "Quand les jammers sont hors du pack",
+					text: "Hors de la zone d’engagement, les blockers ne peuvent plus toucher les jammers. En revanche, les jammers ont le droit d’entrer en contact à n’importe quel endroit du track.",
+				},
+			},
+			keys: {
+				pivotLine:
+					"Pivot line : au départ, les blockers se placent entre la ligne des pivots et la ligne des jammers",
+				jammerLine:
+					"Jammer line : au départ, les jammers se placent derrière cette ligne",
+				safety: "Zone de sécurité et voie des arbitres",
+				blocker: "Blocker",
+				pivot: "Pivot",
+				jammer: "Jammer",
+				teams: "Deux équipes : vertes et bleues",
+				official: "Arbitre",
+				jammerRef: "Arbitre de jammer",
+				pack: "Pack",
+				engagement: "Zone d’engagement",
+			},
+		},
 	},
 	footer: {
 		tagline: "Roller Derby Bordeaux Club",

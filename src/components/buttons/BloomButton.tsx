@@ -1,5 +1,5 @@
 import "./bloomButton.css";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 interface BloomButtonProps {
 	borderGradientColor: string;

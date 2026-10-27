@@ -1,0 +1,95 @@
+/* Pictograms shared by the diagram and the legend */
+.track-slider {
+	.skater {
+		.disc {
+			stroke: var(--color-bitume);
+			stroke-width: 0.25;
+		}
+
+		&.green .disc {
+			fill: var(--color-neon-primary);
+		}
+
+		&.blue .disc {
+			fill: var(--color-neon-blue);
+		}
+
+		.ring {
+			fill: none;
+			stroke: var(--color-bitume);
+			stroke-width: 0.14;
+			opacity: 0.45;
+		}
+
+		.stripe {
+			stroke: var(--color-bitume);
+			stroke-width: 0.6;
+		}
+
+		.star {
+			fill: var(--color-bitume);
+		}
+	}
+
+	.official {
+		.disc {
+			fill: var(--color-white);
+			stroke: var(--color-bitume);
+			stroke-width: 0.25;
+		}
+
+		.stripe {
+			stroke: var(--color-bitume);
+			stroke-width: 0.24;
+		}
+
+		.star {
+			stroke: var(--color-bitume);
+			stroke-width: 0.1;
+		}
+
+		.star.green {
+			fill: var(--color-neon-primary);
+		}
+
+		.star.blue {
+			fill: var(--color-neon-blue);
+		}
+	}
+
+	.key-icon {
+		flex: none;
+		width: 1.6rem;
+		height: 1.6rem;
+		border-radius: 4px;
+		background: var(--bg-dark);
+
+		.start-line,
+		.safety-line {
+			stroke: var(--color-action);
+			stroke-width: 0.5;
+		}
+
+		.safety-line {
+			stroke-width: 0.35;
+			stroke-dasharray: 0.8 0.6;
+		}
+
+		.pivot-line {
+			animation: blink-pivot 1.2s steps(1) infinite;
+		}
+
+		.jammer-line {
+			animation: blink-jammer 1.2s steps(1) infinite;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.track-slider .key-icon {
+		.pivot-line,
+		.jammer-line {
+			animation: none;
+		}
+	}
+}

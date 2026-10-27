@@ -2,7 +2,7 @@ import "./feed.css";
 import "./feedDesktop.css";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "motion/react";
 import type { FeedItem, Locale } from "./types";
 import { getTheme } from "./themes";
 import {

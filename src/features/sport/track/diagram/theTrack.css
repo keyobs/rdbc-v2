@@ -1,0 +1,84 @@
+.the-track {
+	position: relative;
+	background: var(--bg-dark);
+	padding: 30px;
+	border: 1px solid transparent;
+	border-radius: 12px;
+
+	svg {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.boundary,
+	.marker {
+		fill: none;
+		stroke: var(--color-action);
+	}
+
+	.boundary {
+		stroke-width: 0.4;
+	}
+
+	.marker {
+		stroke-width: 0.15;
+	}
+
+	.safety {
+		fill: none;
+		stroke: var(--color-action);
+		stroke-width: 0.25;
+		stroke-dasharray: 1 0.8;
+	}
+
+	.play-direction {
+		fill: none;
+		stroke: var(--color-text-main);
+		stroke-width: 0.3;
+		stroke-linecap: square;
+	}
+
+	.play-direction-label {
+		fill: var(--color-text-main);
+		font-family: var(--font-body);
+		font-size: 1.6px;
+		font-weight: 700;
+		letter-spacing: 0.2px;
+		text-anchor: middle;
+		text-transform: uppercase;
+	}
+
+	&.highlight-start .pivot-line {
+		animation: blink-pivot 1.2s steps(1) infinite;
+	}
+
+	&.highlight-start .jammer-line {
+		animation: blink-jammer 1.2s steps(1) infinite;
+	}
+}
+
+@keyframes blink-pivot {
+	0% {
+		stroke: var(--color-action);
+	}
+	50% {
+		stroke: var(--color-neon-blue);
+	}
+}
+
+@keyframes blink-jammer {
+	0% {
+		stroke: var(--color-action);
+	}
+	50% {
+		stroke: var(--color-zone);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.the-track.highlight-start .pivot-line,
+	.the-track.highlight-start .jammer-line {
+		animation: none;
+	}
+}

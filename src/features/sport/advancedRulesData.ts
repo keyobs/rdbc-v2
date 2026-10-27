@@ -17,7 +17,7 @@ const ADVANCED_RULES_QUERY = `
 		{ "_key": "initial-pass", "number": "06", "title": { "fr": "L’initial Pass", "en": "Initial Pass" } },
 		{ "_key": "scoring-pass", "number": "07", "title": { "fr": "Le Passage au Score", "en": "Scoring pass" } },
 		{ "_key": "star-pass", "number": "08", "title": { "fr": "Le Star Pass", "en": "Star pass" } },
-		{ "_key": "basic-strategies", "number": "09", "title": { "fr": "Stratégies de Bases", "en": "Basic strategies" } },
+		{ "_key": "basic-strategies", "number": "09", "title": { "fr": "Stratégies de Base", "en": "Basic strategies" } },
 		{ "_key": "advanced-strategies", "number": "10", "title": { "fr": "Stratégies Avancées", "en": "Advanced strategies" } },
 		{ "_key": "penalties", "number": "11", "title": { "fr": "Les Pénalités", "en": "Penalties" } },
 		{ "_key": "position-fouls", "number": "12", "title": { "fr": "Les fautes de Position", "en": "Positional fouls" } },

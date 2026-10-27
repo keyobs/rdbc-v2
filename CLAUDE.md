@@ -12,7 +12,7 @@
 | `sanity` | `^5.24.0` | Studio standalone dans `./sanity/` |
 | TypeScript | strict via `astro/tsconfigs/strict` | |
 | `@radix-ui/react-dialog` | `^1.1.15` | Interactions (Drawer, Modal…) |
-| `framer-motion` | `^12.39.0` | Animations spring |
+| `motion` | `^14.6.0` | Animations spring — import depuis `motion/react` (ex-Framer Motion) |
 | `@phosphor-icons/react` | `^2.1.10` | Icônes Bold |
 | `@astrojs/sitemap` | ⚠️ non installé | À ajouter — J11 |
 | Vitest + Testing Library | ⚠️ non installé | À ajouter — J2 |
@@ -49,7 +49,7 @@
 **Composants**
 - Radix UI pour toute interaction complexe (Drawer, Modal, Accordion, Dialog)
 - Phosphor Icons, weight **Bold**, couleur `--color-neon-primary`
-- Framer Motion pour toutes les transitions (spring physics, jamais `linear`)
+- Motion (`motion/react`) pour toutes les transitions (spring physics, jamais `linear`)
 
 **Boutons — "The 80s Switch"**
 - `border-radius: 0` (coins droits)
@@ -63,7 +63,7 @@
 - Enhancement desktop : `@media (hover: hover)` pour les effets au survol
 - Exemple : flip des cards joueuses = tap mobile, survol desktop via `@media (hover: hover)`
 - Actions primaires dans les 40% bas de l'écran (thumb zone)
-- Navigation : bottom-sheet drawer (Radix + Framer Motion)
+- Navigation : bottom-sheet drawer (Radix + Motion)
 - Micro-animations : flicker sur bordures néon (CSS keyframes), transitions drawer spring
 
 **Typographie**
@@ -87,6 +87,7 @@
 - Après toute modification de schéma : `npx sanity typegen generate`
 - Webhook : publication Sanity → `repository_dispatch` GitHub → rebuild automatique
 
+
 ## Style de dev
 
 ### Git workflow
@@ -106,7 +107,7 @@
 - Toujours vérifier `package.json` avant de répondre à une question sur une dépendance
 - Docs en priorité : [docs/](docs/), [devdx/](devdx/) du projet, puis **Context7** pour la doc officielle des libs
 - Toujours cibler la **dernière version** des dépendances (Context7 + GitHub releases)
-- Pour les APIs Sanity, Astro, Radix, Framer : se référer à la doc officielle, pas à la mémoire d'entraînement
+- Pour les APIs Sanity, Astro, Radix, Motion : se référer à la doc officielle, pas à la mémoire d'entraînement
 
 ### Architecture
 - **Colocation** : tous les fichiers d'une feature ensemble dans son dossier
@@ -123,6 +124,9 @@
 Composants fonctionnels uniquement — pas de class components
 Imports React : hooks nommés individuellement — import { useState, useEffect } from 'react'
 Imports : chemin direct par composant pour toutes les libs tant que possible — import Drawer from '@mui/material/Drawer' plutôt que import { Drawer } from '@mui/material'
+
+### use of useEffect
+Prefer calculate during render. Events in handlers. Reset with key. useMemo for expensive pure work. Effects only to sync external systems.
 
 ### State management
 - `useState` / `useReducer` pour l'état local au composant

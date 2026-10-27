@@ -43,4 +43,5 @@ Thumbs.db
 devdx/*
 *-specs.md
 skills/
+.agents/*
 design/

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import type { ClubPage } from "../../../../../sanity/sanity.types";
 import type { Locale } from "@i18n/index";
 import { withBase } from "@utils/urlHandler";
@@ -14,9 +14,9 @@ const DUMMY_SESSIONS = [
 	{
 		_key: "s1",
 		label: { fr: "Session technique", en: "Skating training" },
-		days: ["mercredi"],
-		time_start: "19:30",
-		time_end: "21:30",
+		days: ["mardi"],
+		time_start: "20:30",
+		time_end: "22:30",
 		location_name: "Le Dépôt, Darwin",
 		location_adress: "87 Quai des Queyries, Bordeaux",
 		maps_query:

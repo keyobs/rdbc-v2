@@ -1,6 +1,7 @@
-import type { Locale } from "@i18n/index";
+import { useTranslations, type Locale } from "@i18n/index";
 import AdvancedRules from "./AdvancedRules";
 import NotionCard from "./NotionCard";
+import TrackSlider from "./track/TrackSlider";
 import type { Notion } from "./types";
 import "./the-sport.css";
 
@@ -15,6 +16,8 @@ const TheSportPage = ({
 	advancedRules,
 	locale,
 }: TheSportPageProps) => {
+	const t = useTranslations(locale);
+
 	return (
 		<main className="sport-page">
 			<section className="sport-intro section">
@@ -43,7 +46,7 @@ const TheSportPage = ({
 
 						<p>
 							Derrière ce principe simple se cache un sport rapide, stratégique,
-							trés collectif et réclamant un engagement intense.
+							trés collectif, réclamant un engagement intense.
 						</p>
 					</div>
 				</div>
@@ -76,42 +79,11 @@ const TheSportPage = ({
 			</section>
 
 			<section className="track section">
-				<div className="section__inner section__inner--split">
-					<div className="track__visual">
-						<div className="track-placeholder">
-							<span>Schéma du track</span>
-						</div>
-					</div>
-
-					<div className="track__content">
-						<span className="section__eyebrow">L’espace de jeu</span>
-
-						<h2 className="section__title">
-							Le
-							<br />
-							track
-						</h2>
-
-						<p className="section__lead">
-							Le roller derby se joue sur une piste ovale aux dimensions
-							précisément définies.
-						</p>
-
-						<p>
-							Le placement des joueuses, les limites du pack et les distances
-							entre elles jouent un rôle essentiel dans les règles et la
-							stratégie.
-						</p>
-
-						<a className="text-link" href="#advanced-rules">
-							Comprendre les zones de jeu
-							<span aria-hidden="true">→</span>
-						</a>
-					</div>
+				<div className="section__inner">
+					<TrackSlider labels={t.sport.track} />
 				</div>
 			</section>
-
-			<AdvancedRules rules={advancedRules} locale={locale} />
+			{/* <AdvancedRules rules={advancedRules} locale={locale} /> */}
 		</main>
 	);
 };
