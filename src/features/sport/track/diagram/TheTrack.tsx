@@ -1,8 +1,27 @@
 import type { ReactNode } from "react";
-import "./the-track.css";
+import {
+	INNER_ARC_X,
+	INNER_PATH,
+	INNER_RADIUS,
+	JAMMER_LINE_X,
+	OUTER_RADIUS,
+	PIVOT_LINE_X,
+	SAFETY_RADIUS,
+	offsetTrackPath,
+	outerTopY,
+} from "./trackGeometry";
+import "./theTrack.css";
 
 interface TheTrackProps {
 	title: string;
+	directionLabel: string;
+	// Blink the pivot and jammer lines to tell them apart
+	highlightStartLines?: boolean;
+	// SVG layers drawn under the track lines (zones), in the same feet-based coordinates
+	underlay?: ReactNode;
+	// HTML laid over the diagram (navigation…)
+	controls?: ReactNode;
+	// SVG layers drawn over the track lines (skaters, officials)
 	children?: ReactNode;
 }
 
@@ -13,43 +32,14 @@ interface Marker {
 	y2: number;
 }
 
-// WFTDA regulation geometry, in feet. Origin = track center, y axis points down.
-// Direction of play is counterclockwise: right to left on the top straightaway.
-const INNER_ARC_X = 17.5;
-const INNER_RADIUS = 12.5;
-const OUTER_OFFSET = 1;
-const OUTER_RADIUS = 26.5;
-const PIVOT_LINE_X = -INNER_ARC_X;
-const JAMMER_LINE_X = PIVOT_LINE_X + 30;
 const MARKER_DISTANCE = 5.25;
 const MARKER_HALF_LENGTH = 1;
 // 7'0.5" chord between turn markers, on the inside arc
 const TURN_MARKER_STEP = 2 * Math.asin(84.5 / 12 / 2 / INNER_RADIUS);
 
-const INNER_PATH = [
-	`M ${-INNER_ARC_X} ${-INNER_RADIUS}`,
-	`H ${INNER_ARC_X}`,
-	`A ${INNER_RADIUS} ${INNER_RADIUS} 0 0 1 ${INNER_ARC_X} ${INNER_RADIUS}`,
-	`H ${-INNER_ARC_X}`,
-	`A ${INNER_RADIUS} ${INNER_RADIUS} 0 0 1 ${-INNER_ARC_X} ${-INNER_RADIUS}`,
-	"Z",
-].join(" ");
-
 // Outside arc points sit 1' off the inside arc points, in opposite directions
-const OUTER_PATH = [
-	`M ${-INNER_ARC_X} ${OUTER_OFFSET - OUTER_RADIUS}`,
-	`L ${INNER_ARC_X} ${-OUTER_OFFSET - OUTER_RADIUS}`,
-	`A ${OUTER_RADIUS} ${OUTER_RADIUS} 0 0 1 ${INNER_ARC_X} ${OUTER_RADIUS - OUTER_OFFSET}`,
-	`L ${-INNER_ARC_X} ${OUTER_RADIUS + OUTER_OFFSET}`,
-	`A ${OUTER_RADIUS} ${OUTER_RADIUS} 0 0 1 ${-INNER_ARC_X} ${OUTER_OFFSET - OUTER_RADIUS}`,
-	"Z",
-].join(" ");
-
-// Outer boundary y on the top straightaway, at a given x
-const outerTopY = (x: number): number =>
-	OUTER_OFFSET -
-	OUTER_RADIUS -
-	((x + INNER_ARC_X) / (2 * INNER_ARC_X)) * 2 * OUTER_OFFSET;
+const OUTER_PATH = offsetTrackPath(OUTER_RADIUS);
+const SAFETY_PATH = offsetTrackPath(SAFETY_RADIUS);
 
 // Marker centered 5'3" from the inside boundary, along a unit direction from (cx, 0)
 const marker = (cx: number, dx: number, dy: number): Marker => {
@@ -72,28 +62,51 @@ const MARKERS: Marker[] = [
 	}),
 ];
 
-const TheTrack = ({ title, children }: TheTrackProps) => {
+const TheTrack = ({
+	title,
+	directionLabel,
+	highlightStartLines = false,
+	underlay,
+	controls,
+	children,
+}: TheTrackProps) => {
 	return (
-		<div className="the-track">
+		<div
+			className={
+				highlightStartLines ? "the-track highlight-start" : "the-track"
+			}
+		>
 			<svg
-				viewBox="-45 -28.5 90 57"
+				viewBox="-55 -38.5 110 77"
 				role="img"
 				aria-labelledby="the-track-title"
 			>
 				<title id="the-track-title">{title}</title>
 
+				{underlay}
+
+				<path className="safety" d={SAFETY_PATH} />
 				<path className="boundary" d={OUTER_PATH} />
 				<path className="boundary" d={INNER_PATH} />
 
+				{/* Direction of play, in the infield along the bottom straightaway */}
+				<path
+					className="play-direction"
+					d="M -8 7.5 H 8 M 6.6 6.1 L 8 7.5 L 6.6 8.9"
+				/>
+				<text className="play-direction-label" x={0} y={5}>
+					{directionLabel}
+				</text>
+
 				<line
-					className="boundary"
+					className="boundary pivot-line"
 					x1={PIVOT_LINE_X}
 					y1={-INNER_RADIUS}
 					x2={PIVOT_LINE_X}
 					y2={outerTopY(PIVOT_LINE_X)}
 				/>
 				<line
-					className="boundary"
+					className="boundary jammer-line"
 					x1={JAMMER_LINE_X}
 					y1={-INNER_RADIUS}
 					x2={JAMMER_LINE_X}
@@ -104,9 +117,10 @@ const TheTrack = ({ title, children }: TheTrackProps) => {
 					<line key={`${m.x1}-${m.y1}`} className="marker" {...m} />
 				))}
 
-				{/* Jam scene layers, drawn in the same feet-based coordinates */}
 				{children}
 			</svg>
+
+			{controls}
 		</div>
 	);
 };
