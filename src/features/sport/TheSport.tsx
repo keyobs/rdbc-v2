@@ -111,8 +111,7 @@ const TheSportPage = ({
 					</div>
 				</div>
 			</section>
-
-			<AdvancedRules rules={advancedRules} locale={locale} />
+			{/* <AdvancedRules rules={advancedRules} locale={locale} /> */}
 		</main>
 	);
 };

@@ -7,7 +7,7 @@ const fr = {
 		rules: "le jeu",
 		sport: "le sport",
 		competitions: "matchs",
-		events: "events",
+		events: "news",
 		blog: "blog",
 		contact: "contact",
 		join: "rejoindre",

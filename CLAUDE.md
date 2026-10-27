@@ -87,6 +87,7 @@
 - Après toute modification de schéma : `npx sanity typegen generate`
 - Webhook : publication Sanity → `repository_dispatch` GitHub → rebuild automatique
 
+
 ## Style de dev
 
 ### Git workflow
@@ -123,6 +124,9 @@
 Composants fonctionnels uniquement — pas de class components
 Imports React : hooks nommés individuellement — import { useState, useEffect } from 'react'
 Imports : chemin direct par composant pour toutes les libs tant que possible — import Drawer from '@mui/material/Drawer' plutôt que import { Drawer } from '@mui/material'
+
+### use of useEffect
+Prefer calculate during render. Events in handlers. Reset with key. useMemo for expensive pure work. Effects only to sync external systems.
 
 ### State management
 - `useState` / `useReducer` pour l'état local au composant
