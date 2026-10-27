@@ -1,0 +1,26 @@
+.the-track {
+	background: var(--bg-dark);
+	padding: 30px;
+	border: 1px solid transparent;
+	border-radius: 12px;
+
+	svg {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.boundary,
+	.marker {
+		fill: none;
+		stroke: var(--color-action);
+	}
+
+	.boundary {
+		stroke-width: 0.4;
+	}
+
+	.marker {
+		stroke-width: 0.15;
+	}
+}

@@ -108,35 +108,6 @@
 	color: var(--text-dark);
 }
 
-.track-placeholder {
-	display: grid;
-	place-items: center;
-
-	aspect-ratio: 1 / 1;
-	min-height: 420px;
-
-	background:
-		repeating-linear-gradient(
-			45deg,
-			transparent,
-			transparent 20px,
-			rgba(0, 0, 0, 0.025) 20px,
-			rgba(0, 0, 0, 0.025) 40px
-		),
-		var(--bg-light);
-
-	border-radius: 50% 50% 45% 45%;
-}
-
-.track-placeholder span {
-	color: var(--muted);
-
-	font-size: 0.8rem;
-	font-weight: 700;
-	letter-spacing: 0.15em;
-	text-transform: uppercase;
-}
-
 .track__content {
 	max-width: 500px;
 }
@@ -267,9 +238,5 @@
 
 	.basics__grid {
 		grid-template-columns: 1fr;
-	}
-
-	.track-placeholder {
-		min-height: 300px;
 	}
 }

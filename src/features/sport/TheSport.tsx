@@ -1,6 +1,7 @@
-import type { Locale } from "@i18n/index";
+import { useTranslations, type Locale } from "@i18n/index";
 import AdvancedRules from "./AdvancedRules";
 import NotionCard from "./NotionCard";
+import TheTrack from "./track/TheTrack";
 import type { Notion } from "./types";
 import "./the-sport.css";
 
@@ -15,6 +16,8 @@ const TheSportPage = ({
 	advancedRules,
 	locale,
 }: TheSportPageProps) => {
+	const t = useTranslations(locale);
+
 	return (
 		<main className="sport-page">
 			<section className="sport-intro section">
@@ -78,9 +81,7 @@ const TheSportPage = ({
 			<section className="track section">
 				<div className="section__inner section__inner--split">
 					<div className="track__visual">
-						<div className="track-placeholder">
-							<span>Schéma du track</span>
-						</div>
+						<TheTrack title={t.sport.trackTitle} />
 					</div>
 
 					<div className="track__content">

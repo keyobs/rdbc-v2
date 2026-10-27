@@ -64,6 +64,9 @@ const fr = {
 		newTab: "(s'ouvre dans un nouvel onglet)",
 		clubLine: "Roller Derby Bordeaux",
 	},
+	sport: {
+		trackTitle: "Schéma du track de roller derby",
+	},
 	footer: {
 		tagline: "Roller Derby Bordeaux Club",
 		rights: "Tous droits réservés",
