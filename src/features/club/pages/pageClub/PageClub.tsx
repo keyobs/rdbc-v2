@@ -2,7 +2,7 @@ import { PortableText } from "@portabletext/react";
 import { motion } from "motion/react";
 import type { ClubPage } from "../../../../../sanity/sanity.types";
 import type { Locale } from "@i18n/index";
-import "./PageClub.css";
+import "./pageClub.css";
 
 interface PageClubProps {
 	data: ClubPage;

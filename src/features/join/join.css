@@ -1,0 +1,75 @@
+.join {
+	max-width: 68.75rem;
+	margin: 0 auto;
+	padding: 0 1rem 5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 3.5rem;
+
+	/* Direct children only: cards hold their own lists (tags) */
+	.roles > ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+		gap: 1.75rem;
+	}
+
+	/* Destructured grid: the 3rd card is tilted */
+	.roles > ul > li:nth-child(3) {
+		transform: rotate(-1.5deg);
+	}
+
+	/* Fanzine paper sheet, same material as the /club page */
+	.paper {
+		position: relative;
+		background: #f5f0e8;
+		color: #0f1427;
+		box-shadow:
+			0.5rem 0.5rem 0 #0f1427,
+			0.875rem 0.875rem 0 rgba(15, 20, 39, 0.18);
+		padding: 1.75rem 1rem 2rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2.5rem;
+		overflow: hidden;
+
+		/* Photocopied grain overlay */
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+			background-size: 200px 200px;
+			opacity: 0.5;
+			mix-blend-mode: multiply;
+		}
+	}
+
+	.signup,
+	.contact {
+		position: relative;
+		flex: 1 1 20rem;
+		min-width: 0;
+	}
+
+	.signup {
+		align-self: flex-start;
+		transform: rotate(0.6deg);
+	}
+
+	.contact {
+		transform: rotate(-0.5deg);
+		scroll-margin-top: 5rem;
+	}
+
+	@media (min-width: 768px) {
+		padding: 0 2rem 6rem;
+
+		.paper {
+			padding: 2rem 2rem 2.5rem;
+		}
+	}
+}

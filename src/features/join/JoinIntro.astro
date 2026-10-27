@@ -1,0 +1,42 @@
+---
+import type { Locale } from "@i18n/index";
+import { useTranslations } from "@i18n/index";
+import "./joinIntro.css";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale).join;
+const values = [
+	t.values.antiracist,
+	t.values.feminist,
+	t.values.lgbt,
+	t.values.beliefs,
+];
+const anchors = [
+	{ id: "play", label: t.roles.play.anchor },
+	{ id: "referee", label: t.roles.referee.anchor },
+	{ id: "volunteer", label: t.roles.volunteer.anchor },
+];
+---
+
+<div class="join-intro">
+  <aside class="values" aria-label={t.values.label}>
+    <p class="title">{t.values.title}</p>
+    <p class="text">{t.values.text}</p>
+    <ul class="tags">
+      {values.map((value) => <li>{value}</li>)}
+    </ul>
+  </aside>
+
+  <header class="hero">
+    <span class="eyebrow">{t.hero.eyebrow}</span>
+    <h1>{t.hero.title}</h1>
+    <p class="text">{t.hero.text}</p>
+    <nav aria-label={t.hero.rolesNav}>
+      {anchors.map((anchor) => <a href={`#${anchor.id}`}>{anchor.label}</a>)}
+    </nav>
+  </header>
+</div>

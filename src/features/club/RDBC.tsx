@@ -1,8 +1,8 @@
 import type { ClubPage } from "../../../sanity/sanity.types";
 import type { Locale } from "@i18n/index";
-import PageClub from "./pages/PageClub/PageClub";
-import PageClubLife from "./pages/PageClubLife/PageClubLife";
-import PagePlayDerby from "./pages/PagePlayDerby/PagePlayDerby";
+import PageClub from "./pages/pageClub/PageClub";
+import PageClubLife from "./pages/pageClubLife/PageClubLife";
+import PagePlayDerby from "./pages/pagePlayDerby/PagePlayDerby";
 import "./RDBC.css";
 
 interface RDBCProps {

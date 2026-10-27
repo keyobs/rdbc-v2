@@ -1,0 +1,237 @@
+.page-derby {
+	position: relative;
+	background: #f5f0e8;
+	max-width: 68.75rem;
+	margin: 0 auto;
+	box-shadow:
+		0.5rem 0.5rem 0 #0f1427,
+		0.875rem 0.875rem 0 rgba(15, 20, 39, 0.18);
+	overflow: hidden;
+
+	/* Photocopied grain overlay */
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		pointer-events: none;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+		background-size: 200px 200px;
+		opacity: 0.5;
+		mix-blend-mode: multiply;
+	}
+
+	.inner {
+		position: relative;
+		z-index: 1;
+		padding: 1.25rem 0.9rem 1.75rem;
+	}
+
+	.page-title {
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 5vw, 2.25rem);
+		text-transform: uppercase;
+		color: #0f1427;
+		margin: 0 0 1.5rem;
+		line-height: 1;
+		text-shadow: 4px 4px 0 rgba(15, 20, 39, 0.15);
+		display: inline-block;
+		transform: rotate(-0.8deg);
+		transform-origin: left center;
+
+		/* Handwritten annotation under the title */
+		&::after {
+			content: "patins fournis pour les 1ères séances";
+			display: block;
+			font-family: "Courier New", Courier, monospace;
+			font-size: 0.6rem;
+			font-weight: normal;
+			color: rgba(15, 20, 39, 0.48);
+			text-shadow: none;
+			transform: rotate(1.5deg);
+			margin-top: 0.25rem;
+			letter-spacing: 0.03em;
+		}
+	}
+
+	.grid {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.col {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	/* Rubber-stamp section titles */
+	.section-title {
+		font-family: "Courier New", Courier, monospace;
+		font-size: 0.875rem;
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		color: #0f1427;
+		border-bottom: 2px solid #0f1427;
+		padding-bottom: 0.4rem;
+		margin: 0 0 0.9rem;
+	}
+
+	/* ── Training agenda ── */
+	.training {
+		transform: rotate(-0.5deg);
+
+		.agenda {
+			border: 2px solid #0f1427;
+			box-shadow: 4px 4px 0 #0f1427;
+			font-family: "Courier New", Courier, monospace;
+			overflow-x: auto;
+
+			.head,
+			.row {
+				display: grid;
+				grid-template-columns: repeat(7, minmax(0, 1fr));
+			}
+
+			.head {
+				background: #0f1427;
+				color: #f5f0e8;
+			}
+
+			.day {
+				padding: 0.3rem 0.2rem;
+				text-align: center;
+				font-size: 0.7rem;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				border-right: 1px solid rgba(245, 240, 232, 0.2);
+
+				&:last-child {
+					border-right: none;
+				}
+			}
+
+			.row {
+				border-top: 1px solid rgba(0, 0, 0, 0.15);
+				min-height: 3.5rem;
+			}
+
+			.cell {
+				border-right: 1px dashed rgba(0, 0, 0, 0.25);
+				padding: 0.25rem 0.2rem;
+				min-height: 3.5rem;
+
+				&:last-child {
+					border-right: none;
+				}
+
+				&.active {
+					background: rgba(110, 201, 142, 0.25);
+					display: flex;
+					flex-direction: column;
+					gap: 0.1rem;
+				}
+			}
+
+			.time {
+				font-size: 0.7rem;
+				font-weight: bold;
+				color: #0f1427;
+			}
+
+			.label {
+				font-size: 0.65rem;
+				color: #333;
+				line-height: 1.2;
+			}
+		}
+
+		.maps-links {
+			margin-top: 0.75rem;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.25rem 1rem;
+
+			a {
+				display: inline-flex;
+				align-items: center;
+				min-height: 2.75rem;
+				font-family: var(--font-body);
+				font-size: 0.875rem;
+				color: #0f1427;
+				text-decoration: underline;
+				text-underline-offset: 2px;
+			}
+		}
+	}
+
+	/* ── Sign-up ── */
+	.signup {
+		transform: rotate(0.6deg);
+	}
+
+	/* ── Illustration placeholder ── */
+	.illustration {
+		flex: 1;
+
+		.placeholder {
+			width: 100%;
+			min-height: 11rem;
+			background: repeating-linear-gradient(
+				45deg,
+				#e0dbd0,
+				#e0dbd0 4px,
+				#ece7dc 4px,
+				#ece7dc 16px
+			);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transform: rotate(-1deg);
+			outline: 2.5px solid #0f1427;
+			filter: drop-shadow(4px 4px 0 rgba(15, 20, 39, 0.4));
+
+			span {
+				font-family: "Courier New", monospace;
+				font-size: 0.85rem;
+				color: #555;
+				letter-spacing: 0.1em;
+			}
+		}
+	}
+
+	/* ── Contact form — coupon style ── */
+	.contact {
+		transform: rotate(0.5deg);
+	}
+
+	/* ── Desktop: true double-page ── */
+	@media (min-width: 768px) {
+		.inner {
+			padding: 2rem 2rem 2.5rem;
+		}
+
+		.grid {
+			flex-direction: row;
+			gap: 0;
+		}
+
+		.col {
+			flex: 1;
+
+			&:first-child {
+				border-right: 1px solid rgba(0, 0, 0, 0.15);
+				padding-right: 2rem;
+			}
+
+			&:last-child {
+				padding-left: 2rem;
+			}
+		}
+
+		.illustration .placeholder {
+			min-height: 15rem;
+		}
+	}
+}

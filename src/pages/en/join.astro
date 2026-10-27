@@ -1,0 +1,15 @@
+---
+import { sanityClient } from "sanity:client";
+import type { ClubPage } from "../../../sanity/sanity.types";
+import Join from "@features/join/Join";
+import JoinIntro from "@features/join/JoinIntro.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const data: ClubPage =
+	(await sanityClient.fetch(`*[_type == "clubPage"][0]`)) ?? ({} as ClubPage);
+---
+
+<Layout title="Join">
+  <JoinIntro locale="en" />
+  <Join data={data} locale="en" client:visible />
+</Layout>

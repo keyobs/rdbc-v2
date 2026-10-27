@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import type { ClubPage } from "../../../../../sanity/sanity.types";
 import type { Locale } from "@i18n/index";
 import { urlFor } from "@utils/sanityImage";
-import "./PageClubLife.css";
+import "./pageClubLife.css";
 
 interface PageClubLifeProps {
 	data: ClubPage;
