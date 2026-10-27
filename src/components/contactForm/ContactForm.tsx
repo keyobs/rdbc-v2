@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { SubmitEvent } from "react";
 import type { Locale } from "@i18n/index";
 import { withBase } from "@utils/urlHandler";
+import "../buttons/ctaAlt.css";
 import "./contactForm.css";
 
 export type ContactInterest =
@@ -160,7 +161,11 @@ export default function ContactForm({
 						</label>
 
 						<div className="actions">
-							<button type="submit" disabled={status === "sending"}>
+							<button
+								className="cta-alt coupon"
+								type="submit"
+								disabled={status === "sending"}
+							>
 								{status === "sending" ? t.sending : t.send}
 							</button>
 							{status === "error" && (

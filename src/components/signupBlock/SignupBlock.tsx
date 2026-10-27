@@ -1,5 +1,6 @@
 import type { ClubPage } from "../../../sanity/sanity.types";
 import type { Locale } from "@i18n/index";
+import "../buttons/ctaAlt.css";
 import "./signupBlock.css";
 
 type SignupData = Pick<
@@ -99,7 +100,7 @@ export default function SignupBlock({
 			<p className="label">{t.fillForm}</p>
 			<div className="forms">
 				<a
-					className="btn"
+					className="cta-alt"
 					href={signupNewUrl}
 					target="_blank"
 					rel="noopener noreferrer"
@@ -108,7 +109,7 @@ export default function SignupBlock({
 				</a>
 				<span>{t.or}</span>
 				<a
-					className="btn"
+					className="cta-alt tilt-right"
 					href={signupRenewUrl}
 					target="_blank"
 					rel="noopener noreferrer"
@@ -128,7 +129,7 @@ export default function SignupBlock({
 					))}
 				</ul>
 				<a
-					className="btn pay"
+					className="cta-alt burst"
 					href={helloAssoUrl}
 					target="_blank"
 					rel="noopener noreferrer"

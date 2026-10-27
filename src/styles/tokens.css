@@ -4,6 +4,8 @@
 	--color-bitume: rgb(8, 20, 75);
 	--color-surface: rgb(43, 67, 154);
 	--color-border: rgb(84, 124, 147);
+	/* Fanzine paper sheet ink */
+	--color-ink: rgb(15, 20, 39);
 
 	/* Accents */
 	--color-neon-primary: rgb(0, 255, 150);
