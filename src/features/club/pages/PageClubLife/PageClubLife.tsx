@@ -53,8 +53,8 @@ const DUMMY_ACTIVITIES = [
 		_key: "a2",
 		title: { fr: "Les matchs à domicile", en: "Home bouts" },
 		text: {
-			fr: "Les matchs à domicile sont une fête. La salle se remplit, les encouragements fusent, et l'ambiance dépasse largement le sport. Entrée libre ou à prix libre selon les événements.",
-			en: "Home bouts are a party. The venue fills up, the crowd roars, and the atmosphere goes well beyond sport. Free entry or pay-what-you-can depending on the event.",
+			fr: "Les matchs à domicile sont une fête. Les équipes font le spectacle, le public s'enthousiasme, et l'ambiance dépasse largement le sport. Entrée libre ou à prix libre selon les événements.",
+			en: "Home bouts are a party. The teams put on a show, the crowd gets fired up, and the atmosphere goes well beyond sport. Free entry or pay-what-you-can depending on the event.",
 		},
 		photo: null as null,
 	},
@@ -62,8 +62,8 @@ const DUMMY_ACTIVITIES = [
 		_key: "a3",
 		title: { fr: "Les déplacements", en: "Away games" },
 		text: {
-			fr: "Le RDBC participe à des tournois partout en France et en Europe. Une occasion unique de découvrir la culture derby d'autres villes, et de représenter Bordeaux fièrement.",
-			en: "RDBC competes in tournaments across France and Europe. A unique chance to discover derby culture in other cities and proudly represent Bordeaux.",
+			fr: "Le RDBC participe à des tournois partout en France et en Europe. Une occasion unique de découvrir la culture derby d'autres villes, et de représenter Bordeaux avec flamboyance.",
+			en: "RDBC competes in tournaments across France and Europe. A unique chance to discover derby culture in other cities and represent Bordeaux in flamboyant style.",
 		},
 		photo: null as null,
 	},
@@ -71,8 +71,8 @@ const DUMMY_ACTIVITIES = [
 		_key: "a4",
 		title: { fr: "Les championnats", en: "Championships" },
 		text: {
-			fr: "Affilié à la FFRS, le RDBC dispute le championnat de France par division. Un objectif sportif concret qui motive toute la saison.",
-			en: "Affiliated with FFRS, RDBC competes in the French championship by division — a concrete sporting goal that drives the whole season.",
+			fr: "Membre WFTDA, nous tentons saison après saison de nous hisser toujours plus haut. Aussi affilié FFRS, le RDBC est engagé  dans le championnat de France. Des objectifs sportifs concrets qui occupent toute la saison.",
+			en: "As a WFTDA member, we strive season after season to climb ever higher. Also affiliated with FFRS, RDBC competes in the French championship. Concrete sporting goals that keep us busy all season long.",
 		},
 		photo: null as null,
 	},

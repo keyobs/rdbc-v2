@@ -14,9 +14,9 @@ const DUMMY_SESSIONS = [
 	{
 		_key: "s1",
 		label: { fr: "Session technique", en: "Skating training" },
-		days: ["mercredi"],
-		time_start: "19:30",
-		time_end: "21:30",
+		days: ["mardi"],
+		time_start: "20:30",
+		time_end: "22:30",
 		location_name: "Le Dépôt, Darwin",
 		location_adress: "87 Quai des Queyries, Bordeaux",
 		maps_query:
