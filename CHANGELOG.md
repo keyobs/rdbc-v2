@@ -1,3 +1,28 @@
+## [0.4.0] - 2026-10-27
+
+### Added
+Sport
+- Track slider in the "Le track" section: 8 WFTDA game situations (track, in bounds, referees, pack, engagement zone, jammers outside the pack, jammers in and out of the engagement zone), diagram on the left, legend on the right
+- `TheTrack` SVG diagram drawn from the official WFTDA layout (inside and outside arcs, pivot and jammer lines, 10-foot markers), with the safety zone, the direction of play and blinking start lines
+- Pack computed from the blockers only (largest group no more than 3 m apart), engagement zone 6 m in front of and behind it
+- Spring transitions between situations with Motion, disabled with reduced motion
+- Navigation by arrows over the diagram, dots, "up next" card, swipe and keyboard; fixed legend height
+- Credit to the MagneticBoard by Wonder Zebra
+- `--color-zone` token for the pack and engagement zone
+
+Join
+- Join page scaffold and viewers guide documents
+
+### Changed
+- Framer Motion replaced by Motion 14 (`motion/react`)
+- Club life copy refreshed (WFTDA membership), English copy aligned with French
+- Skating session moved to Tuesday 20:30–22:30
+- Sport page section padding and intro copy
+- Sport advanced rules commented out until the content is ready
+- Agents and design folders ignored by git, `useEffect` guideline added to CLAUDE.md
+
+---
+
 ## [0.3.0] - 2026-10-27
 
 ### Added
