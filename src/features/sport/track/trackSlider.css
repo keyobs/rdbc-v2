@@ -1,0 +1,45 @@
+/* Track slider layout: diagram on the left, legend on the right */
+.track-slider {
+	display: grid;
+	grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+	gap: clamp(2rem, 4vw, 4rem);
+	align-items: center;
+
+	/* Left column spans the row height: the diagram stays centered, the credit sits at the bottom */
+	.visual {
+		position: relative;
+		align-self: stretch;
+		display: flex;
+		align-items: center;
+		min-width: 0;
+		touch-action: pan-y;
+
+		.the-track {
+			flex: 1;
+			min-width: 0;
+			padding-inline: 4rem;
+		}
+	}
+
+	button:focus-visible,
+	a:focus-visible {
+		outline: 2px solid var(--color-action);
+		outline-offset: 3px;
+	}
+}
+
+@media (max-width: 860px) {
+	.track-slider {
+		grid-template-columns: minmax(0, 1fr);
+
+		.visual {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.5rem;
+
+			.the-track {
+				padding: 12px 2.75rem;
+			}
+		}
+	}
+}

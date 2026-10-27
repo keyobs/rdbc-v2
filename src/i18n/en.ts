@@ -65,7 +65,69 @@ const en = {
 		clubLine: "Roller Derby Bordeaux",
 	},
 	sport: {
-		trackTitle: "Roller derby track diagram",
+		track: {
+			eyebrow: "The playing area",
+			title: "The track",
+			directionLabel: "Direction of play",
+			upNext: "Up next",
+			restart: "Start over",
+			previous: "Previous situation",
+			next: "Next situation",
+			situationsLabel: "Game situations",
+			keyLabel: "Key",
+			credit: "© Copyright – inspired by the",
+			creditLink: "MagneticBoard",
+			creditAuthor: "by Wonder Zebra",
+			situations: {
+				track: {
+					title: "The track",
+					text: "The game is played on a flat oval track of about 27 × 17 m, marked by boundaries on the floor, often doubled with a rope. With the safety zone outside and the officials’ lane, the whole area is 33 × 23 m. Skaters go counterclockwise.",
+				},
+				inBounds: {
+					title: "Playing in bounds",
+					text: "Each team fields 4 blockers and 1 jammer. A skater is in bounds as long as her skates touch the inside of the track or its boundaries. Out of bounds, she can no longer interact (block, assist, score).",
+				},
+				officials: {
+					title: "The referees outside the track",
+					text: "7 referees on skates follow the game without ever taking part: 1 for each jammer, 2 follow the pack from the inside, 3 from the outside of the track.",
+				},
+				pack: {
+					title: "Defining the pack",
+					text: "The pack is the largest group of blockers from both teams, less than 3 m apart from each other. Jammers are never part of it.",
+				},
+				engagement: {
+					title: "The engagement zone",
+					text: "It is the area where blockers are allowed to play. It extends up to 6 m in front of and behind the pack. It therefore moves, as it changes with the blockers’ movements and repositioning.",
+				},
+				jammers: {
+					title: "Jammers are not part of the pack",
+					text: "The pack and the engagement zone are based on the blockers only. A jammer can be ahead, inside or behind: she never moves them.",
+				},
+				inZone: {
+					title: "When jammers are in the engagement zone",
+					text: "The green jammer is at the back of the pack, in the engagement zone: the blue blockers can block her. The blue jammer leaves the pack. As long as she is in the engagement zone, the green blockers can block her.",
+				},
+				outOfZone: {
+					title: "When jammers are out of the pack",
+					text: "Outside the engagement zone, blockers can no longer touch the jammers. Jammers, however, may make contact anywhere on the track.",
+				},
+			},
+			keys: {
+				pivotLine:
+					"Pivot line: at the start, blockers line up between the pivot line and the jammer line",
+				jammerLine:
+					"Jammer line: at the start, jammers line up behind this line",
+				safety: "Safety zone and officials’ lane",
+				blocker: "Blocker",
+				pivot: "Pivot",
+				jammer: "Jammer",
+				teams: "Two teams: green and blue",
+				official: "Referee",
+				jammerRef: "Jammer referee",
+				pack: "Pack",
+				engagement: "Engagement zone",
+			},
+		},
 	},
 	footer: {
 		tagline: "Roller Derby Bordeaux Club",

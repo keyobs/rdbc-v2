@@ -107,38 +107,6 @@
 	color: var(--text-dark);
 }
 
-.track__content {
-	max-width: 500px;
-}
-
-.track__content p {
-	font-family: var(--font-body);
-	line-height: 1.7;
-}
-
-.text-link {
-	display: inline-flex;
-	gap: 0.8rem;
-	align-items: center;
-
-	margin-top: 1.5rem;
-	padding-bottom: 0.25rem;
-
-	color: inherit;
-	border-bottom: 1px solid;
-
-	font-weight: 700;
-	text-decoration: none;
-}
-
-.text-link span {
-	transition: transform 150ms ease;
-}
-
-.text-link:hover span {
-	transform: translateX(5px);
-}
-
 /* ADVANCED RULES — dark background */
 
 .advanced-rules {

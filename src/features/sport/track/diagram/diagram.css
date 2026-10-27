@@ -1,0 +1,122 @@
+/* Diagram scene layers and overlays */
+.track-slider {
+	.pack-zone {
+		fill: var(--color-zone);
+	}
+
+	.engagement-zone {
+		fill: url(#track-hatch);
+	}
+
+	.hatch-line {
+		stroke: var(--color-zone);
+		stroke-width: 0.3;
+	}
+
+	.halo {
+		fill: none;
+		stroke: var(--color-white);
+		stroke-width: 0.25;
+		transform-box: fill-box;
+		transform-origin: center;
+		animation: halo-pulse 1.6s ease-in-out infinite;
+	}
+
+	/* Arrows over the diagram */
+	.stage-arrow {
+		position: absolute;
+		top: 50%;
+		display: grid;
+		place-items: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		padding: 0;
+		background: var(--bg-dark);
+		color: var(--color-text-main);
+		border: 2px solid var(--color-neon-primary);
+		border-radius: 0;
+		box-shadow: 4px 4px 0 var(--color-neon-primary);
+		font: inherit;
+		font-weight: 700;
+		cursor: pointer;
+		transform: translateY(-50%);
+
+		&.previous {
+			left: 0.75rem;
+		}
+
+		&.next {
+			right: 0.75rem;
+		}
+
+		&:disabled {
+			opacity: 0.3;
+			cursor: default;
+			box-shadow: none;
+		}
+
+		&:active:not(:disabled) {
+			animation: flicker-click 0.25s steps(2) 1;
+		}
+	}
+
+	/* Out of the flow, at the bottom left of the row: the diagram keeps its place */
+	.credit {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		margin: 0;
+		color: var(--muted);
+		font-size: 0.8rem;
+
+		a {
+			color: inherit;
+		}
+	}
+}
+
+@media (hover: hover) {
+	.track-slider .stage-arrow:hover:not(:disabled) {
+		background: var(--color-surface);
+	}
+}
+
+@keyframes halo-pulse {
+	0%,
+	100% {
+		transform: scale(1);
+		opacity: 0.9;
+	}
+	50% {
+		transform: scale(1.25);
+		opacity: 0.4;
+	}
+}
+
+@media (max-width: 860px) {
+	.track-slider {
+		.credit {
+			position: static;
+		}
+
+		.stage-arrow {
+			width: 2rem;
+			height: 2rem;
+			box-shadow: 3px 3px 0 var(--color-neon-primary);
+
+			&.previous {
+				left: 0.25rem;
+			}
+
+			&.next {
+				right: 0.5rem;
+			}
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.track-slider .halo {
+		animation: none;
+	}
+}
