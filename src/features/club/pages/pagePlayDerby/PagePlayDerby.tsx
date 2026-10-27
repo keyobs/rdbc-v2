@@ -77,6 +77,16 @@ const DAY_LABEL: Record<string, Record<"fr" | "en", string>> = {
 	dimanche: { fr: "Dim", en: "Sun" },
 };
 
+// Agenda rows: a session lands in the first slot whose end hour is after its start
+const SLOT_END_HOURS = [13, 17, 19, 24];
+
+function getSlot(timeStart?: string) {
+	const hour = Number.parseInt(timeStart ?? "", 10);
+	return Number.isNaN(hour)
+		? 0
+		: SLOT_END_HOURS.findIndex((endHour) => hour < endHour);
+}
+
 const LABELS = {
 	fr: {
 		pageTitle: "Faire du roller derby",
@@ -144,16 +154,20 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 										</span>
 									))}
 								</div>
-								{sessions.map((session) => (
-									<div key={session._key} className="row">
+								{SLOT_END_HOURS.map((endHour, slot) => (
+									<div key={endHour} className="row">
 										{DAYS_ORDER.map((day) => {
-											const active = session.days?.includes(day);
+											const session = sessions.find(
+												(s) =>
+													s.days?.includes(day) &&
+													getSlot(s.time_start) === slot,
+											);
 											return (
 												<div
 													key={day}
-													className={active ? "cell active" : "cell"}
+													className={session ? "cell active" : "cell"}
 												>
-													{active && (
+													{session && (
 														<>
 															<span className="time">{session.time_start}</span>
 															<span className="label">
