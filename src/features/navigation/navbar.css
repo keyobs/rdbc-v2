@@ -58,6 +58,11 @@
 		transform 180ms ease;
 }
 
+/* home link (•̪●): bigger glyphs */
+.navbar__links a.home:not(.btn-shiny):not(.lang-switch__btn) {
+	font-size: 1.2rem;
+}
+
 /* active page */
 .navbar__links a.is-active:not(.btn-shiny) {
 	color: var(--color-neon-green);

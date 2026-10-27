@@ -24,7 +24,7 @@ function isActive(href: string): boolean {
 		{DISPLAYED_NAV_LINKS.map((item) => (
 			<li><a
 				href={withBase(item.href)}
-				class:list={[{ "is-active": isActive(item.href) }]}
+				class:list={[{ "is-active": isActive(item.href), home: item.key === "home" }]}
 				aria-label={item.key === "home" ? t.homeLabel : undefined}
 				aria-current={isActive(item.href) ? "page" : undefined}
 			>{t[item.key]}</a></li>
