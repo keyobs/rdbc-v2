@@ -30,7 +30,7 @@
 	}
 
 	&:active {
-		background: var(--color-neon-primary);
+		background: color-mix(in srgb, var(--color-zone) 70%, var(--color-ink));
 		box-shadow: none;
 		transform: translate(4px, 4px) rotate(var(--cta-alt-tilt));
 		animation: flicker-click 0.3s steps(5);
@@ -42,93 +42,20 @@
 	}
 }
 
-/* Shock price starburst */
-.cta-alt.burst {
-	--cta-alt-tilt: -8deg;
-	position: relative;
-	isolation: isolate;
-	flex-direction: column;
-	width: 10.5rem;
-	height: 10.5rem;
-	padding: 0;
-	background: none;
-	border: none;
-	box-shadow: none;
-	line-height: 1.05;
-	text-align: center;
-	filter: drop-shadow(4px 4px 0 var(--color-ink));
-
-	&::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		z-index: -1;
-		background: var(--color-zone);
-		clip-path: polygon(
-			50% 0%,
-			57.1% 9.6%,
-			67.1% 3%,
-			70.5% 14.5%,
-			82.1% 11.7%,
-			81.4% 23.6%,
-			93.3% 25%,
-			88.5% 36%,
-			99.2% 41.3%,
-			91% 50%,
-			99.2% 58.7%,
-			88.5% 64%,
-			93.3% 75%,
-			81.4% 76.4%,
-			82.1% 88.3%,
-			70.5% 85.5%,
-			67.1% 97%,
-			57.1% 90.4%,
-			50% 100%,
-			42.9% 90.4%,
-			32.9% 97%,
-			29.5% 85.5%,
-			17.9% 88.3%,
-			18.6% 76.4%,
-			6.7% 75%,
-			11.5% 64%,
-			0.8% 58.7%,
-			9% 50%,
-			0.8% 41.3%,
-			11.5% 36%,
-			6.7% 25%,
-			18.6% 23.6%,
-			17.9% 11.7%,
-			29.5% 14.5%,
-			32.9% 3%,
-			42.9% 9.6%
-		);
-	}
-
-	span:first-child {
-		font-family: var(--font-body);
-		font-size: 0.75rem;
-		font-weight: 700;
-		letter-spacing: 0.08em;
-	}
-
-	span:last-child {
-		font-size: 1.25rem;
-	}
+/* Inverted price tag: yellow ink on a dark blue tag */
+.cta-alt.invert {
+	background: var(--color-ink);
+	color: var(--color-zone);
 
 	&:active {
-		background: none;
-		filter: none;
-
-		&::before {
-			background: var(--color-neon-primary);
-		}
+		background: var(--color-bitume);
 	}
 }
 
 /* Cut-out coupon */
 .cta-alt.coupon {
 	--cta-alt-tilt: 0deg;
-	background: transparent;
+	background: var(--color-neon-primary);
 	box-shadow: none;
 	outline: 2px dashed var(--color-ink);
 	outline-offset: 4px;
@@ -138,7 +65,11 @@
 	}
 
 	&:active {
-		background: var(--color-neon-primary);
+		background: color-mix(
+			in srgb,
+			var(--color-neon-primary) 70%,
+			var(--color-ink)
+		);
 		outline-style: solid;
 		transform: none;
 	}
@@ -149,14 +80,12 @@
 		box-shadow: 6px 6px 0 var(--color-ink);
 	}
 
-	/* The starburst straightens up a little */
-	.cta-alt.burst:hover {
-		--cta-alt-tilt: -3deg;
-		box-shadow: none;
-	}
-
 	.cta-alt.coupon:not(:disabled):hover {
-		background: var(--color-zone);
+		background: color-mix(
+			in srgb,
+			var(--color-neon-primary) 85%,
+			var(--color-ink)
+		);
 		box-shadow: none;
 	}
 }

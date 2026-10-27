@@ -45,8 +45,7 @@ const LABELS = {
 		feeBase: "Socle",
 		feeCompetition: "Compétition",
 		feeSolidarity: "Solidaire",
-		payLine1: "Payer sur",
-		payLine2: "HelloAsso",
+		payHelloAsso: "Payer sur HelloAsso",
 	},
 	en: {
 		signupTitle: "Sign up",
@@ -58,8 +57,7 @@ const LABELS = {
 		feeBase: "Base",
 		feeCompetition: "Competition",
 		feeSolidarity: "Solidarity",
-		payLine1: "Pay on",
-		payLine2: "HelloAsso",
+		payHelloAsso: "Pay on HelloAsso",
 	},
 };
 
@@ -129,13 +127,12 @@ export default function SignupBlock({
 					))}
 				</ul>
 				<a
-					className="cta-alt burst"
+					className="cta-alt invert tilt-right"
 					href={helloAssoUrl}
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					<span>{t.payLine1}</span>
-					<span>{t.payLine2}</span>
+					{t.payHelloAsso}
 				</a>
 			</div>
 		</div>
