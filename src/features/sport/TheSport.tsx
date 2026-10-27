@@ -46,7 +46,7 @@ const TheSportPage = ({
 
 						<p>
 							Derrière ce principe simple se cache un sport rapide, stratégique,
-							trés collectif et réclamant un engagement intense.
+							trés collectif, réclamant un engagement intense.
 						</p>
 					</div>
 				</div>
