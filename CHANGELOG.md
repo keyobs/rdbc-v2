@@ -1,3 +1,65 @@
+## [0.3.0] - 2026-10-27
+
+### Added
+Layout & Navigation
+- Header and footer components, home layout with an animated halo background
+- Desktop navbar as an Astro component, pill spotlight on hover, 3.75rem minimum click area
+- Mobile bottom navigation styled like a standalone app, with a Radix + Motion drawer
+- Shiny button as the main CTA, ghost and bloom buttons
+- Dedicated social link components
+- `useIsMobile` hook and responsive breakpoint constants
+
+i18n & Routing
+- French and English routes, translation keys, language switch
+- `withBase` route handler for local, preview, production and language versions
+
+Home
+- Hero with a 3-picture frame (desktop and mobile), fed by Sanity
+- News feed (desktop and mobile) with four oklch themes, date stamp layout and swipe
+- Latest results, limited to the last 3 games or the last tournament, using the shared scoreboard
+- Alert banner between the feed and the hero (Sanity document)
+- Join block with icon list and shiny hover on the cards
+
+Games & Competitions
+- Games page with scoreboard, team tabs, seasons and next games per team
+- Competition page for the two-game tournament in Paris
+- Scoreboard extracted as a shared component, single swap point for the future scraper
+
+Club
+- Club pages: club life, play derby, sign-up block with links and membership fees
+- Contact form sent for real through a PHP mail endpoint, with an optional copy to the visitor
+
+Sport
+- Sport page layout with flippable notion cards and advanced rules (hidden until ready)
+
+Join
+- Join landing section and page layout
+
+Sanity
+- Feed, home alert banner and home joining documents
+- Signup links and membership fees on the club page
+
+Tooling
+- Path aliases, stricter type checking, Biome on Astro files
+- Husky: lint at commit and at push
+- Claude agents (architect, deploy, quality, release, test)
+
+### Changed
+- Neon primary token set to `rgb(0, 255, 150)`
+- Global title styles reworked, home styles sized in rem
+- Navbar home link enlarged to 1.2rem
+- Node engine requirement bumped to 24, CI forced on Node 24 with a base path
+- dx-flow updated to 3.1.3
+
+### Fixed
+- Logo and font loading (no flash of unstyled content)
+- Base path and language routing
+- Home link no longer matches every page title, bottom nav active state
+- Responsive breakpoints of the score rows
+- FTP deploy action
+
+---
+
 ## [0.2.0] - 2026-05-20
 
 ### Added
