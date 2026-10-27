@@ -71,6 +71,25 @@ const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 						</li>
 					))}
 				</ul>
+
+				{/* Border bump hugging the logo ring (logo 52px + 16px gap = r42) */}
+				<svg
+					className="bottom-nav__notch"
+					width="140"
+					height="12"
+					viewBox="0 0 140 12"
+					aria-hidden="true"
+					focusable="false"
+				>
+					<path
+						className="bottom-nav__notch-fill"
+						d="M0 11 L65.06 3.29 A42 42 0 0 1 74.94 3.29 L140 11 V12 H0 Z"
+					/>
+					<path
+						className="bottom-nav__notch-stroke"
+						d="M0 11 L65.06 3.29 A42 42 0 0 1 74.94 3.29 L140 11"
+					/>
+				</svg>
 			</nav>
 
 			<MobileNavDrawer
