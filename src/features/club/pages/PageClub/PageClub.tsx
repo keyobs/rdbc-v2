@@ -1,5 +1,5 @@
 import { PortableText } from "@portabletext/react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import type { ClubPage } from "../../../../../sanity/sanity.types";
 import type { Locale } from "@i18n/index";
 import "./PageClub.css";

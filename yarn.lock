@@ -5770,6 +5770,15 @@ form-data@^4.0.5:
     hasown "^2.0.2"
     mime-types "^2.1.12"
 
+framer-motion@14.6.0:
+  version "14.6.0"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-14.6.0.tgz#3ffd42a8eb04a6b91f2c0e9a5b3184f8d413973b"
+  integrity sha512-MzBgZxGgoHPfSLEXmo4o5XlZvb+nVRFdHtGjVhm6LMIEJKTt/8hNO023euL5mYyzc8llV/hQTfjnN68tNRHalw==
+  dependencies:
+    motion-dom "14.6.0"
+    motion-utils "14.6.0"
+    tslib "^2.4.0"
+
 framer-motion@^12.39.0:
   version "12.39.0"
   resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.39.0.tgz#905f120cae5c769d7a8a83c9e25e079ba2617e35"
@@ -7453,12 +7462,24 @@ minizlib@^3.1.0:
   dependencies:
     minipass "^7.1.2"
 
+motion-dom@14.6.0:
+  version "14.6.0"
+  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-14.6.0.tgz#fb868ccefecfae210ba0dc026edcaf6ff8c4ef5b"
+  integrity sha512-lIojTl9aYSPIkeOOSzBliy1nNvpdO3JtVzW2WgTXQlOP4ZMuJhtWO3fP7OD4TVFwlRucdvxlDSMkL+fEQnQ52A==
+  dependencies:
+    motion-utils "14.6.0"
+
 motion-dom@^12.39.0:
   version "12.39.0"
   resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.39.0.tgz#2a663bc8f572890d529e393114f4cf11824b0d0b"
   integrity sha512-Xn7aAcGDhco/JZTXOub64UmaYn73C6J1Po7Fk+8EvkJsNGTqfhon6UJY53vJKXW5v5Zl8HrYsVxv6oPXeGoGLQ==
   dependencies:
     motion-utils "^12.39.0"
+
+motion-utils@14.6.0:
+  version "14.6.0"
+  resolved "https://registry.yarnpkg.com/motion-utils/-/motion-utils-14.6.0.tgz#aacdeb648c336c5d0e697131c80a97a0fb54fbee"
+  integrity sha512-bZJo2AmQ2aOFkaato6VXrTbkPG0XhMzivWUWSaI59pxyllj8QMQUFZ84MYRQnPkK+7dr4KldyJwF2+RM0sdq/w==
 
 motion-utils@^12.39.0:
   version "12.39.0"
@@ -7471,6 +7492,14 @@ motion@^12.23.24, motion@^12.27.1:
   integrity sha512-H4a+Ze+a9j+/NTla5ezfb/g9vmIOxC+viDj++NGDZyTZkdRKjiOz3kSv6TalRWM8ZmD2y/CfC6TkQc97ybyqSA==
   dependencies:
     framer-motion "^12.39.0"
+    tslib "^2.4.0"
+
+motion@^14.6.0:
+  version "14.6.0"
+  resolved "https://registry.yarnpkg.com/motion/-/motion-14.6.0.tgz#f21f605ff53c15d2dcac41741e6254f9824af833"
+  integrity sha512-qqaZbyubgk7x3zxjPgP1l3Br/KQXol/IIV1uqb358SoN4ApcqNuV7+wyDPg/XLErmuyQL5lL8JVI/fOmDsmBKQ==
+  dependencies:
+    framer-motion "14.6.0"
     tslib "^2.4.0"
 
 mrmime@^2.0.1:

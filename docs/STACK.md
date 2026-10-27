@@ -116,7 +116,7 @@ Les variables CSS sont définies dans `tokens.css` et correspondent exactement �
 | Librairie | Usage | Raison |
 |---|---|---|
 | **Radix UI** | Drawers, Dialogs, Modals | Primitives accessibles, headless, stylées en Vanilla CSS |
-| **Framer Motion** | Animations spring (drawers, transitions) | Physique naturelle, API simple |
+| **Motion** (`motion/react`, ex-Framer Motion) | Animations spring (drawers, transitions) | Physique naturelle, API simple |
 | **Phosphor Icons** | Icônes — weight Bold | Cohérent avec l'esthétique, complet |
 
 ---
