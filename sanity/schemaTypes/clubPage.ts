@@ -142,6 +142,20 @@ export const clubPage = defineType({
 						defineField({ name: "location_name", title: "Nom du lieu", type: "string" }),
 						defineField({ name: "location_address", title: "Adresse", type: "string" }),
 						defineField({
+							name: "location_color",
+							title: "Couleur du lieu dans le planning",
+							type: "string",
+							options: {
+								list: [
+									{ title: "Vert", value: "green" },
+									{ title: "Jaune", value: "yellow" },
+								],
+								layout: "radio",
+								direction: "horizontal",
+							},
+							initialValue: "green",
+						}),
+						defineField({
 							name: "maps_query",
 							title: "Requête Maps",
 							type: "string",

@@ -397,6 +397,7 @@ export type ClubPage = {
     time_end?: string
     location_name?: string
     location_address?: string
+    location_color?: 'green' | 'yellow'
     maps_query?: string
     _key: string
   }>
