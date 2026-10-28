@@ -75,11 +75,6 @@
 	padding: 1.75rem 2.25rem;
 }
 
-/* permanent feeds have no date stamp */
-.feed-item__content--no-stamp {
-	grid-template-columns: 1fr;
-}
-
 .feed-item__body {
 	min-width: 0;
 }
@@ -107,6 +102,16 @@
 .feed-item__content--expanded .feed__stamp-month {
 	font-size: 0.875rem;
 	letter-spacing: 0.12em;
+}
+
+/* day (3.5rem) + month (0.875rem) */
+.feed-item__content--expanded .feed__glyph {
+	height: 4.375rem;
+	font-size: 1.75rem;
+}
+
+.feed-item__content--expanded svg.feed__glyph {
+	width: 4.375rem;
 }
 
 .feed-item__title {
@@ -141,6 +146,14 @@
 	font-weight: 600;
 	letter-spacing: 0.08em;
 	color: var(--c0);
+}
+
+.feed-item__date-small .feed__glyph {
+	height: 1.25rem;
+}
+
+.feed-item__date-small svg.feed__glyph {
+	width: 1.25rem;
 }
 
 @media (hover: hover) {

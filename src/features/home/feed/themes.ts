@@ -1,5 +1,13 @@
 export type FeedThemeSlug = "sunset" | "vice-city" | "heatwave" | "neon-drift";
 
+/** Default colours of the 4 spots, until the editors set their own */
+export const THEME_ORDER: FeedThemeSlug[] = [
+	"sunset",
+	"vice-city",
+	"heatwave",
+	"neon-drift",
+];
+
 /**
  * Radial gradient stops of a feed card, from the brightest (center of the glow)
  * to the darkest. `c0` doubles as the accent colour (CTA, date, progress bar).

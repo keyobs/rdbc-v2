@@ -3,16 +3,14 @@ import "./feedDesktop.css";
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "motion/react";
-import type { FeedItem, Locale } from "./types";
+import type { DisplayedFeed, Locale } from "./types";
 import { getTheme } from "./themes";
-import {
-	getFeedDateParts,
-	getFeedLinkProps,
-	getFeedShortDate,
-} from "./feedUtils";
+import { getFeedLinkProps, getFeedShortDate } from "./feedUtils";
+import FeedIcon from "./FeedIcon";
+import FeedStamp from "./FeedStamp";
 
 interface FeedDesktopProps {
-	feeds: FeedItem[];
+	feeds: DisplayedFeed[];
 	locale: Locale;
 	autoPlay?: boolean;
 	interval?: number;
@@ -83,10 +81,6 @@ const FeedDesktop = ({
 							? "collapsed-left"
 							: "collapsed-right";
 
-					const dateParts = feed.isPermanent
-						? null
-						: getFeedDateParts(feed.date, locale);
-
 					// A photo replaces the gradient layer, the theme colours stay as fallback
 					const imageStyle = feed.backgroundImage
 						? {
@@ -130,20 +124,13 @@ const FeedDesktop = ({
 								{isActive ? (
 									<motion.div
 										key="expanded"
-										className={`feed-item__content feed-item__content--expanded${dateParts ? "" : " feed-item__content--no-stamp"}`}
+										className="feed-item__content feed-item__content--expanded"
 										initial={{ opacity: 0 }}
 										animate={{ opacity: 1 }}
 										exit={{ opacity: 0 }}
 										transition={{ duration: 0.2, delay: 0.1 }}
 									>
-										{dateParts && (
-											<time className="feed__stamp" dateTime={feed.date}>
-												<span className="feed__stamp-day">{dateParts.day}</span>
-												<span className="feed__stamp-month">
-													{dateParts.month}
-												</span>
-											</time>
-										)}
+										<FeedStamp feed={feed} locale={locale} />
 										<div className="feed-item__body">
 											<h2 className="feed-item__title">{feed.title[locale]}</h2>
 											<p className="feed-item__description">
@@ -169,12 +156,18 @@ const FeedDesktop = ({
 										exit={{ opacity: 0 }}
 										transition={{ duration: 0.15 }}
 									>
-										<time
-											className="feed-item__date-small"
-											dateTime={feed.isPermanent ? undefined : feed.date}
-										>
-											{getFeedShortDate(feed, locale)}
-										</time>
+										{feed.icon ? (
+											<span className="feed-item__date-small">
+												<FeedIcon icon={feed.icon} className="feed__glyph" />
+											</span>
+										) : (
+											<time
+												className="feed-item__date-small"
+												dateTime={feed.date}
+											>
+												{getFeedShortDate(feed.date)}
+											</time>
+										)}
 										<span className="feed-item__title-vertical">
 											{feed.mobileTitle?.[locale] ?? feed.title[locale]}
 										</span>

@@ -1,38 +1,51 @@
 import { withBase } from "@utils/urlHandler";
-import type { FeedItem, Locale } from "./types";
+import type { DisplayedFeed, FeedItem, FeedSpot } from "./types";
 
-export function isExpired(feed: FeedItem): boolean {
+/** `expiryDate` is a "YYYY-MM-DD" day: the feed stays until the next local midnight. */
+export function isExpired(feed: FeedItem, now = new Date()): boolean {
 	if (!feed.expiryDate) return false;
-	return new Date() >= new Date(feed.expiryDate);
+	const [year, month, day] = feed.expiryDate.split("-").map(Number);
+	return now >= new Date(year, month - 1, day + 1);
 }
 
+/**
+ * Feeds to display, each with the colours of its spot (or its own forced colours).
+ * `allFeeds` is expected in fallback order (see `feedData.ts`): permanent feeds are
+ * used in that order, and a permanent feed is never displayed twice.
+ */
 export function getDisplayFeeds(
 	allFeeds: FeedItem[],
-	spotIds: string[],
-): FeedItem[] {
-	const permanents = allFeeds.filter(
-		(f) => f.isPermanent === true || f.expiryDate === null,
+	spots: FeedSpot[],
+	now = new Date(),
+): DisplayedFeed[] {
+	const placedIds = new Set(spots.map((spot) => spot.feedId));
+	const availablePermanents = allFeeds.filter(
+		(feed) => feed.isPermanent && !placedIds.has(feed.id),
 	);
-	const usedIds = new Set(spotIds);
-	const usedPermanentIds = new Set<string>();
 
-	const results = spotIds.map((id) => {
-		const feed = allFeeds.find((f) => f.id === id);
-		if (!feed || isExpired(feed)) {
-			const fallback =
-				permanents.find(
-					(p) => !usedIds.has(p.id) && !usedPermanentIds.has(p.id),
-				) ?? permanents.find((p) => !usedPermanentIds.has(p.id));
-			if (fallback) {
-				usedPermanentIds.add(fallback.id);
-				return fallback;
-			}
-			return null;
-		}
-		return feed;
+	const display = (feed: FeedItem, spot: FeedSpot): DisplayedFeed => ({
+		...feed,
+		theme: feed.forcedTheme ?? spot.theme,
 	});
 
-	return results.filter((f): f is FeedItem => f !== null);
+	const fillWithPermanent = (spot: FeedSpot): DisplayedFeed | null => {
+		const permanent = availablePermanents.shift();
+		return permanent ? display(permanent, spot) : null;
+	};
+
+	const filledSpots = spots.filter((spot) => spot.feedId !== null);
+	// No feed placed by the editors: permanent feeds fill every spot
+	const results =
+		filledSpots.length === 0
+			? spots.map(fillWithPermanent)
+			: filledSpots.map((spot) => {
+					const feed = allFeeds.find(({ id }) => id === spot.feedId);
+					return feed && !isExpired(feed, now)
+						? display(feed, spot)
+						: fillWithPermanent(spot);
+				});
+
+	return results.filter((feed): feed is DisplayedFeed => feed !== null);
 }
 
 export function getFeedDateParts(
@@ -48,10 +61,9 @@ export function getFeedDateParts(
 	return { day: String(parseInt(dayStr, 10)), month };
 }
 
-/** "dd.MM" for dated feeds, a short label for permanent ones. */
-export function getFeedShortDate(feed: FeedItem, locale: Locale): string {
-	if (feed.isPermanent) return locale === "fr" ? "Perm." : "Ongoing";
-	const [, monthStr, dayStr] = feed.date.split("-");
+/** "dd.MM" from a "YYYY-MM-DD" day. */
+export function getFeedShortDate(isoDate: string): string {
+	const [, monthStr, dayStr] = isoDate.split("-");
 	return `${dayStr.padStart(2, "0")}.${monthStr}`;
 }
 
@@ -62,8 +74,10 @@ interface FeedLinkProps {
 }
 
 export function getFeedLinkProps(href: string): FeedLinkProps {
+	if (href.startsWith("/")) return { href: withBase(href) };
 	if (href.startsWith("http")) {
 		return { href, target: "_blank", rel: "noopener noreferrer" };
 	}
-	return { href: withBase(href) };
+	// mailto: and other schemes
+	return { href };
 }

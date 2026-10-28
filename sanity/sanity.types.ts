@@ -353,11 +353,22 @@ export type FeedSettings = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  spots?: Array<
-    {
-      _key: string
-    } & FeedReference
-  >
+  spot1?: {
+    theme?: 'sunset' | 'vice-city' | 'heatwave' | 'neon-drift'
+    feed?: FeedReference
+  }
+  spot2?: {
+    theme?: 'sunset' | 'vice-city' | 'heatwave' | 'neon-drift'
+    feed?: FeedReference
+  }
+  spot3?: {
+    theme?: 'sunset' | 'vice-city' | 'heatwave' | 'neon-drift'
+    feed?: FeedReference
+  }
+  spot4?: {
+    theme?: 'sunset' | 'vice-city' | 'heatwave' | 'neon-drift'
+    feed?: FeedReference
+  }
 }
 
 export type Feed = {
@@ -368,6 +379,21 @@ export type Feed = {
   _rev: string
   name?: string
   isPermanent?: boolean
+  icon?:
+    | 'alert'
+    | 'game'
+    | 'club'
+    | 'event'
+    | 'crown'
+    | 'party'
+    | 'holiday'
+    | 'target'
+    | 'trophy'
+    | 'experiment'
+    | 'connect'
+    | 'camera'
+    | 'screen'
+  priority?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
   date?: string
   expiryDate?: string
   title?: {
@@ -382,7 +408,7 @@ export type Feed = {
     fr?: string
     en?: string
   }
-  theme?: 'sunset' | 'vice-city' | 'heatwave' | 'neon-drift'
+  forcedTheme?: 'sunset' | 'vice-city' | 'heatwave' | 'neon-drift'
   backgroundImage?: {
     asset?: SanityImageAssetReference
     media?: unknown

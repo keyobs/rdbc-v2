@@ -14,6 +14,21 @@
 	display: block;
 }
 
+/* permanent feeds: the icon fills the box of the date, day + month high */
+.feed__stamp--icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--c0);
+}
+
+.feed__glyph {
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	text-transform: none;
+}
+
 /* 80s Switch button */
 .feed__cta {
 	display: inline-flex;

@@ -1,16 +1,24 @@
 import {defineField, defineType} from 'sanity'
+import {FeedIconInput} from './FeedIconInput'
+import {FEED_ICONS} from './feedIcons'
+import {FEED_THEMES} from './feedThemes'
 
 const MOBILE_TITLE_MAX_LENGTH = 80
 // Label of the button: kept short so that the button stays on one line
 const BUTTON_LABEL_MAX_LENGTH = 25
+const MAX_PERMANENT_FEEDS = 10
 
-// Slugs match src/features/home/feed/themes.ts
-const THEMES = [
-  {title: 'Sunset — jaune, orange, rouge', value: 'sunset'},
-  {title: 'Vice City — doré, rouge, violet', value: 'vice-city'},
-  {title: 'Heatwave — rose, violet', value: 'heatwave'},
-  {title: 'Neon Drift — cyan, bleu', value: 'neon-drift'},
-]
+const PERMANENT_COUNT_QUERY = `count(*[_type == "feed" && isPermanent == true && !(_id in path("drafts.**")) && _id != $id])`
+const SAME_PRIORITY_QUERY = `*[_type == "feed" && isPermanent == true && priority == $priority && !(_id in path("drafts.**")) && _id != $id][0].name`
+
+const PRIORITIES = Array.from({length: MAX_PERMANENT_FEEDS}, (_, index) => {
+  const priority = index + 1
+  const hint = priority === 1 ? ' — utilisé en premier' : priority === MAX_PERMANENT_FEEDS ? ' — utilisé en dernier' : ''
+  return {title: `${priority}${hint}`, value: priority}
+})
+
+// Published version of the document: a draft and its published copy are the same feed
+const publishedId = (document: {_id: string}): string => document._id.replace(/^drafts\./, '')
 
 const isPermanent = (document: unknown): boolean =>
   (document as {isPermanent?: boolean} | undefined)?.isPermanent === true
@@ -44,7 +52,8 @@ export const feed = defineType({
   name: 'feed',
   title: 'Fil d’actualités — feed',
   type: 'document',
-  description: 'Une carte du fil d’actualités de l’accueil. Elle s’affiche si elle est placée dans un emplacement.',
+  description:
+    'Une carte du fil d’actualités de l’accueil. Ses couleurs dépendent de l’emplacement où elle est placée.',
   fields: [
     defineField({
       name: 'name',
@@ -57,9 +66,52 @@ export const feed = defineType({
       name: 'isPermanent',
       title: 'Feed permanent',
       type: 'boolean',
-      description:
-        'Toujours valable (ex : « Rejoindre le club »). Remplace automatiquement un feed expiré dans un emplacement.',
+      description: `Toujours valable (ex : « Rejoindre le club »). Remplace automatiquement un feed expiré dans un emplacement. ${MAX_PERMANENT_FEEDS} feeds permanents maximum.`,
       initialValue: false,
+      validation: (Rule) =>
+        Rule.custom(async (value, context) => {
+          if (!value || !context.document) return true
+          // Other published permanent feeds: this one is left out, draft or not
+          const count = await context
+            .getClient({apiVersion: '2025-08-15'})
+            .fetch<number>(PERMANENT_COUNT_QUERY, {id: publishedId(context.document)})
+          return count >= MAX_PERMANENT_FEEDS
+            ? `Il y a déjà ${MAX_PERMANENT_FEEDS} feeds permanents : décoche-en un avant.`
+            : true
+        }),
+    }),
+    defineField({
+      name: 'icon',
+      title: 'Icône',
+      type: 'string',
+      description: 'Affichée à la place de la date.',
+      options: {list: FEED_ICONS.map(({title, value}) => ({title, value}))},
+      components: {input: FeedIconInput},
+      hidden: ({document}) => !isPermanent(document),
+      validation: (Rule) =>
+        Rule.custom((value, context) =>
+          isPermanent(context.document) && !value ? 'L’icône est obligatoire pour un feed permanent.' : true,
+        ),
+    }),
+    defineField({
+      name: 'priority',
+      title: 'Priorité de remplacement',
+      type: 'number',
+      description:
+        'Quand un feed daté expire, ou quand aucun feed n’est placé dans les emplacements, les feeds permanents prennent la place, dans cet ordre : la priorité 1 d’abord, puis la 2, etc. Chaque feed permanent a sa propre priorité.',
+      options: {list: PRIORITIES},
+      hidden: ({document}) => !isPermanent(document),
+      validation: (Rule) =>
+        Rule.custom(async (value, context) => {
+          if (!isPermanent(context.document) || !context.document) return true
+          if (!value) return 'La priorité est obligatoire pour un feed permanent.'
+          const sameName = await context
+            .getClient({apiVersion: '2025-08-15'})
+            .fetch<string | null>(SAME_PRIORITY_QUERY, {priority: value, id: publishedId(context.document)})
+          return sameName
+            ? `La priorité ${value} est déjà prise par le feed « ${sameName} ». Choisis-en une autre.`
+            : true
+        }),
     }),
     defineField({
       name: 'date',
@@ -101,12 +153,13 @@ export const feed = defineType({
       ],
     }),
     defineField({
-      name: 'theme',
-      title: 'Couleurs',
+      name: 'forcedTheme',
+      title: 'Couleurs forcées (facultatif)',
       type: 'string',
-      options: {list: THEMES, layout: 'radio'},
-      initialValue: 'sunset',
-      validation: (Rule) => Rule.required(),
+      description:
+        'Laisser vide pour prendre les couleurs de l’emplacement occupé. Si rempli, ce feed garde toujours ces couleurs.',
+      options: {list: FEED_THEMES, layout: 'radio'},
+      hidden: ({document}) => !isPermanent(document),
     }),
     defineField({
       name: 'backgroundImage',
@@ -139,16 +192,28 @@ export const feed = defineType({
   ],
   orderings: [
     {
+      title: 'Priorité des feeds permanents',
+      name: 'priorityAsc',
+      by: [
+        {field: 'isPermanent', direction: 'desc'},
+        {field: 'priority', direction: 'asc'},
+      ],
+    },
+    {
       title: 'Date de l’événement (récentes d’abord)',
       name: 'dateDesc',
       by: [{field: 'date', direction: 'desc'}],
     },
   ],
   preview: {
-    select: {title: 'name', isPermanent: 'isPermanent', date: 'date', media: 'backgroundImage'},
-    prepare: ({title, isPermanent, date, media}) => ({
+    select: {title: 'name', isPermanent: 'isPermanent', priority: 'priority', date: 'date', media: 'backgroundImage'},
+    prepare: ({title, isPermanent, priority, date, media}) => ({
       title: title ?? 'Feed sans nom',
-      subtitle: isPermanent ? 'Permanent' : date ? new Date(date).toLocaleDateString('fr-FR') : '',
+      subtitle: isPermanent
+        ? `Permanent · priorité ${priority ?? 'à choisir'}`
+        : date
+          ? new Date(date).toLocaleDateString('fr-FR')
+          : '',
       media,
     }),
   },

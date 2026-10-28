@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import type { FeedItem, Locale } from "./types";
+import type { DisplayedFeed, FeedItem, Locale } from "./types";
 import { getTheme } from "./themes";
-import { getFeedDateParts, getFeedLinkProps } from "./feedUtils";
+import { getFeedLinkProps } from "./feedUtils";
+import FeedStamp from "./FeedStamp";
 import "./feed.css";
 import "./feedMobile.css";
 
 interface FeedMobileProps {
-	feeds: FeedItem[];
+	feeds: DisplayedFeed[];
 	locale: Locale;
 	autoPlay?: boolean;
 	interval?: number;
@@ -112,10 +113,6 @@ const FeedMobile = ({
 		"--base": activeTheme.base,
 	} as FeedMobileCSSProperties;
 
-	const dateParts = activeFeed.isPermanent
-		? null
-		: getFeedDateParts(activeFeed.date, locale);
-
 	return (
 		<div className="feed-mobile">
 			<div
@@ -132,18 +129,13 @@ const FeedMobile = ({
 				<AnimatePresence mode="wait" initial={false}>
 					<motion.div
 						key={activeFeed.id}
-						className={`feed-mobile__content${dateParts ? "" : " feed-mobile__content--no-stamp"}`}
+						className="feed-mobile__content"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={FADE}
 					>
-						{dateParts && (
-							<time className="feed__stamp" dateTime={activeFeed.date}>
-								<span className="feed__stamp-day">{dateParts.day}</span>
-								<span className="feed__stamp-month">{dateParts.month}</span>
-							</time>
-						)}
+						<FeedStamp feed={activeFeed} locale={locale} />
 						<h2 className="feed-mobile__title">
 							{getMobileTitle(activeFeed, locale)}
 						</h2>
