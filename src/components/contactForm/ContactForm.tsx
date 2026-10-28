@@ -11,11 +11,12 @@ export type ContactInterest =
 	| "referee"
 	| "watch"
 	| "volunteer"
-	| "hello";
+	| "hello"
+	| "interleague";
 
 export interface ContactPreset {
 	interest: ContactInterest;
-	message: string;
+	message?: string;
 }
 
 interface ContactFormProps {
@@ -32,12 +33,18 @@ const INTERESTS: { id: ContactInterest; fr: string; en: string }[] = [
 	{ id: "watch", fr: "Venir voir", en: "Come watch" },
 	{ id: "volunteer", fr: "Filer un coup de main", en: "Volunteer" },
 	{ id: "hello", fr: "Dire bonjour", en: "Say hi" },
+	{ id: "interleague", fr: "Interligue", en: "Interleague" },
 ];
+
+export const isContactInterest = (
+	value: string | null,
+): value is ContactInterest => INTERESTS.some((item) => item.id === value);
 
 const LABELS = {
 	fr: {
 		formTitle: "Nous contacter",
-		name: "Prénom",
+		byMail: "mail :",
+		name: "Nom",
 		interests: "Je suis intéressé·e par",
 		email: "Email",
 		message: "Message",
@@ -49,7 +56,8 @@ const LABELS = {
 	},
 	en: {
 		formTitle: "Contact us",
-		name: "First name",
+		byMail: "By email:",
+		name: "Name",
 		interests: "I'm interested in",
 		email: "Email",
 		message: "Message",
@@ -61,7 +69,7 @@ const LABELS = {
 	},
 };
 
-const CONTACT_EMAIL = "intraligue@rollerderbybordeaux.fr";
+const CONTACT_EMAIL = "rollerderbybordeaux@gmail.com";
 
 type SubmitStatus = "idle" | "sending" | "sent" | "error";
 
@@ -96,10 +104,14 @@ export default function ContactForm({
 	return (
 		<div className="contact-form">
 			<Heading className="title">{t.formTitle}</Heading>
+			<p className="by-mail">
+				{t.byMail} <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+			</p>
 			<div className="coupon">
-				<div className="scissors" aria-hidden>
-					✂ — — — — — — — — — — — — — — — — — — —
-				</div>
+				{/* Sits on the coupon's dashed cut line */}
+				<span className="scissors" aria-hidden>
+					✂
+				</span>
 
 				{status === "sent" ? (
 					<p className="feedback" role="status">
@@ -125,7 +137,7 @@ export default function ContactForm({
 										<input
 											type="checkbox"
 											name="interests[]"
-											value={item[locale]}
+											value={item.id}
 											defaultChecked={preset?.interest === item.id}
 										/>
 										<span>{item[locale]}</span>
@@ -134,21 +146,23 @@ export default function ContactForm({
 							</div>
 						</fieldset>
 
-						<label className="field">
-							<span>{t.name}</span>
-							<input name="name" type="text" required maxLength={80} />
-						</label>
+						<div className="identity">
+							<label className="field">
+								<span>{t.name}</span>
+								<input name="name" type="text" maxLength={80} />
+							</label>
 
-						<label className="field">
-							<span>{t.email}</span>
-							<input name="email" type="email" required maxLength={120} />
-						</label>
+							<label className="field">
+								<span>{t.email}</span>
+								<input name="email" type="email" required maxLength={120} />
+							</label>
+						</div>
 
 						<label className="field">
 							<span>{t.message}</span>
 							<textarea
 								name="message"
-								rows={preset ? 5 : 3}
+								rows={7}
 								required
 								maxLength={2000}
 								defaultValue={preset?.message}
@@ -177,10 +191,6 @@ export default function ContactForm({
 						</div>
 					</form>
 				)}
-
-				<div className="scissors bottom" aria-hidden>
-					— — — — — — — — — — — — — — — — — — — ✂
-				</div>
 			</div>
 		</div>
 	);

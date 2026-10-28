@@ -2,6 +2,8 @@ const FLATTRACKSTATS_RANKINGS = "https://flattrackstats.com/rankings/";
 
 export const MYROLLERDERBY_URL = "https://www.myrollerderby.com/";
 
+export const INTERLEAGUE_EMAIL = "interleague@rollerderbybordeaux.fr";
+
 /** Local calendar day as YYYY-MM-DD. */
 export function toIsoDay(date: Date): string {
 	const month = String(date.getMonth() + 1).padStart(2, "0");

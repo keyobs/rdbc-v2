@@ -2,7 +2,19 @@
 // Contact form endpoint for the club page (OVH shared hosting, PHP).
 // Receives a multipart/form-data POST and forwards it by e-mail to the club.
 
-const RECIPIENT = 'intraligue@rollerderbybordeaux.fr';
+const GENERAL = 'rollerderbybordeaux@gmail.com';
+const RECRUITMENT = 'recrutement@rollerderbybordeaux.fr';
+const INTERLEAGUE = 'interleague@rollerderbybordeaux.fr';
+// Checked interest (form value) => [label in the mail, recipient]
+const INTERESTS = [
+    'play' => ['Jouer', RECRUITMENT],
+    'try' => ['Essayer', RECRUITMENT],
+    'referee' => ['Arbitrer', RECRUITMENT],
+    'watch' => ['Venir voir', GENERAL],
+    'volunteer' => ['Filer un coup de main', GENERAL],
+    'hello' => ['Dire bonjour', GENERAL],
+    'interleague' => ['Interligue', INTERLEAGUE],
+];
 // Must be an address of the hosted domain, otherwise OVH may reject the mail.
 const SENDER = 'no-reply@rollerderbybordeaux.fr';
 // Minimum delay between two messages from the same IP (seconds).
@@ -37,14 +49,24 @@ $name = clean_line((string) ($_POST['name'] ?? ''), 80);
 $email = clean_line((string) ($_POST['email'] ?? ''), 120);
 $message = trim(mb_substr((string) ($_POST['message'] ?? ''), 0, 2000));
 $locale = ($_POST['locale'] ?? 'fr') === 'en' ? 'en' : 'fr';
+// Unknown values are ignored; each checked interest adds its recipient once
 $interests = [];
+$recipients = [];
 if (isset($_POST['interests']) && is_array($_POST['interests'])) {
     foreach (array_slice($_POST['interests'], 0, 10) as $item) {
-        $interests[] = clean_line((string) $item, 60);
+        $key = (string) $item;
+        if (!isset(INTERESTS[$key])) {
+            continue;
+        }
+        [$label, $to] = INTERESTS[$key];
+        $interests[] = $label;
+        $recipients[$to] = true;
     }
 }
+$recipients = $recipients === [] ? [GENERAL] : array_keys($recipients);
 
-if ($name === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+// Name is optional
+if ($message === '' ||!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     respond(422, 'invalid');
 }
 
@@ -56,7 +78,7 @@ if (is_file($stamp) && time() - (int) filemtime($stamp) < MIN_DELAY) {
 }
 
 $lines = [
-    "Prénom : $name",
+    'Nom : ' . ($name === '' ? '(non renseigné)' : $name),
     "Email : $email",
     'Langue : ' . strtoupper($locale),
 ];
@@ -67,13 +89,13 @@ $body = implode("\n", $lines) . "\n\n" . $message . "\n";
 
 $headers = [
     'From: Site RDBC <' . SENDER . '>',
-    'Reply-To: ' . $name . ' <' . $email . '>',
+    'Reply-To: ' . ($name === '' ? $email : $name . ' <' . $email . '>'),
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
 ];
-$subject = '=?UTF-8?B?' . base64_encode("Contact site RDBC — $name") . '?=';
+$subject = '=?UTF-8?B?' . base64_encode('Contact site RDBC — ' . ($name === '' ? $email : $name)) . '?=';
 
-if (!mail(RECIPIENT, $subject, $body, implode("\r\n", $headers))) {
+if (!mail(implode(', ', $recipients), $subject, $body, implode("\r\n", $headers))) {
     respond(500, 'mail');
 }
 
@@ -90,7 +112,7 @@ if (!empty($_POST['copy'])) {
         : 'Copie de votre message au RDBC';
     $copyHeaders = [
         'From: Roller Derby Bordeaux Club <' . SENDER . '>',
-        'Reply-To: ' . RECIPIENT,
+        'Reply-To: ' . $recipients[0],
         'MIME-Version: 1.0',
         'Content-Type: text/plain; charset=UTF-8',
     ];

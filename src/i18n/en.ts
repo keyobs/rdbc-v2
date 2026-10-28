@@ -58,6 +58,7 @@ const en = {
 		challengeText:
 			"A team, a league, a friendly game: write to us and we will find a date together.",
 		challengeCta: "Write to us",
+		challengeMail: "Or by email:",
 		asideLabel: "Challenge and external links",
 		ranking: "FlatTrackStats ranking",
 		championships: "Championships on MyRollerDerby",

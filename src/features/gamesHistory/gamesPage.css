@@ -127,6 +127,16 @@
 	text-shadow: 0 0 0.5rem var(--color-neon-primary);
 }
 
+.games-challenge__mail {
+	font-size: 1rem;
+	color: var(--color-neon-secondary);
+
+	a {
+		color: var(--color-neon-primary);
+		overflow-wrap: anywhere;
+	}
+}
+
 .ext-link {
 	display: flex;
 	flex-direction: column;

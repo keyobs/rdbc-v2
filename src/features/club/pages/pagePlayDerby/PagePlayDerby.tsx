@@ -1,6 +1,10 @@
 import type { ClubPage } from "../../../../../sanity/sanity.types";
 import type { Locale } from "@i18n/index";
-import ContactForm from "@components/contactForm/ContactForm";
+import { useEffect, useState } from "react";
+import ContactForm, {
+	type ContactInterest,
+	isContactInterest,
+} from "@components/contactForm/ContactForm";
 import SignupBlock from "@components/signupBlock/SignupBlock";
 import Reveal from "@components/reveal/Reveal";
 import "./pagePlayDerby.css";
@@ -132,6 +136,16 @@ const fadeUp = {
 
 export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 	const t = LABELS[locale];
+	const [urlInterest, setUrlInterest] = useState<ContactInterest | null>(null);
+
+	// Links such as /club?interest=interleague#contact pre-check a form interest.
+	// The URL is read after hydration so the server and client renders match.
+	useEffect(() => {
+		const interest = new URLSearchParams(window.location.search).get(
+			"interest",
+		);
+		if (isContactInterest(interest)) setUrlInterest(interest);
+	}, []);
 	const sessions =
 		data.training_sessions && data.training_sessions.length > 0
 			? data.training_sessions
@@ -228,7 +242,11 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 						</Reveal>
 
 						<Reveal id="contact" className="contact" variants={fadeUp}>
-							<ContactForm locale={locale} />
+							<ContactForm
+								key={urlInterest ?? "none"}
+								locale={locale}
+								preset={urlInterest ? { interest: urlInterest } : undefined}
+							/>
 						</Reveal>
 					</div>
 				</div>

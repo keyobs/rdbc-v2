@@ -58,6 +58,7 @@ const fr = {
 		challengeText:
 			"Une équipe, une ligue, un match amical : écrivez-nous et on cherche une date ensemble.",
 		challengeCta: "Nous écrire",
+		challengeMail: "notre mail :",
 		asideLabel: "Défi et liens externes",
 		ranking: "Classement FlatTrackStats",
 		championships: "Les champs sur MyRollerDerby",

@@ -5,6 +5,7 @@ import { withBase } from "@utils/urlHandler";
 import {
 	getFlatTrackStatsUrl,
 	getPreviousSunday,
+	INTERLEAGUE_EMAIL,
 	MYROLLERDERBY_URL,
 	toIsoDay,
 } from "./externalLinks";
@@ -15,7 +16,10 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale).games;
-const contactHref = withBase(locale === "fr" ? "/contact" : "/en/contact");
+// Club contact form with the "Interleague" interest pre-checked
+const contactHref = withBase(
+	`${locale === "fr" ? "/club" : "/en/club"}?interest=interleague#contact`,
+);
 // Last sunday at build time; the script below refreshes it on the visitor's day
 const rankingsUrl = getFlatTrackStatsUrl(
 	toIsoDay(getPreviousSunday(new Date())),
@@ -27,6 +31,10 @@ const rankingsUrl = getFlatTrackStatsUrl(
 		<h2 class="games-challenge__title" id="challenge-title">{t.challengeTitle}</h2>
 		<p>{t.challengeText}</p>
 		<a class="games-cta" href={contactHref}>{t.challengeCta}</a>
+		<p class="games-challenge__mail">
+			{t.challengeMail}{" "}
+			<a href={`mailto:${INTERLEAGUE_EMAIL}`}>{INTERLEAGUE_EMAIL}</a>
+		</p>
 	</section>
 
 	<a
