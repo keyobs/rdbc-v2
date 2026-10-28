@@ -1,3 +1,57 @@
+## [Unreleased]
+
+### Added
+Join
+- Join page (`/rejoindre`, `/en/join`): values banner, hero and three role cards (player, referee, volunteer) with tags, a looping video slot and a CTA
+- Role card CTA pre-fills the contact form: matching interest checked and a ready-made message
+- Sign-up block and contact form extracted into `src/components`, shared by the club and join pages, printed on a fanzine paper sheet
+- Flyer-style CTA-ALT buttons: yellow price tag for the sign-up forms, inverted dark-blue tag for HelloAsso, cut-out coupon for "Send"
+- `--color-ink` token for the paper sheet ink
+
+Contact
+- "Interleague" interest, pre-checked when coming from the games page "Write to us" button (`/club?interest=interleague#contact`)
+- Messages routed by interest: play / try / referee to recrutement@, come watch / volunteer / say hi to the club Gmail, interleague to interleague@; club Gmail when nothing is checked
+- Club e-mail address shown under "Contact us", interleague address under the games page challenge
+
+Club
+- Training location color (green / yellow) as a Sanity field, used for agenda sessions and swatches in front of the map links
+
+### Changed
+Club
+- Agenda rows are fixed time slots (before 13:00, 13–17, 17–19, after 19:00); sessions sharing a slot stack one after the other
+- Agenda labels larger and bold, Saturday cell centered, "View on Maps" text removed from the location links
+- Demo Saturday schedule: Starters 11:00, TTA 13:00, Playschools 15:00
+
+Contact form
+- Field order: interests, name, e-mail, message; name and e-mail side by side (1/3 – 2/3)
+- "First name" becomes "Name" and is optional
+- Taller message box, single scissors on the coupon's dashed line instead of the cut lines
+- Fallback address on sending failure is the club Gmail
+
+Sport
+- Notion cards become a swipe slider on mobile
+- Track diagram full width on mobile, arrows in its bottom corners, section header above it
+- Officials follow the action in situations 6 to 8 (jammer refs level with their jammer, inside and outside refs placed from the pack and engagement zone) and glide along the track
+- Skater and official discs 20% larger
+
+Games
+- FlatTrackStats rankings link uses the previous Sunday instead of today
+
+Navigation
+- Mobile bottom nav: border bump around the logo; "Contact" points to the club contact form
+
+### Fixed
+- Notion cards overlapping the "Les bases" header on mobile
+- Bottom nav border showing under the logo bump on some phones
+- Animated blocks (club, join, home feed) invisible when JavaScript loads late or fails: content is now visible in the server HTML and only off-screen blocks wait for their reveal
+- Games page "Write to us" button pointing to a missing `/contact` page
+
+### Notes
+- Redeploy the Sanity Studio (`cd sanity && yarn deploy`) to get the location color field
+- `send.php` routing still needs a real test e-mail per address on the hosting
+
+---
+
 ## [0.4.0] - 2026-10-27
 
 ### Added
