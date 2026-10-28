@@ -72,18 +72,19 @@ const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 					))}
 				</ul>
 
-				{/* Border bump hugging the logo ring (logo 52px + 16px gap = r42) */}
+				{/* Border bump hugging the logo ring (logo 52px + 16px gap = r42).
+				    The fill runs 4px past the bar border so no sliver shows through on fractional pixel ratios */}
 				<svg
 					className="bottom-nav__notch"
 					width="140"
-					height="12"
-					viewBox="0 0 140 12"
+					height="16"
+					viewBox="0 0 140 16"
 					aria-hidden="true"
 					focusable="false"
 				>
 					<path
 						className="bottom-nav__notch-fill"
-						d="M0 11 L65.06 3.29 A42 42 0 0 1 74.94 3.29 L140 11 V12 H0 Z"
+						d="M0 11 L65.06 3.29 A42 42 0 0 1 74.94 3.29 L140 11 V16 H0 Z"
 					/>
 					<path
 						className="bottom-nav__notch-stroke"
