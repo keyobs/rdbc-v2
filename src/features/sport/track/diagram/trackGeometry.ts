@@ -11,11 +11,17 @@ export const JAMMER_LINE_X = PIVOT_LINE_X + 30;
 
 const TURN = Math.PI * INNER_RADIUS;
 const STRAIGHT = 2 * INNER_ARC_X;
-const PERIMETER = 2 * TURN + 2 * STRAIGHT;
+export const PERIMETER = 2 * TURN + 2 * STRAIGHT;
 
 export interface Point {
 	x: number;
 	y: number;
+}
+
+// s along the track from the pivot line, d from the inside boundary (negative = infield)
+export interface TrackPosition {
+	s: number;
+	d: number;
 }
 
 interface BoundaryPoint extends Point {
@@ -103,7 +109,33 @@ export const onTrack = (s: number, d: number): Point => {
 	return { x: p.x + p.nx * d, y: p.y + p.ny * d };
 };
 
-const outsideAt = (s: number): Point => {
+// Inverse of onTrack: track position of a point, from the nearest inside boundary point
+export const toTrack = ({ x, y }: Point): TrackPosition => {
+	if (x < -INNER_ARC_X) {
+		const dx = x + INNER_ARC_X;
+		return {
+			s: INNER_RADIUS * Math.atan2(-dx, -y),
+			d: Math.hypot(dx, y) - INNER_RADIUS,
+		};
+	}
+	if (x > INNER_ARC_X) {
+		const dx = x - INNER_ARC_X;
+		return {
+			s: TURN + STRAIGHT + INNER_RADIUS * Math.atan2(dx, y),
+			d: Math.hypot(dx, y) - INNER_RADIUS,
+		};
+	}
+	if (y > 0) return { s: TURN + x + INNER_ARC_X, d: y - INNER_RADIUS };
+	return { s: 2 * TURN + STRAIGHT + INNER_ARC_X - x, d: -INNER_RADIUS - y };
+};
+
+export const isOnTurn = (s: number): boolean => {
+	const t = ((s % PERIMETER) + PERIMETER) % PERIMETER;
+	return t < TURN || (t >= TURN + STRAIGHT && t < 2 * TURN + STRAIGHT);
+};
+
+// Track width at s: distance from the inside to the outside boundary
+export const trackWidthAt = (s: number): number => {
 	let lo = 0;
 	let hi = 20;
 	for (let i = 0; i < 30; i++) {
@@ -111,8 +143,10 @@ const outsideAt = (s: number): Point => {
 		if (distToOuterAxis(onTrack(s, mid)) < OUTER_RADIUS) lo = mid;
 		else hi = mid;
 	}
-	return onTrack(s, lo);
+	return lo;
 };
+
+const outsideAt = (s: number): Point => onTrack(s, trackWidthAt(s));
 
 // Area of the track between s1 (rear) and s2 (front)
 export const zonePath = (s1: number, s2: number): string => {

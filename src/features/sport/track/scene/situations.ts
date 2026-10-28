@@ -1,4 +1,4 @@
-import type { OfficialPositions, SkaterPositions } from "./cast";
+import type { OfficialId, OfficialPositions, SkaterPositions } from "./cast";
 import {
 	ACTION,
 	IN_ZONE,
@@ -35,6 +35,11 @@ export interface Situation {
 	id: SituationId;
 	skaters: SkaterPositions | null;
 	officials: OfficialPositions | null;
+	// Officials placed from the action (jammers, pack) instead of their hand-set position
+	trackedOfficials?: OfficialId[];
+	// Outside refs 1 and 3 stay level with the front blocker in the engagement zone and the rearmost skater,
+	// instead of the engagement zone limits
+	outsideRefsOnSkaters?: boolean;
 	pack: boolean;
 	engagement: boolean;
 	// Jammers highlighted, everything else dimmed
@@ -100,6 +105,7 @@ export const SITUATIONS: Situation[] = [
 		id: "jammers",
 		skaters: ACTION,
 		officials: OFFICIALS_ACTION,
+		trackedOfficials: ["jrg", "jrb", "ipr1", "opr1"],
 		pack: true,
 		engagement: true,
 		spotlightJammers: true,
@@ -110,6 +116,8 @@ export const SITUATIONS: Situation[] = [
 		id: "inZone",
 		skaters: IN_ZONE,
 		officials: OFFICIALS_ACTION,
+		trackedOfficials: ["jrg", "jrb", "ipr1", "opr1", "opr2", "opr3"],
+		outsideRefsOnSkaters: true,
 		pack: true,
 		engagement: true,
 		spotlightJammers: false,
@@ -120,6 +128,8 @@ export const SITUATIONS: Situation[] = [
 		id: "outOfZone",
 		skaters: OUT_OF_ZONE,
 		officials: OFFICIALS_ACTION,
+		trackedOfficials: ["jrg", "jrb", "ipr2", "opr1", "opr2", "opr3"],
+		outsideRefsOnSkaters: true,
 		pack: true,
 		engagement: true,
 		spotlightJammers: false,

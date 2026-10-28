@@ -16,13 +16,14 @@ export const starPoints = (outer: number, inner: number): string =>
 		return `${(Math.cos(a) * r).toFixed(3)},${(Math.sin(a) * r).toFixed(3)}`;
 	}).join(" ");
 
-const JAMMER_STAR = starPoints(0.95, 0.4);
+// Inner marks scale with the disc
+const JAMMER_STAR = starPoints(R * 0.7, R * 0.3);
 
 // Blocker = ring, pivot = stripe, jammer = star; drawn at the origin, in feet
 const SkaterIcon = ({ team, kind }: SkaterIconProps) => (
 	<g className={`skater ${team}`}>
 		<circle className="disc" r={R} />
-		{kind === "blocker" && <circle className="ring" r={0.85} />}
+		{kind === "blocker" && <circle className="ring" r={R * 0.63} />}
 		{kind === "pivot" && (
 			<line className="stripe" x1={-R + 0.05} x2={R - 0.05} y1={0} y2={0} />
 		)}

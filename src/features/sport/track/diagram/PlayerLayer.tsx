@@ -20,10 +20,11 @@ const PlayerLayer = ({ frame }: PlayerLayerProps) => {
 		<>
 			{OFFICIALS.map((official) => {
 				const f = frame.officials[official.id];
+				const p = onTrack(f.s, f.d);
 				return (
 					<g
 						key={official.id}
-						transform={translate(f.x, f.y)}
+						transform={translate(p.x, p.y)}
 						opacity={clamp01(f.opacity * dimmed)}
 					>
 						<OfficialIcon starTeam={official.starTeam} />
@@ -43,7 +44,7 @@ const PlayerLayer = ({ frame }: PlayerLayerProps) => {
 					>
 						{isJammer && (
 							<g opacity={clamp01(frame.spotlight)}>
-								<circle className="halo" r={2.4} />
+								<circle className="halo" r={2.85} />
 							</g>
 						)}
 						<SkaterIcon team={skater.team} kind={skater.role} />

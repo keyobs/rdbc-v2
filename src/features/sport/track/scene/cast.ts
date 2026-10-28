@@ -39,7 +39,7 @@ export type SkaterPositions = Record<SkaterId, readonly [number, number]>;
 // Officials as [x, y], in feet
 export type OfficialPositions = Record<OfficialId, readonly [number, number]>;
 
-export const SKATER_RADIUS = 1.35;
+export const SKATER_RADIUS = 1.6;
 
 export const SKATERS: Skater[] = [
 	{ id: "g1", team: "green", role: "blocker" },

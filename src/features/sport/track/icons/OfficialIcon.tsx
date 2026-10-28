@@ -7,8 +7,9 @@ interface OfficialIconProps {
 }
 
 const R = SKATER_RADIUS;
-const STRIPES = [-0.55, 0, 0.55];
-const REF_STAR = starPoints(0.75, 0.32);
+// Inner marks scale with the disc
+const STRIPES = [-R * 0.41, 0, R * 0.41];
+const REF_STAR = starPoints(R * 0.56, R * 0.24);
 
 // Striped referee jersey; jammer referees add a star in their jammer's color
 const OfficialIcon = ({ starTeam }: OfficialIconProps) => (
