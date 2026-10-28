@@ -11,25 +11,28 @@ export type TeamKey = "A" | "B" | "home";
 
 export interface GameResult {
 	id: string;
+	/** Local date-time "YYYY-MM-DDTHH:MM:00", noon when the time is unknown. */
 	date: string;
 	tournament: string;
 	event: string;
 	rdbc: TeamInfo;
 	hainemy: TeamInfo;
 	poster?: string;
-	photos?: string[];
 	/** Link to the game page, once it exists. */
 	detailsHref?: string;
 }
 
 export interface UpcomingGame {
 	id: string;
+	/** Local date-time "YYYY-MM-DDTHH:MM:00", noon when the time is unknown. */
 	date: string;
+	/** "HH:MM", `null` when not known yet. */
+	time: string | null;
 	team: TeamKey;
 	competition: string;
 	/** Games of the same plateau share the same competition and event. */
 	event: string;
-	venue: string;
+	venue: string | null;
 	isHome: boolean;
 	rdbc: Pick<TeamInfo, "name" | "logo">;
 	opponent: Pick<TeamInfo, "name" | "league" | "logo">;
@@ -41,6 +44,9 @@ export interface NextGamesGroup {
 	team: TeamKey;
 	competition: string;
 	event: string;
-	venue: string;
+	venue: string | null;
 	games: UpcomingGame[];
 }
+
+/** Caption of each team, per season ("2026-2027"). */
+export type SeasonCaptions = Record<string, Partial<Record<TeamKey, string>>>;

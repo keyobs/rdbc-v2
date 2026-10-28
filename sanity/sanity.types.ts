@@ -274,6 +274,7 @@ export type Competition = {
     opponent?: ClubReference
     homeTeam?: 'pink-cheek-peaches' | 'rotten-black-grapes' | 'boom-bright-gold'
     awayTeam?: 'pink-cheek-peaches' | 'rotten-black-grapes' | 'boom-bright-gold'
+    isWftda?: boolean
     rdbcScore?: number
     opponentScore?: number
     _type: 'game'

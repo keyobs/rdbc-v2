@@ -35,6 +35,7 @@ const ResultRow = ({ game, locale }: ResultRowProps) => {
 				home={rdbc}
 				away={{ ...hainemy, subtitle: hainemy.league }}
 				label={`${rdbc.name} ${rdbc.score}, ${hainemy.name} ${hainemy.score}`}
+				homeTone={rdbc.travelTeam === "B" ? "green" : "blue"}
 			>
 				<ScoreDigits homeScore={rdbc.score} awayScore={hainemy.score} />
 			</Scoreboard>

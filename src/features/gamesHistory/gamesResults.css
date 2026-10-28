@@ -166,8 +166,13 @@
 	}
 }
 
+/* Season without games: same look, nothing to unfold */
+.season__trigger.is-static {
+	cursor: default;
+}
+
 @media (hover: hover) {
-	.season__trigger:hover {
+	.season__trigger:not(.is-static):hover {
 		background: var(--color-surface);
 	}
 }

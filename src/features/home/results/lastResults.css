@@ -16,6 +16,8 @@
 }
 
 .results-board {
+	max-width: 70.25rem;
+	margin-inline: auto;
 	margin-bottom: 1.5rem;
 	border: var(--btn-border) var(--color-neon-primary);
 }
@@ -58,7 +60,9 @@
 	display: contents;
 }
 
+/* explicit columns: rows without a poster keep the poster slot empty */
 .results-row__poster {
+	grid-column: 1;
 	display: block;
 	width: 7.5rem;
 	height: 4.75rem;
@@ -67,6 +71,7 @@
 }
 
 .results-row__meta {
+	grid-column: 2;
 	font-size: 0.875rem;
 	line-height: 1.4;
 	color: var(--color-neon-secondary);
@@ -76,6 +81,10 @@
 	display: block;
 	font-size: 1rem;
 	color: var(--color-text-main);
+}
+
+.results-row > .scoreboard {
+	grid-column: 3;
 }
 
 /* ── Mobile ─────────────────────────────────────────────── */

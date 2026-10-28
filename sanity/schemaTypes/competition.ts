@@ -43,7 +43,7 @@ const localizedName = (name: string, title: string, example: string) =>
     type: 'object',
     description: example,
     fields: [
-      defineField({name: 'fr', title: 'Français', type: 'string', validation: (Rule) => Rule.required()}),
+      defineField({name: 'fr', title: 'Français', type: 'string'}),
       defineField({name: 'en', title: 'English (facultatif)', type: 'string'}),
     ],
   })
@@ -115,6 +115,13 @@ const gameMember = defineArrayMember({
             : true
         }),
     }),
+    defineField({
+      name: 'isWftda',
+      title: 'Match WFTDA',
+      type: 'boolean',
+      description: 'Cocher si ce match compte pour le classement WFTDA.',
+      initialValue: false,
+    }),
     scoreField('rdbcScore', 'Score RDBC (à gauche)'),
     scoreField('opponentScore', 'Score adverse (à droite)'),
   ],
@@ -134,15 +141,16 @@ const gameMember = defineArrayMember({
       awayTeam: 'awayTeam',
       rdbcScore: 'rdbcScore',
       opponentScore: 'opponentScore',
+      isWftda: 'isWftda',
     },
-    prepare: ({date, time, opponent, homeTeam, awayTeam, rdbcScore, opponentScore}) => {
+    prepare: ({date, time, opponent, homeTeam, awayTeam, rdbcScore, opponentScore, isWftda}) => {
       const titleOf = (value?: string) => HOME_TEAMS.find((team) => team.value === value)?.title
       const versus = opponent ?? [titleOf(homeTeam), titleOf(awayTeam)].filter(Boolean).join(' / ')
       const score = isPlayed({rdbcScore, opponentScore}) ? `${rdbcScore} / ${opponentScore}` : 'À venir'
       const day = date ? new Date(`${date}T12:00:00`).toLocaleDateString('fr-FR') : 'Sans date'
       return {
         title: versus || 'Match sans adversaire',
-        subtitle: [day, time, score].filter(Boolean).join(' · '),
+        subtitle: [day, time, score, isWftda && 'WFTDA'].filter(Boolean).join(' · '),
       }
     },
   },
@@ -162,8 +170,16 @@ export const competition = defineType({
       options: {list: TEAMS, layout: 'radio'},
       validation: (Rule) => Rule.required(),
     }),
-    localizedName('competition', 'Compétition', 'Ex : Championnat de France 2026 / 2026 French Championship'),
-    localizedName('event', 'Événement', 'Ex : Nationale 2 — Plateau 2 / Nationale 2 — Stage 2, Nationale 2 — Playoffs'),
+    localizedName(
+      'competition',
+      'Compétition (facultatif)',
+      'Seulement pour un championnat ou un match WFTDA. Ex : Championnat de France 2026 / 2026 French Championship. Laisser vide pour tout autre match.',
+    ),
+    localizedName(
+      'event',
+      'Événement (facultatif)',
+      'Affiché à côté de chaque résultat. Ex : Nationale 2 — Plateau 2 / Nationale 2 — Stage 2, Nationale 2 — Playoffs. Laisser vide pour tout autre match.',
+    ),
     defineField({
       name: 'venue',
       title: 'Lieu',
@@ -221,7 +237,7 @@ export const competition = defineType({
       const first = dates[0] ? new Date(`${dates[0]}T12:00:00`).toLocaleDateString('fr-FR') : 'Sans date'
       const teamTitle = TEAMS.find(({value}) => value === team)?.title.split(' — ')[0] ?? ''
       return {
-        title: [event, competition].filter(Boolean).join(' · ') || 'Compétition sans nom',
+        title: [event, competition].filter(Boolean).join(' · ') || 'Match',
         subtitle: `${teamTitle} · ${first} · ${dates.length} match(s)`,
         media,
       }

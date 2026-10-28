@@ -70,11 +70,6 @@
 	color: var(--color-neon-secondary);
 }
 
-.games-board__empty {
-	padding: 1.25rem 1rem;
-	color: var(--color-neon-secondary);
-}
-
 /* ── 80s Switch button ──────────────────────────────────── */
 
 .games-cta {
@@ -261,10 +256,6 @@
 		padding: 0.5rem 0.75rem;
 		font-size: 0.8125rem;
 		line-height: 1.45;
-	}
-
-	.games-board__empty {
-		padding: 0.875rem 0.75rem;
 	}
 
 	.games-cta {

@@ -1,22 +1,30 @@
 ---
+import { sanityClient } from "sanity:client";
 import { type Locale, useTranslations } from "@i18n/index";
-import { RESULTS } from "@features/games/resultsData";
-import { getGroupedResults } from "@features/games/utils";
+import { getGamesData } from "@features/games/gamesData";
+import { getGroupedResults, getSeason } from "@features/games/utils";
+import { TEAM_TITLES } from "@features/gamesHistory/teams";
 import ResultRow from "./ResultRow";
-import { TEAM_BOARDS } from "./teamBoards";
 import "./lastResults.css";
 
 interface Props {
 	locale: Locale;
 }
 
+// Travel teams only: intraleague results stay on the Matchs page
+const HOME_RESULTS_TEAMS = ["A", "B"] as const;
+
 const { locale } = Astro.props;
 const t = useTranslations(locale).home;
 
-const grouped = getGroupedResults(RESULTS, true);
-const boards = TEAM_BOARDS.map((board) => ({
-	...board,
-	games: grouped[board.team],
+const now = new Date();
+const { results, captions } = await getGamesData(sanityClient, locale, now);
+const currentCaptions = captions[getSeason(now.toISOString())];
+const grouped = getGroupedResults(results, true);
+const boards = HOME_RESULTS_TEAMS.map((team) => ({
+	title: TEAM_TITLES[team],
+	caption: currentCaptions?.[team],
+	games: grouped[team],
 })).filter((board) => board.games.length > 0);
 ---
 
@@ -26,7 +34,7 @@ const boards = TEAM_BOARDS.map((board) => ({
 	{boards.map((board) => (
 		<div class="results-board">
 			<div class="results-board__band">{board.title}</div>
-			<p class="results-board__caption">{board.caption[locale]}</p>
+			{board.caption && <p class="results-board__caption">{board.caption}</p>}
 
 			{board.games.map((game) => (
 				<ResultRow game={game} locale={locale} />

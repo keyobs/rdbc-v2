@@ -31,7 +31,8 @@ const NextGames = ({ groups, locale, labels }: NextGamesProps) => {
 						{TEAM_TITLES[group.team] ?? labels.tabs[group.team]}
 					</div>
 					<p className="games-board__caption">
-						{group.competition} — {group.event} · {group.venue}
+						{[group.competition, group.event].filter(Boolean).join(" — ")}
+						{group.venue && ` · ${group.venue}`}
 					</p>
 
 					{group.games.map((game) => (
@@ -40,6 +41,7 @@ const NextGames = ({ groups, locale, labels }: NextGamesProps) => {
 								home={game.rdbc}
 								away={{ ...game.opponent, subtitle: game.opponent.league }}
 								label={`${game.rdbc.name} / ${game.opponent.name}`}
+								homeTone={game.team === "B" ? "green" : "blue"}
 							>
 								<time className="scoreboard__text" dateTime={game.date}>
 									{formatGameDateShort(game.date, dateLocale)}
@@ -47,9 +49,11 @@ const NextGames = ({ groups, locale, labels }: NextGamesProps) => {
 								<span className="scoreboard__chip">
 									{game.isHome ? labels.homeChip : labels.awayChip}
 								</span>
-								<time className="scoreboard__text" dateTime={game.date}>
-									{formatGameTime(game.date, dateLocale)}
-								</time>
+								{game.time && (
+									<time className="scoreboard__text" dateTime={game.date}>
+										{formatGameTime(game.date, dateLocale)}
+									</time>
+								)}
 							</Scoreboard>
 						</div>
 					))}

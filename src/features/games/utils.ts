@@ -7,7 +7,7 @@ import type {
 
 const TEAMS: TeamKey[] = ["A", "B", "home"];
 
-export function getGameTeam(game: GameResult): TeamKey {
+export function getGameTeam(game: Pick<GameResult, "rdbc">): TeamKey {
 	return game.rdbc.travelTeam ?? "home";
 }
 

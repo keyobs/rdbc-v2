@@ -13,6 +13,8 @@ interface ScoreboardProps {
 	away: ScoreboardTeam;
 	/** Accessible summary of the whole board, e.g. "Petites Morts 215, Valient Biitchiiz 75". */
 	label: string;
+	/** Background of the home panel: "blue" by default, "green" for the TTB. */
+	homeTone?: "blue" | "green";
 	/** Content of the centre bar: a `ScoreDigits` or the date/chip/time of an upcoming game. */
 	children: ReactNode;
 }
@@ -31,7 +33,7 @@ function getInitials(name: string): string {
 
 const TeamMark = ({ team }: { team: ScoreboardTeam }) =>
 	team.logo ? (
-		<img className="scoreboard__logo" src={team.logo} alt="" />
+		<img className="scoreboard__logo" src={team.logo} alt="" loading="lazy" />
 	) : (
 		<span className="scoreboard__shield" aria-hidden="true">
 			{getInitials(team.name)}
@@ -47,8 +49,14 @@ const TeamName = ({ team }: { team: ScoreboardTeam }) => (
 	</span>
 );
 
-const Scoreboard = ({ home, away, label, children }: ScoreboardProps) => (
-	<figure className="scoreboard" aria-label={label}>
+const Scoreboard = ({
+	home,
+	away,
+	label,
+	homeTone = "blue",
+	children,
+}: ScoreboardProps) => (
+	<figure className={`scoreboard is-home-${homeTone}`} aria-label={label}>
 		<div className="scoreboard__side scoreboard__side--home">
 			<div className="scoreboard__panel scoreboard__panel--home">
 				<TeamMark team={home} />

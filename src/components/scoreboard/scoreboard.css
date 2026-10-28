@@ -45,6 +45,11 @@
 	);
 }
 
+/* TTB: grey to neon green */
+.scoreboard.is-home-green .scoreboard__panel--home {
+	background: linear-gradient(120deg, rgb(115 128 125), rgb(0 255 150));
+}
+
 .scoreboard__panel--away {
 	background: linear-gradient(
 		240deg,

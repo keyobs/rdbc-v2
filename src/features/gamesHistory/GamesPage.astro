@@ -1,11 +1,8 @@
 ---
+import { sanityClient } from "sanity:client";
 import { type Locale, useTranslations } from "@i18n/index";
-import { RESULTS, UPCOMING_GAMES } from "@features/games/resultsData";
-import {
-	formatGameDateShort,
-	getNextGamesByTeam,
-	getSeason,
-} from "@features/games/utils";
+import { getGamesData } from "@features/games/gamesData";
+import { getNextGamesByTeam, getSeason } from "@features/games/utils";
 import GamesAside from "./GamesAside.astro";
 import GamesResults from "./GamesResults";
 import NextGames from "./NextGames";
@@ -19,17 +16,17 @@ const { locale } = Astro.props;
 const t = useTranslations(locale).games;
 
 const now = new Date();
-const nextGroups = getNextGamesByTeam(UPCOMING_GAMES, now);
-// Earliest upcoming game of any team, shown when the current season is still empty
-const firstGame = nextGroups
-	.flatMap((group) => group.games)
-	.sort((a, b) => a.date.localeCompare(b.date))[0];
-const nextGameLabel = firstGame
-	? formatGameDateShort(firstGame.date, locale === "fr" ? "fr-FR" : "en-US")
-	: undefined;
+const { results, upcoming, captions } = await getGamesData(
+	sanityClient,
+	locale,
+	now,
+);
+// From the start of the day: a game of today without a known time is still upcoming
+const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+const nextGroups = getNextGamesByTeam(upcoming, today);
 
-// Posters and photos are not displayed here: keep them out of the island payload
-const games = RESULTS.map(({ poster, photos, ...game }) => game);
+// Posters and tournaments are not displayed here: keep them out of the island payload
+const games = results.map(({ poster, tournament, ...game }) => game);
 ---
 
 <div class="games-page">
@@ -44,9 +41,9 @@ const games = RESULTS.map(({ poster, photos, ...game }) => game);
 				<GamesResults
 					client:load
 					games={games}
+					captions={captions}
 					locale={locale}
 					currentSeason={getSeason(now.toISOString())}
-					nextGameLabel={nextGameLabel}
 					labels={t}
 				/>
 			</section>
