@@ -216,6 +216,27 @@ export type Slug = {
   source?: string
 }
 
+export type Season = {
+  _id: string
+  _type: 'season'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  captionA?: {
+    fr?: string
+    en?: string
+  }
+  captionB?: {
+    fr?: string
+    en?: string
+  }
+  captionHome?: {
+    fr?: string
+    en?: string
+  }
+}
+
 export type ClubReference = {
   _ref: string
   _type: 'reference'
@@ -223,24 +244,41 @@ export type ClubReference = {
   [internalGroqTypeReferenceTo]?: 'club'
 }
 
-export type Game = {
+export type Competition = {
   _id: string
-  _type: 'game'
+  _type: 'competition'
   _createdAt: string
   _updatedAt: string
   _rev: string
-  date?: string
-  location?: string
-  team?:
-    | 'petites-morts'
-    | 'compagnie-cruelle'
-    | 'pink-cheek-peaches'
-    | 'rotten-black-grapes'
-    | 'boom-bright-gold'
-  opponent?: ClubReference
-  team_score?: number
-  opponent_score?: number
-  tournament_name?: string
+  team?: 'A' | 'B' | 'home'
+  competition?: {
+    fr?: string
+    en?: string
+  }
+  event?: {
+    fr?: string
+    en?: string
+  }
+  venue?: string
+  location?: 'home' | 'away'
+  poster?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  games?: Array<{
+    date?: string
+    time?: string
+    opponent?: ClubReference
+    homeTeam?: 'pink-cheek-peaches' | 'rotten-black-grapes' | 'boom-bright-gold'
+    awayTeam?: 'pink-cheek-peaches' | 'rotten-black-grapes' | 'boom-bright-gold'
+    rdbcScore?: number
+    opponentScore?: number
+    _type: 'game'
+    _key: string
+  }>
 }
 
 export type AdvancedRulesSection = {
@@ -640,6 +678,14 @@ export type Club = {
   _updatedAt: string
   _rev: string
   name?: string
+  league?: string
+  logo?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
 }
 
 export type Player = {
@@ -765,8 +811,9 @@ export type AllSanitySchemaTypes =
   | SanityImageCrop
   | SanityImageHotspot
   | Slug
+  | Season
   | ClubReference
-  | Game
+  | Competition
   | AdvancedRulesSection
   | SportNotionsSection
   | HomeJoiningSection

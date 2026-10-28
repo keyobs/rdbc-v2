@@ -61,7 +61,23 @@ export const structure: StructureResolver = (S) =>
 						.title("News")
 						.defaultOrdering([{ field: "date", direction: "desc" }]),
 				),
-			S.documentTypeListItem("game").title("Matchs").icon(() => "🏆"),
-			S.documentTypeListItem("club").title("Clubs adverses").icon(() => "🛡️"),
+			S.listItem()
+				.title("Matchs")
+				.icon(() => "🏆")
+				.child(
+					S.list()
+						.title("Matchs")
+						.items([
+							S.documentTypeListItem("competition").title("Compétitions"),
+							S.documentTypeListItem("club").title("Clubs adverses"),
+							S.listItem()
+								.title("Légendes des saisons")
+								.child(
+									S.documentTypeList("season")
+										.title("Légendes des saisons")
+										.defaultOrdering([{ field: "name", direction: "desc" }]),
+								),
+						]),
+				),
 			S.documentTypeListItem("player").title("Joueuses").icon(() => "⭐"),
 		]);
