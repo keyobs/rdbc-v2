@@ -1,5 +1,8 @@
 /* Contact form — magazine coupon to cut out */
 .contact-form {
+	/* Paper coupon on a dark site: native controls drawn light */
+	color-scheme: light;
+
 	/* Rubber-stamp title */
 	.title {
 		font-family: "Courier New", Courier, monospace;
