@@ -53,7 +53,7 @@ const fr = {
 		details: "Détails",
 		challengeTitle: "Vous voulez nous affronter ?",
 		challengeText:
-			"Une équipe, une ligue, un match amical : écrivez-nous et on cherche une date ensemble.",
+			"Une équipe, un tournoi, un match : écrivez-nous et on cherche une date ensemble.",
 		challengeCta: "Nous écrire",
 		challengeMail: "notre mail :",
 		asideLabel: "Défi et liens externes",
