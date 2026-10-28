@@ -61,6 +61,13 @@ const fr = {
 		challengeMail: "notre mail :",
 		asideLabel: "Défi et liens externes",
 		ranking: "Classement FlatTrackStats",
+		rankingBadge: {
+			title: "FlatTrackStats",
+			europe: "Europe",
+			wftda: "WFTDA",
+			rating: "rating",
+			unavailable: "Classement momentanément indisponible",
+		},
 		championships: "Les champs sur MyRollerDerby",
 		newTab: "(s'ouvre dans un nouvel onglet)",
 		clubLine: "Roller Derby Bordeaux",

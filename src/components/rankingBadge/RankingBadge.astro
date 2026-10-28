@@ -1,0 +1,54 @@
+---
+import "./rankingBadge.css";
+
+interface Props {
+	europeRank: number | null;
+	wftdaRank: number | null;
+	rating: number | null;
+	href: string;
+	labels: {
+		title: string;
+		europe: string;
+		wftda: string;
+		rating: string;
+		unavailable: string;
+		newTab: string;
+	};
+}
+
+const { europeRank, wftdaRank, rating, href, labels } = Astro.props;
+// The deploy workflow looks for the missing marker in dist/ to retry the next day
+const isComplete = europeRank !== null && wftdaRank !== null && rating !== null;
+---
+
+<a
+	class="ranking-badge"
+	href={href}
+	target="_blank"
+	rel="noopener"
+	data-ranking-missing={isComplete ? undefined : ""}
+>
+	<svg class="shield" viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true">
+		<path d="M1 1 H99 V80 L50 119 L1 80 Z" vector-effect="non-scaling-stroke" />
+	</svg>
+
+	<span class="title">{labels.title}</span>
+
+	<dl class="ranks">
+		<div class="rank">
+			<dt>{labels.europe}</dt>
+			<dd>{europeRank === null ? "--" : `#${europeRank}`}</dd>
+		</div>
+		<div class="rank">
+			<dt>{labels.wftda}</dt>
+			<dd>{wftdaRank === null ? "--" : `#${wftdaRank}`}</dd>
+		</div>
+	</dl>
+
+	<p class="rating">
+		{labels.rating} {rating === null ? "--" : rating.toFixed(1)}
+	</p>
+
+	{!isComplete && <span class="sr-only">{labels.unavailable}</span>}
+	<span class="sr-only">{labels.newTab}</span>
+</a>

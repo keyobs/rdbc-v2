@@ -1,4 +1,5 @@
 ---
+import RankingBadge from "@components/rankingBadge/RankingBadge.astro";
 import { type Locale, useTranslations } from "@i18n/index";
 import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/csr/ArrowUpRight";
 import { withBase } from "@utils/urlHandler";
@@ -9,6 +10,7 @@ import {
 	MYROLLERDERBY_URL,
 	toIsoDay,
 } from "./externalLinks";
+import { FLATTRACKSTATS_TEAM_URL, getTeamRanking } from "./ranking";
 
 interface Props {
 	locale: Locale;
@@ -21,12 +23,21 @@ const contactHref = withBase(
 	`${locale === "fr" ? "/club" : "/en/club"}?interest=interleague#contact`,
 );
 // Last sunday at build time; the script below refreshes it on the visitor's day
-const rankingsUrl = getFlatTrackStatsUrl(
-	toIsoDay(getPreviousSunday(new Date())),
-);
+const lastSunday = toIsoDay(getPreviousSunday(new Date()));
+const rankingsUrl = getFlatTrackStatsUrl(lastSunday);
+// Read once per build: the deploy workflow rebuilds every Monday
+const ranking = await getTeamRanking(lastSunday);
 ---
 
 <aside class="games-aside" aria-label={t.asideLabel}>
+	<RankingBadge
+		europeRank={ranking.europeRank}
+		wftdaRank={ranking.wftdaRank}
+		rating={ranking.europeRating}
+		href={FLATTRACKSTATS_TEAM_URL}
+		labels={{ ...t.rankingBadge, newTab: t.newTab }}
+	/>
+
 	<section class="games-challenge" aria-labelledby="challenge-title">
 		<h2 class="games-challenge__title" id="challenge-title">{t.challengeTitle}</h2>
 		<p>{t.challengeText}</p>

@@ -5,18 +5,43 @@ on:
     branches: [main]
   repository_dispatch:
     types: [sanity-update]
+  # Weekly FlatTrackStats ranking refresh, 12:00 Paris in winter (13:00 in summer).
+  # The Tuesday run only rebuilds if the last deploy failed.
+  schedule:
+    - cron: "0 11 * * 1"
+    - cron: "0 11 * * 2"
 
 permissions:
   contents: read
   packages: read
+  actions: read
 
 concurrency:
   group: deploy-ovh
   cancel-in-progress: false
 
 jobs:
+  gate:
+    name: 🚦 Retry check
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.check.outputs.skip }}
+    steps:
+      - name: 🔍 Skip the Tuesday run if the last deploy succeeded
+        id: check
+        if: github.event.schedule == '0 11 * * 2'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          last=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow deploy.yml --branch main \
+            --status completed --limit 1 --json conclusion --jq '.[0].conclusion')
+          echo "Last deploy: $last"
+          if [ "$last" = "success" ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; fi
+
   tests:
     name: ✅ Tests
+    needs: gate
+    if: needs.gate.outputs.skip != 'true'
     uses: ./.github/workflows/test.yml
     with:
       ref: ${{ github.ref }}
@@ -51,3 +76,11 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /www/
+
+      # The site is deployed with "--" anyway; failing here flags the run for the Tuesday retry
+      - name: 🏅 Check FlatTrackStats ranking
+        run: |
+          if grep -rq "data-ranking-missing" dist/; then
+            echo "::error::FlatTrackStats ranking could not be read, the badge shows \"--\"."
+            exit 1
+          fi

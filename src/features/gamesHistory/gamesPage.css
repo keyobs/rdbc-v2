@@ -107,6 +107,10 @@
 .games-aside {
 	position: sticky;
 	top: 1.5rem;
+
+	.ranking-badge {
+		margin-bottom: 2rem;
+	}
 }
 
 .games-challenge {
@@ -201,6 +205,12 @@
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 1.25rem;
 		align-items: start;
+
+		/* Own row above the three boxes */
+		.ranking-badge {
+			grid-column: 1 / -1;
+			margin-bottom: 0.75rem;
+		}
 	}
 
 	.games-challenge,
@@ -272,6 +282,12 @@
 
 	.next-games {
 		order: 1;
+	}
+
+	/* Same order as the challenge box: the DOM keeps it just above */
+	.games-aside .ranking-badge {
+		order: 2;
+		margin-bottom: 2rem;
 	}
 
 	.games-challenge {
