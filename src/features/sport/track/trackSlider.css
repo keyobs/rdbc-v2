@@ -31,14 +31,28 @@
 @media (max-width: 860px) {
 	.track-slider {
 		grid-template-columns: minmax(0, 1fr);
+		gap: 1.25rem;
+
+		/* Legend children join the grid so the header can move above the diagram */
+		.legend {
+			display: contents;
+
+			header {
+				order: -1;
+			}
+		}
 
 		.visual {
 			flex-direction: column;
 			align-items: stretch;
 			gap: 0.5rem;
 
+			/* Full-bleed diagram: breaks out of the section padding */
 			.the-track {
-				padding: 12px 2.75rem;
+				width: 100vw;
+				margin-inline: calc(50% - 50vw);
+				padding: 8px;
+				border-radius: 0;
 			}
 		}
 	}

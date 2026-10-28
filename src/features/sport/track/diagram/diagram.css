@@ -99,17 +99,21 @@
 			position: static;
 		}
 
+		/* Arrows sit in the empty bottom corners around the oval */
 		.stage-arrow {
+			top: auto;
+			bottom: 0.75rem;
 			width: 2rem;
 			height: 2rem;
 			box-shadow: 3px 3px 0 var(--color-neon-primary);
+			transform: none;
 
 			&.previous {
-				left: 0.25rem;
+				left: 0.75rem;
 			}
 
 			&.next {
-				right: 0.5rem;
+				right: 0.75rem;
 			}
 		}
 	}
