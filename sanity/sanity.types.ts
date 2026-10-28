@@ -216,19 +216,6 @@ export type Slug = {
   source?: string
 }
 
-export type Event = {
-  _id: string
-  _type: 'event'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  date?: string
-  location?: string
-  description?: string
-  link?: string
-}
-
 export type ClubReference = {
   _ref: string
   _type: 'reference'
@@ -350,6 +337,65 @@ export type HomeAlert = {
       fr?: string
       en?: string
     }
+  }
+}
+
+export type FeedReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'feed'
+}
+
+export type FeedSettings = {
+  _id: string
+  _type: 'feedSettings'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  spots?: Array<
+    {
+      _key: string
+    } & FeedReference
+  >
+}
+
+export type Feed = {
+  _id: string
+  _type: 'feed'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  isPermanent?: boolean
+  date?: string
+  expiryDate?: string
+  title?: {
+    fr?: string
+    en?: string
+  }
+  mobileTitle?: {
+    fr?: string
+    en?: string
+  }
+  description?: {
+    fr?: string
+    en?: string
+  }
+  theme?: 'sunset' | 'vice-city' | 'heatwave' | 'neon-drift'
+  backgroundImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  link?: {
+    label?: {
+      fr?: string
+      en?: string
+    }
+    href?: string
   }
 }
 
@@ -693,13 +739,15 @@ export type AllSanitySchemaTypes =
   | SanityImageCrop
   | SanityImageHotspot
   | Slug
-  | Event
   | ClubReference
   | Game
   | AdvancedRulesSection
   | SportNotionsSection
   | HomeJoiningSection
   | HomeAlert
+  | FeedReference
+  | FeedSettings
+  | Feed
   | ClubPage
   | Club
   | Player

@@ -6,7 +6,7 @@ import JoinIntro from "@features/join/JoinIntro.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const data: ClubPage =
-	(await sanityClient.fetch(`*[_type == "clubPage"][0]`)) ?? ({} as ClubPage);
+	(await sanityClient.fetch(`*[_id == "clubPage"][0]`)) ?? ({} as ClubPage);
 ---
 
 <Layout title="Join">

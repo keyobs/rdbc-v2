@@ -8,7 +8,7 @@ const PLACEHOLDER_DETAIL = {
 };
 
 const ADVANCED_RULES_QUERY = `
-	coalesce(*[_type == "advancedRulesSection"][0].rules, [
+	coalesce(*[_id == "advancedRulesSection"][0].rules, [
 		{ "_key": "jam", "number": "01", "title": { "fr": "Un Jam", "en": "A jam" } },
 		{ "_key": "points", "number": "02", "title": { "fr": "Les Points", "en": "Points" } },
 		{ "_key": "pack", "number": "03", "title": { "fr": "Le Pack", "en": "The pack" } },

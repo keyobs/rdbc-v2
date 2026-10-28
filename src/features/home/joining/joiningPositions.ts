@@ -5,7 +5,7 @@ import type { JoiningPosition } from "./ClubJoining";
 // The fallback is used until a `homeJoiningSection` document is published.
 // `href` stays empty until the join page has its sections.
 const JOINING_POSITIONS_QUERY = `
-	coalesce(*[_type == "homeJoiningSection"][0].positions, [
+	coalesce(*[_id == "homeJoiningSection"][0].positions, [
 		{
 			"_key": "player",
 			"title": { "fr": "Jouer", "en": "Play" },

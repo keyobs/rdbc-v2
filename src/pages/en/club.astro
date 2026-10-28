@@ -5,7 +5,7 @@ import Layout from "../../layouts/Layout.astro";
 import RDBC from "@features/club/RDBC";
 
 const data: ClubPage =
-	(await sanityClient.fetch(`*[_type == "clubPage"][0]`)) ?? ({} as ClubPage);
+	(await sanityClient.fetch(`*[_id == "clubPage"][0]`)) ?? ({} as ClubPage);
 ---
 
 <Layout title="The club">

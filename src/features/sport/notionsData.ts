@@ -2,7 +2,7 @@ import type { SanityClient } from "sanity";
 import type { Notion } from "./types";
 
 const NOTIONS_QUERY = `
-	coalesce(*[_type == "sportNotionsSection"][0].notions, [
+	coalesce(*[_id == "sportNotionsSection"][0].notions, [
 		{
 			"_key": "teams",
 			"number": "01",

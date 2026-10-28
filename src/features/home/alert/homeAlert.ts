@@ -13,7 +13,7 @@ export interface HomeAlertContent {
 
 // A single document: the banner only exists while it is switched on in the Studio.
 const HOME_ALERT_QUERY = `
-	*[_type == "homeAlert" && active == true][0]{
+	*[_id == "homeAlert" && active == true][0]{
 		"label": coalesce(label[$locale], label.fr),
 		"title": coalesce(message[$locale], message.fr),
 		"meta": coalesce(meta[$locale], meta.fr),
