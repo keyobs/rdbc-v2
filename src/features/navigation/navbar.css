@@ -11,10 +11,10 @@
 	list-style: none;
 	display: flex;
 	align-items: center;
-	gap: 24px;
+	gap: 16px;
 
 	li {
-		min-width: 3.75rem;
+		min-width: 4.5rem;
 		text-align: center;
 	}
 }
@@ -23,9 +23,10 @@
 .navbar__spotlight {
 	position: absolute;
 	top: 50%;
-	left: calc(var(--sp-left, 0px) - 15px);
-	width: calc(var(--sp-width, 0px) + 30px);
-	height: 2.6em;
+	/* exactly the link box: what is lit is what is clickable */
+	left: var(--sp-left, 0px);
+	width: var(--sp-width, 0px);
+	height: 2.75rem;
 	transform: translateY(-50%);
 	border-radius: 999px;
 	background: color-mix(in srgb, var(--color-bitume) 82%, transparent);
@@ -40,14 +41,15 @@
 }
 
 /* ── links ────────────────────────────────────────────────── */
-/* The link fills its item: the click area is at least 3.75rem wide */
+/* The link fills its item: the click area is at least 4.5rem × 2.75rem */
 .navbar__links a:not(.btn-shiny):not(.lang-switch__btn) {
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 4px 0;
-	font-size: 0.8rem;
+	min-height: 2.75rem;
+	padding: 0 0.5rem;
+	font-size: 0.9rem;
 	text-transform: uppercase;
 	text-decoration: none;
 	letter-spacing: 0.06em;
