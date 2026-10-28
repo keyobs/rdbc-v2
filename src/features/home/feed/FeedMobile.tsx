@@ -129,7 +129,7 @@ const FeedMobile = ({
 					<div className="feed-mobile__overlay" aria-hidden="true" />
 				)}
 
-				<AnimatePresence mode="wait">
+				<AnimatePresence mode="wait" initial={false}>
 					<motion.div
 						key={activeFeed.id}
 						className={`feed-mobile__content${dateParts ? "" : " feed-mobile__content--no-stamp"}`}

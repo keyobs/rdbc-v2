@@ -126,7 +126,7 @@ const FeedDesktop = ({
 								<div className="feed-item__overlay" aria-hidden="true" />
 							)}
 
-							<AnimatePresence mode="wait">
+							<AnimatePresence mode="wait" initial={false}>
 								{isActive ? (
 									<motion.div
 										key="expanded"

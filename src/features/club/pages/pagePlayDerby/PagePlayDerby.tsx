@@ -1,8 +1,8 @@
-import { motion } from "motion/react";
 import type { ClubPage } from "../../../../../sanity/sanity.types";
 import type { Locale } from "@i18n/index";
 import ContactForm from "@components/contactForm/ContactForm";
 import SignupBlock from "@components/signupBlock/SignupBlock";
+import Reveal from "@components/reveal/Reveal";
 import "./pagePlayDerby.css";
 
 interface PagePlayDerbyProps {
@@ -140,25 +140,13 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 	return (
 		<section className="page-derby" aria-label={t.pageTitle}>
 			<div className="inner">
-				<motion.h2
-					className="page-title"
-					variants={fadeUp}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true, margin: "-40px" }}
-				>
+				<Reveal as="h2" className="page-title" variants={fadeUp}>
 					{t.pageTitle}
-				</motion.h2>
+				</Reveal>
 
 				<div className="grid">
 					<div className="col">
-						<motion.div
-							className="training"
-							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-40px" }}
-						>
+						<Reveal className="training" variants={fadeUp}>
 							<h3 className="section-title">{t.trainingTitle}</h3>
 							<div className="agenda">
 								<div className="head">
@@ -224,43 +212,24 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 										);
 									})}
 							</div>
-						</motion.div>
+						</Reveal>
 
-						<motion.div
-							className="signup"
-							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-40px" }}
-						>
+						<Reveal className="signup" variants={fadeUp}>
 							<SignupBlock data={data} locale={locale} />
-						</motion.div>
+						</Reveal>
 					</div>
 
 					<div className="col">
-						<motion.div
-							className="illustration"
-							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-40px" }}
-							aria-hidden
-						>
+						<Reveal className="illustration" variants={fadeUp} aria-hidden>
 							{/* Static asset injected here once provided */}
 							<div className="placeholder">
 								<span>✦ illustration à venir ✦</span>
 							</div>
-						</motion.div>
+						</Reveal>
 
-						<motion.div
-							className="contact"
-							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-40px" }}
-						>
+						<Reveal className="contact" variants={fadeUp}>
 							<ContactForm locale={locale} />
-						</motion.div>
+						</Reveal>
 					</div>
 				</div>
 			</div>

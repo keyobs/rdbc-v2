@@ -1,7 +1,7 @@
 import { PortableText } from "@portabletext/react";
-import { motion } from "motion/react";
 import type { ClubPage } from "../../../../../sanity/sanity.types";
 import type { Locale } from "@i18n/index";
+import Reveal from "@components/reveal/Reveal";
 import "./pageClub.css";
 
 interface PageClubProps {
@@ -89,13 +89,7 @@ export default function PageClub({ data, locale }: PageClubProps) {
 
 			<div className="page-club__inner">
 				{/* Full-width title banner */}
-				<motion.h1
-					className="page-club__title"
-					variants={fadeUp}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true, margin: "-40px" }}
-				>
+				<Reveal as="h1" className="page-club__title" variants={fadeUp}>
 					<span className="page-club__title-word page-club__title-word--1">
 						Roller
 					</span>
@@ -108,18 +102,15 @@ export default function PageClub({ data, locale }: PageClubProps) {
 					<span className="page-club__title-word page-club__title-word--4">
 						Club
 					</span>
-				</motion.h1>
+				</Reveal>
 
 				{/* Desktop: 2 columns — Mobile: stacked */}
 				<div className="page-club__grid">
 					{/* Left column */}
 					<div className="page-club__col">
-						<motion.div
+						<Reveal
 							className="page-club__block page-club__block--history"
 							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-40px" }}
 						>
 							<div
 								className="page-club__tape page-club__tape--tl"
@@ -135,14 +126,11 @@ export default function PageClub({ data, locale }: PageClubProps) {
 									<p>{historyFallback}</p>
 								)}
 							</div>
-						</motion.div>
+						</Reveal>
 
-						<motion.div
+						<Reveal
 							className="page-club__block page-club__block--philosophy"
 							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-40px" }}
 						>
 							<div
 								className="page-club__tape page-club__tape--tr"
@@ -158,17 +146,14 @@ export default function PageClub({ data, locale }: PageClubProps) {
 									<p>{philosophyFallback}</p>
 								)}
 							</div>
-						</motion.div>
+						</Reveal>
 					</div>
 
 					{/* Right column */}
 					<div className="page-club__col">
-						<motion.div
+						<Reveal
 							className="page-club__block page-club__block--values"
 							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-40px" }}
 						>
 							<h2 className="page-club__block-title">
 								{locale === "fr" ? "Nos valeurs" : "Our values"}
@@ -185,14 +170,11 @@ export default function PageClub({ data, locale }: PageClubProps) {
 									</li>
 								))}
 							</ul>
-						</motion.div>
+						</Reveal>
 
-						<motion.div
+						<Reveal
 							className="page-club__block page-club__block--sport"
 							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-40px" }}
 						>
 							<div
 								className="page-club__tape page-club__tape--bl"
@@ -212,7 +194,7 @@ export default function PageClub({ data, locale }: PageClubProps) {
 									<p>{sportFallback}</p>
 								)}
 							</div>
-						</motion.div>
+						</Reveal>
 					</div>
 				</div>
 			</div>

@@ -1,7 +1,7 @@
-import { motion } from "motion/react";
 import type { ClubPage } from "../../../../../sanity/sanity.types";
 import type { Locale } from "@i18n/index";
 import { urlFor } from "@utils/sanityImage";
+import Reveal from "@components/reveal/Reveal";
 import "./pageClubLife.css";
 
 interface PageClubLifeProps {
@@ -103,15 +103,9 @@ export default function PageClubLife({ data, locale }: PageClubLifeProps) {
 			aria-label={locale === "fr" ? "La Vie du Club" : "Club Life"}
 		>
 			<div className="page-vie__inner">
-				<motion.h2
-					className="page-vie__page-title"
-					variants={fadeUp}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true, margin: "-40px" }}
-				>
+				<Reveal as="h2" className="page-vie__page-title" variants={fadeUp}>
 					{locale === "fr" ? "La Vie du Club" : "Club Life"}
-				</motion.h2>
+				</Reveal>
 
 				<div className="page-vie__grid">
 					{/* Left column — Roles (disc review style) */}
@@ -126,13 +120,12 @@ export default function PageClubLife({ data, locale }: PageClubLifeProps) {
 									: null;
 
 								return (
-									<motion.li
+									<Reveal
+										as="li"
 										key={role._key ?? role.title?.fr}
 										className="page-vie__role"
 										variants={fadeUp}
-										initial="hidden"
-										whileInView="visible"
-										viewport={{ once: true, margin: "-30px" }}
+										margin="-30px"
 									>
 										<div className="page-vie__role-cover">
 											{imgSrc ? (
@@ -156,7 +149,7 @@ export default function PageClubLife({ data, locale }: PageClubLifeProps) {
 												{role.description?.[locale] ?? role.description?.fr}
 											</p>
 										</div>
-									</motion.li>
+									</Reveal>
 								);
 							})}
 						</ul>
@@ -179,13 +172,12 @@ export default function PageClubLife({ data, locale }: PageClubLifeProps) {
 								const isEven = i % 2 === 0;
 
 								return (
-									<motion.li
+									<Reveal
+										as="li"
 										key={activity._key ?? i}
 										className={`page-vie__activity page-vie__activity--${isEven ? "photo-left" : "photo-right"}`}
 										variants={fadeUp}
-										initial="hidden"
-										whileInView="visible"
-										viewport={{ once: true, margin: "-30px" }}
+										margin="-30px"
 									>
 										<div className="page-vie__activity-photo">
 											{imgSrc ? (
@@ -209,7 +201,7 @@ export default function PageClubLife({ data, locale }: PageClubLifeProps) {
 											</strong>
 											<p>{activity.text?.[locale] ?? activity.text?.fr}</p>
 										</div>
-									</motion.li>
+									</Reveal>
 								);
 							})}
 						</ul>

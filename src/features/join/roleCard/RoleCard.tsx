@@ -1,7 +1,8 @@
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
 import { PlayIcon } from "@phosphor-icons/react/dist/csr/Play";
 import { withBase } from "@utils/urlHandler";
+import Reveal from "@components/reveal/Reveal";
 import "./roleCard.css";
 
 export interface RoleVideo {
@@ -50,14 +51,7 @@ export default function RoleCard({
 	};
 
 	return (
-		<motion.article
-			id={id}
-			className="role-card"
-			variants={fadeUp}
-			initial="hidden"
-			whileInView="visible"
-			viewport={{ once: true, margin: "-40px" }}
-		>
+		<Reveal as="article" id={id} className="role-card" variants={fadeUp}>
 			<div className="media">
 				{video ? (
 					<video
@@ -98,6 +92,6 @@ export default function RoleCard({
 					<ArrowRightIcon weight="bold" aria-hidden="true" />
 				</a>
 			</div>
-		</motion.article>
+		</Reveal>
 	);
 }
