@@ -4,6 +4,7 @@ import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/csr/ArrowUpRight";
 import { withBase } from "@utils/urlHandler";
 import {
 	getFlatTrackStatsUrl,
+	getPreviousSunday,
 	MYROLLERDERBY_URL,
 	toIsoDay,
 } from "./externalLinks";
@@ -15,8 +16,10 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale).games;
 const contactHref = withBase(locale === "fr" ? "/contact" : "/en/contact");
-// Build-time day; the script below replaces it with the visitor's day
-const rankingsUrl = getFlatTrackStatsUrl(toIsoDay(new Date()));
+// Last sunday at build time; the script below refreshes it on the visitor's day
+const rankingsUrl = getFlatTrackStatsUrl(
+	toIsoDay(getPreviousSunday(new Date())),
+);
 ---
 
 <aside class="games-aside" aria-label={t.asideLabel}>
@@ -52,8 +55,13 @@ const rankingsUrl = getFlatTrackStatsUrl(toIsoDay(new Date()));
 </aside>
 
 <script>
-	import { getFlatTrackStatsUrl, toIsoDay } from "./externalLinks";
+	import {
+		getFlatTrackStatsUrl,
+		getPreviousSunday,
+		toIsoDay,
+	} from "./externalLinks";
 
 	const link = document.querySelector<HTMLAnchorElement>("[data-rankings-link]");
-	if (link) link.href = getFlatTrackStatsUrl(toIsoDay(new Date()));
+	if (link)
+		link.href = getFlatTrackStatsUrl(toIsoDay(getPreviousSunday(new Date())));
 </script>

@@ -9,6 +9,13 @@ export function toIsoDay(date: Date): string {
 	return `${date.getFullYear()}-${month}-${day}`;
 }
 
+/** Last Sunday strictly before the given date (a Sunday gives the one a week earlier). */
+export function getPreviousSunday(date: Date): Date {
+	const sunday = new Date(date);
+	sunday.setDate(date.getDate() - (date.getDay() || 7));
+	return sunday;
+}
+
 /** Women's European rankings as of the given day (YYYY-MM-DD). */
 export function getFlatTrackStatsUrl(isoDay: string): string {
 	const url = new URL(FLATTRACKSTATS_RANKINGS);
