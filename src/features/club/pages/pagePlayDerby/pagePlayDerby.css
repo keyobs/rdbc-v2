@@ -229,6 +229,8 @@
 	/* ── Contact form — coupon style ── */
 	.contact {
 		transform: rotate(0.5deg);
+		/* Anchor target of the bottom nav "Contact" link, clear of the top bar */
+		scroll-margin-top: 5rem;
 	}
 
 	/* ── Desktop: true double-page ── */

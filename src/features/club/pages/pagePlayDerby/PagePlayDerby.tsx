@@ -227,7 +227,7 @@ export default function PagePlayDerby({ data, locale }: PagePlayDerbyProps) {
 							</div>
 						</Reveal>
 
-						<Reveal className="contact" variants={fadeUp}>
+						<Reveal id="contact" className="contact" variants={fadeUp}>
 							<ContactForm locale={locale} />
 						</Reveal>
 					</div>
