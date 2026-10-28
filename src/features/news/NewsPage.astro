@@ -1,0 +1,31 @@
+---
+import { sanityClient } from "sanity:client";
+import { getSeason } from "@features/games/utils";
+import { type Locale, useTranslations } from "@i18n/index";
+import { getNews } from "./news";
+import NewsList from "./NewsList";
+import "./news.css";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale).news;
+const items = await getNews(sanityClient, locale);
+---
+
+<div class="news-page">
+	<header class="intro">
+		<h1>{t.title}</h1>
+		<p>{t.intro}</p>
+	</header>
+
+	<NewsList
+		client:load
+		items={items}
+		currentSeason={getSeason(new Date().toISOString())}
+		locale={locale}
+		labels={t}
+	/>
+</div>

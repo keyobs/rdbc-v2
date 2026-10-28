@@ -18,7 +18,7 @@ export const NAV_ITEMS: NavItem[] = [
 	{ type: "link", key: "sport", href: "/le-sport", display: true },
 	{ type: "link", key: "club", href: "/club", display: true },
 	{ type: "link", key: "competitions", href: "/competitions", display: true },
-	{ type: "link", key: "events", href: "/evenements", display: true },
+	{ type: "link", key: "events", href: "/news", display: true },
 
 	{ type: "link", key: "blog", href: "/blog" },
 	{ type: "link", key: "contact", href: "/contact" },

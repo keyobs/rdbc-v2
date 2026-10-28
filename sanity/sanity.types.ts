@@ -22,42 +22,176 @@ export type SanityImageAssetReference = {
   [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
 }
 
-export type Article = {
+export type News = {
   _id: string
-  _type: 'article'
+  _type: 'news'
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
-  slug?: Slug
+  format?: 'brief' | 'article'
+  title?: {
+    fr?: string
+    en?: string
+  }
+  category?: 'match' | 'event' | 'bootcamp' | 'recruitment' | 'leagueLife'
   date?: string
-  author?: string
+  slug?: Slug
+  text?: {
+    fr?: string
+    en?: string
+  }
   image?: {
     asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
+    alt?: string
     _type: 'image'
   }
-  excerpt?: string
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
+  cover?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    credit?: string
+    _type: 'image'
+  }
+  lead?: {
+    fr?: string
+    en?: string
+  }
+  practical?: {
+    dates?: {
+      fr?: string
+      en?: string
+    }
+    time?: {
+      fr?: string
+      en?: string
+    }
+    place?: {
+      fr?: string
+      en?: string
+    }
+    price?: {
+      fr?: string
+      en?: string
+    }
+  }
+  body?: {
+    fr?: Array<
+      | {
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'normal' | 'h3'
+          listItem?: 'bullet'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }
+      | {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          caption?: string
+          credit?: string
+          _type: 'photo'
+          _key: string
+        }
+      | {
+          images?: Array<{
+            asset?: SanityImageAssetReference
+            media?: unknown
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+            _key: string
+          }>
+          credit?: string
+          _type: 'gallery'
+          _key: string
+        }
+      | {
+          url?: string
+          caption?: string
+          _type: 'video'
+          _key: string
+        }
+    >
+    en?: Array<
+      | {
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'normal' | 'h3'
+          listItem?: 'bullet'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }
+      | {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          caption?: string
+          credit?: string
+          _type: 'photo'
+          _key: string
+        }
+      | {
+          images?: Array<{
+            asset?: SanityImageAssetReference
+            media?: unknown
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+            _key: string
+          }>
+          credit?: string
+          _type: 'gallery'
+          _key: string
+        }
+      | {
+          url?: string
+          caption?: string
+          _type: 'video'
+          _key: string
+        }
+    >
+  }
+  button?: {
+    label?: {
+      fr?: string
+      en?: string
+    }
+    href?: string
+    primary?: boolean
+  }
+  author?: string
 }
 
 export type SanityImageCrop = {
@@ -555,7 +689,7 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | SanityImageAssetReference
-  | Article
+  | News
   | SanityImageCrop
   | SanityImageHotspot
   | Slug
