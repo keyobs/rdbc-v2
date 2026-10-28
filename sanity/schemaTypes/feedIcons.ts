@@ -6,7 +6,7 @@ import {CrownIcon} from '@phosphor-icons/react/dist/csr/Crown'
 import {FlaskIcon} from '@phosphor-icons/react/dist/csr/Flask'
 import {IslandIcon} from '@phosphor-icons/react/dist/csr/Island'
 import {MonitorIcon} from '@phosphor-icons/react/dist/csr/Monitor'
-import {PlugsConnectedIcon} from '@phosphor-icons/react/dist/csr/PlugsConnected'
+import {PlugsIcon} from '@phosphor-icons/react/dist/csr/Plugs'
 import {StrategyIcon} from '@phosphor-icons/react/dist/csr/Strategy'
 import {TargetIcon} from '@phosphor-icons/react/dist/csr/Target'
 import {TrophyIcon} from '@phosphor-icons/react/dist/csr/Trophy'
@@ -32,7 +32,7 @@ export const FEED_ICONS: FeedIconOption[] = [
   {value: 'target', title: 'Objectif', Icon: TargetIcon},
   {value: 'trophy', title: 'Trophée', Icon: TrophyIcon},
   {value: 'experiment', title: 'Expérience', Icon: FlaskIcon},
-  {value: 'connect', title: 'Connexion', Icon: PlugsConnectedIcon},
+  {value: 'connect', title: 'Connexion', Icon: PlugsIcon},
   {value: 'camera', title: 'Photo', Icon: CameraIcon},
   {value: 'screen', title: 'Écran', Icon: MonitorIcon},
 ]
