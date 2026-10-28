@@ -8,11 +8,11 @@ type Caption = Record<Locale, string>;
 const CAPTIONS: Record<string, Record<TeamKey, Caption>> = {
 	"2026-2027": {
 		A: {
-			fr: "La TTA est engagée cette saison dans le Championnat de France niveau Nationale 1.",
+			fr: "La TTA est engagée dans le Championnat de France niveau Nationale 1.",
 			en: "TTA is competing this season in the French Championship at Nationale 1 level.",
 		},
 		B: {
-			fr: "[La TTB est engagée cette saison dans … niveau …]",
+			fr: "[La TTB est engagée dans le Championnat de France niveau Nationale 3]",
 			en: "[TTB is competing this season in … at … level]",
 		},
 		home: {
