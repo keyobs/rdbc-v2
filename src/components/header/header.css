@@ -2,6 +2,8 @@
 	position: sticky;
 	top: 0;
 	z-index: 50;
+	/* Captured apart from the page so it stays still during view transitions */
+	view-transition-name: site-header;
 	transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
 	background: linear-gradient(
 		344deg,

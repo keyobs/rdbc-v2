@@ -38,6 +38,17 @@ const logoImg = await getImage({
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="dark" />
+    <!-- Paint the bitume background before external CSS loads (avoids white flash between pages) -->
+    <style is:inline>html { background-color: rgb(8, 20, 75); }</style>
+    <!-- Fetch the display font early so font-display: optional does not fall back for the whole page -->
+    <link
+      rel="preload"
+      href={withBase("/fonts/archivo-black.woff2")}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="icon" href={withBase("/favicon.ico")} />
     <title>{title} — RDBC</title>
   </head>
