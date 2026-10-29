@@ -1,4 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {PosterInput} from './PosterInput'
 
 type CompetitionTeam = 'A' | 'B' | 'home'
 
@@ -239,8 +240,10 @@ export const competition = defineType({
       name: 'poster',
       title: 'Affiche (facultative)',
       type: 'image',
-      description: 'Affichée à côté des résultats sur l’accueil.',
+      description:
+        'Affichée à côté des résultats sur l’accueil, en petit format paysage : 120 × 76 px (84 × 54 px sur mobile). Choisis une image en paysage d’au moins 480 px de large, puis règle le point d’intérêt pour garder l’essentiel visible.',
       options: {hotspot: true},
+      components: {input: PosterInput},
     }),
     defineField({
       name: 'games',
