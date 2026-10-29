@@ -124,6 +124,28 @@ const gameMember = defineArrayMember({
     }),
     scoreField('rdbcScore', 'Score RDBC (à gauche)'),
     scoreField('opponentScore', 'Score adverse (à droite)'),
+    // Optional so a missing photo never blocks publishing
+    defineField({
+      name: 'gallery',
+      title: 'Photos du match (facultatives)',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: {hotspot: true},
+          fields: [defineField({name: 'credit', title: 'Crédit photo', type: 'string', description: 'Ex : © Prénom Nom'})],
+        }),
+      ],
+      options: {layout: 'grid'},
+    }),
+    defineField({
+      name: 'report',
+      title: 'Récit du match (facultatif)',
+      type: 'reference',
+      to: [{type: 'news'}],
+      description: 'Article racontant le match. Absent de la liste ? Crée-le d’abord dans les actus, au format « Article ».',
+      options: {filter: 'format == "article"'},
+    }),
   ],
   validation: (Rule) =>
     Rule.custom((value) => {
@@ -142,8 +164,9 @@ const gameMember = defineArrayMember({
       rdbcScore: 'rdbcScore',
       opponentScore: 'opponentScore',
       isWftda: 'isWftda',
+      media: 'gallery.0',
     },
-    prepare: ({date, time, opponent, homeTeam, awayTeam, rdbcScore, opponentScore, isWftda}) => {
+    prepare: ({date, time, opponent, homeTeam, awayTeam, rdbcScore, opponentScore, isWftda, media}) => {
       const titleOf = (value?: string) => HOME_TEAMS.find((team) => team.value === value)?.title
       const versus = opponent ?? [titleOf(homeTeam), titleOf(awayTeam)].filter(Boolean).join(' / ')
       const score = isPlayed({rdbcScore, opponentScore}) ? `${rdbcScore} / ${opponentScore}` : 'À venir'
@@ -151,6 +174,7 @@ const gameMember = defineArrayMember({
       return {
         title: versus || 'Match sans adversaire',
         subtitle: [day, time, score, isWftda && 'WFTDA'].filter(Boolean).join(' · '),
+        media,
       }
     },
   },

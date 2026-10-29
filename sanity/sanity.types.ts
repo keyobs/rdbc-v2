@@ -15,11 +15,94 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
+export type Season = {
+  _id: string
+  _type: 'season'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  captionA?: {
+    fr?: string
+    en?: string
+  }
+  captionB?: {
+    fr?: string
+    en?: string
+  }
+  captionHome?: {
+    fr?: string
+    en?: string
+  }
+}
+
 export type SanityImageAssetReference = {
   _ref: string
   _type: 'reference'
   _weak?: boolean
   [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+}
+
+export type ClubReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'club'
+}
+
+export type NewsReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'news'
+}
+
+export type Competition = {
+  _id: string
+  _type: 'competition'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  team?: 'A' | 'B' | 'home'
+  competition?: {
+    fr?: string
+    en?: string
+  }
+  event?: {
+    fr?: string
+    en?: string
+  }
+  venue?: string
+  location?: 'home' | 'away'
+  poster?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  games?: Array<{
+    date?: string
+    time?: string
+    opponent?: ClubReference
+    homeTeam?: 'pink-cheek-peaches' | 'rotten-black-grapes' | 'boom-bright-gold'
+    awayTeam?: 'pink-cheek-peaches' | 'rotten-black-grapes' | 'boom-bright-gold'
+    isWftda?: boolean
+    rdbcScore?: number
+    opponentScore?: number
+    gallery?: Array<{
+      asset?: SanityImageAssetReference
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      credit?: string
+      _type: 'image'
+      _key: string
+    }>
+    report?: NewsReference
+    _type: 'game'
+    _key: string
+  }>
 }
 
 export type News = {
@@ -214,72 +297,6 @@ export type Slug = {
   _type: 'slug'
   current?: string
   source?: string
-}
-
-export type Season = {
-  _id: string
-  _type: 'season'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  captionA?: {
-    fr?: string
-    en?: string
-  }
-  captionB?: {
-    fr?: string
-    en?: string
-  }
-  captionHome?: {
-    fr?: string
-    en?: string
-  }
-}
-
-export type ClubReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'club'
-}
-
-export type Competition = {
-  _id: string
-  _type: 'competition'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  team?: 'A' | 'B' | 'home'
-  competition?: {
-    fr?: string
-    en?: string
-  }
-  event?: {
-    fr?: string
-    en?: string
-  }
-  venue?: string
-  location?: 'home' | 'away'
-  poster?: {
-    asset?: SanityImageAssetReference
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    _type: 'image'
-  }
-  games?: Array<{
-    date?: string
-    time?: string
-    opponent?: ClubReference
-    homeTeam?: 'pink-cheek-peaches' | 'rotten-black-grapes' | 'boom-bright-gold'
-    awayTeam?: 'pink-cheek-peaches' | 'rotten-black-grapes' | 'boom-bright-gold'
-    isWftda?: boolean
-    rdbcScore?: number
-    opponentScore?: number
-    _type: 'game'
-    _key: string
-  }>
 }
 
 export type AdvancedRulesSection = {
@@ -807,14 +824,15 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | Season
   | SanityImageAssetReference
+  | ClubReference
+  | NewsReference
+  | Competition
   | News
   | SanityImageCrop
   | SanityImageHotspot
   | Slug
-  | Season
-  | ClubReference
-  | Competition
   | AdvancedRulesSection
   | SportNotionsSection
   | HomeJoiningSection
