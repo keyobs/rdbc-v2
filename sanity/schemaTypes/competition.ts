@@ -202,7 +202,7 @@ export const competition = defineType({
     localizedName(
       'event',
       'Événement (facultatif)',
-      'Affiché à côté de chaque résultat. Ex : Nationale 2 — Plateau 2 / Nationale 2 — Stage 2, Nationale 2 — Playoffs. Laisser vide pour tout autre match.',
+      'Affiché à côté de chaque résultat. Ex : N2 — Plateau 2 / N2 — Stage 2, N2 — Playoffs. Laisser vide pour tout autre match.',
     ),
     defineField({
       name: 'venue',
