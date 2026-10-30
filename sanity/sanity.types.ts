@@ -733,7 +733,6 @@ export type Player = {
     | 'millenials'
     | 'generationZ'
     | 'alpha'
-    | 'MamaForEver'
     | 'ForeverYoung'
     | 'BornOld'
     | 'GrannyVibes'

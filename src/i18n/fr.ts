@@ -113,7 +113,6 @@ const fr = {
 			millenials: "Millenial",
 			generationZ: "GenZ",
 			alpha: "Alpha",
-			MamaForEver: "MamaForEver",
 			ForeverYoung: "ForeverYoung",
 			BornOld: "BornOld",
 			GrannyVibes: "GrannyVibes",

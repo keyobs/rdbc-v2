@@ -61,7 +61,7 @@ export const player = defineType({
       options: {
         list: [
           {title: 'TTA — Les Petites Morts', value: 'A'},
-          {title: 'TTB — La Compagnie Cruelle', value: 'B'},
+          {title: 'TTB — Les Cruelles', value: 'B'},
         ],
       },
       hidden: ({document}) => !isSkater(document),
@@ -113,7 +113,6 @@ export const player = defineType({
           {title: 'Millenials', value: 'millenials'},
           {title: 'GenZ', value: 'generationZ'},
           {title: 'Alpha', value: 'alpha'},
-          {title: 'MamaForEver', value: 'MamaForEver'},
           {title: 'ForeverYoung', value: 'ForeverYoung'},
           {title: 'BornOld', value: 'BornOld'},
           {title: 'GrannyVibes', value: 'GrannyVibes'},
