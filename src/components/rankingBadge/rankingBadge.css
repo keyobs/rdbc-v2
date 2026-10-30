@@ -57,7 +57,10 @@
 			font-family: var(--font-display);
 			font-size: 1.25rem;
 			line-height: 1;
-			text-shadow: 0 0 0.5rem var(--color-neon-primary);
+			text-shadow: var(
+				--mobile-text-glow,
+				0 0 0.5rem var(--color-neon-primary)
+			);
 		}
 	}
 

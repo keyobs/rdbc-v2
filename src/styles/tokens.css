@@ -31,3 +31,12 @@
 	--btn-radius: 0;
 	--btn-shadow: 4px 4px 0px var(--color-neon-primary);
 }
+
+/* Defined only on mobile: component fallbacks preserve desktop shadows. */
+@media (max-width: 1023px) {
+	:root {
+		--mobile-text-glow:
+			0 0 0.125rem rgb(0 255 150 / 70%), 0 0 0.5rem rgb(0 255 150 / 35%);
+		--mobile-blue-glow: 0 0 0.25rem rgb(66 104 249 / 20%);
+	}
+}

@@ -25,7 +25,10 @@
 			font-size: 3.5rem;
 			line-height: 1;
 			text-transform: uppercase;
-			text-shadow: 0 0 0.5rem var(--color-neon-primary);
+			text-shadow: var(
+				--mobile-text-glow,
+				0 0 0.5rem var(--color-neon-primary)
+			);
 		}
 
 		p {
@@ -475,7 +478,7 @@
 
 	@media (hover: hover) {
 		.entry:hover {
-			box-shadow: 0 0 0.875rem rgb(0 255 150 / 35%);
+			box-shadow: var(--mobile-text-glow, 0 0 0.875rem rgb(0 255 150 / 35%));
 		}
 
 		.chip:not([aria-pressed="true"]):hover {

@@ -44,6 +44,12 @@
 	animation-delay: -3s;
 }
 
+@media (max-width: 1023px) {
+	.halo-blob {
+		opacity: 0.08;
+	}
+}
+
 @keyframes halo-drift {
 	0% {
 		transform: translate(0, 0) scale(1);

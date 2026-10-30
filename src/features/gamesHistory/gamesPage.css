@@ -14,7 +14,7 @@
 	font-size: 3.5rem;
 	line-height: 1.05;
 	text-transform: uppercase;
-	text-shadow: 0 0 0.5rem var(--color-neon-primary);
+	text-shadow: var(--mobile-text-glow, 0 0 0.5rem var(--color-neon-primary));
 }
 
 .games-page__layout {
@@ -42,7 +42,7 @@
 	font-size: 2rem;
 	line-height: 1.05;
 	text-transform: uppercase;
-	text-shadow: 0 0 0.5rem var(--color-neon-primary);
+	text-shadow: var(--mobile-text-glow, 0 0 0.5rem var(--color-neon-primary));
 }
 
 /* ── Boards (next games and results) ────────────────────── */
@@ -127,7 +127,7 @@
 	font-size: 1.625rem;
 	line-height: 1.05;
 	text-transform: uppercase;
-	text-shadow: 0 0 0.5rem var(--color-neon-primary);
+	text-shadow: var(--mobile-text-glow, 0 0 0.5rem var(--color-neon-primary));
 }
 
 .games-challenge__mail {
@@ -163,7 +163,7 @@
 	font-family: var(--font-display);
 	font-size: 1.375rem;
 	text-transform: uppercase;
-	text-shadow: 0 0 0.5rem var(--color-neon-primary);
+	text-shadow: var(--mobile-text-glow, 0 0 0.5rem var(--color-neon-primary));
 }
 
 .ext-link__icon {

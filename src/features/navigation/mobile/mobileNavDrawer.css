@@ -45,7 +45,7 @@
 	font-family: var(--font-display);
 	font-size: 1.25rem;
 	color: var(--color-neon-primary);
-	text-shadow: 0 0 8px var(--color-neon-primary);
+	text-shadow: var(--mobile-text-glow, 0 0 8px var(--color-neon-primary));
 	margin: 0;
 }
 
@@ -125,5 +125,5 @@
 
 .mobile-nav-drawer__lang-btn--active {
 	color: var(--color-neon-primary);
-	text-shadow: 0 0 8px var(--color-neon-primary);
+	text-shadow: var(--mobile-text-glow, 0 0 8px var(--color-neon-primary));
 }

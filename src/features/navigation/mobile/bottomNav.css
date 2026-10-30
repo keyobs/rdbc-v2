@@ -105,3 +105,13 @@
 	stroke-width: 2;
 	filter: drop-shadow(0 0 3px rgb(0 255 150 / 0.55));
 }
+
+@media (max-width: 1023px) {
+	.bottom-nav__items {
+		box-shadow: 0 0 0.25rem rgb(0 255 150 / 15%);
+	}
+
+	.bottom-nav__notch-stroke {
+		filter: drop-shadow(0 0 0.125rem rgb(0 255 150 / 15%));
+	}
+}

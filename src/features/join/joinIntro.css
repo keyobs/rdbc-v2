@@ -75,7 +75,7 @@
 			font-size: clamp(2.5rem, 7vw, 4.75rem);
 			line-height: 0.95;
 			text-transform: uppercase;
-			text-shadow: 0 0 8px var(--color-neon-primary);
+			text-shadow: var(--mobile-text-glow, 0 0 8px var(--color-neon-primary));
 		}
 
 		.text {

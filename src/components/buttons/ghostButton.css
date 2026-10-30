@@ -46,7 +46,7 @@
 	height: 2px;
 	width: 0;
 	background: var(--color-neon-blue);
-	box-shadow: 0 0 8px var(--color-neon-blue);
+	box-shadow: var(--mobile-blue-glow, 0 0 8px var(--color-neon-blue));
 	transition: width 400ms ease;
 }
 

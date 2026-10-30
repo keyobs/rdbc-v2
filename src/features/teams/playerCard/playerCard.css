@@ -57,7 +57,7 @@
 	font: 3.75rem var(--font-display);
 	color: var(--color-neon-primary);
 	text-shadow:
-		0 0 0.5rem var(--color-neon-primary),
+		var(--mobile-text-glow, 0 0 0.5rem var(--color-neon-primary)),
 		2px 2px 0 var(--color-bitume);
 }
 .player-card__role {
