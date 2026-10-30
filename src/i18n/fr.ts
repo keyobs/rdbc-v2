@@ -109,9 +109,9 @@ const fr = {
 		generations: {
 			boomer: "Boomer",
 			generationX: "Génération X",
-			xennials: "Xennials",
-			millenials: "Millenials",
-			generationZ: "Génération Z",
+			xennials: "Xennial",
+			millenials: "Millenial",
+			generationZ: "GenZ",
 			alpha: "Alpha",
 			MamaForEver: "MamaForEver",
 			ForeverYoung: "ForeverYoung",

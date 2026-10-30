@@ -111,7 +111,7 @@ export const player = defineType({
           {title: 'Génération X', value: 'generationX'},
           {title: 'Xennials', value: 'xennials'},
           {title: 'Millenials', value: 'millenials'},
-          {title: 'Génération Z', value: 'generationZ'},
+          {title: 'GenZ', value: 'generationZ'},
           {title: 'Alpha', value: 'alpha'},
           {title: 'MamaForEver', value: 'MamaForEver'},
           {title: 'ForeverYoung', value: 'ForeverYoung'},
