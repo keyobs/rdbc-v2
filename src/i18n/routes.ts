@@ -5,6 +5,7 @@ const FR_TO_EN: Record<string, string> = {
 	"/regles": "/en/rules",
 	"/equipe": "/en/team",
 	"/competitions": "/en/competitions",
+	"/competitions/equipes": "/en/competitions/teams",
 	"/news": "/en/news",
 	"/blog": "/en/blog",
 	"/contact": "/en/contact",
@@ -21,6 +22,16 @@ export function isEnglish(pathname: string): boolean {
 export function getLocale(pathname: string): import("./index").Locale {
 	if (pathname.startsWith("/en")) return "en";
 	return "fr";
+}
+
+/** Navigation items use French paths; keep their links in the current locale. */
+export function getLocalizedHref(
+	href: string,
+	locale: import("./index").Locale,
+): string {
+	if (locale === "fr") return href;
+	const [path, hash] = href.split("#");
+	return `${FR_TO_EN[path] ?? path}${hash === undefined ? "" : `#${hash}`}`;
 }
 
 export function getAlternateHref(pathname: string): string {

@@ -1,5 +1,5 @@
 import type { Translations } from "@i18n/index";
-import { isEnglish, getAlternateHref } from "@i18n/routes";
+import { isEnglish, getAlternateHref, getLocalizedHref } from "@i18n/routes";
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { XIcon } from "@phosphor-icons/react";
@@ -78,7 +78,9 @@ const MobileNavDrawer = ({
 									{DISPLAYED_NAV_LINKS.map((link) => (
 										<li key={link.href}>
 											<a
-												href={withBase(link.href)}
+												href={withBase(
+													getLocalizedHref(link.href, isEN ? "en" : "fr"),
+												)}
 												onClick={() => onOpenChange(false)}
 											>
 												{t[link.key]}
@@ -89,7 +91,9 @@ const MobileNavDrawer = ({
 							</nav>
 
 							<ShinyButton
-								href={withBase("/rejoindre")}
+								href={withBase(
+									getLocalizedHref("/rejoindre", isEN ? "en" : "fr"),
+								)}
 								onClick={() => onOpenChange(false)}
 							>
 								{t.join}

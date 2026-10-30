@@ -1,0 +1,30 @@
+---
+import { sanityClient } from "sanity:client";
+import { type Locale, useTranslations } from "@i18n/index";
+import { withBase } from "@utils/urlHandler";
+import { getSeason } from "@features/games/utils";
+import { getTeamsData } from "./teamsData";
+import Teams from "./Teams";
+import "@features/gamesHistory/gamesPage.css";
+import "@features/gamesHistory/gamesResults.css";
+import "./teams.css";
+
+interface Props {
+	locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const season = getSeason(new Date().toISOString());
+const { members, captions } = await getTeamsData(sanityClient, locale, season);
+const gamesHref = withBase(
+	locale === "en" ? "/en/competitions" : "/competitions",
+);
+---
+<div class="games-page teams-page">
+	<nav class="teams-page__breadcrumb" aria-label={locale === "fr" ? "Fil d’Ariane" : "Breadcrumb"}>
+		<a href={gamesHref}>{t.games.title}</a><span aria-hidden="true">/</span><span aria-current="page">{t.teams.title}</span>
+	</nav>
+	<div class="teams-page__heading"><h1 class="games-page__title">{t.teams.title}</h1><span class="games-badge">{t.games.season} {season}</span></div>
+	<p class="teams-page__intro">{t.teams.intro}</p>
+	<Teams members={members} captions={captions} labels={t.teams} currentStart={Number(season.slice(0, 4))} client:load />
+</div>

@@ -7,6 +7,7 @@ import GamesAside from "./GamesAside.astro";
 import GamesResults from "./GamesResults";
 import NextGames from "./NextGames";
 import "./gamesPage.css";
+import { withBase } from "@utils/urlHandler";
 
 interface Props {
 	locale: Locale;
@@ -31,6 +32,7 @@ const games = results.map(({ poster, tournament, ...game }) => game);
 
 <div class="games-page">
 	<h1 class="games-page__title">{t.title}</h1>
+	<p class="games-page__teams-link"><a class="games-cta" href={withBase(locale === "en" ? "/en/competitions/teams" : "/competitions/equipes")}>{useTranslations(locale).teams.viewTeams}</a></p>
 
 	<div class="games-page__layout">
 		<div class="games-page__main">

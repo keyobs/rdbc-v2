@@ -720,10 +720,32 @@ export type Player = {
     crop?: SanityImageCrop
     _type: 'image'
   }
+  category?: 'skater' | 'referee' | 'bench' | 'staff' | 'support'
+  official_roles?: Array<string>
+  team?: 'A' | 'B'
+  intraligue?: 'pink-cheek-peaches' | 'rotten-black-grapes' | 'boom-bright-gold'
+  number?: string
   role?: Array<string>
-  season?: number
+  generation?:
+    | 'boomer'
+    | 'generationX'
+    | 'xennials'
+    | 'millenials'
+    | 'generationZ'
+    | 'alpha'
+    | 'MamaForEver'
+    | 'ForeverYoung'
+    | 'BornOld'
+    | 'GrannyVibes'
+    | 'CoolAunt'
   first_season?: number
+  last_season?: number
   misc?: string
+  misc_en?: string
+  standby?: boolean
+  hall_of_fame?: boolean
+  in_roster?: boolean
+  season?: number
 }
 
 export type SanityImagePaletteSwatch = {

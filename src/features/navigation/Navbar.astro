@@ -5,6 +5,7 @@ import ShinyButton from "@components/buttons/ShinyButton";
 import LanguageSwitch from "@components/languageSwitch/LanguageSwitch.astro";
 import { withBase } from "@utils/urlHandler";
 import "./navbar.css";
+import { getLocale, getLocalizedHref } from "@i18n/routes";
 
 interface Props {
 	t: Translations["nav"];
@@ -12,9 +13,11 @@ interface Props {
 }
 
 const { t, pathname } = Astro.props;
+const locale = getLocale(pathname);
 
 function isActive(href: string): boolean {
-	if (href === "/") return pathname === "/";
+	if (href === "/" || href === "/en/")
+		return pathname === href || pathname === href.slice(0, -1);
 	return pathname === href || pathname.startsWith(href + "/");
 }
 ---
@@ -23,13 +26,13 @@ function isActive(href: string): boolean {
 	<ul class="navbar__links" id="navbar-links">
 		{DISPLAYED_NAV_LINKS.map((item) => (
 			<li><a
-				href={withBase(item.href)}
-				class:list={[{ "is-active": isActive(item.href), home: item.key === "home" }]}
+				href={withBase(getLocalizedHref(item.href, locale))}
+				class:list={[{ "is-active": isActive(getLocalizedHref(item.href, locale)), home: item.key === "home" }]}
 				aria-label={item.key === "home" ? t.homeLabel : undefined}
-				aria-current={isActive(item.href) ? "page" : undefined}
+				aria-current={isActive(getLocalizedHref(item.href, locale)) ? "page" : undefined}
 			>{t[item.key]}</a></li>
 		))}
-		<li><ShinyButton href={withBase("/rejoindre")}>{t.join}</ShinyButton></li>
+		<li><ShinyButton href={withBase(getLocalizedHref("/rejoindre", locale))}>{t.join}</ShinyButton></li>
 		<li><LanguageSwitch pathname={pathname} /></li>
 	</ul>
 </nav>

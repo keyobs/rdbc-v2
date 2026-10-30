@@ -79,5 +79,5 @@ export const structure: StructureResolver = (S) =>
 								),
 						]),
 				),
-			S.documentTypeListItem("player").title("Joueuses").icon(() => "⭐"),
+			S.documentTypeListItem("player").title("Équipes — membres du club").icon(() => "⭐"),
 		]);

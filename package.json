@@ -16,6 +16,7 @@
 		"lint:fix": "biome check --write .",
 		"format": "biome format --write .",
 		"check": "tsc --noEmit",
+		"test:teams": "node --experimental-strip-types src/features/teams/roster.test.ts",
 		"release:patch": "dx-flow release patch",
 		"release:minor": "dx-flow release minor",
 		"release:major": "dx-flow release major",

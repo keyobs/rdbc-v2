@@ -28,6 +28,10 @@
 	min-width: 0;
 }
 
+.games-page__teams-link {
+	margin-bottom: 2rem;
+}
+
 .next-games,
 .games-page__results {
 	margin-bottom: 4rem;

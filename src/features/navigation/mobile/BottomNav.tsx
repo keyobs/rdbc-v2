@@ -4,6 +4,7 @@ import type { Translations } from "@i18n/index";
 import MobileNavDrawer from "./MobileNavDrawer";
 import { withBase } from "@utils/urlHandler";
 import "./bottomNav.css";
+import { getLocale, getLocalizedHref } from "@i18n/routes";
 
 interface BottomNavProps {
 	t: Translations["nav"];
@@ -25,6 +26,7 @@ const isActive = (pathname: string, href: string): boolean =>
 
 const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 	const [open, setOpen] = useState(false);
+	const locale = getLocale(pathname);
 
 	return (
 		<Dialog.Root open={open} onOpenChange={setOpen}>
@@ -33,10 +35,12 @@ const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 					{BOTTOM_NAV_ITEMS.slice(0, 2).map((item) => (
 						<li key={item.href} className="bottom-nav__item">
 							<a
-								href={withBase(item.href)}
+								href={withBase(getLocalizedHref(item.href, locale))}
 								aria-label={item.key === "home" ? t.homeLabel : undefined}
 								aria-current={
-									isActive(pathname, item.href) ? "page" : undefined
+									isActive(pathname, getLocalizedHref(item.href, locale))
+										? "page"
+										: undefined
 								}
 							>
 								{t[item.key]}
@@ -60,10 +64,12 @@ const BottomNav = ({ t, pathname, logoSrc }: BottomNavProps) => {
 					{BOTTOM_NAV_ITEMS.slice(2).map((item) => (
 						<li key={item.href} className="bottom-nav__item">
 							<a
-								href={withBase(item.href)}
+								href={withBase(getLocalizedHref(item.href, locale))}
 								aria-label={item.key === "home" ? t.homeLabel : undefined}
 								aria-current={
-									isActive(pathname, item.href) ? "page" : undefined
+									isActive(pathname, getLocalizedHref(item.href, locale))
+										? "page"
+										: undefined
 								}
 							>
 								{t[item.key]}
