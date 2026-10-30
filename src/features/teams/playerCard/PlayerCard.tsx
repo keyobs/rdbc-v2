@@ -84,13 +84,6 @@ export default function PlayerCard({
 					className="player-card__face player-card__front"
 					aria-hidden={flipped}
 				>
-					<span className="player-card__ruler" aria-hidden="true">
-						180 ─<br />
-						170 ─<br />
-						160 ─<br />
-						150 ─<br />
-						140 ─
-					</span>
 					{member.photoUrl ? (
 						<img
 							className="player-card__photo"
@@ -125,8 +118,7 @@ export default function PlayerCard({
 					{standby && (
 						<span className="player-card__standby">{labels.standby}</span>
 					)}
-					<span className="player-card__nameplate">
-						{member.name}
+					<span className="player-card__flip">
 						<ArrowClockwiseIcon weight="bold" aria-hidden="true" />
 					</span>
 				</span>
@@ -135,7 +127,6 @@ export default function PlayerCard({
 					id={detailsId}
 					aria-hidden={!flipped}
 				>
-					<strong>{member.name}</strong>
 					{roles.length > 0 && (
 						<span>
 							<span className="player-card__label">
