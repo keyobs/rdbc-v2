@@ -29,12 +29,36 @@ export type RosterGroup =
 	| "staff"
 	| "hall";
 
+const nameOrder = new Intl.Collator("fr", { sensitivity: "base" });
+const numberOrder = new Intl.Collator("fr", { numeric: true });
+
+function compareNames(a: TeamMember, b: TeamMember): number {
+	return nameOrder.compare(a.name, b.name) || a._id.localeCompare(b._id);
+}
+
+/** Keep leading zeroes for the first-digit group, then sort numerically within it. */
+function compareNumbers(a: TeamMember, b: TeamMember): number {
+	const first = a.number?.trim() ?? "";
+	const second = b.number?.trim() ?? "";
+	const firstIsNumber = /^\d+$/.test(first);
+	const secondIsNumber = /^\d+$/.test(second);
+	if (!firstIsNumber || !secondIsNumber) {
+		if (firstIsNumber !== secondIsNumber) return firstIsNumber ? -1 : 1;
+		return compareNames(a, b);
+	}
+	return (
+		first[0].localeCompare(second[0]) ||
+		numberOrder.compare(first, second) ||
+		compareNames(a, b)
+	);
+}
+
 /** Hall of Fame membership is independent of the current roster and standby. */
 export function getRosterMembers(
 	members: TeamMember[],
 	group: RosterGroup,
 ): TeamMember[] {
-	return members.filter((member) => {
+	const selected = members.filter((member) => {
 		if (group === "hall") return member.hall_of_fame === true;
 		if (member.in_roster === false) return false;
 		const category = member.category ?? "skater";
@@ -48,6 +72,11 @@ export function getRosterMembers(
 			(member.team === group || member.intraligue === group)
 		);
 	});
+	return selected.sort(
+		group === "officials" || group === "staff" || group === "hall"
+			? compareNames
+			: compareNumbers,
+	);
 }
 
 /** Count inclusively, and avoid inventing ongoing seasons for former members. */

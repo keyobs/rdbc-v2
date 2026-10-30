@@ -56,6 +56,81 @@ test("legacy members default to skaters in the current roster", () => {
 	assert.deepEqual(getRosterMembers([legacy], "B"), [legacy]);
 });
 
+test("skaters sort by first digit, retaining zeroes, then numerically within each group", () => {
+	const numbers = [
+		"2",
+		"101",
+		"07",
+		"1005",
+		"15",
+		"0208",
+		"1",
+		"11",
+		"21",
+		"9",
+		"55",
+	];
+	const roster = numbers.map((number) =>
+		member({
+			_id: number,
+			team: "A",
+			intraligue: "pink-cheek-peaches",
+			number,
+		}),
+	);
+	const expected = [
+		"07",
+		"0208",
+		"1",
+		"11",
+		"15",
+		"101",
+		"1005",
+		"2",
+		"21",
+		"55",
+		"9",
+	];
+	for (const group of ["A", "pink-cheek-peaches"] as const) {
+		assert.deepEqual(
+			getRosterMembers(roster, group).map((player) => player.number),
+			expected,
+		);
+	}
+	assert.deepEqual(
+		roster.map((player) => player.number),
+		numbers,
+	);
+});
+
+test("standby skaters use the same order and missing numbers come last by name", () => {
+	const roster = [
+		member({ name: "Zulu", team: "B", standby: true }),
+		member({ name: "Alpha", team: "B", number: "", standby: true }),
+		member({ name: "Two", team: "B", number: "2", standby: true }),
+		member({ name: "One", team: "B", number: " 101 ", standby: true }),
+	];
+	assert.deepEqual(
+		getRosterMembers(roster, "B").map((player) => player.name),
+		["One", "Two", "Alpha", "Zulu"],
+	);
+});
+
+test("officials, staff and Hall of Fame sort by name regardless of jersey numbers", () => {
+	for (const group of ["officials", "staff", "hall"] as const) {
+		const category = group === "officials" ? "referee" : "staff";
+		const roster = [
+			member({ name: "Zulu", number: "1", category, hall_of_fame: true }),
+			member({ name: "Éclair", number: "07", category, hall_of_fame: true }),
+			member({ name: "alpha", number: "9", category, hall_of_fame: true }),
+		];
+		assert.deepEqual(
+			getRosterMembers(roster, group).map((player) => player.name),
+			["alpha", "Éclair", "Zulu"],
+		);
+	}
+});
+
 test("season count is inclusive and freezes at the last season", () => {
 	assert.equal(getSeasonCount({ first_season: 2026 }, 2026), 1);
 	assert.equal(getSeasonCount({ first_season: 2020 }, 2026), 7);
