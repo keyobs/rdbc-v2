@@ -1,6 +1,16 @@
 ## [Unreleased]
 
 ### Added
+Teams
+- Teams pages (`/competitions/equipes`, `/en/competitions/teams`), linked from Games, with TTA, TTB, Intraleague, Officials, Staff and Hall of Fame tabs
+- Flippable member cards with portrait, jersey number or role, optional generation, calculated seasons and anecdote; five columns on desktop and two on mobile
+- Separate travel-team and intraleague affiliations; standby members grouped below the current roster, except in Hall of Fame
+- French Sanity member fields and toggles for standby, Hall of Fame and current-roster visibility; optional last season and English anecdote
+- `test:teams` checks roster filtering, dual affiliations, Hall of Fame, season counts and language routes
+
+Sanity
+- Dry-run utility to abbreviate division names to N1/N2 in competition and event fields, with an explicit apply option
+
 Join
 - Join page (`/rejoindre`, `/en/join`): values banner, hero and three role cards (player, referee, volunteer) with tags, a looping video slot and a CTA
 - Role card CTA pre-fills the contact form: matching interest checked and a ready-made message
@@ -17,6 +27,14 @@ Club
 - Training location color (green / yellow) as a Sanity field, used for agenda sessions and swatches in front of the map links
 
 ### Changed
+Teams
+- Card names and height rulers removed from the display because names are already included in the portraits; accessible names retained
+- Existing member fields preserved; the old manual season count is hidden and replaced on the site by a calculation from the first season
+
+Visual style
+- Mobile text glow uses a bright 2px core and a softer 8px halo; scoreboard, bottom navigation and background halos attenuated on mobile while desktop styling is preserved
+- Scoreboard panel and centre-bar halos softened
+
 Club
 - Agenda rows are fixed time slots (before 13:00, 13–17, 17–19, after 19:00); sessions sharing a slot stack one after the other
 - Agenda labels larger and bold, Saturday cell centered, "View on Maps" text removed from the location links
@@ -41,12 +59,14 @@ Navigation
 - Mobile bottom nav: border bump around the logo; "Contact" points to the club contact form
 
 ### Fixed
+- Navigation links retain the current language, and the Games section stays active on the English Teams page
 - Notion cards overlapping the "Les bases" header on mobile
 - Bottom nav border showing under the logo bump on some phones
 - Animated blocks (club, join, home feed) invisible when JavaScript loads late or fails: content is now visible in the server HTML and only off-screen blocks wait for their reveal
 - Games page "Write to us" button pointing to a missing `/contact` page
 
 ### Notes
+- Redeploy the Sanity Studio for the new member fields, then fill in team affiliations and roster settings to populate the Teams pages
 - Redeploy the Sanity Studio (`cd sanity && yarn deploy`) to get the location color field
 - `send.php` routing still needs a real test e-mail per address on the hosting
 
