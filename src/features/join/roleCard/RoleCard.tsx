@@ -1,13 +1,14 @@
-import { useReducedMotion } from "motion/react";
+import { useState } from "react";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
 import { PlayIcon } from "@phosphor-icons/react/dist/csr/Play";
+import { PauseIcon } from "@phosphor-icons/react/dist/csr/Pause";
 import { withBase } from "@utils/urlHandler";
 import Reveal from "@components/reveal/Reveal";
 import "./roleCard.css";
 
 export interface RoleVideo {
 	src: string;
-	poster: string;
+	poster?: string;
 }
 
 interface RoleCardProps {
@@ -19,6 +20,10 @@ interface RoleCardProps {
 	cta: string;
 	videoSoon: string;
 	video?: RoleVideo;
+	poster?: string;
+	playLabel: string;
+	pauseLabel: string;
+	onVideoToggle: () => void;
 	onPick: () => void;
 }
 
@@ -40,29 +45,74 @@ export default function RoleCard({
 	cta,
 	videoSoon,
 	video,
+	poster,
+	playLabel,
+	pauseLabel,
+	onVideoToggle,
 	onPick,
 }: RoleCardProps) {
-	const reduceMotion = useReducedMotion();
-
-	// No autoPlay attribute: the server-rendered markup cannot know the
-	// visitor's reduced-motion preference, so playback starts once hydrated
-	const startVideo = (element: HTMLVideoElement | null) => {
-		if (element && !reduceMotion) element.play().catch(() => {});
-	};
+	const [playing, setPlaying] = useState(false);
+	const [ended, setEnded] = useState(false);
+	const cover = video?.poster ?? poster;
+	const mediaUrl = (url: string) => (url.startsWith("/") ? withBase(url) : url);
 
 	return (
 		<Reveal as="article" id={id} className="role-card" variants={fadeUp}>
 			<div className="media">
 				{video ? (
-					<video
-						ref={startVideo}
-						src={withBase(video.src)}
-						poster={withBase(video.poster)}
-						muted
-						loop
-						playsInline
-						preload="metadata"
-						aria-hidden
+					<>
+						<video
+							id={`role-video-${id}`}
+							data-role-video={id}
+							data-src={mediaUrl(video.src)}
+							poster={video.poster ? mediaUrl(video.poster) : undefined}
+							muted
+							playsInline
+							preload="none"
+							onPlay={() => {
+								setPlaying(true);
+								setEnded(false);
+							}}
+							onPause={() => setPlaying(false)}
+							onEnded={() => {
+								setPlaying(false);
+								setEnded(true);
+							}}
+							onError={() => setPlaying(false)}
+							aria-hidden
+						/>
+						{ended && cover && (
+							<img
+								className="video-end-cover"
+								src={mediaUrl(cover)}
+								alt=""
+								decoding="async"
+								width={800}
+								height={800}
+							/>
+						)}
+						<button
+							type="button"
+							className="video-toggle"
+							aria-label={`${playing ? pauseLabel : playLabel} — ${title}`}
+							aria-controls={`role-video-${id}`}
+							onClick={onVideoToggle}
+						>
+							{playing ? (
+								<PauseIcon weight="bold" aria-hidden="true" />
+							) : (
+								<PlayIcon weight="bold" aria-hidden="true" />
+							)}
+						</button>
+					</>
+				) : poster ? (
+					<img
+						src={mediaUrl(poster)}
+						alt=""
+						loading="lazy"
+						decoding="async"
+						width={800}
+						height={800}
 					/>
 				) : (
 					<div className="placeholder">

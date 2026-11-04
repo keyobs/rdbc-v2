@@ -6,6 +6,7 @@ import ContactForm from "@components/contactForm/ContactForm";
 import SignupBlock from "@components/signupBlock/SignupBlock";
 import RoleCard from "./roleCard/RoleCard";
 import type { JoinContent, JoinRoleId } from "./joinContent";
+import { useRoleVideos } from "./useRoleVideos";
 import "./join.css";
 
 interface JoinProps {
@@ -17,6 +18,7 @@ interface JoinProps {
 export default function Join({ data, locale, content }: JoinProps) {
 	const t = useTranslations(locale).join;
 	const [role, setRole] = useState<JoinRoleId | null>(null);
+	const { sectionRef, toggleVideo } = useRoleVideos(content.roles);
 	const preset = role
 		? {
 				interest: role,
@@ -27,10 +29,10 @@ export default function Join({ data, locale, content }: JoinProps) {
 
 	return (
 		<div className="join">
-			<section className="roles" aria-label={t.rolesLabel}>
+			<section ref={sectionRef} className="roles" aria-label={t.rolesLabel}>
 				<ul>
 					{content.roles.map((copy) => {
-						const { id } = copy;
+						const { id, video, poster } = copy;
 						return (
 							<li key={id}>
 								<RoleCard
@@ -41,6 +43,11 @@ export default function Join({ data, locale, content }: JoinProps) {
 									tags={copy.tags}
 									cta={copy.cta}
 									videoSoon={t.videoSoon}
+									video={video}
+									poster={poster}
+									playLabel={t.playVideo}
+									pauseLabel={t.pauseVideo}
+									onVideoToggle={() => toggleVideo(id)}
 									onPick={() => setRole(id)}
 								/>
 							</li>

@@ -77,6 +77,7 @@ export const structure: StructureResolver = (S) =>
 						]),
 				),
 			S.divider(),
+			S.documentTypeListItem("libraryVideo").title("Vidéos"),
 			S.listItem()
 				.title("News")
 				.icon(() => "📰")

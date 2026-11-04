@@ -203,6 +203,8 @@ const fr = {
 		rolesLabel: "Les rôles",
 		sheetLabel: "S'inscrire et nous contacter",
 		videoSoon: "Vidéo à venir",
+		playVideo: "Lire la vidéo",
+		pauseVideo: "Mettre la vidéo en pause",
 		message:
 			"Bonjour,\nje suis intéressé·e pour vous rejoindre pour {role}. Comment je m'y prends ?\nFlemme de modifier le message,\n",
 		roles: {

@@ -13,6 +13,7 @@ import { sportNotions } from "./sportNotions";
 import { team } from "./team";
 import { joinPage } from "./joinPage";
 import { joinRole } from "./joinRole";
+import { video, optimizedVideo } from "./video";
 
 export const schemaTypes = [
 	player,
@@ -25,6 +26,8 @@ export const schemaTypes = [
 	joiningPositions,
 	joinPage,
 	joinRole,
+	video,
+	optimizedVideo,
 	sportNotions,
 	advancedRules,
 	competition,

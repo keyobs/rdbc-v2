@@ -15,6 +15,8 @@ export interface JoinProfile {
 	tags: string[];
 	cta: string;
 	message: string;
+	video?: { src: string; poster?: string };
+	poster?: string;
 }
 
 export interface JoinContent {
@@ -23,7 +25,11 @@ export interface JoinContent {
 	roles: JoinProfile[];
 }
 
-export type JoinRoleData = Partial<JoinRole> & Pick<JoinRole, "_id">;
+export type JoinRoleData = Partial<JoinRole> &
+	Pick<JoinRole, "_id"> & {
+		videoUrl?: string | null;
+		posterUrl?: string | null;
+	};
 
 export function resolveJoinContent(
 	page: Partial<JoinPage> | null,
@@ -65,6 +71,7 @@ export function resolveJoinContent(
 		roles: JOIN_ROLES.map(({ id }) => {
 			const profile = profiles.find((entry) => entry._id === `joinRole-${id}`);
 			const copy = defaults.roles[id];
+			const poster = profile?.posterUrl || undefined;
 			return {
 				id,
 				anchor: text(profile?.anchor, copy.anchor),
@@ -77,6 +84,10 @@ export function resolveJoinContent(
 					profile?.message,
 					defaults.message.replace("{role}", copy.verb),
 				),
+				video: profile?.videoUrl
+					? { src: profile.videoUrl, poster }
+					: undefined,
+				poster,
 			};
 		}),
 	};

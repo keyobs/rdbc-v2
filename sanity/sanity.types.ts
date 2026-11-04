@@ -347,6 +347,35 @@ export type SportNotionsSection = {
   }>
 }
 
+export type SanityFileAssetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
+}
+
+export type OptimizedVideo = {
+  _type: 'optimizedVideo'
+  asset?: SanityFileAssetReference
+  media?: unknown
+  duration?: number
+  width?: number
+  height?: number
+  size?: number
+  sourceSize?: number
+  profile?: string
+  preset?: 'mini' | 'reduce' | 'max'
+  capturedAt?: string
+  uploadedAt?: string
+}
+
+export type LibraryVideoReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'libraryVideo'
+}
+
 export type JoinRole = {
   _id: string
   _type: 'joinRole'
@@ -373,6 +402,19 @@ export type JoinRole = {
     fr?: Array<string>
     en?: Array<string>
   }
+  video?: {
+    asset?: SanityFileAssetReference
+    media?: unknown
+    _type: 'file'
+  }
+  videoRef?: LibraryVideoReference
+  poster?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
   cta?: {
     fr?: string
     en?: string
@@ -381,6 +423,17 @@ export type JoinRole = {
     fr?: string
     en?: string
   }
+}
+
+export type LibraryVideo = {
+  _id: string
+  _type: 'libraryVideo'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  recordedAt?: string
+  file?: OptimizedVideo
 }
 
 export type JoinPage = {
@@ -944,7 +997,11 @@ export type AllSanitySchemaTypes =
   | Slug
   | AdvancedRulesSection
   | SportNotionsSection
+  | SanityFileAssetReference
+  | OptimizedVideo
+  | LibraryVideoReference
   | JoinRole
+  | LibraryVideo
   | JoinPage
   | HomeJoiningSection
   | HomeAlert

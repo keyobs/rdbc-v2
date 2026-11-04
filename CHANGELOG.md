@@ -1,11 +1,14 @@
 ## [Unreleased]
 
 ### Changed
-- Join pages load their localized introduction, values and three role cards from Sanity, including contact form presets
+- Video imports offer Mini (250px), Réduite (400px, default) and Max (800px) presets, with bitrate limits, comparable previews and stored preset metadata
+- Join videos play sequentially once on desktop, manually on mobile, with exclusive muted playback, play/pause controls, visibility pauses and deferred media loading; manual interaction suspends autoplay
+- Join pages load their introduction, values and three role cards from Sanity, including localized form presets and optional video/poster assets
 - Sanity rosters are managed from eight fixed team/section lists referencing club members; the same member can belong to multiple teams
 - Legacy player affiliations remain available as a fallback until each list is published; standby and site sorting are preserved
 
 ### Added
+- Sanity video library with editable names/dates, local browser optimization, strict 30-second limit, silent MP4 exports, reusable Join references and a draft-only migration for existing uploads
 - Sanity Rejoindre menu with four fixed documents; existing FR/EN content can be initialized as drafts with `sanity/scripts/seedJoinPage.ts`
 - Dry-run roster migration preserving existing lists and member documents; usage in `sanity/scripts/teamRosters.md`
 

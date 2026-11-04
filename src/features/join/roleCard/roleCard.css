@@ -7,16 +7,55 @@
 	scroll-margin-top: 5rem;
 
 	.media {
+		position: relative;
 		aspect-ratio: 1 / 1;
 		border-bottom: 2px solid var(--color-neon-primary);
 		background: var(--color-surface);
 		overflow: hidden;
 
-		video {
+		video,
+		img {
 			display: block;
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+		}
+	}
+
+	.video-end-cover {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	.video-toggle {
+		position: absolute;
+		z-index: 1;
+		bottom: 0.75rem;
+		right: 0.75rem;
+		display: grid;
+		place-items: center;
+		width: 3rem;
+		height: 3rem;
+		padding: 0;
+		border: var(--btn-border) var(--color-neon-primary);
+		border-radius: 0;
+		background: var(--color-bitume);
+		color: var(--color-neon-primary);
+		box-shadow: 3px 3px 0 var(--color-neon-primary);
+		cursor: pointer;
+
+		svg {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+		&:focus-visible {
+			outline: 2px solid var(--color-white);
+			outline-offset: 4px;
+		}
+		&:active {
+			transform: translate(2px, 2px);
+			box-shadow: 1px 1px 0 var(--color-neon-primary);
 		}
 	}
 
@@ -76,6 +115,7 @@
 		/* Two tags side by side: long labels wrap inside their tag */
 		display: flex;
 		gap: 0.5rem;
+		flex-wrap: wrap;
 
 		li {
 			min-width: 0;
