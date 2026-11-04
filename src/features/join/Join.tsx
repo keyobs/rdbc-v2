@@ -5,31 +5,23 @@ import { useTranslations } from "@i18n/index";
 import ContactForm from "@components/contactForm/ContactForm";
 import SignupBlock from "@components/signupBlock/SignupBlock";
 import RoleCard from "./roleCard/RoleCard";
-import type { RoleVideo } from "./roleCard/RoleCard";
+import type { JoinContent, JoinRoleId } from "./joinContent";
 import "./join.css";
-
-type JoinRole = "play" | "referee" | "volunteer";
 
 interface JoinProps {
 	data: ClubPage;
 	locale: Locale;
+	content: JoinContent;
 }
 
-// Add `video: { src: "/join/<role>.mp4", poster: "/join/<role>.webp" }`
-// once the 7s clips are dropped in public/join/
-const ROLES: { id: JoinRole; video?: RoleVideo }[] = [
-	{ id: "play" },
-	{ id: "referee" },
-	{ id: "volunteer" },
-];
-
-export default function Join({ data, locale }: JoinProps) {
+export default function Join({ data, locale, content }: JoinProps) {
 	const t = useTranslations(locale).join;
-	const [role, setRole] = useState<JoinRole | null>(null);
+	const [role, setRole] = useState<JoinRoleId | null>(null);
 	const preset = role
 		? {
 				interest: role,
-				message: t.message.replace("{role}", t.roles[role].verb),
+				message:
+					content.roles.find((profile) => profile.id === role)?.message ?? "",
 			}
 		: undefined;
 
@@ -37,8 +29,8 @@ export default function Join({ data, locale }: JoinProps) {
 		<div className="join">
 			<section className="roles" aria-label={t.rolesLabel}>
 				<ul>
-					{ROLES.map(({ id, video }) => {
-						const copy = t.roles[id];
+					{content.roles.map((copy) => {
+						const { id } = copy;
 						return (
 							<li key={id}>
 								<RoleCard
@@ -46,10 +38,9 @@ export default function Join({ data, locale }: JoinProps) {
 									title={copy.title}
 									lead={copy.lead}
 									text={copy.text}
-									tags={[copy.tag1, copy.tag2]}
+									tags={copy.tags}
 									cta={copy.cta}
 									videoSoon={t.videoSoon}
-									video={video}
 									onPick={() => setRole(id)}
 								/>
 							</li>

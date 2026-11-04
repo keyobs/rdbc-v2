@@ -1,10 +1,12 @@
 ## [Unreleased]
 
 ### Changed
+- Join pages load their localized introduction, values and three role cards from Sanity, including contact form presets
 - Sanity rosters are managed from eight fixed team/section lists referencing club members; the same member can belong to multiple teams
 - Legacy player affiliations remain available as a fallback until each list is published; standby and site sorting are preserved
 
 ### Added
+- Sanity Rejoindre menu with four fixed documents; existing FR/EN content can be initialized as drafts with `sanity/scripts/seedJoinPage.ts`
 - Dry-run roster migration preserving existing lists and member documents; usage in `sanity/scripts/teamRosters.md`
 
 ## [0.5.0]  - 2026-10-30

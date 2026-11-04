@@ -11,6 +11,8 @@ import { player } from "./player";
 import { season } from "./season";
 import { sportNotions } from "./sportNotions";
 import { team } from "./team";
+import { joinPage } from "./joinPage";
+import { joinRole } from "./joinRole";
 
 export const schemaTypes = [
 	player,
@@ -21,6 +23,8 @@ export const schemaTypes = [
 	feedSettings,
 	homeAlert,
 	joiningPositions,
+	joinPage,
+	joinRole,
 	sportNotions,
 	advancedRules,
 	competition,

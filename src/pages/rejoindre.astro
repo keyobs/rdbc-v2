@@ -3,13 +3,17 @@ import { sanityClient } from "sanity:client";
 import type { ClubPage } from "../../sanity/sanity.types";
 import Join from "@features/join/Join";
 import JoinIntro from "@features/join/JoinIntro.astro";
+import { getJoinContent } from "@features/join/joinData";
 import Layout from "../layouts/Layout.astro";
 
-const data: ClubPage =
-	(await sanityClient.fetch(`*[_id == "clubPage"][0]`)) ?? ({} as ClubPage);
+const [club, content] = await Promise.all([
+	sanityClient.fetch<ClubPage | null>(`*[_id == "clubPage"][0]`),
+	getJoinContent(sanityClient, "fr"),
+]);
+const data = club ?? ({} as ClubPage);
 ---
 
 <Layout title="Rejoindre">
-  <JoinIntro locale="fr" />
-  <Join data={data} locale="fr" client:visible />
+  <JoinIntro locale="fr" content={content} />
+  <Join data={data} content={content} locale="fr" client:visible />
 </Layout>

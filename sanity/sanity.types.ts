@@ -347,6 +347,74 @@ export type SportNotionsSection = {
   }>
 }
 
+export type JoinRole = {
+  _id: string
+  _type: 'joinRole'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: {
+    fr?: string
+    en?: string
+  }
+  anchor?: {
+    fr?: string
+    en?: string
+  }
+  lead?: {
+    fr?: string
+    en?: string
+  }
+  text?: {
+    fr?: string
+    en?: string
+  }
+  tags?: {
+    fr?: Array<string>
+    en?: Array<string>
+  }
+  cta?: {
+    fr?: string
+    en?: string
+  }
+  message?: {
+    fr?: string
+    en?: string
+  }
+}
+
+export type JoinPage = {
+  _id: string
+  _type: 'joinPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  eyebrow?: {
+    fr?: string
+    en?: string
+  }
+  title?: {
+    fr?: string
+    en?: string
+  }
+  introduction?: {
+    fr?: string
+    en?: string
+  }
+  valuesTitle?: {
+    fr?: string
+    en?: string
+  }
+  valuesText?: {
+    fr?: string
+    en?: string
+  }
+  valuesTags?: {
+    fr?: Array<string>
+    en?: Array<string>
+  }
+}
+
 export type HomeJoiningSection = {
   _id: string
   _type: 'homeJoiningSection'
@@ -876,6 +944,8 @@ export type AllSanitySchemaTypes =
   | Slug
   | AdvancedRulesSection
   | SportNotionsSection
+  | JoinRole
+  | JoinPage
   | HomeJoiningSection
   | HomeAlert
   | FeedReference

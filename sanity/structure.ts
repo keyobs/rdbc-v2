@@ -1,5 +1,6 @@
 import type { StructureBuilder, StructureResolver } from "sanity/structure";
 import { ROSTER_GROUPS } from "./rosterGroups";
+import { JOIN_ROLES } from "./joinRoles";
 
 // These types use fixed document IDs in the structure, without creation or deletion.
 export const SINGLETON_TYPES = new Set([
@@ -10,6 +11,8 @@ export const SINGLETON_TYPES = new Set([
 	"sportNotionsSection",
 	"advancedRulesSection",
 	"team",
+	"joinPage",
+	"joinRole",
 ]);
 
 const singleton = (S: StructureBuilder, type: string, title: string) =>
@@ -42,6 +45,26 @@ export const structure: StructureResolver = (S) =>
 						]),
 				),
 			singleton(S, "clubPage", "Le club").icon(() => "🛼"),
+			S.listItem()
+				.title("Rejoindre")
+				.child(
+					S.list()
+						.title("Rejoindre")
+						.items([
+							singleton(S, "joinPage", "Introduction et valeurs"),
+							...JOIN_ROLES.map((role) =>
+								S.listItem()
+									.id(`joinRole-${role.id}`)
+									.title(role.title)
+									.child(
+										S.document()
+											.schemaType("joinRole")
+											.documentId(`joinRole-${role.id}`)
+											.title(role.title),
+									),
+							),
+						]),
+				),
 			S.listItem()
 				.title("Le sport")
 				.icon(() => "📖")
