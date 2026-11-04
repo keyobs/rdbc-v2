@@ -90,6 +90,12 @@
 
 ## Style de dev
 
+### Interventions
+- Avant toute implémentation : plan + liste courte des fichiers impactés, puis attente de ta validation.
+- Après : récapitulatif très court des fichiers et des interventions.
+- Aucun ajout ni lancement de tests sans ton autorisation explicite.
+- Les nouvelles commandes et dépendances seront aussi annoncées dans le plan.
+
 ### Git workflow
 - Branches : `feature/nom` depuis `develop` → merge dans `develop` → release vers `main`
 - `develop` → GitHub Pages recette (`.github/workflows/preview.yml`)
