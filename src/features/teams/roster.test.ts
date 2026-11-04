@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { getRosterMembers, getSeasonCount, type TeamMember } from "./roster.ts";
+import {
+	getRosterMembers,
+	getSeasonCount,
+	resolveRosterMemberships,
+	type TeamMember,
+} from "./roster.ts";
 import { getAlternateHref, getLocalizedHref } from "../../i18n/routes.ts";
 
 const member = (fields: Partial<TeamMember> = {}): TeamMember => ({
@@ -9,6 +14,59 @@ const member = (fields: Partial<TeamMember> = {}): TeamMember => ({
 	photoUrl: null,
 	anecdote: "",
 	...fields,
+});
+
+test("published lists replace legacy membership, including empty lists", () => {
+	const players = [
+		member({ _id: "one", team: "A", intraligue: "pink-cheek-peaches" }),
+		member({ _id: "two", team: "B" }),
+	];
+	const resolved = resolveRosterMemberships(players, [
+		{
+			_id: "team-A",
+			members: [{ _key: "one", _type: "reference", _ref: "two" }],
+		},
+		{ _id: "team-B", members: [] },
+	]);
+	assert.deepEqual(
+		getRosterMembers(resolved, "A").map((entry) => entry._id),
+		["two"],
+	);
+	assert.deepEqual(getRosterMembers(resolved, "B"), []);
+	assert.deepEqual(
+		getRosterMembers(resolved, "pink-cheek-peaches").map((entry) => entry._id),
+		["one"],
+	);
+	assert.equal(players[0].groups, undefined);
+});
+
+test("explicit lists control officials, staff and Hall without category auto-enrolment", () => {
+	const players = [
+		member({ _id: "ref", category: "referee" }),
+		member({ _id: "former", in_roster: false, standby: true }),
+	];
+	const resolved = resolveRosterMemberships(players, [
+		{ _id: "team-officials", members: [] },
+		{ _id: "team-staff", members: [] },
+		{
+			_id: "team-A",
+			members: [{ _type: "reference", _key: "a", _ref: "former" }],
+		},
+		{
+			_id: "team-hall",
+			members: [
+				{ _type: "reference", _key: "a", _ref: "former" },
+				{ _type: "reference", _key: "missing", _ref: "missing" },
+			],
+		},
+	]);
+	assert.deepEqual(getRosterMembers(resolved, "officials"), []);
+	assert.deepEqual(getRosterMembers(resolved, "staff"), []);
+	assert.deepEqual(getRosterMembers(resolved, "A"), []);
+	assert.deepEqual(
+		getRosterMembers(resolved, "hall").map((entry) => entry._id),
+		["former"],
+	);
 });
 
 test("travel team and intraleague affiliations are independent, including on standby", () => {
