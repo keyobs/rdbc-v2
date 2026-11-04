@@ -19,7 +19,7 @@ export default function PlayerCard({
 	currentStart,
 	hallOfFame = false,
 }: PlayerCardProps) {
-	const [flipped, setFlipped] = useState(false);
+	const [flipped, setFlipped] = useState(true);
 	const reduceMotion = useReducedMotion();
 	const detailsId = useId();
 	const category = member.category ?? "skater";
@@ -44,7 +44,7 @@ export default function PlayerCard({
 			? ""
 			: last !== undefined
 				? `${first}–${first + 1} / ${last}–${last + 1}`
-				: `${labels.since} ${first}–${first + 1}`;
+				: `${labels.since} ${first}`;
 	const standby = !hallOfFame && member.standby === true;
 
 	return (
@@ -127,35 +127,59 @@ export default function PlayerCard({
 					id={detailsId}
 					aria-hidden={!flipped}
 				>
-					{roles.length > 0 && (
-						<span>
-							<span className="player-card__label">
-								{skater ? labels.positions : labels.role}
-							</span>
-							<span className="player-card__badges">
-								{roles.map((position) => (
-									<span className="player-card__badge" key={position}>
-										{position}
+					{(roles.length > 0 ||
+						first !== undefined ||
+						member.photoUrl ||
+						member.generation) && (
+						<span className="player-card__back-header">
+							<span className="player-card__positions">
+								{roles.length > 0 && (
+									<span>
+										<span className="player-card__label">
+											{skater ? labels.positions : labels.role}
+										</span>
+										<span className="player-card__badges">
+											{roles.map((position) => (
+												<span className="player-card__badge" key={position}>
+													{position}
+												</span>
+											))}
+										</span>
 									</span>
-								))}
+								)}
+								{first !== undefined && (
+									<span className="player-card__experience">
+										<span className="player-card__label">{labels.atClub}</span>
+										{period}
+										{seasons !== null && (
+											<span className="player-card__seasons">
+												{seasons}{" "}
+												{seasons === 1 ? labels.seasonOne : labels.seasonMany}
+											</span>
+										)}
+									</span>
+								)}
 							</span>
-						</span>
-					)}
-					{member.generation && (
-						<span className="player-card__generation">
-							{labels.generations[member.generation]}
-						</span>
-					)}
-					{first !== undefined && (
-						<span className="player-card__experience">
-							<span className="player-card__label">{labels.atClub}</span>
-							{seasons !== null && (
-								<span>
-									{seasons}{" "}
-									{seasons === 1 ? labels.seasonOne : labels.seasonMany} ·{" "}
+							{(member.photoUrl || member.generation) && (
+								<span className="player-card__portrait">
+									{member.photoUrl && (
+										<img
+											className="player-card__thumbnail"
+											src={member.photoUrl}
+											alt=""
+											loading="lazy"
+											decoding="async"
+											width={64}
+											height={84}
+										/>
+									)}
+									{member.generation && (
+										<span className="player-card__generation">
+											{labels.generations[member.generation]}
+										</span>
+									)}
 								</span>
 							)}
-							{period}
 						</span>
 					)}
 					{member.anecdote && (

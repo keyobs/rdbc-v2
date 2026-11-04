@@ -91,7 +91,7 @@ const en = {
 		positions: "Positions",
 		role: "Role",
 		atClub: "At the club",
-		anecdote: "The inside story",
+		anecdote: "Signature",
 		hallAnecdote: "Part of our history",
 		seasonOne: "season",
 		seasonMany: "seasons",

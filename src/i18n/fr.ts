@@ -91,7 +91,7 @@ const fr = {
 		positions: "Postes",
 		role: "Rôle",
 		atClub: "Au club",
-		anecdote: "Le petit dossier",
+		anecdote: "Signature",
 		hallAnecdote: "Dans l’histoire du club",
 		seasonOne: "saison",
 		seasonMany: "saisons",
