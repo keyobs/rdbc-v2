@@ -10,9 +10,11 @@ import { news } from "./news";
 import { player } from "./player";
 import { season } from "./season";
 import { sportNotions } from "./sportNotions";
+import { team } from "./team";
 
 export const schemaTypes = [
 	player,
+	team,
 	club,
 	clubPage,
 	feed,

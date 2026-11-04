@@ -706,6 +706,26 @@ export type Club = {
   }
 }
 
+export type PlayerReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'player'
+}
+
+export type Team = {
+  _id: string
+  _type: 'team'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  members?: Array<
+    {
+      _key: string
+    } & PlayerReference
+  >
+}
+
 export type Player = {
   _id: string
   _type: 'player'
@@ -863,6 +883,8 @@ export type AllSanitySchemaTypes =
   | Feed
   | ClubPage
   | Club
+  | PlayerReference
+  | Team
   | Player
   | SanityImagePaletteSwatch
   | SanityImagePalette

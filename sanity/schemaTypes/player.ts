@@ -64,7 +64,8 @@ export const player = defineType({
           {title: 'TTB — Les Cruelles', value: 'B'},
         ],
       },
-      hidden: ({document}) => !isSkater(document),
+      hidden: true,
+      readOnly: true,
     }),
     defineField({
       name: 'intraligue',
@@ -77,7 +78,8 @@ export const player = defineType({
           {title: 'Boom Bright Gold', value: 'boom-bright-gold'},
         ],
       },
-      hidden: ({document}) => !isSkater(document),
+      hidden: true,
+      readOnly: true,
     }),
     defineField({
       name: 'number',
@@ -166,6 +168,8 @@ export const player = defineType({
       name: 'hall_of_fame',
       title: 'Hall of Fame',
       type: 'boolean',
+      hidden: true,
+      readOnly: true,
       initialValue: false,
       description:
         'Afficher cette fiche dans la rubrique Hall of Fame. Ce choix est indépendant des effectifs actuels.',
@@ -176,7 +180,7 @@ export const player = defineType({
       type: 'boolean',
       initialValue: true,
       description:
-        'Désactiver pour retirer la fiche des effectifs TTA, TTB, intraligue, officiels et staff. Une fiche sélectionnée pour le Hall of Fame y reste visible.',
+        'Désactiver pour retirer la fiche des effectifs actuels. Les affiliations se gèrent dans Équipes et membres. Une fiche sélectionnée pour le Hall of Fame y reste visible.',
     }),
     // Keep the legacy value readable without using a second season counter.
     defineField({
@@ -193,9 +197,8 @@ export const player = defineType({
       media: 'photo',
       category: 'category',
       standby: 'standby',
-      hall: 'hall_of_fame',
     },
-    prepare: ({title, media, category, standby, hall}) => ({
+    prepare: ({title, media, category, standby}) => ({
       title,
       subtitle: [
         category === 'referee'
@@ -208,7 +211,6 @@ export const player = defineType({
                 ? 'Staff'
                 : 'Skater',
         standby && 'En stand-by',
-        hall && 'Hall of Fame',
       ]
         .filter(Boolean)
         .join(' · '),

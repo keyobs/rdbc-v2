@@ -1,4 +1,9 @@
-import type { Player } from "../../../sanity/sanity.types";
+import type { Player, Team } from "../../../sanity/sanity.types";
+import {
+	ROSTER_GROUPS,
+	type RosterGroup,
+} from "../../../sanity/rosterGroups.ts";
+export type { RosterGroup } from "../../../sanity/rosterGroups.ts";
 
 export interface TeamMember
 	extends Pick<
@@ -20,14 +25,29 @@ export interface TeamMember
 	name: string;
 	photoUrl: string | null;
 	anecdote: string;
+	groups?: RosterGroup[];
 }
 
-export type RosterGroup =
-	| NonNullable<Player["team"]>
-	| NonNullable<Player["intraligue"]>
-	| "officials"
-	| "staff"
-	| "hall";
+/** Published lists take precedence, including an explicitly empty list. */
+export function resolveRosterMemberships(
+	members: TeamMember[],
+	teams: Pick<Team, "_id" | "members">[],
+): TeamMember[] {
+	const memberships = new Map<RosterGroup, Set<string>>();
+	for (const group of ROSTER_GROUPS) {
+		const team = teams.find((entry) => entry._id === `team-${group.key}`);
+		const ids = team
+			? (team.members ?? []).map((reference) => reference._ref)
+			: getRosterMembers(members, group.key).map((member) => member._id);
+		memberships.set(group.key, new Set(ids));
+	}
+	return members.map((member) => ({
+		...member,
+		groups: ROSTER_GROUPS.filter((group) =>
+			memberships.get(group.key)?.has(member._id),
+		).map((group) => group.key),
+	}));
+}
 
 const nameOrder = new Intl.Collator("fr", { sensitivity: "base" });
 const numberOrder = new Intl.Collator("fr", { numeric: true });
@@ -59,8 +79,10 @@ export function getRosterMembers(
 	group: RosterGroup,
 ): TeamMember[] {
 	const selected = members.filter((member) => {
-		if (group === "hall") return member.hall_of_fame === true;
+		if (group === "hall")
+			return member.groups?.includes(group) ?? member.hall_of_fame === true;
 		if (member.in_roster === false) return false;
+		if (member.groups) return member.groups.includes(group);
 		const category = member.category ?? "skater";
 		if (group === "officials") return category === "referee";
 		if (group === "staff")

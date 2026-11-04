@@ -1,3 +1,12 @@
+## [Unreleased]
+
+### Changed
+- Sanity rosters are managed from eight fixed team/section lists referencing club members; the same member can belong to multiple teams
+- Legacy player affiliations remain available as a fallback until each list is published; standby and site sorting are preserved
+
+### Added
+- Dry-run roster migration preserving existing lists and member documents; usage in `sanity/scripts/teamRosters.md`
+
 ## [0.5.0]  - 2026-10-30
 
 ### Added

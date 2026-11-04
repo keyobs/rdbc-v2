@@ -1,7 +1,7 @@
 import type { StructureBuilder, StructureResolver } from "sanity/structure";
+import { ROSTER_GROUPS } from "./rosterGroups";
 
-// Pages that exist once: the document id is the schema type name, so the site
-// can query them by `_id` and editors can never create a second one.
+// These types use fixed document IDs in the structure, without creation or deletion.
 export const SINGLETON_TYPES = new Set([
 	"feedSettings",
 	"homeAlert",
@@ -9,6 +9,7 @@ export const SINGLETON_TYPES = new Set([
 	"clubPage",
 	"sportNotionsSection",
 	"advancedRulesSection",
+	"team",
 ]);
 
 const singleton = (S: StructureBuilder, type: string, title: string) =>
@@ -79,5 +80,26 @@ export const structure: StructureResolver = (S) =>
 								),
 						]),
 				),
-			S.documentTypeListItem("player").title("Équipes — membres du club").icon(() => "⭐"),
+			S.listItem()
+				.title("Équipes et membres")
+				.icon(() => "⭐")
+				.child(
+					S.list()
+						.title("Équipes et membres")
+						.items([
+							S.documentTypeListItem("player").title("Membres du club"),
+							S.divider(),
+							...ROSTER_GROUPS.map((group) =>
+								S.listItem()
+									.id(`team-${group.key}`)
+									.title(group.title)
+									.child(
+										S.document()
+											.schemaType("team")
+											.documentId(`team-${group.key}`)
+											.title(group.title),
+									),
+							),
+						]),
+				),
 		]);
