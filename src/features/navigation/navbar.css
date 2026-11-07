@@ -7,15 +7,22 @@
 }
 
 .navbar__links {
+	--nav-link-width: 6.5rem;
+
 	position: relative;
 	list-style: none;
 	display: flex;
 	align-items: center;
-	gap: 16px;
+	gap: 0;
 
 	li {
 		min-width: 4.5rem;
 		text-align: center;
+	}
+
+	> li:has(> a:not(.btn-shiny):not(.lang-switch__btn)) {
+		flex: 0 0 var(--nav-link-width);
+		width: var(--nav-link-width);
 	}
 }
 
@@ -28,7 +35,7 @@
 	width: var(--sp-width, 0px);
 	height: 2.75rem;
 	transform: translateY(-50%);
-	border-radius: 999px;
+	border-radius: 6px;
 	background: color-mix(in srgb, var(--color-bitume) 82%, transparent);
 	box-shadow: 0 0 14px
 		color-mix(in srgb, var(--color-neon-green) 25%, transparent);
@@ -41,23 +48,20 @@
 }
 
 /* ── links ────────────────────────────────────────────────── */
-/* The link fills its item: the click area is at least 4.5rem × 2.75rem */
+/* Navigation links share a fixed width and fill their item. */
 .navbar__links a:not(.btn-shiny):not(.lang-switch__btn) {
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	min-height: 2.75rem;
-	padding: 0 0.5rem;
 	font-size: 0.9rem;
 	text-transform: uppercase;
 	text-decoration: none;
 	letter-spacing: 0.06em;
 	color: var(--color-text-main);
 	font-weight: 800;
-	transition:
-		color 220ms ease,
-		transform 180ms ease;
+	transition: color 220ms ease;
 }
 
 /* home link (•̪●): bigger glyphs */
@@ -79,6 +83,5 @@
 	.navbar__links
 		a:not(.btn-shiny):not(.lang-switch__btn):not(.is-active):hover {
 		color: var(--color-neon-green);
-		transform: scale(1.15);
 	}
 }
