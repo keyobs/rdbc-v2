@@ -1,92 +1,117 @@
 ## [0.6.0] - 2026-11-07
 
-### Changed
-- Team skaters are sorted by jersey number, preserving leading-zero groups; officials, staff and Hall of Fame members are sorted by name
-- Member card backs show a portrait thumbnail with the generation below it, stacked positions, the joining year and an emphasized season count; anecdotes use larger italic handwriting and the Signature label
-- Video imports offer Mini (250px), Réduite (400px, default) and Max (800px) presets, with bitrate limits, comparable previews and stored preset metadata
-- Join videos play sequentially once on desktop, manually on mobile, with exclusive muted playback, play/pause controls, visibility pauses and deferred media loading; manual interaction suspends autoplay
-- Join pages load their introduction, values and three role cards from Sanity, including localized form presets and optional video/poster assets
-- Sanity rosters are managed from eight fixed team/section lists referencing club members; the same member can belong to multiple teams
-- Legacy player affiliations remain available as a fallback until each list is published; standby and site sorting are preserved
-
 ### Added
-- Join video cards display their configured cover image when playback ends, keeping the replay button available
-- Member import utility creates drafts from a manifest containing derby names, jersey numbers, optional generations and portrait paths
-- Sanity video library with editable names/dates, local browser optimization, strict 30-second limit, silent MP4 exports, reusable Join references and a draft-only migration for existing uploads
-- Sanity Rejoindre menu with four fixed documents; existing FR/EN content can be initialized as drafts with `sanity/scripts/seedJoinPage.ts`
-- Dry-run roster migration preserving existing lists and member documents; usage in `sanity/scripts/teamRosters.md`
+Sanity
+- Photos library = reusable images, crop, alt text and credits; direct uploads retained
+- Videos library = editable name/date, local compression, silent MP4, 30-second limit
+- Video presets = Mini 250px, Réduite 400px (default), Max 800px
+- Video metadata table = original/upload comparison; missing values shown as `--`
+- Join settings = introduction, values and three localized profiles
+- Draft import scripts for members, Join content and existing videos
+- Roster migration script with dry-run mode
+
+Join
+- Video thumbnails shown before and after playback, with replay button
+- Covers = profile before video; library photo before direct upload
+
+### Changed
+Teams
+- Skaters sorted by jersey number, including leading zeros; other sections by name
+- Card backs = portrait, generation, stacked positions, joining year and bold season count
+- Anecdotes = larger italic handwriting, Signature label
+- Eight Sanity roster lists referencing shared members; legacy affiliations kept as fallback
+
+Join
+- Page content and form presets loaded from Sanity
+- Desktop videos = sequential autoplay, once each
+- Mobile videos = manual playback; one video at a time on all devices
+- Muted playback, play/pause controls, off-screen pauses and deferred loading
+- Manual interaction stops the autoplay sequence
+
+Sport
+- Reusable `theme-blue` / `theme-white` classes; introduction switched to blue
+
+D-Life
+- News renamed to D-Life = `/derbylife`, `/en/derbylife`
+- Navigation, page titles and language links updated
+- Sanity schema renamed to `article`, listed under Articles
 
 ## [0.5.0]  - 2026-10-30
 
 ### Added
 Teams
-- Teams pages (`/competitions/equipes`, `/en/competitions/teams`), linked from Games, with TTA, TTB, Intraleague, Officials, Staff and Hall of Fame tabs
-- Flippable member cards with portrait, jersey number or role, optional generation, calculated seasons and anecdote; five columns on desktop and two on mobile
-- Separate travel-team and intraleague affiliations; standby members grouped below the current roster, except in Hall of Fame
-- French Sanity member fields and toggles for standby, Hall of Fame and current-roster visibility; optional last season and English anecdote
-- `test:teams` checks roster filtering, dual affiliations, Hall of Fame, season counts and language routes
+- Teams routes = `/competitions/equipes`, `/en/competitions/teams`; linked from Games
+- Tabs = TTA, TTB, Intraleague, Officials, Staff, Hall of Fame
+- Flippable cards = portrait, number/role, optional generation, seasons and anecdote
+- Card grid = 5 columns on desktop, 2 on mobile
+- Separate travel-team/intraleague affiliations; standby below active members, except Hall of Fame
+- French Sanity fields = standby, Hall of Fame, roster visibility, optional last season and English anecdote
+- `test:teams` = filtering, affiliations, Hall of Fame, seasons and language routes
 
 Sanity
-- Dry-run utility to abbreviate division names to N1/N2 in competition and event fields, with an explicit apply option
+- Division abbreviations = N1/N2 in competitions and events; dry-run/apply utility
 
 Join
-- Join page (`/rejoindre`, `/en/join`): values banner, hero and three role cards (player, referee, volunteer) with tags, a looping video slot and a CTA
-- Role card CTA pre-fills the contact form: matching interest checked and a ready-made message
-- Sign-up block and contact form extracted into `src/components`, shared by the club and join pages, printed on a fanzine paper sheet
-- Flyer-style CTA-ALT buttons: yellow price tag for the sign-up forms, inverted dark-blue tag for HelloAsso, cut-out coupon for "Send"
-- `--color-ink` token for the paper sheet ink
+- Join routes = `/rejoindre`, `/en/join`; hero and values banner
+- Three role cards = player, referee, volunteer; tags, looping video slot and CTA
+- Card CTA = matching contact interest and prefilled message
+- Shared signup/contact components in `src/components`, on a fanzine paper sheet
+- CTA-ALT = yellow signup tag, dark-blue HelloAsso tag, Send coupon
+- `--color-ink` token for paper text
 
 Contact
-- "Interleague" interest, pre-checked when coming from the games page "Write to us" button (`/club?interest=interleague#contact`)
-- Messages routed by interest: play / try / referee to recrutement@, come watch / volunteer / say hi to the club Gmail, interleague to interleague@; club Gmail when nothing is checked
-- Club e-mail address shown under "Contact us", interleague address under the games page challenge
+- Interleague interest preselected from Games = `/club?interest=interleague#contact`
+- Play / try / referee messages → recrutement@; interleague → interleague@
+- Watch / volunteer / say hi / no selection → club Gmail
+- E-mail addresses shown under Contact us and the Games challenge
 
 Club
-- Training location color (green / yellow) as a Sanity field, used for agenda sessions and swatches in front of the map links
+- Sanity location color = green/yellow; agenda sessions and map-link swatches
 
 ### Changed
 Teams
-- Card names and height rulers removed from the display because names are already included in the portraits; accessible names retained
-- Existing member fields preserved; the old manual season count is hidden and replaced on the site by a calculation from the first season
+- Duplicate card names and height rulers removed; accessible names retained
+- Seasons calculated from the first season; manual count hidden, existing fields preserved
 
 Visual style
-- Mobile text glow uses a bright 2px core and a softer 8px halo; scoreboard, bottom navigation and background halos attenuated on mobile while desktop styling is preserved
-- Scoreboard panel and centre-bar halos softened
+- Mobile text glow = 2px core + soft 8px halo
+- Mobile scoreboard, navigation and background glows reduced; desktop unchanged
+- Scoreboard panel and centre-bar glows softened
 
 Club
-- Agenda rows are fixed time slots (before 13:00, 13–17, 17–19, after 19:00); sessions sharing a slot stack one after the other
-- Agenda labels larger and bold, Saturday cell centered, "View on Maps" text removed from the location links
-- Demo Saturday schedule: Starters 11:00, TTA 13:00, Playschools 15:00
+- Agenda slots = before 13:00, 13–17, 17–19, after 19:00; shared sessions stacked
+- Larger bold labels, centered Saturday cell, map-link text removed
+- Demo Saturday = Starters 11:00, TTA 13:00, Playschools 15:00
 
 Contact form
-- Field order: interests, name, e-mail, message; name and e-mail side by side (1/3 – 2/3)
-- "First name" becomes "Name" and is optional
-- Taller message box, single scissors on the coupon's dashed line instead of the cut lines
-- Fallback address on sending failure is the club Gmail
+- Field order = interests, name, e-mail, message
+- Name/e-mail side by side = 1/3–2/3; Name replaces First name and becomes optional
+- Taller message box; single scissors on the coupon's dashed line
+- Sending failure fallback = club Gmail
 
 Sport
-- Notion cards become a swipe slider on mobile
-- Track diagram full width on mobile, arrows in its bottom corners, section header above it
-- Officials follow the action in situations 6 to 8 (jammer refs level with their jammer, inside and outside refs placed from the pack and engagement zone) and glide along the track
-- Skater and official discs 20% larger
+- Mobile notions = swipe slider
+- Mobile track = full width, bottom-corner arrows, header above
+- Situations 6–8 = jammer refs follow jammers; other refs follow pack/engagement zone
+- Officials glide along the track; skater/official discs enlarged 20%
 
 Games
-- FlatTrackStats rankings link uses the previous Sunday instead of today
+- FlatTrackStats rankings dated the previous Sunday
 
 Navigation
-- Mobile bottom nav: border bump around the logo; "Contact" points to the club contact form
+- Mobile navigation = logo border bump; Contact links to the club form
 
 ### Fixed
-- Navigation links retain the current language, and the Games section stays active on the English Teams page
-- Notion cards overlapping the "Les bases" header on mobile
-- Bottom nav border showing under the logo bump on some phones
-- Animated blocks (club, join, home feed) invisible when JavaScript loads late or fails: content is now visible in the server HTML and only off-screen blocks wait for their reveal
-- Games page "Write to us" button pointing to a missing `/contact` page
+- Navigation language retained; Games active on English Teams page
+- Mobile notion cards overlapping the Les bases header
+- Bottom navigation border visible under the logo on some phones
+- Club, Join and home feed visible before JavaScript; off-screen reveals retained
+- Games Write to us link corrected to the club contact form
 
 ### Notes
-- Redeploy the Sanity Studio for the new member fields, then fill in team affiliations and roster settings to populate the Teams pages
-- Redeploy the Sanity Studio (`cd sanity && yarn deploy`) to get the location color field
-- `send.php` routing still needs a real test e-mail per address on the hosting
+- Redeploy Studio = `cd sanity && yarn deploy`; member fields and location colors
+- Fill in affiliations and roster settings to populate Teams
+- `send.php` routing = real e-mail check still needed for each hosted address
 
 ---
 
