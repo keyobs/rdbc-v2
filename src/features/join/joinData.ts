@@ -15,7 +15,16 @@ export async function getJoinContent(
 	const [page, roles] = await Promise.all([
 		client.fetch<JoinPage | null>('*[_id == "joinPage"][0]'),
 		client.fetch<JoinRoleData[]>(
-			'*[_type == "joinRole"]{..., "videoUrl": select(defined(videoRef) => videoRef->file.asset->url, video.asset->url)}',
+			`*[_type == "joinRole"]{
+				...,
+				"videoUrl": select(defined(videoRef) => videoRef->file.asset->url, video.asset->url),
+				"poster": select(
+					defined(posterRef->image.asset) => posterRef->image,
+					defined(poster.asset) => poster,
+					defined(videoRef->thumbnailRef->image.asset) => videoRef->thumbnailRef->image,
+					videoRef->thumbnail
+				)
+			}`,
 		),
 	]);
 	return resolveJoinContent(

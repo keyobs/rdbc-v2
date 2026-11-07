@@ -78,6 +78,7 @@ export const structure: StructureResolver = (S) =>
 				),
 			S.divider(),
 			S.documentTypeListItem("libraryVideo").title("Vidéos"),
+			S.documentTypeListItem("libraryPhoto").title("Photos"),
 			S.listItem()
 				.title("News")
 				.icon(() => "📰")

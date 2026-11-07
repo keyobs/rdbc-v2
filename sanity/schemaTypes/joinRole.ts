@@ -43,16 +43,25 @@ export const joinRole = defineType({
       options: {hotspot: true},
       description: 'Affichée avant la lecture, ou seule si aucune vidéo n’est renseignée.',
     }),
+    defineField({
+      name: 'posterRef',
+      title: 'Couverture — choisir dans Photos',
+      type: 'reference',
+      to: [{type: 'libraryPhoto'}],
+      options: {disableNew: true, filter: 'defined(image.asset)'},
+      description:
+        'Facultatif. Cette photo est prioritaire sur l’upload direct ci-dessus et la miniature de la vidéo. Retirer ce choix pour utiliser l’upload direct.',
+    }),
     joinString('cta', 'Texte du bouton de contact'),
     joinString('message', 'Message prérempli dans le formulaire', true),
   ],
   preview: {
-    select: {id: '_id', media: 'poster'},
-    prepare: ({id, media}) => ({
+    select: {id: '_id', media: 'poster', libraryMedia: 'posterRef.image'},
+    prepare: ({id, media, libraryMedia}) => ({
       title:
         JOIN_ROLES.find((role) => `joinRole-${role.id}` === id?.replace(/^drafts\./, ''))?.title ??
         'Profil pour rejoindre',
-      media,
+      media: libraryMedia ?? media,
     }),
   },
 })

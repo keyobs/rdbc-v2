@@ -17,6 +17,16 @@ Créer les fiches dans **Vidéos**, puis utiliser **Choisir une vidéo** dans ch
 
 Le champ **Photo miniature (facultative)** de la fiche vidéo permet de choisir une photo et son point d'intérêt. Elle est affichée sur Rejoindre avant la lecture et lorsque la vidéo est terminée ; le bouton permet de relancer la vidéo. Une **Image de couverture** renseignée sur le profil Rejoindre reste prioritaire. Sans aucune de ces images, la dernière image de la vidéo reste affichée en fin de lecture.
 
+### Bibliothèque Photos et upload direct
+
+Le module **Photos** permet de créer des fiches réutilisables avec un nom, une image, un recadrage et un point d'intérêt, un texte alternatif et un crédit. Publier la photo pour la rendre disponible sur le site. Le texte alternatif et le crédit sont conservés dans la bibliothèque ; les couvertures des cartes Rejoindre restent décoratives et n’affichent pas de crédit.
+
+Les miniatures des vidéos et les couvertures de Rejoindre conservent leur champ d’upload direct. Le champ **Choisir dans Photos** permet aussi d’utiliser une photo de la bibliothèque. Si les deux sont renseignés, la photo de la bibliothèque est prioritaire ; retirer la référence pour revenir à l’upload direct.
+
+Pour Rejoindre, l’ordre de priorité est : couverture du profil depuis Photos, couverture uploadée sur le profil, miniature de la vidéo depuis Photos, miniature uploadée sur la vidéo. Une fois la référence publiée, modifier et publier la fiche Photo suffit à mettre à jour ses utilisations au prochain chargement en développement ou à la prochaine reconstruction du site en production.
+
+Les fiches joueuses ne sont pas concernées par cette bibliothèque.
+
 L'import est traité localement dans le navigateur de l'éditeur. Le moteur FFmpeg WebAssembly est chargé uniquement au choix d'un fichier ; il n'est pas inclus dans le site public. Les clips de plus de **30 secondes** sont refusés, sans découpage automatique. Le résultat est un MP4 H.264 sans audio, au maximum 800 × 800 px, sans agrandissement, à 30 images/s maximum et 5 Mo maximum. La source doit faire au plus 100 Mo.
 
 Trois résolutions sont proposées : **Mini — 250 × 250**, **Réduite — 400 × 400** (par défaut, pour les cartes Rejoindre) et **Max — 800 × 800**. Ce sont des dimensions maximales ; les proportions sont conservées. Mini et Réduite utilisent aussi un débit inférieur et 24 images/s maximum. Leurs plafonds sont respectivement 1 Mo et 2 Mo ; Max conserve le plafond de 5 Mo. Le poids réel dépend de la durée et du contenu.

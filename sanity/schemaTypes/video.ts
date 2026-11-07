@@ -96,6 +96,23 @@ export const video = defineType({
       type: 'optimizedVideo',
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'thumbnail',
+      title: 'Photo miniature (facultative)',
+      type: 'image',
+      options: {hotspot: true},
+      description:
+        'Affichée avant et après la lecture sur Rejoindre. Une couverture renseignée sur le profil reste prioritaire.',
+    }),
+    defineField({
+      name: 'thumbnailRef',
+      title: 'Miniature — choisir dans Photos',
+      type: 'reference',
+      to: [{type: 'libraryPhoto'}],
+      options: {disableNew: true, filter: 'defined(image.asset)'},
+      description:
+        'Facultatif. Cette photo est prioritaire sur l’upload direct ci-dessus. Retirer ce choix pour utiliser l’upload direct.',
+    }),
   ],
   preview: {
     select: {
@@ -104,11 +121,14 @@ export const video = defineType({
       captured: 'file.capturedAt',
       uploaded: 'file.uploadedAt',
       duration: 'file.duration',
+      media: 'thumbnail',
+      libraryMedia: 'thumbnailRef.image',
     },
-    prepare: ({title, date, captured, uploaded, duration}) => {
+    prepare: ({title, date, captured, uploaded, duration, media, libraryMedia}) => {
       const resolved = videoDate(date, captured, uploaded)
       return {
         title,
+        media: libraryMedia ?? media,
         subtitle: [
           resolved && `${resolved.date} · ${resolved.origin}`,
           duration && `${duration.toFixed(1)} s`,

@@ -378,6 +378,13 @@ export type LibraryVideoReference = {
   [internalGroqTypeReferenceTo]?: 'libraryVideo'
 }
 
+export type LibraryPhotoReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'libraryPhoto'
+}
+
 export type JoinRole = {
   _id: string
   _type: 'joinRole'
@@ -417,6 +424,7 @@ export type JoinRole = {
     crop?: SanityImageCrop
     _type: 'image'
   }
+  posterRef?: LibraryPhotoReference
   cta?: {
     fr?: string
     en?: string
@@ -436,6 +444,32 @@ export type LibraryVideo = {
   title?: string
   recordedAt?: string
   file?: OptimizedVideo
+  thumbnail?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  thumbnailRef?: LibraryPhotoReference
+}
+
+export type LibraryPhoto = {
+  _id: string
+  _type: 'libraryPhoto'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  image?: {
+    asset: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  alt?: string
+  credit?: string
 }
 
 export type JoinPage = {
@@ -1002,8 +1036,10 @@ export type AllSanitySchemaTypes =
   | SanityFileAssetReference
   | OptimizedVideo
   | LibraryVideoReference
+  | LibraryPhotoReference
   | JoinRole
   | LibraryVideo
+  | LibraryPhoto
   | JoinPage
   | HomeJoiningSection
   | HomeAlert
