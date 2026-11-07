@@ -26,6 +26,10 @@
 	}
 }
 
+.navbar__item--last {
+	margin-right: 8px;
+}
+
 /* ── spotlight ───────────────────────────────────────────── */
 .navbar__spotlight {
 	position: absolute;

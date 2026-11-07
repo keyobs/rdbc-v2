@@ -24,8 +24,8 @@ function isActive(href: string): boolean {
 
 <nav class="navbar" aria-label="Main navigation">
 	<ul class="navbar__links" id="navbar-links">
-		{DISPLAYED_NAV_LINKS.map((item) => (
-			<li><a
+		{DISPLAYED_NAV_LINKS.map((item, index) => (
+			<li class:list={[{ "navbar__item--last": index === DISPLAYED_NAV_LINKS.length - 1 }]}><a
 				href={withBase(getLocalizedHref(item.href, locale))}
 				class:list={[{ "is-active": isActive(getLocalizedHref(item.href, locale)), home: item.key === "home" }]}
 				aria-label={item.key === "home" ? t.homeLabel : undefined}
