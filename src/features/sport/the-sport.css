@@ -15,6 +15,20 @@
 	padding: clamp(3rem, 5vw, 3rem) 2rem;
 }
 
+.theme-blue {
+	background: var(--bg-dark);
+	color: var(--text-light);
+}
+
+.theme-white {
+	--accent: var(--text-dark);
+	--muted: color-mix(in srgb, var(--text-dark) 72%, transparent);
+	--border: color-mix(in srgb, var(--text-dark) 14%, transparent);
+
+	background: var(--bg-light);
+	color: var(--text-dark);
+}
+
 .section__inner {
 	width: min(1180px, 100%);
 	margin: 0 auto;
@@ -69,11 +83,6 @@
 	margin-top: 2rem;
 }
 
-.sport-intro {
-	background: var(--bg-light);
-	color: var(--text-dark);
-}
-
 .sport-intro__content {
 	max-width: 520px;
 
@@ -86,32 +95,11 @@
 	margin: 0 0 1.5rem;
 }
 
-/* BASICS — dark background */
-
-.basics {
-	background: var(--bg-dark);
-	color: var(--text-light);
-}
-
 .basics__grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	border-top: 1px solid var(--border);
 	border-left: 1px solid var(--border);
-}
-
-/* TRACK — light background */
-
-.track {
-	background: var(--bg-light);
-	color: var(--text-dark);
-}
-
-/* ADVANCED RULES — dark background */
-
-.advanced-rules {
-	background: var(--bg-dark);
-	color: var(--text-light);
 }
 
 .advanced-rules__grid {

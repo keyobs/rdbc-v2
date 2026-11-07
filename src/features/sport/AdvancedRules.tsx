@@ -7,7 +7,7 @@ interface AdvancedRulesProps {
 }
 
 const AdvancedRules = ({ rules, locale }: AdvancedRulesProps) => (
-	<section id="advanced-rules" className="advanced-rules section">
+	<section id="advanced-rules" className="advanced-rules section theme-blue">
 		<div className="section__inner">
 			<header className="section__header section__header--narrow">
 				<span className="section__eyebrow">Pour aller plus loin</span>

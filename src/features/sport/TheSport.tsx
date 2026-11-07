@@ -1,5 +1,4 @@
 import { useTranslations, type Locale } from "@i18n/index";
-import AdvancedRules from "./AdvancedRules";
 import NotionCard from "./NotionCard";
 import TrackSlider from "./track/TrackSlider";
 import type { Notion } from "./types";
@@ -20,7 +19,7 @@ const TheSportPage = ({
 
 	return (
 		<main className="sport-page">
-			<section className="sport-intro section">
+			<section className="sport-intro section theme-blue">
 				<div className="section__inner section__inner--split">
 					<div className="sport-intro__heading">
 						<span className="section__eyebrow">Roller Derby</span>
@@ -52,7 +51,13 @@ const TheSportPage = ({
 				</div>
 			</section>
 
-			<section className="basics section">
+			<section className="track section theme-white">
+				<div className="section__inner">
+					<TrackSlider labels={t.sport.track} />
+				</div>
+			</section>
+
+			<section className="basics section theme-blue">
 				<div className="section__inner">
 					<header className="section__header">
 						<span className="section__eyebrow">Comprendre le jeu</span>
@@ -75,12 +80,6 @@ const TheSportPage = ({
 							/>
 						))}
 					</div>
-				</div>
-			</section>
-
-			<section className="track section">
-				<div className="section__inner">
-					<TrackSlider labels={t.sport.track} />
 				</div>
 			</section>
 			{/* <AdvancedRules rules={advancedRules} locale={locale} /> */}

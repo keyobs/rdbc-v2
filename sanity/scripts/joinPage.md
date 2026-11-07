@@ -13,7 +13,9 @@ Les trois profils et leurs ancres sont fixes. Le bouton mène au formulaire de c
 
 ## Bibliothèque Vidéos
 
-Créer les fiches dans **Vidéos**, puis utiliser **Choisir une vidéo** dans chaque profil de Rejoindre. La même vidéo peut servir sur plusieurs pages. Son nom est modifiable sur sa fiche ; la couverture reste propre à chaque profil.
+Créer les fiches dans **Vidéos**, puis utiliser **Choisir une vidéo** dans chaque profil de Rejoindre. La même vidéo peut servir sur plusieurs pages. Son nom est modifiable sur sa fiche.
+
+Le champ **Photo miniature (facultative)** de la fiche vidéo permet de choisir une photo et son point d'intérêt. Elle est affichée sur Rejoindre avant la lecture et lorsque la vidéo est terminée ; le bouton permet de relancer la vidéo. Une **Image de couverture** renseignée sur le profil Rejoindre reste prioritaire. Sans aucune de ces images, la dernière image de la vidéo reste affichée en fin de lecture.
 
 L'import est traité localement dans le navigateur de l'éditeur. Le moteur FFmpeg WebAssembly est chargé uniquement au choix d'un fichier ; il n'est pas inclus dans le site public. Les clips de plus de **30 secondes** sont refusés, sans découpage automatique. Le résultat est un MP4 H.264 sans audio, au maximum 800 × 800 px, sans agrandissement, à 30 images/s maximum et 5 Mo maximum. La source doit faire au plus 100 Mo.
 
