@@ -11,6 +11,7 @@ import {
 } from './videoProfile'
 
 const megabytes = (size: number) => `${(size / 1024 / 1024).toFixed(2)} Mo`
+const tableCellStyle = {border: '1px solid currentColor', padding: '0.5rem'}
 
 export function VideoInput({value: rawValue, onChange, readOnly}: FileInputProps) {
   const value = rawValue as OptimizedVideo | undefined
@@ -136,6 +137,7 @@ export function VideoInput({value: rawValue, onChange, readOnly}: FileInputProps
         )
       })
       if (task.signal.aborted) return
+      const original = typeof sourceRef.current === 'string' ? value : candidate
       onChange(
         set({
           _type: 'optimizedVideo',
@@ -144,10 +146,12 @@ export function VideoInput({value: rawValue, onChange, readOnly}: FileInputProps
           width: candidate.info.width,
           height: candidate.info.height,
           size: candidate.blob.size,
-          sourceSize: candidate.sourceSize,
+          sourceSize: original?.sourceSize,
+          sourceWidth: original?.sourceWidth,
+          sourceHeight: original?.sourceHeight,
           profile: VIDEO_PROFILE,
           preset: candidate.preset,
-          ...(candidate.capturedAt ? {capturedAt: candidate.capturedAt} : {}),
+          ...(original?.capturedAt ? {capturedAt: original.capturedAt} : {}),
           uploadedAt: new Date().toISOString(),
         }),
       )
@@ -212,8 +216,61 @@ export function VideoInput({value: rawValue, onChange, readOnly}: FileInputProps
         />
       )}
 
-        <label>
-        Résolution
+      {candidate && (
+        <p>
+          {VIDEO_PRESETS[candidate.preset].label} · Avant : {megabytes(candidate.sourceSize)} →
+          après : {megabytes(candidate.blob.size)} · {candidate.info.duration.toFixed(1)} s ·{' '}
+          {candidate.info.width} × {candidate.info.height} px
+        </p>
+      )}
+
+      {!candidate && value?.asset && (
+        <div style={{overflowX: 'auto'}}>
+          <table style={{width: '100%', textAlign: 'left', borderCollapse: 'collapse', border: '1px solid currentColor'}}>
+            <caption>
+              Vidéo enregistrée
+              {value.duration !== undefined && ` — ${value.duration.toFixed(1)} s`}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" style={tableCellStyle}>Information</th>
+                <th scope="col" style={tableCellStyle}>Originale (métadonnées)</th>
+                <th scope="col" style={tableCellStyle}>Upload</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" style={tableCellStyle}>Date</th>
+                <td style={tableCellStyle}>{value.capturedAt?.slice(0, 10) ?? '--'}</td>
+                <td style={tableCellStyle}>Uploadée le : {value.uploadedAt?.slice(0, 10) ?? '--'}</td>
+              </tr>
+              <tr>
+                <th scope="row" style={tableCellStyle}>Résolution</th>
+                <td style={tableCellStyle}>
+                  {value.sourceWidth && value.sourceHeight
+                    ? `${value.sourceWidth} × ${value.sourceHeight} px`
+                    : '--'}
+                </td>
+                <td style={tableCellStyle}>
+                  Optimisée : {VIDEO_PRESETS[isVideoPreset(value.preset) ? value.preset : 'max'].label}
+                  <br />
+                  {value.width && value.height ? `${value.width} × ${value.height} px` : '--'}
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" style={tableCellStyle}>Poids</th>
+                <td style={tableCellStyle}>{value.sourceSize !== undefined ? megabytes(value.sourceSize) : '--'}</td>
+                <td style={tableCellStyle}>{value.size !== undefined ? megabytes(value.size) : '--'}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
+
+
+        <div style={{display: 'flex', flexDirection:'column', gap: '0.75rem', flexWrap: 'wrap', maxWidth:'250px'}}>
+                  <label>
+        Optimiser la résolution
         <select
           value={preset}
           disabled={readOnly || busy}
@@ -235,50 +292,26 @@ export function VideoInput({value: rawValue, onChange, readOnly}: FileInputProps
         </select>
       </label>
 
-      {candidate && (
-        <p>
-          {VIDEO_PRESETS[candidate.preset].label} · Avant : {megabytes(candidate.sourceSize)} →
-          après : {megabytes(candidate.blob.size)} · {candidate.info.duration.toFixed(1)} s ·{' '}
-          {candidate.info.width} × {candidate.info.height} px
-        </p>
-      )}
-
-      {!candidate && value?.asset && (
-        <p>
-          {VIDEO_PRESETS[isVideoPreset(value.preset) ? value.preset : 'max'].label} ·{' '}
-          {value.duration?.toFixed(1)} s · {value.width} × {value.height} px ·{' '}
-          {megabytes(value.size ?? 0)}
-          <br />
-          Date d’upload : {value.uploadedAt?.slice(0, 10) ?? 'inconnue'}
-          {value.capturedAt && (
-            <>
-              <br />
-              Date des métadonnées : {value.capturedAt.slice(0, 10)}
-            </>
+          {currentUrl && !candidate && (
+            <button
+              type="button"
+              disabled={busy || readOnly}
+              onClick={() => void prepare(currentUrl)}
+            >
+              Optimiser la vidéo actuelle
+            </button>
           )}
-        </p>
-      )}
-        <div style={{display: 'flex', flexDirection:'column', gap: '0.75rem', flexWrap: 'wrap', maxWidth:'250px'}}>
-        {currentUrl && !candidate && (
-          <button
-            type="button"
-            disabled={busy || readOnly}
-            onClick={() => void prepare(currentUrl)}
-          >
-            Optimiser la vidéo actuelle
-          </button>
-        )}
-        {(busy || candidate) && (
-          <button type="button" disabled={readOnly} onClick={cancel}>
-            Annuler
-          </button>
-        )}
+          {(busy || candidate) && (
+            <button type="button" disabled={readOnly} onClick={cancel}>
+              Annuler
+            </button>
+          )}
 
-        {candidate && (
-          <button type="button" disabled={busy || readOnly} onClick={() => void upload()}>
-            Envoyer la vidéo optimisée
-          </button>
-        )}
+          {candidate && (
+            <button type="button" disabled={busy || readOnly} onClick={() => void upload()}>
+              Envoyer la vidéo optimisée
+            </button>
+          )}
       </div>
       <p role="status" aria-live="polite">
         {status}

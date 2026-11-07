@@ -16,6 +16,8 @@ export interface OptimizedResult {
   blob: Blob
   info: VideoInfo
   sourceSize: number
+  sourceWidth: number
+  sourceHeight: number
   capturedAt?: string
   preset: VideoPresetId
 }
@@ -86,6 +88,8 @@ export async function optimizeVideo(
       blob: new Blob([new Uint8Array(bytes)], {type: 'video/mp4'}),
       info,
       sourceSize: file.size,
+      sourceWidth: source.width,
+      sourceHeight: source.height,
       capturedAt: source.capturedAt,
       preset,
     }

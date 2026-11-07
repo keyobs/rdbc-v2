@@ -8,7 +8,7 @@ export const optimizedVideo = defineType({
   type: 'file',
   components: {input: VideoInput},
   fields: [
-    ...['duration', 'width', 'height', 'size', 'sourceSize'].map((name) =>
+    ...['duration', 'width', 'height', 'size', 'sourceSize', 'sourceWidth', 'sourceHeight'].map((name) =>
       defineField({name, title: name, type: 'number', readOnly: true}),
     ),
     defineField({name: 'profile', title: 'Profil d’optimisation', type: 'string', readOnly: true}),

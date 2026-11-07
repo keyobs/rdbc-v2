@@ -363,6 +363,8 @@ export type OptimizedVideo = {
   height?: number
   size?: number
   sourceSize?: number
+  sourceWidth?: number
+  sourceHeight?: number
   profile?: string
   preset?: 'mini' | 'reduce' | 'max'
   capturedAt?: string

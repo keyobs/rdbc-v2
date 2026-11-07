@@ -4,7 +4,7 @@ export const MAX_SOURCE_BYTES = 100 * 1024 * 1024
 export const MAX_VIDEO_BYTES = 5 * 1024 * 1024
 export const VIDEO_PRESETS = {
   mini: {
-    label: 'Mini — 250 × 250',
+    label: 'Mini - 250 × 250',
     dimension: 250,
     crf: 30,
     maxrate: '180k',
@@ -13,7 +13,7 @@ export const VIDEO_PRESETS = {
     maxBytes: 1024 * 1024,
   },
   reduce: {
-    label: 'Réduite — 400 × 400',
+    label: 'Réduite - 400 × 400',
     dimension: 400,
     crf: 28,
     maxrate: '400k',
@@ -22,7 +22,7 @@ export const VIDEO_PRESETS = {
     maxBytes: 2 * 1024 * 1024,
   },
   max: {
-    label: 'Max — 800 × 800',
+    label: 'Max - 800 × 800',
     dimension: 800,
     crf: 26,
     maxrate: '1200k',
