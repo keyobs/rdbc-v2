@@ -1,6 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
-type NewsFormat = 'brief' | 'article'
+type ArticleFormat = 'brief' | 'article'
 
 const TITLE_MAX_LENGTH = 80
 const BRIEF_TEXT_MAX_LENGTH = 400
@@ -17,12 +17,12 @@ const CATEGORIES = [
   {title: 'Vie de la ligue', value: 'leagueLife'},
 ]
 
-const formatOf = (document: unknown): NewsFormat | undefined =>
-  (document as {format?: NewsFormat} | undefined)?.format
+const formatOf = (document: unknown): ArticleFormat | undefined =>
+  (document as {format?: ArticleFormat} | undefined)?.format
 
 // Each format only shows its own fields to the editors
 const hiddenUnless =
-  (format: NewsFormat) =>
+  (format: ArticleFormat) =>
   ({document}: {document?: unknown}) =>
     formatOf(document) !== format
 
@@ -141,9 +141,9 @@ const bodyMembers = [
   }),
 ]
 
-export const news = defineType({
-  name: 'news',
-  title: 'News',
+export const article = defineType({
+  name: 'article',
+  title: 'Article',
   type: 'document',
   description: 'Le journal de bord du club : une brève pour une info rapide, un article pour un récit complet.',
   fields: [
@@ -165,7 +165,7 @@ export const news = defineType({
       name: 'title',
       title: 'Titre',
       type: 'object',
-      description: 'Court et concret : c’est la seule chose qu’on voit quand la news est fermée.',
+      description: 'Court et concret : c’est la seule chose qu’on voit quand l’article est fermé.',
       fields: [
         defineField({
           name: 'fr',
@@ -193,7 +193,7 @@ export const news = defineType({
       title: 'Date de publication',
       type: 'datetime',
       description:
-        'La news la plus récente s’affiche ouverte en haut de la page. La saison est calculée à partir de cette date.',
+        'L’article le plus récent s’affiche ouvert en haut de la page. La saison est calculée à partir de cette date.',
       initialValue: () => new Date().toISOString(),
       validation: (Rule) => Rule.required(),
     }),
@@ -201,7 +201,7 @@ export const news = defineType({
       name: 'slug',
       title: 'Lien de partage',
       type: 'slug',
-      description: 'Cliquer sur « Generate ». À ne plus modifier une fois la news publiée.',
+      description: 'Cliquer sur « Generate ». À ne plus modifier une fois l’article publié.',
       options: {source: 'title.fr', maxLength: 96},
       validation: (Rule) => Rule.required(),
     }),
@@ -362,7 +362,7 @@ export const news = defineType({
   preview: {
     select: {title: 'title.fr', format: 'format', date: 'date', cover: 'cover', image: 'image'},
     prepare: ({title, format, date, cover, image}) => ({
-      title: title ?? 'News sans titre',
+      title: title ?? 'Article sans titre',
       subtitle: `${format === 'article' ? 'Article' : 'Brève'}${date ? ` · ${new Date(date).toLocaleDateString('fr-FR')}` : ''}`,
       media: format === 'article' ? cover : image,
     }),

@@ -22,7 +22,7 @@ const NewsList = ({ items, currentSeason, locale, labels }: NewsListProps) => {
 	const [filter, setFilter] = useState<Filter>("all");
 	const [showPast, setShowPast] = useState(false);
 
-	// Shared link (/news#slug): open that news, reveal its season and scroll to it
+	// Shared link (/derbylife#slug): open that article, reveal its season and scroll to it
 	useEffect(() => {
 		const id = decodeURIComponent(window.location.hash.slice(1));
 		const target = items.find((item) => item.id === id);

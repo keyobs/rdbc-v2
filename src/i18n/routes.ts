@@ -6,7 +6,7 @@ const FR_TO_EN: Record<string, string> = {
 	"/equipe": "/en/team",
 	"/competitions": "/en/competitions",
 	"/competitions/equipes": "/en/competitions/teams",
-	"/news": "/en/news",
+	"/derbylife": "/en/derbylife",
 	"/blog": "/en/blog",
 	"/contact": "/en/contact",
 };

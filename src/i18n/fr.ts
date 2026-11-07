@@ -7,7 +7,7 @@ const fr = {
 		rules: "le jeu",
 		sport: "le sport",
 		competitions: "matchs",
-		events: "news",
+		events: "D-Life",
 		blog: "blog",
 		contact: "contact",
 		join: "rejoindre",
@@ -241,9 +241,8 @@ const fr = {
 		},
 	},
 	news: {
-		title: "News",
-		intro:
-			"Le journal de bord du club : matchs, events, recrutement et vie de la ligue.",
+		title: "D-Life",
+		intro: "Derby life et compagnie.",
 		filterLabel: "Filtrer par catégorie",
 		all: "Tout",
 		categories: {
@@ -258,8 +257,8 @@ const fr = {
 		season: "Saison",
 		pastSeasons: "Saisons précédentes",
 		hidePastSeasons: "Masquer les saisons précédentes",
-		emptySeason: "Pas encore de news cette saison.",
-		emptyCategory: "Aucune news dans cette catégorie pour cette saison.",
+		emptySeason: "Pas encore d’article cette saison.",
+		emptyCategory: "Aucun article dans cette catégorie pour cette saison.",
 		practical: "Infos pratiques",
 		dates: "Date",
 		time: "Horaires",

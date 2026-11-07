@@ -80,11 +80,11 @@ export const structure: StructureResolver = (S) =>
 			S.documentTypeListItem("libraryVideo").title("Vidéos"),
 			S.documentTypeListItem("libraryPhoto").title("Photos"),
 			S.listItem()
-				.title("News")
+				.title("Articles")
 				.icon(() => "📰")
 				.child(
-					S.documentTypeList("news")
-						.title("News")
+					S.documentTypeList("article")
+						.title("Articles")
 						.defaultOrdering([{ field: "date", direction: "desc" }]),
 				),
 			S.listItem()

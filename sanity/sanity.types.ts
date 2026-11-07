@@ -50,11 +50,11 @@ export type ClubReference = {
   [internalGroqTypeReferenceTo]?: 'club'
 }
 
-export type NewsReference = {
+export type ArticleReference = {
   _ref: string
   _type: 'reference'
   _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'news'
+  [internalGroqTypeReferenceTo]?: 'article'
 }
 
 export type Competition = {
@@ -99,15 +99,15 @@ export type Competition = {
       _type: 'image'
       _key: string
     }>
-    report?: NewsReference
+    report?: ArticleReference
     _type: 'game'
     _key: string
   }>
 }
 
-export type News = {
+export type Article = {
   _id: string
-  _type: 'news'
+  _type: 'article'
   _createdAt: string
   _updatedAt: string
   _rev: string
@@ -1025,9 +1025,9 @@ export type AllSanitySchemaTypes =
   | Season
   | SanityImageAssetReference
   | ClubReference
-  | NewsReference
+  | ArticleReference
   | Competition
-  | News
+  | Article
   | SanityImageCrop
   | SanityImageHotspot
   | Slug

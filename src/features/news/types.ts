@@ -1,9 +1,9 @@
-import type { News } from "../../../sanity/sanity.types";
+import type { Article } from "../../../sanity/sanity.types";
 
-export type NewsCategory = NonNullable<News["category"]>;
-export type NewsImage = NonNullable<News["image"]>;
-export type NewsCover = NonNullable<News["cover"]>;
-export type NewsBody = NonNullable<NonNullable<News["body"]>["fr"]>;
+export type NewsCategory = NonNullable<Article["category"]>;
+export type NewsImage = NonNullable<Article["image"]>;
+export type NewsCover = NonNullable<Article["cover"]>;
+export type NewsBody = NonNullable<NonNullable<Article["body"]>["fr"]>;
 export type NewsBodyMember = NewsBody[number];
 
 export interface NewsPractical {
@@ -21,7 +21,7 @@ export interface NewsButton {
 }
 
 interface NewsBase {
-	/** Slug: also the anchor of the shareable link (/news#slug) */
+	/** Slug: also the anchor of the shareable link (/derbylife#slug) */
 	id: string;
 	date: string;
 	season: string;

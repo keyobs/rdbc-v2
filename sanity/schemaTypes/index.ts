@@ -6,7 +6,7 @@ import { feed } from "./feed";
 import { feedSettings } from "./feedSettings";
 import { homeAlert } from "./homeAlert";
 import { joiningPositions } from "./joiningPositions";
-import { news } from "./news";
+import { article } from "./article";
 import { player } from "./player";
 import { season } from "./season";
 import { sportNotions } from "./sportNotions";
@@ -34,5 +34,5 @@ export const schemaTypes = [
 	advancedRules,
 	competition,
 	season,
-	news,
+	article,
 ];
