@@ -15,6 +15,10 @@ Join
 - Covers = profile before video; library photo before direct upload
 
 ### Changed
+Tooling
+- Node.js 26 for site, Studio and CI; version shared through `.nvmrc`
+- GitHub actions updated to Node 24 runtimes; legacy runtime override removed
+
 Teams
 - Skaters sorted by jersey number, including leading zeros; other sections by name
 - Card backs = portrait, generation, stacked positions, joining year and bold season count

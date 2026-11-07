@@ -19,7 +19,7 @@
 
 - **Styling :** Vanilla CSS uniquement — pas de Tailwinds
 - **Deploy :** GitHub Actions → GitHub Pages (recette) + OVH mutualisé FTP (prod)
-- **Node :** ≥ 22.12
+- **Node :** 26 (`.nvmrc`), minimum 26
 
 ## Docs de référence
 

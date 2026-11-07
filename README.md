@@ -4,7 +4,7 @@ Site web du Roller Derby Bordeaux Club. Stack : Astro 6 + React 19 + Sanity 5.
 
 ## Prérequis
 
-- Node.js >= 22.12
+- Node.js 26 (`nvm install && nvm use`)
 - yarn classic (`npm install -g yarn`)
 
 ## Installation

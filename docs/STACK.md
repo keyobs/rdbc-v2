@@ -269,13 +269,13 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: '22'
+          node-version-file: '.nvmrc'
       - run: npm ci
       - run: npm run build
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
 ```
 
 ### 8.2 OVH mutualisé (production)
@@ -327,7 +327,7 @@ cd sanity && npm run deploy
 
 | Outil | Version minimale |
 |---|---|
-| Node.js | `>=22.12.0` |
+| Node.js | `>=26.0.0` (`.nvmrc`: 26) |
 | npm | `>=10.x` |
 | Astro | `^6.x` |
 | React | `^19.x` |
