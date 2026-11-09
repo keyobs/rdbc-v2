@@ -3466,6 +3466,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@keyobs/pulsepit-beacon@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@keyobs/pulsepit-beacon@npm:0.1.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40keyobs%2Fpulsepit-beacon%2F0.1.1%2F91839178f31b499f59b49d902a2af9cbd7424f52"
+  checksum: 10c0/d85f4421cd80acde54433ac60b08a87cf0455a84374695ba7fae7d6102eaf77c2f7564526018e393246744a7cc7ad172c85c6fea2a51ff8fb82a26e6691fcc7f
+  languageName: node
+  linkType: hard
+
 "@mdit/plugin-alert@npm:^0.23.1":
   version: 0.23.2
   resolution: "@mdit/plugin-alert@npm:0.23.2"
@@ -11579,6 +11586,7 @@ __metadata:
     "@fontsource/archivo-black": "npm:^5.2.8"
     "@fontsource/inter": "npm:^5.2.8"
     "@keyobs/dx-flow": "npm:3.1.3"
+    "@keyobs/pulsepit-beacon": "npm:^0.1.1"
     "@phosphor-icons/react": "npm:^2.1.10"
     "@portabletext/react": "npm:^6.2.0"
     "@radix-ui/react-accordion": "npm:^1.3.1"
