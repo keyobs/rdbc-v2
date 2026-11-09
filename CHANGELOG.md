@@ -16,6 +16,7 @@ Join
 
 ### Changed
 Tooling
+- Yarn 4.18.1 for site, Studio and CI; `node_modules` retained
 - Node.js 26 for site, Studio and CI; version shared through `.nvmrc`
 - GitHub actions updated to Node 24 runtimes; legacy runtime override removed
 

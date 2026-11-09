@@ -20,6 +20,7 @@
 - **Styling :** Vanilla CSS uniquement — pas de Tailwinds
 - **Deploy :** GitHub Actions → GitHub Pages (recette) + OVH mutualisé FTP (prod)
 - **Node :** 26 (`.nvmrc`), minimum 26
+- **Packages :** Yarn 4.18.1 via Corepack, `node_modules`, lockfiles séparés site/Studio
 
 ## Docs de référence
 

@@ -5,13 +5,17 @@ Site web du Roller Derby Bordeaux Club. Stack : Astro 6 + React 19 + Sanity 5.
 ## Prérequis
 
 - Node.js 26 (`nvm install && nvm use`)
-- yarn classic (`npm install -g yarn`)
+- Yarn 4.18.1 via Corepack (`npm install -g corepack && corepack enable yarn`)
 
 ## Installation
 
 ```bash
+export KEYOBS_PACKAGES_TOKEN="<jeton GitHub avec accès read:packages>"
 yarn install
+cd sanity && yarn install
 ```
+
+Le jeton donne accès à `@keyobs/dx-flow`. Il reste dans l'environnement local ; en CI, il provient du secret `KEYOBS_PACKAGES_TOKEN`. Les deux projets conservent `node_modules` et leur propre lockfile.
 
 ## Développement
 
