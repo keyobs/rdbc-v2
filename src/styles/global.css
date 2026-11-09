@@ -25,22 +25,30 @@ html {
 	scrollbar-gutter: stable;
 }
 
-/* Native cross-document view transitions (no JS) — unsupported browsers navigate normally */
-@view-transition {
-	navigation: auto;
+/* Animate live content instead of putting a snapshot over the navigation. */
+body > main {
+	animation: page-enter 180ms cubic-bezier(0.16, 1, 0.3, 1);
+	transition: opacity 140ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-	animation-duration: 260ms;
-	animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+html.is-navigating body > main {
+	animation: none;
+	opacity: 0.65;
+}
+
+@keyframes page-enter {
+	from {
+		opacity: 0.65;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-	::view-transition-group(*),
-	::view-transition-old(*),
-	::view-transition-new(*) {
+	body > main {
 		animation: none;
+		transition: none;
 	}
 }
 

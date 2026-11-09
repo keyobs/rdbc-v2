@@ -78,6 +78,16 @@
 	color: var(--color-neon-green);
 }
 
+.navbar__links:has(a.is-pending) a.is-active:not(.is-pending) {
+	color: var(--color-text-main);
+}
+
+html.is-navigating .navbar__links a.is-pending {
+	color: var(--color-neon-green);
+	opacity: 1;
+	transition: none;
+}
+
 .navbar__links a:not(.btn-shiny):not(.lang-switch__btn):focus-visible {
 	outline: 2px solid var(--color-neon-green);
 	outline-offset: 4px;
